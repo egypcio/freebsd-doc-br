@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<!--
+    The FreeBSD Documentation Project
+    The FreeBSD Brazilian Portuguese Documentation Project
+
+    Source:  share/xml/navibar.ent
+    Original revision:  r39632
+
+    $FreeBSD$
+-->
+
+<!ENTITY nav.about '
+<div xmlns="http://www.w3.org/1999/xhtml" id="sidenav">
+  <h2 class="blockhide">Navegação de seção</h2>
+
+  <ul>
+    <li><a href="&base;/about.html">Sobre</a></li>
+    <li><a href="&base;/features.html">Características</a></li>
+    <li><a href="&base;/applications.html">Aplicativos</a></li>
+    <li><a href="&base;/internet.html">Internetworking</a></li>
+    <li><a href="&base;/advocacy/">Proselitismo</a></li>
+    <li><a href="&base;/marketing/">Marketing</a></li>
+    <li><a href="&base;/administration.html">Administração</a></li>
+    <li><a href="&base;/news/newsflash.html">Notícias</a></li>
+    <li><a href="&base;/events/events.html">Eventos</a></li>
+    <li><a href="&base;/news/press.html">Imprensa</a></li>
+    <li><a href="&base;/multimedia/multimedia.html">Multimídia</a></li>
+    <li><a href="&base;/art.html">Arte</a></li>
+    <li><a href="&base;/logo.html">Logotipo</a></li>
+    <li><a href="&base;/donations/">Doações</a></li>
+    <li><a href="&base;/copyright/">Avisos Legais</a></li>
+    <li><a href="&base;/privacy.html">Política de Privacidade</a></li>
+  </ul>
+</div> <!-- SIDENAV -->'>
+
+<!ENTITY nav.community '
+<div xmlns="http://www.w3.org/1999/xhtml" id="sidenav">
+  <h2 class="blockhide">Navegação de seção</h2>
+
+  <ul>
+    <li><a href="&base;/community.html">Comunidade</a></li>
+    <li><a href="&base;/community/mailinglists.html">Listas de Discussão</a></li>
+    <li><a href="http://forums.freebsd.org/">Fóruns</a></li>
+    <li><a href="&base;/community/irc.html">IRC</a></li>
+    <li><a href="&base;/community/newsgroups.html">Grupos de Notícias</a></li>
+    <li><a href="&base;/usergroups.html">Grupos de Usuários</a></li>
+    <li><a href="&base;/events/events.html">Eventos</a></li>
+    <li><a href="&base;/community/webresources.html">Recursos na Web</a></li>
+    <li><a href="&base;/community/social.html">Redes Sociais</a></li>
+  </ul>
+</div> <!-- SIDENAV -->'>
+
+<!ENTITY nav.developers '
+<div xmlns="http://www.w3.org/1999/xhtml" id="sidenav">
+  <h2 class="blockhide">Navegação de seção</h2>
+
+  <ul>
+    <li><a href="&base;/projects/index.html">Desenvolvedores</a></li>
+    <li><a href="&base;/doc/en_US.ISO8859-1/books/developers-handbook">Developer&#39;s Handbook</a></li>
+    <li><a href="&base;/doc/en_US.ISO8859-1/books/porters-handbook">Porter&#39;s Handbook</a></li>
+    <li><a href="&base;/developers/cvs.html">Repositórios de código</a></li>
+    <li><a href="&base;/releng/index.html">Engenharia de Lançamento</a></li>
+    <li><a href="&base;/platforms/">Plataformas</a></li>
+    <li><a href="http://wiki.freebsd.org/IdeasPage">Idéias de Projeto</a></li>
+    <li><a href="&base;/doc/en_US.ISO8859-1/articles/contributing/index.html">Contribuindo</a></li>
+  </ul>
+</div> <!-- SIDENAV -->'>
+
+<!ENTITY nav.docs '
+<div xmlns="http://www.w3.org/1999/xhtml" id="sidenav">
+  <h2 class="blockhide">Navegação de seção</h2>
+
+  <ul>
+    <li><a href="&base;/docs.html">Documentação</a></li>
+    <li><a href="&base;/doc/en_US.ISO8859-1/books/faq/">FAQ</a></li>
+    <li><a href="&base;/doc/en_US.ISO8859-1/books/handbook/">Handbook</a></li>
+    <li><a href="&cgibase;/man.cgi">Páginas de Manual</a></li>
+    <li><a href="&base;/docs/books.html">Livros e Artigos Online</a></li>
+    <li><a href="&base;/publish.html">Publicações</a></li>
+    <li><a href="&base;/docs/webresources.html">Recursos na Web</a></li>
+    <li><a href="&base;/projects/newbies.html">Para Iniciantes</a></li>
+    <li><a href="&base;/docproj/">Projeto de Documentação</a></li>
+  </ul>
+</div> <!-- SIDENAV -->'>
+
+<![ %beta.testing; [
+<!ENTITY beta.listitem '
+  <li xmlns="http://www.w3.org/1999/xhtml">Próxima: <br />
+    <a href="&enbase;/&u.betarel.schedule;">&betarel.current;</a></li>
+'>
+]]>
+<!ENTITY beta.listitem ''>
+
+<![ %beta2.testing; [
+<!ENTITY beta2.listitem '
+  <li xmlns="http://www.w3.org/1999/xhtml">Próxima: <br />
+    <a href="&u.betarel2.schedule;">&betarel2.current;</a></li>
+'>
+]]>
+<!ENTITY beta2.listitem ''>
+
+<!ENTITY nav.download '
+<div xmlns="http://www.w3.org/1999/xhtml" id="sidenav">
+  <h2 class="blockhide">Navegação de seção</h2>
+  <ul>
+    <li><a href="&base;/where.html">Obtenha o FreeBSD</a></li>
+    <li><a href="&base;/releases/">Informações sobre as Versões</a>
+      <ul>
+	<li>Produção: <br />
+	  <a href="&u.rel.announce;">&rel.current;</a> <a href="&u.rel2.announce;">&rel2.current;</a></li>
+        <li>Legada:<br />
+	  <a href="&u.rel3.announce;">&rel3.current;</a></li>
+	&beta.listitem;
+	&beta2.listitem;
+<!--	<li>Snapshot:<br /><br /></li> -->
+       </ul></li>
+    <li><a href="&base;/ports/">Aplicativos Portados</a></li>
+  </ul>
+</div> <!-- SIDENAV -->'>
+
+<!ENTITY nav.gnome '
+<div xmlns="http://www.w3.org/1999/xhtml" id="sidenav">
+  <h2 class="blockhide">Navegação de seção</h2>
+
+  <ul>
+    <li><a href="&base;/gnome/index.html">FreeBSD/GNOME</a>
+      <ul>
+        <li><a href="&base;/gnome/docs/faq2.html#q1">Instruções para Instalação</a></li>
+        <li><a href="&base;/gnome/docs/faq232.html#q2">Instruções para Atualização</a></li>
+	<li><a href="&base;/gnome/../ports/gnome.html">Aplicativos Disponíveis</a></li>
+        <li><a href="&base;/gnome/docs/volunteer.html">Como Ajudar</a></li>
+        <li><a href="&base;/gnome/docs/bugging.html">Relatar um Bug</a></li>
+        <li><a href="&base;/gnome/screenshots.html">Capturas de Tela</a></li>
+        <li><a href="&base;/gnome/contact.html">Entre em Contato</a></li>
+      </ul></li>
+    <li><a href="&base;/gnome/index.html">Documentação</a>
+      <ul>
+        <li><a href="&base;/gnome/docs/faq2.html">FAQ</a></li>
+	<li><a href="&base;/gnome/docs/halfaq.html">HAL FAQ</a></li>
+        <li><a href="&base;/gnome/docs/faq232.html">FAQ sobre atualização do 2.30 para o 2.32</a></li>
+        <li><a href="&base;/gnome/docs/develfaq.html">FAQ do Ramo de Desenvolvimento</a></li>
+        <li><a href="&base;/gnome/docs/porting.html">Criando Ports</a></li>
+        <li><a href="&base;/gnome/docs/faq232.html#q4">Problemas Conhecidos</a></li>
+      </ul></li>
+    </ul>
+</div> <!-- SIDENAV -->'>
+
+<!ENTITY nav.ports '
+<div xmlns="http://www.w3.org/1999/xhtml" id="sidenav">
+  <h2 class="blockhide">Navegação de seção</h2>
+  <ul>
+    <li><a href="&base;/ports/index.html">Sobre a Coleção de Ports</a></li>
+    <li><a href="&base;/ports/installing.html">Instalação</a></li>
+    <li><a href="&base;/ports/updating.html">Atualização</a></li>
+    <li><a href="&base;/ports/searching.html">Busca</a></li>
+    <li>&nbsp;&nbsp;&nbsp;Categorias
+      <ul>
+        <li><a href="&base;/ports/categories-alpha.html">Lista em 
+	  ordem alfabética</a></li>
+        <li><a href="&base;/ports/categories-grouped.html">Lista por 
+	  grupos lógicos</a></li>
+      </ul></li>
+    <li><a href="&base;/ports/master-index.html">Lista com todos os Ports</a></li>
+    <li><a href="&base;/ports/references.html">Para maiores informações</a></li>
+  </ul>
+</div> <!-- SIDENAV -->'>
+
+<!ENTITY nav.support '
+<div xmlns="http://www.w3.org/1999/xhtml" id="sidenav">
+  <h2 class="blockhide">Navegação de seção</h2>
+
+  <ul>
+    <li><a href="&base;/support.html">Suporte</a></li>
+    <li><a href="&base;/commercial/">Fornecedores</a>
+    <ul>
+      <li><a href="&base;/commercial/software_bycat.html">Software</a></li>
+      <li><a href="&base;/commercial/hardware.html">Hardware</a></li>
+      <li><a href="&base;/commercial/consult_bycat.html">Consultorias</a></li>
+      <li><a href="&base;/commercial/isp.html">Provedor de serviços de Internet</a></li>
+      <li><a href="&base;/commercial/misc.html">Diversos</a></li>
+    </ul></li>
+    <li><a href="&base;/security/index.html">Segurança da Informação</a>
+    <ul>
+      <li><a href="&enbase;/security/advisories.html">Alertas</a></li>
+      <li><a href="&enbase;/security/notices.html">Avisos de Errata</a></li>
+    </ul></li>
+    <li><a href="&base;/support/bugreports.html">Relatos de Bugs</a>
+      <ul>
+        <li><a href="&base;/send-pr.html">Relatar um Bug</a></li>
+      </ul></li>
+    <li><a href="&base;/support/webresources.html">Recursos na Web</a></li>
+  </ul>
+</div> <!-- SIDENAV -->'>
+
+<!--
+<!ENTITY % navinclude.about "IGNORE">
+<![%navinclude.about;[
+<!ENTITY nav '&nav.about;'>
+]]>
+<!ENTITY % navinclude.community "IGNORE">
+<![%navinclude.community;[
+<!ENTITY nav '&nav.community;'>
+]]>
+<!ENTITY % navinclude.developers "IGNORE">
+<![%navinclude.developers;[
+<!ENTITY nav '&nav.developers;'>
+]]>
+<!ENTITY % navinclude.docs "IGNORE">
+<![%navinclude.docs;[
+<!ENTITY nav '&nav.docs;'>
+]]>
+<!ENTITY % navinclude.download "IGNORE">
+<![%navinclude.download;[
+<!ENTITY nav '&nav.download;'>
+]>
+<!ENTITY % navinclude.gnome "IGNORE">
+<![%navinclude.gnome;[
+<!ENTITY nav '&nav.gnome;'>
+]]>
+<!ENTITY % navinclude.ports "IGNORE">
+<![%navinclude.ports;[
+<!ENTITY nav '&nav.ports;'>
+]]>
+<!ENTITY % navinclude.support "IGNORE">
+<![%navinclude.support;[
+<!ENTITY nav '&nav.support;'>
+]]>
+-->
+<!ENTITY nav ''>

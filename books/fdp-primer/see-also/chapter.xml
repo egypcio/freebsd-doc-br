@@ -1,0 +1,139 @@
+<!-- Copyright (c) 1998, 1999 Nik Clayton, All rights reserved.
+
+     Redistribution and use in source (SGML DocBook) and 'compiled' forms
+     (SGML HTML, PDF, PostScript, RTF and so forth) with or without
+     modification, are permitted provided that the following conditions
+     are met:
+
+      1.  Redistributions of source code (SGML DocBook) must retain the above
+	 copyright notice, this list of conditions and the following
+	 disclaimer as the first lines of this file unmodified.
+
+      2.  Redistributions in compiled form (transformed to other DTDs,
+	 converted to PDF, PostScript, RTF and other formats) must reproduce
+	 the above copyright notice, this list of conditions and the
+	 following disclaimer in the documentation and/or other materials
+	 provided with the distribution.
+
+     THIS DOCUMENTATION IS PROVIDED BY NIK CLAYTON "AS IS" AND ANY EXPRESS OR
+     IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+     OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+     DISCLAIMED.  IN NO EVENT SHALL NIK CLAYTON BE LIABLE FOR ANY DIRECT,
+     INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+     (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+     SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+     HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+     STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+     ANY WAY OUT OF THE USE OF THIS DOCUMENTATION, EVEN IF ADVISED OF THE
+     POSSIBILITY OF SUCH DAMAGE.
+
+     The FreeBSD Documentation Project
+     The FreeBSD Brazilian Portuguese Documentation Project
+
+     $FreeBSD: trunk/docs/pt_BR.ISO8859-1/books/fdp-primer/see-also/chapter.xml 165 2012-10-04 21:26:02Z ebrandi@fugspbr.org $
+
+     Original revision: r38826
+
+-->
+
+<chapter id="see-also">
+  <title>Veja também</title>
+
+  <para>Este documento não é deliberadamente uma
+    discussão exaustiva sobre SGML, DTDs, ou do projeto de
+    documentação do FreeBSD.  Para obter maiores
+    informações, sugerimos que você visite os
+    seguintes sítios web.</para>
+
+  <sect1 id="see-also-fdp">
+    <title>Projeto de documentação do FreeBSD</title>
+
+    <itemizedlist>
+      <listitem>
+	<para><ulink
+	    url="&url.base;/docproj/index.html">Páginas web do
+	    Projeto de documentação do
+	    FreeBSD</ulink></para>
+      </listitem>
+
+      <listitem>
+	<para><ulink url="&url.books.handbook;/index.html">Manual do
+	    FreeBSD</ulink></para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="see-also-sgml">
+    <title>SGML</title>
+
+    <itemizedlist>
+      <listitem>
+	<para><ulink
+	    url="http://www.oasis-open.org/cover/">Página web
+	    sobre SGML/XML,</ulink> referências detalhadas sobre
+	  SGML</para>
+      </listitem>
+
+      <listitem>
+	<para><ulink
+	    url="http://www-sul.stanford.edu/tools/tutorials/html2.0/gentle.html">
+	    Uma breve introdução ao SGML</ulink></para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="see-also-html">
+    <title>HTML</title>
+
+    <itemizedlist>
+      <listitem>
+	<para><ulink url="http://www.w3.org/">Consórcio
+	    <literal>World Wide Web</literal></ulink></para>
+      </listitem>
+
+      <listitem>
+	<para><ulink url="http://www.w3.org/TR/REC-html40/">As
+	    especificações do HTML 4.0</ulink></para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="see-also-docbook">
+    <title>DocBook</title>
+
+    <itemizedlist>
+      <listitem>
+	<para><ulink url="http://www.oasis-open.org/docbook/">O
+	  comitê técnico do DocBook</ulink>,
+	  responsáveis pelo DTD DocBook.</para>
+      </listitem>
+
+      <listitem>
+	<para><ulink url="http://www.docbook.org/">DocBook: O guia
+	  definitivo</ulink>, documentação online para
+	  o DTD DocBook.</para>
+	
+      </listitem>
+
+      <listitem>
+	<para><ulink
+	  url="http://docbook.sourceforge.net/">Repositório
+	  aberto de DocBook</ulink> contém folhas de estilo
+	  DSSSL e outros recursos para pessoas que utilizam
+	  DocBook.</para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="see-also-linuxdoc">
+    <title>Projeto de documentação do Linux</title>
+
+    <itemizedlist>
+      <listitem>
+	<para><ulink url="http://www.tldp.org/">Pagínas web
+	  do projeto de documentação do Linux</ulink>
+	  </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+</chapter>

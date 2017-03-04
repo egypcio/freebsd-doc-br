@@ -1,0 +1,25 @@
+<!--
+
+  The FreeBSD Documentation Project
+  The FreeBSD Brazilian Portuguese Documentation Project
+ 
+  $FreeBSD: head/pt_BR.ISO8859-1/books/fdp-primer/chapters.ent 39500 2012-09-05 05:16:32Z gabor $
+
+  Original revision: r38826
+
+-->
+
+<!ENTITY chap.overview		SYSTEM "overview/chapter.xml">
+<!ENTITY chap.sgml-primer	SYSTEM "sgml-primer/chapter.xml">
+<!ENTITY chap.tools		SYSTEM "tools/chapter.xml">
+<!ENTITY chap.sgml-markup       SYSTEM "sgml-markup/chapter.xml">
+<!ENTITY chap.stylesheets	SYSTEM "stylesheets/chapter.xml">
+<!ENTITY chap.structure         SYSTEM "structure/chapter.xml">
+<!ENTITY chap.the-website	SYSTEM "the-website/chapter.xml">
+<!ENTITY chap.translations	SYSTEM "translations/chapter.xml">
+<!ENTITY chap.writing-style	SYSTEM "writing-style/chapter.xml">
+<!ENTITY chap.psgml-mode	SYSTEM "psgml-mode/chapter.xml">
+<!ENTITY chap.see-also		SYSTEM "see-also/chapter.xml">	
+<!ENTITY chap.doc-build		SYSTEM "doc-build/chapter.xml">
+
+<!ENTITY app.examples		SYSTEM "examples/appendix.xml">

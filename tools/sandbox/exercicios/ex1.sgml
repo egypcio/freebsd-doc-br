@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" [
+<!ENTITY versao "1.1">
+<!ENTITY author "Patrick Tracanelli">
+]>
+
+
+<html>
+  <head>         
+	<title>Exercicios do FreeBSD Doc Project</title>
+  </head>
+
+  <body>        
+    <p>Este e' um teste, e a versao desse teste e &versao;.</p>
+
+    <p>Na versao &versao; encontraremos exemplos.</p>
+
+	<!-- comentario o que interessa sao os dois hifens
+		precedidos da exclamacao e os dois hifens finais
+		as tags < > sao meramente tags internas do sgml -->
+
+    <p align="right">Como este exemplo de alinhamento a direita.</p>
+    <p>Este documento foi criado por &author;.</p>
+  </body>
+</html>
+

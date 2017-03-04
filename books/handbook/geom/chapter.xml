@@ -1,0 +1,1072 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!--
+     The FreeBSD Documentation Project
+     $FreeBSD: trunk/docs/pt_BR.ISO8859-1/books/handbook/geom/chapter.xml 390 2014-01-01 18:21:28Z egypcio $
+
+-->
+
+<chapter id="GEOM">
+  <chapterinfo>
+    <authorgroup>
+      <author>
+	<firstname>Tom</firstname>
+	<surname>Rhodes</surname>
+	<contrib>Uma Colaboração de </contrib>
+      </author>
+    </authorgroup>
+  </chapterinfo>
+
+  <title>GEOM: Framework Modular para Trasformação de Discos</title>
+
+  <sect1 id="GEOM-synopsis">
+    <title>Sinopse</title>
+
+    <indexterm>
+      <primary>GEOM</primary>
+    </indexterm>
+    <indexterm>
+      <primary>GEOM Disk Framework</primary>
+      <see>GEOM</see>
+    </indexterm>
+
+    <para>Este capítulo aborda o uso de discos com o framework GEOM no 
+	&os;. Isso inclui a maioria das utilidades de controle para 
+	utilização de <acronym role="Redundant Array of Inexpensive Disks">
+	RAID</acronym>, que podem fazer uso das configurações desse 
+	framework. Este capítulo não entrará em detalhes de como o 
+	GEOM manipula ou controla I/O, como funciona seu sistema 
+	subjacente ou código. Essas informações você pode obter na 
+	página de manual &man.geom.4; e suas referências. Este capítulo, 
+	também, não é um guia definitivo para configurações de 
+	<acronym>RAID</acronym>. Apenas as configurações de 
+	<acronym>RAID</acronym> suportadas pelo GEOM serão discutidas 
+	aqui.</para>
+
+    <para>Depois de ler este capítulo, você saberá:</para>
+
+    <itemizedlist>
+      <listitem>
+	<para>Quais tipos de <acronym>RAID</acronym> são suportados 
+	  e disponíveis através do uso do GEOM.</para>
+      </listitem>
+
+      <listitem>
+	<para>Como utilizar os utilitários básicos para configurar, 
+	  manter e manipular vários níveis de 
+	  <acronym>RAID</acronym>.</para>
+      </listitem>
+
+      <listitem>
+	<para>Como espelhar, dividir, encriptar e conectar 
+	  dispositivos de disco remotamente com GEOM.</para>
+      </listitem>
+
+      <listitem>
+	<para>Como solucionar problemas com discos interligados 
+	  com uso do framework GEOM.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Antes de ler este capítulo, você deve:</para>
+
+    <itemizedlist>
+      <listitem>
+	<para>Compreender como o &os; trata dispositivos de disco 
+	  (<xref linkend="disks"/>).</para>
+      </listitem>
+
+      <listitem>
+	<para>Saber como configurar e instalar um novo kernel 
+	  (<xref linkend="kernelconfig"/>).</para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="GEOM-intro">
+    <title>Introduzindo o GEOM</title>
+
+    <para>O GEOM permite acessar e controlar classes &mdash; Master 
+	Boot Records (MBR), labels tipo <acronym>BSD</acronym> e etc 
+	&mdash; através do uso de chamadas ou arquivos especiais 
+	presentes no diretório <filename class="directory">/dev</filename> 
+	que venham a prover tais funcionalidades. Suportando vários 
+	tipos de configuração de <acronym>RAID</acronym> por 
+	software, o GEOM fornecerá acesso para utilitários usados pelo 
+	sistema operacional de forma transparente.</para>
+  </sect1>
+
+  <sect1 id="GEOM-striping">
+    <sect1info>
+      <authorgroup>
+	<author>
+	  <firstname>Tom</firstname>
+	  <surname>Rhodes</surname>
+	  <contrib>Uma Contribuição de </contrib>
+	</author>
+	<author>
+	  <firstname>Murray</firstname>
+	  <surname>Stokely</surname>
+	</author>
+      </authorgroup>
+    </sect1info>
+
+    <title>RAID 0 - Divisão (<literal>Striping</literal>)</title>
+
+    <indexterm>
+      <primary>GEOM</primary>
+    </indexterm>
+    <indexterm>
+      <primary>Striping</primary>
+    </indexterm>
+
+    <para>Divisão (<literal>Striping</literal>) é o método utilizado 
+	para combinar diversos dispositivos de disco num volume único. 
+	Em muitos casos isso é feito através do uso de controladoras 
+	de hardware. O subsistema de discos do GEOM fornecem a 
+	possibilidade de se usar <acronym>RAID</acronym> 0 
+	(<literal>striping</literal>) por software.</para>
+
+    <para>Num sistema com <acronym>RAID</acronym> 0, os dados são 
+	divididos em blocos que, por sua vez, são escritos pelos 
+	dispositivos que compoem o array do volume criado. Ao invés de 
+	ter que esperar o sistema escrever 256k num único disco, um 
+	sistema com <acronym>RAID</acronym> 0 pode, por exemplo, 
+	escrever 64k em quatro diferentes discos simultaneamente 
+	oferecendo uma performance superior. Esta performance pode ser 
+	ainda mais incrementada com uso de múltiplas controladoras 
+	de disco.</para>
+
+    <para>Cada disco num <acronym>RAID</acronym> 0 
+	(<literal>stripe</literal>) deve ser exatamente do mesmo 
+	tamanho, visto que as operações e requisições de I/O são 
+	intrelaçadas de forma a ler ou escrever dados nos discos 
+	em paralelo.</para>
+
+    <mediaobject>
+      <imageobject>
+	<imagedata fileref="geom/striping" align="center"/>
+      </imageobject>
+
+      <textobject>
+	<phrase>Disk Striping Illustration</phrase>
+      </textobject>
+    </mediaobject>
+
+    <procedure>
+      <title>Criando RAID 0 com Discos ATA não Formatados</title>
+
+      <step>
+	<para>Carregue o módulo <filename>geom_stripe.ko</filename>:</para>
+
+	<screen>&prompt.root; <userinput>kldload geom_stripe</userinput></screen>
+      </step>
+
+      <step>
+	<para>Certifique-se de que existe um ponto de montagem hábil 
+	  a receber o volume que será criado. Se este volume for 
+	  receber alguma partição raíz, então use um outro ponto de 
+	  montagem temporário (<filename 
+	  class="directory">/mnt</filename>, neste exemplo):</para>
+
+	<screen>&prompt.root; <userinput>mkdir /mnt</userinput></screen>
+      </step>
+
+      <step>
+	<para>Descubra como os discos que você pretende usar foram 
+	  identificados pelo &os; e crie a divisão 
+	  (<literal>stripe</literal>). Para este exemplo foram 
+	  utilizados dois discos <acronym>ATA</acronym> não 
+	  particionados e identificados pelo sistema como 
+	  <filename>/dev/ad2</filename> e 
+	  <filename>/dev/ad3</filename>:</para>
+
+	<screen>&prompt.root; <userinput>gstripe label -v st0 /dev/ad2 /dev/ad3</userinput>
+Metadata value stored on /dev/ad2.
+Metadata value stored on /dev/ad3.
+Done.</screen>
+      </step>
+
+      <step>
+	<para>Grave um particionamento (<literal>BSD Label</literal>) 
+	  padrão neste novo volume e instale o código de 
+	  bootstrap (inicialização) padrão:</para>
+
+	<screen>&prompt.root; <userinput>bsdlabel -wB /dev/stripe/st0</userinput></screen>
+      </step>
+
+      <step>
+	<para>Esse processo deve ter criado outros dois dispositivos 
+	  no diretório <filename class="directory">/dev/stripe</filename> 
+	  fazendo referência ao <devicename>st0</devicename> que foi 
+	  criado anteriormente. Os novos dispositivos são 
+	  <devicename>st0a</devicename> e 
+	  <devicename>st0c</devicename>. Neste ponto um sistema de 
+	  arquivos já pode ser criado em <devicename>st0a</devicename> 
+	  com o utilitário <command>newfs</command>:</para>
+
+	<screen>&prompt.root; <userinput>newfs -U /dev/stripe/st0a</userinput></screen>
+
+	<para>Vários números irão aparecer na tela e, depois de 
+	  alguns segundos, o processo estará terminado. Seu volume 
+	  terá sido criado e estará pronto para uso.</para>
+      </step>
+    </procedure>
+
+    <para>Para montar manualmente o novo volume criado:</para>
+
+    <screen>&prompt.root; <userinput>mount /dev/stripe/st0a /mnt</userinput></screen>
+
+    <para>Para montar o novo volume automaticamente durante o processo 
+	de inicialização do &os; adicione uma entrada no arquivo 
+	<filename>/etc/fstab</filename>. Neste exemplo criou-se o 
+	diretório <filename class="directory">/stripe</filename> para 
+	demonstrar esta configuração:</para>
+
+    <screen>&prompt.root; <userinput>mkdir /stripe</userinput>
+&prompt.root; <userinput>echo "/dev/stripe/st0a /stripe ufs rw 2 2" &gt;&gt; /etc/fstab</userinput></screen>
+
+    <para>O módulo <filename>geom_stripe.ko</filename> também pode 
+	ser carregado automaticamente durante o processo de 
+	inicialização do sistema. Para isso, adicione a seguinte 
+	entrada no arquivo <filename>/boot/loader.conf</filename>:</para>
+
+    <screen>&prompt.root; <userinput>echo 'geom_stripe_load="YES"' &gt;&gt; /boot/loader.conf</userinput></screen>
+  </sect1>
+
+  <sect1 id="GEOM-mirror">
+    <title>RAID 1 - Espelhamento (<literal>Mirroring</literal>)</title>
+
+    <indexterm>
+      <primary>GEOM</primary>
+    </indexterm>
+    <indexterm>
+      <primary>Disk Mirroring</primary>
+    </indexterm>
+
+    <para>Espelhamento (<literal>Mirroring</literal>) é uma tecnologia 
+	utilizada por diversas organizações e usuários domésticos para 
+	garantir o <literal>backup</literal> de dados sem interrupção. 
+	Quando um espelhamento existe, significa dizer que um disco 
+	B é réplica de um disco A (ou, talvez, que discos C e D são 
+	réplicas de discos A e B). Independentemente do tamanho do disco 
+	ou partição, o aspecto importante aqui é que toda a informação 
+	é replicada. Num outro momento esta informação pode ser mais 
+	facilmente restaurada ou movida sem causar a interrupção 
+	de serviços.</para>
+
+    <para>Para começar, garanta que existam dois discos do mesmo 
+	tamanho. Neste exercício, assuma que existem dois discos 
+	<acronym>SCSI</acronym> (veja mais informações na página de 
+	manual &man.da.4;).</para>
+
+    <sect2>
+      <title>Espelhando Discos</title>
+
+      <para>Assumindo que o &os; foi instalado no disco primário da 
+	máquina (detectado como <devicename>da0</devicename>), deve-se 
+	dizer ao &man.gmirror.8; para gravar seus dados 
+	preferencialmente neste disco primário (que será, também, o 
+	disco principal para este exemplo).</para>
+
+      <para>Antes de construir este espelho (<literal>mirror</literal>), 
+	habilite a depuração adicional de erros e detecção de acesso 
+	à dispositivos alterando a opção 
+	<varname>kern.geom.debugflags</varname> com o comando 
+	&man.sysctl.8;:</para>
+
+      <screen>&prompt.root; <userinput>sysctl kern.geom.debugflags=17</userinput></screen>
+
+      <para>Agora crie o espelho. Começe o procedimento armazenando 
+	metadados no disco principal; para isso será criado o 
+	dispositivo <filename class="devicefile">/dev/mirror/gm</filename> 
+	com ajuda do seguinte comando:</para>
+
+      <warning>
+	<para>Criar um espelhamento fora do disco de inicialização 
+	  pode resultar na perda de dados caso já existam dados gravados 
+	  no último setor daquele disco. Este risco é bem menor quando 
+	  você cria o espelhamento loco após uma instalação recém 
+	  concluída do &os;. O seguinte procedimento também é 
+	  incompatível com as configurações padrões utilizadas pelo 
+	  &os; 9.<replaceable>X</replaceable>, que utiliza um novo 
+	  esquema de particionamento tipo <acronym>GPT</acronym>. O 
+	  GEOM iria sobrescrever os metadados utilizados pelo 
+	  <acronym>GPT</acronym> e causaria, muito provavelmente, 
+	  problemas que impossibilitariam a inicialização correta de 
+	  todo o sistema e perda de dados.</para>
+      </warning>
+
+      <screen>&prompt.root; <userinput>gmirror label -vb round-robin gm0 /dev/da0</userinput></screen>
+
+      <para>Logo após a execução do comando, o sistema deve 
+	responder com algo parecido com:</para>
+
+      <screen>Metadata value stored on /dev/da0.
+Done.</screen>
+
+      <para>Agora inicialize o GEOM. Isso também fará com que o 
+	módulo <filename>geom_mirror.ko</filename> seja carregado:</para>
+
+      <screen>&prompt.root; <userinput>gmirror load</userinput></screen>
+
+      <note>
+	<para>Quando a execução destes comandos tiver terminado com 
+	  sucesso, um dispositivo nomeado de 
+	  <devicename>gm0</devicename> será criado no diretório 
+	  <filename class="directory">/dev/mirror</filename>.</para>
+      </note>
+
+      <para>Configure seu sistema para que o módulo 
+	<filename>geom_mirror.ko</filename> seja carregado durante a 
+	inicialização do sistema. Você pode fazer isso da seguinte 
+	forma:</para>
+
+      <screen>&prompt.root; <userinput>echo 'geom_mirror_load="YES"' &gt;&gt; /boot/loader.conf</userinput></screen>
+
+      <para>Edite, então, as configurações no arquivo 
+	<filename>/etc/fstab</filename> que façam mensão ao antigo 
+	dispositivo (<devicename>da0</devicename>) e utilize o novo 
+	dispositivo de espelhamento que foi criado 
+	(<devicename>gm0</devicename>).</para>
+
+      <note>
+	<para>Se o &man.vi.1; for seu editor preferido, existe um 
+	  jeito fácil de realizar estas modificações:</para>
+
+	<screen>&prompt.root; <userinput>vi /etc/fstab</userinput></screen>
+
+	<para>No &man.vi.1; você já poderá criar um backup do conteúdo 
+	  do seu <filename>fstab</filename> digitando 
+	  <userinput>:w /etc/fstab.bak</userinput>.  Então substitua 
+	  todas as antigas entradas de <devicename>da0</devicename> 
+	  por <devicename>gm0</devicename> digitando 
+	  <userinput>:%s/da/mirror\/gm/g</userinput>.</para>
+      </note>
+
+      <para>Após as alterações no <filename>fstab</filename> o arquivo 
+	pode ser semelhante ao exemplo abaixo. O fato dos discos 
+	envolvidos serem do <acronym>SCSI</acronym> ou 
+	<acronym>ATA</acronym> não mudará o fato de que o 
+	espelhamento (<acronym>RAID</acronym> 1) feito receberá o 
+	nome de <devicename>gm0</devicename>.</para>
+
+      <programlisting># Device		Mountpoint	FStype	Options		Dump	Pass#
+/dev/mirror/gm0s1b	none		swap	sw		0	0
+/dev/mirror/gm0s1a	/		ufs	rw		1	1
+/dev/mirror/gm0s1d	/usr		ufs	rw		0	0
+/dev/mirror/gm0s1f	/home		ufs	rw		2	2
+#/dev/mirror/gm0s2d	/store		ufs	rw		2	2
+/dev/mirror/gm0s1e	/var		ufs	rw		2       2
+/dev/acd0		/cdrom		cd9660	ro,noauto	0	0</programlisting>
+
+      <para>Reinicie o sistema:</para>
+
+      <screen>&prompt.root; <userinput>shutdown -r now</userinput></screen>
+
+      <para>Durante o processo de inicialização do sistema, você 
+	deverá notar que <devicename>gm0</devicename> será usado ao 
+	invés de <devicename>da0</devicename>. Uma vez terminado o 
+	processo de inicialização por completo, é possível de se 
+	verificar esta alteração com ajuda do comando 
+	<command>mount</command>:</para>
+
+      <screen>&prompt.root; <userinput>mount</userinput>
+Filesystem         1K-blocks    Used    Avail Capacity  Mounted on
+/dev/mirror/gm0s1a   1012974  224604   707334    24%    /
+devfs                      1       1        0   100%    /dev
+/dev/mirror/gm0s1f  45970182   28596 42263972     0%    /home
+/dev/mirror/gm0s1d   6090094 1348356  4254532    24%    /usr
+/dev/mirror/gm0s1e   3045006 2241420   559986    80%    /var
+devfs                      1       1        0   100%    /var/named/dev</screen>
+
+      <para>A saída do comando parece boa, como já era de se esperar. 
+	Finalmente, para dar início ao processo de sincronização 
+	entre os discos espelhados, adicione o dispositivo que deverá 
+	receber a replicação do disco principal. Neste caso o 
+	dispositivo utilizado foi detectado como 
+	<devicename>da1</devicename> e será adicionado ao 
+	espelhamento com o seguinte comando:</para>
+
+      <screen>&prompt.root; <userinput>gmirror insert gm0 /dev/da1</userinput></screen>
+
+      <para>Enquanto a replicação de dados é realizada, você pode 
+	verificar o status com o seguinte comando:</para>
+
+      <screen>&prompt.root; <userinput>gmirror status</userinput></screen>
+
+      <para>Uma vez que o processo de réplica for finalizado, a 
+	saída do comando acima deverá ser semelhante a:</para>
+
+      <screen>      Name    Status  Components
+mirror/gm0  COMPLETE  da0
+                      da1</screen>
+
+      <para>Se existir alguma complicação, ou se o processo ainda 
+	não tiver sido concluído, o status será apresentado como 
+	<literal>DEGRADED</literal> ao invés de 
+	<literal>COMPLETE</literal>.</para>
+    </sect2>
+
+    <sect2>
+      <title>Solução de Problemas</title>
+
+      <sect3>
+	<title>O Sistema não Inicializa</title>
+
+	<para>Se o sistema parar durante o processo de inicialização 
+	  e exibir uma mensagem similar a esta:</para>
+
+	<programlisting>ffs_mountroot: can't find rootvp
+Root mount failed: 6
+mountroot></programlisting>
+
+	<para>Reinicie sua máquina precionando o botão de liga/desliga 
+	  ou reset. No menu com opções de inicialização, selecione a 
+	  opção 6. Esta opção irá lhe fornecer um 
+	  <literal>prompt</literal> de comando do &man.loader.8;. 
+	  Carregue, então, o módulo no kernel e tente iniciar 
+	  o &os; normalmente:</para>
+
+	<screen>OK? <userinput>load geom_mirror</userinput>
+OK? <userinput>boot</userinput></screen>
+
+	<para>Se este procedimento funcionar, isso indica que, por 
+	  algum motivo, o módulo responsável pelo espelhamento feito 
+	  através do GEOM não foi carregado automaticamente de forma 
+	  correta. Verifique se as configurações no arquivo 
+	  <filename>/boot/loader.conf</filename> estão corretas. 
+	  Caso o problema continue, adicione a entrada</para>
+
+	<programlisting>options	GEOM_MIRROR</programlisting>
+
+	<para>no arquivo de configuração do kernel, recompile-o e 
+	  instale-o. Isso deve remediar o problema.</para>
+      </sect3>
+    </sect2>
+
+    <sect2>
+      <title>Recuperando-se de Falhas em Discos</title>
+
+      <para>A melhor parte sobre espelhamento de discos é que quando 
+	um disco falha ele pode ser substituído, presumidamente, sem 
+	que nenhuma informação tenha sido perdida</para>
+
+      <para>Considerando o exemplo anterior com a configuração em 
+	<acronym>RAID</acronym> 1 que foi feita, assuma que 
+	<devicename>da1</devicename> é um disco que tenha falhado e 
+	precisa ser trocado. Para realizar tal procedimento, 
+	identifique qual disco físico corresponde a unidade 
+	<devicename>da1</devicename> e desligue seu sistema. Neste 
+	ponto o disco com falha deve ser trocado por um novo disco 
+	e o sistema já pode ser religado. Depois do sistema ter 
+	inicializado novamente, os seguintes comandos podem ser 
+	usados para efetuar a troca do disco no espelhamento:</para>
+
+      <screen>&prompt.root; <userinput>gmirror forget gm0</userinput></screen>
+
+      <screen>&prompt.root; <userinput>gmirror insert gm0 /dev/da1</userinput></screen>
+
+      <para>Use o comando <command>gmirror</command> <option>status</option>
+	para monitorar o andamento do processo de réplica entre os 
+	discos. É simples assim.</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="GEOM-raid3">
+    <sect1info>
+      <authorgroup>
+	<author>
+	  <firstname>Mark</firstname>
+	  <surname>Gladman</surname>
+	  <contrib>Uma Contribuição de </contrib>
+	</author>
+	<author>
+	  <firstname>Daniel</firstname>
+	  <surname>Gerzo</surname>
+	</author>
+      </authorgroup>
+      <authorgroup>
+	<author>
+	  <firstname>Tom</firstname>
+	  <surname>Rhodes</surname>
+	  <contrib>Baseado na Documentação de </contrib>
+	</author>
+	<author>
+	  <firstname>Murray</firstname>
+	  <surname>Stokely</surname>
+	</author>
+      </authorgroup>
+    </sect1info>
+
+    <title><acronym>RAID</acronym> 3 - Divisão a Nível de Byte 
+	com Disco de Paridade</title>
+
+    <indexterm>
+      <primary>GEOM</primary>
+    </indexterm>
+    <indexterm>
+      <primary>RAID3</primary>
+    </indexterm>
+
+    <para>O <acronym>RAID</acronym> 3 é um método utilizado para 
+      combinar diversos dispositivos de disco num único volume e 
+      faz uso de um disco de paridade dedicado. Num sistema com este 
+      tipo de <acronym>RAID</acronym>, os dados são divididos em num 
+      número de bytes que são escritos em todos os discos que fazem 
+      parte do array exceto por um dos discos, que funciona, 
+      dedicadamente, como disco de paridade. Isso significa que a 
+      leitura de 1024KB numa implementação em <acronym>RAID</acronym> 
+      3 irá acessar os dados em todos os discos do array &mdash; a 
+      performance pode ser melhorada através do uso de diversas 
+      controladores de disco. <acronym>RAID</acronym> 3 provê 
+      tolerância a falha para 1 dos discos do array enquanto provê 
+      capacidade de armazenamento <quote>1 - 1/n</quote> vezes a 
+      capacidade total de todos os discos que compõem o array, onde 
+      <replaceable>n</replaceable> é o número de discos neste array. 
+      Tal tipo de configuração é adequada, principalmente, para 
+      cenários que necessitem armazenar arquivos grandes como, 
+      por exemplo, arquivos de multimídia.</para>
+
+    <para>Pelo menos 3 discos físicos são necessários para configurar 
+      um <acronym>RAID</acronym> 3. Cada um dos discos deve ter o 
+      mesmo tamanho, visto que as requisições de I/O são intercaladas 
+      para leitura e escrita paralelamente entre múltiplos discos. 
+      Também, dada a natureza do <acronym>RAID</acronym> 3, o número 
+      de discos utilizados deve seguir a seguinte progressão: 
+      3, 5, 9, 17 e etc 
+      (2^<replaceable>n</replaceable> + 1).</para>
+
+    <sect2>
+      <title>Criando um Array Dedicado em <acronym>RAID</acronym> 3</title>
+
+      <para>No &os;, o suporte a <acronym>RAID</acronym> 3 é 
+	implementado pela a classe do &man.graid3.8;, pertencente 
+	ao framework <acronym>GEOM</acronym>. A criação de um array 
+	dedicado para este tipo de <acronym>RAID</acronym> no &os; 
+	requer que você siga os passos a seguir.</para>
+
+      <note>
+	<para>Na teoria, é possível de se inicializar o &os; num 
+	  sistema com <acronym>RAID</acronym> 3, mas este tipo de 
+	  configuração é bastante incomum e não é aconselhável de 
+	  se realizar.</para>
+      </note>
+
+      <procedure>
+	<step>
+	  <para>Primeiro, o módulo <filename>geom_raid3.ko</filename> 
+	    deverá ser carregado com ajuda do seguinte comando:</para>
+
+	  <screen>&prompt.root; <userinput>graid3 load</userinput></screen>
+
+	  <para>Um outro jeito para se carregar este módulo 
+	    manualmente é utilizando o comando 
+	    <command>kldload</command> para este fim:</para>
+
+	  <screen>&prompt.root; <userinput>kldload geom_raid3.ko</userinput></screen>
+	</step>
+
+	<step>
+	  <para>Garanta que exista um ponto de montagem para receber 
+	    o volume que será criado. Caso não exista, crie um 
+	    diretório para tal finalidade:</para>
+
+	  <screen>&prompt.root; <userinput>mkdir <replaceable>/multimedia</replaceable></userinput></screen>
+	</step>
+
+	<step>
+	  <para>Determine quais dispositivos serão utilizados para a 
+	    criação do array e crie um novo dispositivo agrupando-os 
+	    em <acronym>RAID</acronym> 3. O último disco adicionado 
+	    na listagem funcionará como disco de paridade. Neste exemplo 
+	    foram utilizados 3 discos <acronym>ATA</acronym> ainda 
+	    não particionados: 
+	    <devicename><replaceable>ada1</replaceable></devicename>, 
+	    <devicename><replaceable>ada2</replaceable></devicename> 
+	    (armazenamento dos dados) e 
+	    <devicename><replaceable>ada3</replaceable></devicename> 
+	    (paridade do array).</para>
+
+	  <screen>&prompt.root; <userinput>graid3 label -v gr0 /dev/ada1 /dev/ada2 /dev/ada3</userinput>
+Metadata value stored on /dev/ada1.
+Metadata value stored on /dev/ada2.
+Metadata value stored on /dev/ada3.
+Done.</screen>
+	</step>
+
+	<step>
+	  <para>Particione o novo dispositivo criado 
+	    (<devicename>gr0</devicename>) e utilize o sistema de 
+	    arquivos UFS nele:</para>
+
+	  <screen>&prompt.root; <userinput>gpart create -s GPT /dev/raid3/gr0</userinput>
+&prompt.root; <userinput>gpart add -t freebsd-ufs /dev/raid3/gr0</userinput>
+&prompt.root; <userinput>newfs -j /dev/raid3/gr0p1</userinput></screen>
+
+	  <para>Vários números aparecerão na tela e, depois de um 
+	    certo tempo, o processo será concluído. O volume terá 
+	    sido criado e estará pronto para ser utilizado.</para>
+	</step>
+
+	<step>
+	  <para>O último passo é montar o novo volume e usar seu 
+	    sistema de arquivos:</para>
+
+	  <screen>&prompt.root; <userinput>mount /dev/raid3/gr0p1 /multimedia</userinput></screen>
+
+	  <para>Agora o volume em <acronym>RAID</acronym> 3 já está 
+	    pronto para uso!</para>
+	</step>
+      </procedure>
+
+      <para>Uma certa configuração adicional é necessária para 
+	    garantir que o ambiente continue funcionando após o 
+	    sistema ser reiniciado.</para>
+
+      <procedure>
+	<step>
+	  <para>O módulo <filename>geom_raid3.ko</filename> deve ser 
+	    carregado antes que o array seja montado. Para carregar 
+	    este módulo automaticamente durante o processo de 
+	    inicialização do &os;, adicione a seguinte entrada no 
+	    arquivo <filename>/boot/loader.conf</filename> file:</para>
+
+	  <programlisting>geom_raid3_load="YES"</programlisting>
+	</step>
+
+	<step>
+	  <para>A seguinte entrada deve ser adicionada ao conteúdo 
+	    do arquivo <filename>/etc/fstab</filename> para que o 
+	    sistema de arquivos do array (volume) seja montado 
+	    automaticamente durante o processo de inicialização do 
+	    sistema:</para>
+
+	  <programlisting>/dev/raid3/gr0p1	/multimedia	ufs	rw	2	2</programlisting>
+	</step>
+      </procedure>
+    </sect2>
+  </sect1>
+
+  <sect1 id="geom-ggate">
+    <title>GEOM e Dispositivos de Rede</title>
+
+    <para>O GEOM suporta o uso de dispositivos remotos (unidades de 
+      CD-ROM, discos, arquivos e etc) através de utilitários que lhe 
+      fornecem tal função. É similar ao que pode ser feito com 
+      <acronym>NFS</acronym>.</para>
+
+    <para>Para começar, um arquivo que exportará os volumes precisa 
+      ser criado. Este arquivo dirá quem têm permissão para acessar 
+      determinado volume e quais serão essas permissões. Por 
+      exemplo, para permitir acesso à partição 4 em seu primeiro 
+      disco <acronym>SCSI</acronym> através da rede você teria que 
+      editar o arquivo <filename>/etc/gg.exports</filename> para que 
+      ele seja semelhante a:</para>
+
+    <programlisting>192.168.1.0/24 RW /dev/da0s4d</programlisting>
+
+    <para>Considerando que sua rede é endereçada com o bloco 
+      192.168.1.0/24, este exemplo permite que todas as estações em sua 
+      rede possam ter acesso a partição 
+      <devicename>da0s4d</devicename> com permissões de leitura 
+      e escrita.</para>
+
+    <para>Para exportar corretamente este dispositivo, garanta que 
+      ele esteja montado e que o daemon do servidor &man.ggated.8; 
+      esteja em execução. Para iniciar o &man.ggated.8;, utilize o 
+      seguinte comando:</para>
+
+    <screen>&prompt.root; <userinput>ggated</userinput></screen>
+
+    <para>Agora, para montar o dispositivo exportado numa estação 
+      cliente, faça uso dos comandos <command>ggatec</command> e 
+      <command>mount</command>:</para>
+
+    <screen>&prompt.root; <userinput>ggatec create -o rw 192.168.1.1 /dev/da0s4d</userinput>
+ggate0
+&prompt.root; <userinput>mount /dev/ggate0 /mnt</userinput></screen>
+
+    <para>Deste ponto em diante, o dispositivo remoto (no servidor 
+      192.168.1.1) já pode ser acessado através do diretório 
+      <filename class="directory">/mnt</filename> na estação cliente.</para>
+
+    <note>
+      <para>Atente para o fato de que este procedimento pode falhar 
+	caso o dispositivo já tenha sido montado por uma outra 
+	estação na rede (ou até mesmo pelo próprio servidor).</para>
+    </note>
+
+    <para>Quando não for mais necessário fazer uso do dispositivo 
+	montado remotamente ele pode ser desmontado com segurança da 
+	mesma forma que quaisquer outros discos locais, com auxílio 
+	do comando &man.umount.8;.</para>
+  </sect1>
+
+  <sect1 id="geom-glabel">
+    <title>Nomeando Dispositivos de Disco</title>
+
+    <indexterm>
+      <primary>GEOM</primary>
+    </indexterm>
+    <indexterm>
+      <primary>Disk Labels</primary>
+    </indexterm>
+
+    <para>Durante a inicialização do sistema, o kernel do &os; irá 
+      criar alguns nós para representar dispositivos que forem sendo 
+      identificados. Este método de detecção de dispositivos gera 
+      algumas indagações. E se um novo dispositivo de disco for 
+      adicionado via <acronym>USB</acronym>? É provável que na 
+      identificação de um novo dispositivo ele seja nomeado de 
+      <devicename>da0</devicename> e um antigo dispositivo 
+      (anteriormente conhecido como <devicename>da0</devicename>) 
+      receba o nome de <devicename>da1</devicename>. Isso certamente 
+      causaria problemas durante a tentativa de montagem de 
+      dispositivos especificados no <filename>/etc/fstab</filename>. 
+      De certa maneira, é capaz até de previnir que o sistema inicie 
+      normalmente.</para>
+
+    <para>Uma solução para isso é atrelar (identificar) dispositivos 
+      <acronym>SCSI</acronym> em ordem, para que novos dispositivos 
+      <acronym>SCSI</acronym> possam ser numerados com identificadores 
+      diferentes dos que já estiverem em uso. Mas, o quê fazer com 
+      dispositivos <acronym>USB</acronym> que podem chegar a sobrepor 
+      esta identificação prévia para um disco <acronym>SCSI</acronym>? 
+      Isso ocorre pelo fato de que, geralmente, o sistema realiza uma 
+      busca por dispositivos <acronym>USB</acronym> e os nomeia 
+      (identifica) antes de dispositivos numa controladora 
+      <acronym>SCSI</acronym>. Uma solução para este problema é inserir 
+      este tipo de dispositivo somente depois da inicialização do 
+      sistema ter sido finalizada. Um outro método é fazer uso de um 
+      único disco <acronym>ATA</acronym> e nunca especificar o uso de 
+      discos <acronym>SCSI</acronym> no arquivo 
+      <filename>/etc/fstab</filename>.</para>
+
+    <para>Uma solução melhor está disponível! Fazendo uso do 
+      utilitário <command>glabel</command>, um usuário (ou o 
+      administrador do sistema) pode nomear dispositivos de disco 
+      e configurar o arquivo <filename>/etc/fstab</filename> de 
+      acordo com o nome adotado. Pelo fato do <command>glabel</command> 
+      gravar informações no último setor do disco, o nome para aquele 
+      dispositivo permanecerá o mesmo até após o sistema ter sido 
+      reiniciado. Usar o nome do dispositivo para montar os volumes 
+      fará com que os sistemas de arquivos destes discos possam 
+      sempre sejam montados sem problemas, independente de que 
+      dispositivo você esteja querendo acessar.</para>
+
+    <note>
+      <para>O <command>glabel</command> utility pode ser usado para 
+	criar nomes temporários ou permanentes. Apenas nomeando um 
+	dispositivo de forma permanente fará com que sus identificação 
+	continue após o sistema ser reiniciado. Consulte a página de 
+	manual &man.glabel.8; para obter mais informações e saber 
+	sobre as diferenças entre os tipos de nomes que podem ser 
+	atribuídos.</para>
+    </note>
+
+    <sect2>
+      <title>Tipos e Exemplos de Nomeação</title>
+
+      <para>Existem dois tipos de nomeação que podem ser realizadas, 
+	uma genérica e uma correspondente ao sistema de arquivos. Os 
+	nomes podem ser permanentes ou temporários. Nomes permanentes 
+	podem ser criados com os comandos &man.tunefs.8; ou &man.newfs.8;. 
+	Assim as referências aos nomes criados para os volumes estarão 
+	num subdiretório do diretório 
+	<filename class="directory">/dev</filename>, e farão correspondência 
+	com o sistema de arquivos utilizado. Por exemplo: um volume 
+	que use o sistema de arquivos <acronym>UFS</acronym>2 será 
+	localizado no diretório <filename class="directory">/dev/ufs</filename>. 
+	Nomes permanentes também podem ser criados com o comando 
+	<command>glabel label</command>. Volumes nomeados através 
+	deste comando não atrelam diretórios específicos e todos os 
+	dispositivos e volumes nomeados estarão no diretório 
+	<filename class="directory">/dev/label</filename>.</para>
+
+      <para>Nomear um dispositivo fará com que o nome criado não esteja 
+	mais disponível para acesso após o sistema ter reiniciado. 
+	Eles podem ser acessados através do diretório 
+	<filename class="directory">/dev/label</filename> e são 
+	excelentes para que você possa realizar testes e experimentos 
+	no sistema. Um nome temporário pode ser criado com o comando 
+	<command>glabel create</command>. Para mais informações, por 
+	favor, consulte a página de manual &man.glabel.8;.</para>
+
+<!-- XXXTR: How do you create a file system label without running newfs
+	    or when there is no newfs (e.g.: cd9660)? -->
+
+      <para>Para nomear um volume que use sistema de arquivos 
+	<acronym>UFS</acronym>2 de forma permanente, sem que se 
+	percam os dados armazenados neste volume, use o seguinte 
+	comando:</para>
+
+      <screen>&prompt.root; <userinput>tunefs -L <replaceable>home</replaceable> <replaceable>/dev/da3</replaceable></userinput></screen>
+
+      <warning>
+	<para>Se o sistema de arquivos estiver cheio, isso pode 
+	  acarretar problemas e alguns dados podem ser corrompidos. 
+	  Entretanto, se o sistema de arquivos estiver cheio, 
+	  recomenda-se remover alguns arquivos antigos e não nomear 
+	  o volume.</para>
+      </warning>
+
+      <para>Agora um nome para <replaceable>/dev/da3</replaceable> 
+	deve estar disponível e acessível através do diretório 
+	<filename class="directory">/dev/ufs</filename> e pode ser 
+	usado no arquivo <filename>/etc/fstab</filename> 
+	da seguinte forma:</para>
+
+      <programlisting>/dev/ufs/home		/home            ufs     rw              2      2</programlisting>
+
+      <note>
+	<para>O sistema de arquivos não deve estar montado enquanto 
+	  você tenta executar o comando <command>tunefs</command> 
+	  para realizar esta operação de nomear o volume.</para>
+      </note>
+
+      <para>Agora o volume já pode ser montado normalmente:</para>
+
+      <screen>&prompt.root; <userinput>mount /home</userinput></screen>
+
+      <para>Deste ponto em diante, já que o módulo 
+	<filename>geom_label.ko</filename> é carregado automaticamente 
+	durante a inicialização do sistema ou a opção 
+	<literal>GEOM_LABEL</literal> está presente no arquivo de 
+	configuração do kernel utilizado, o sistema deve nomear um nó 
+	para fazer referência àquele dispositivo sem que hajam 
+	problemas afetando o funcionamento do &os;.</para>
+
+      <para>Sistemas de arquivos também podem receber um nome com 
+	uso do parâmetro <option>-L</option>, utilizado junto do 
+	comando <command>newfs</command>.  Consulte a página de 
+	manual &man.newfs.8; para obter mais informações.</para>
+
+      <para>O seguinte comando pode ser utilizado para 
+	destruir/remover um nome dado para um determinado 
+	volume:</para>
+
+      <screen>&prompt.root; <userinput>glabel destroy home</userinput></screen>
+
+      <para>O seguinte exemplo trata de como se nomear um disco 
+	particionado que seja utilizado para a inicialização do sistema.</para>
+
+      <example>
+	<title>Nomeando Partições num Disco de Inicialização</title>
+
+	<para>Nomeando partições num disco de inicialização 
+	  (<literal>boot disk</literal>) deve fazer com que o sistema 
+	  continue sendo carregado normalmente após ser reiniciado, 
+	  mesmo que o disco seja movido para uma outra controladora ou 
+	  transferido para outra máquina. Para este exemplo assume-se 
+	  que existe um único disco <acronym>ATA</acronym>, 
+	  reconhecido pelo &os; como <devicename>ad0</devicename>. 
+	  Também assume-se que o esquema de particionamento padrão 
+	  adotado pelo &os; foi utilizado, com as seguintes partições: 
+	  <filename class="directory">/</filename>,
+	  <filename class="directory">/var</filename>,
+	  <filename class="directory">/usr</filename> e
+	  <filename class="directory">/tmp</filename> 
+	  (além da partição de swap).</para>
+
+	<para>Reinicie o sistema e, no prompt do &man.loader.8;, 
+	  precione <keycap>4</keycap> para entrar no modo 
+	  <literal>single user</literal>. Em seguida, execute os 
+	  seguintes comandos:</para>
+
+	<screen>&prompt.root; <userinput>glabel label rootfs /dev/ad0s1a</userinput>
+GEOM_LABEL: Label for provider /dev/ad0s1a is label/rootfs
+&prompt.root; <userinput>glabel label var /dev/ad0s1d</userinput>
+GEOM_LABEL: Label for provider /dev/ad0s1d is label/var
+&prompt.root; <userinput>glabel label usr /dev/ad0s1f</userinput>
+GEOM_LABEL: Label for provider /dev/ad0s1f is label/usr
+&prompt.root; <userinput>glabel label tmp /dev/ad0s1e</userinput>
+GEOM_LABEL: Label for provider /dev/ad0s1e is label/tmp
+&prompt.root; <userinput>glabel label swap /dev/ad0s1b</userinput>
+GEOM_LABEL: Label for provider /dev/ad0s1b is label/swap
+&prompt.root; <userinput>exit</userinput></screen>
+
+	<para>O sistema, então, continuará a ser iniciado normalmente. 
+	  Depois que todo processo de inicialização tiver sido 
+	  completamente finalizado, edite o arquivo 
+	  <filename>/etc/fstab</filename> e substitua as antigas 
+	  referências aos dispositivos e utilize os nomes criados em 
+	  seus lugares. O resultado final deve ser algo semelhante a:</para>
+
+	<programlisting># Device                Mountpoint      FStype  Options         Dump    Pass#
+/dev/label/swap         none            swap    sw              0       0
+/dev/label/rootfs       /               ufs     rw              1       1
+/dev/label/tmp          /tmp            ufs     rw              2       2
+/dev/label/usr          /usr            ufs     rw              2       2
+/dev/label/var          /var            ufs     rw              2       2</programlisting>
+
+	<para>Agora o sistema pode ser reiniciado. Se tudo correu 
+	  bem, o sistema será iniciado normalmente e o comando 
+	  <command>mount</command> exibirá o seguinte resultado:</para>
+
+	<screen>&prompt.root; <userinput>mount</userinput>
+/dev/label/rootfs on / (ufs, local)
+devfs on /dev (devfs, local)
+/dev/label/tmp on /tmp (ufs, local, soft-updates)
+/dev/label/usr on /usr (ufs, local, soft-updates)
+/dev/label/var on /var (ufs, local, soft-updates)</screen>
+      </example>
+
+      <para>A partir do &os; 7.2, o &man.glabel.8; dá suporte para um 
+	novo tipo de nomeação que pode ser dada para sistemas de 
+	arquivo <acronym>UFS</acronym> baseada no ID único do sistema 
+	de arquivos, o <literal>ufsid</literal>. Nomeando-se volumes 
+	desta maneira, os nós que farão referencia aos nomes criados 
+	podem ser acessados através do diretório 
+	<filename class="directory">/dev/ufsid</filename> e são criados 
+	automaticamente durante o processo de inicialização do sistema. 
+	É possível usar <literal>ufsid</literal> para montar partições 
+	através do <filename>/etc/fstab</filename>. Use o comando 
+	<command>glabel status</command> para obter uma lista dos 
+	sistemas de arquivo presentes no sistema e seus respectivos 
+	<literal>ufsid</literal>:</para>
+
+      <screen>&prompt.user; <userinput>glabel status</userinput>
+                  Name  Status  Components
+ufsid/486b6fc38d330916     N/A  ad4s1d
+ufsid/486b6fc16926168e     N/A  ad4s1f</screen>
+
+      <para>No exemplo acima, <devicename>ad4s1d</devicename> 
+	representa o sistema de arquivos da partição <filename 
+	class="directory">/var</filename> e <devicename>ad4s1f</devicename> 
+	representa o sistema de arquivos da partição 
+	<filename class="directory">/usr</filename>. Fazendo uso dos 
+	valores dos <literal>ufsid</literal> mostrados essas 
+	partições podem ser especificadas e montadas com as 
+	seguintes estradas presentes no arquivo 
+	<filename>/etc/fstab</filename>:</para>
+
+      <programlisting>/dev/ufsid/486b6fc38d330916        /var        ufs        rw        2      2
+/dev/ufsid/486b6fc16926168e        /usr        ufs        rw        2      2</programlisting>
+
+      <para>Quaisquer partições com um <literal>ufsid</literal> podem 
+	ser montadas desta maneira, eliminando a necessidade de se 
+	criar um nome específico para cada uma delas manualmente. 
+	Assim você aproveita os benefícios de montar um volume 
+	independente de qual identificação ele irá receber no sistema, 
+	visto que o <literal>ufsid</literal> é único.</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="geom-gjournal">
+    <title>GEOM e <literal>Journaling</literal> de UFS</title>
+
+    <indexterm>
+      <primary>GEOM</primary>
+    </indexterm>
+    <indexterm>
+      <primary>Journaling</primary>
+    </indexterm>
+
+    <para>Com o lançamento do &os; 7.0-RELEASE, a tão aguardada 
+      funcionalidade de <literal>journaling</literal> foi implementada. 
+      Sua implementação propriamente dita é feita através do 
+      framework GEOM e, com ajuda do utilitário &man.gjournal.8;, é 
+      de fácil configuração.</para>
+
+    <para>O quê é o <literal>journaling</literal>? A capacidade de um 
+      sistema fazer <literal>Journaling</literal> indica que é 
+      guardado um log das transações realizadas pelo sistema de 
+      arquivos como, por exemplo, mudanças que compões uma operação de 
+      escrita em disco. Esses logs são armazenados antes mesmo que 
+      metadados e as operações de escrita propriamente ditas sejam 
+      executadas. Posteriormente, este log pode ser interpretado para 
+      refazer transações, previnindo que haja inconsistência 
+      no sistema.</para>
+
+    <para>Este é mais um dos métodos utilizados para proteção contra 
+      perda e inconsistência de dados num sistema de arquivos. 
+      Diferente dos <literal>Soft Updates</literal>, que acompanham 
+      e forçam atualizações de metadados, e <literal>Snapshots</literal>, 
+      que são imagens completas de um sistema de arquivos, realmente 
+      armazena-se um registro das operações realizadas num espaço 
+      especialmente reservado do disco e, em alguns casos, pode-se 
+      usar outro disco apenas para isso.</para>
+
+    <para>Diferente da implementação de <literal>journaling</literal> 
+      em outros sistemas de arquivo, o método que faz uso do 
+      <command>gjournal</command> é baseado em blocos e não faz 
+      parte da implementação do próprio sistema de arquivos &mdash; 
+      é apenas uma extensão do GEOM.</para>
+
+    <para>Para habilitar o uso do <command>gjournal</command>, o 
+      kernel do &os; deve contar com a seguinte opção &mdash; 
+      padrão para versões 7.0-RELEASE em diante:</para>
+
+    <programlisting>options	UFS_GJOURNAL</programlisting>
+
+    <para>Se volumes que usem journaling precisarem ser montados 
+      durante o processo de inicialização, o módulo 
+      <filename>geom_journal.ko</filename> precisa ser carregado. 
+      Para tal, adicione a seguinte entrada no arquivo 
+      <filename>/boot/loader.conf</filename>:</para>
+
+    <programlisting>geom_journal_load="YES"</programlisting>
+
+    <para>Uma outra alternativa para isso é customizar um kernel de 
+      modo que use a seguinte opção em seu arquivo de configuração:</para>
+
+    <programlisting>options	GEOM_JOURNAL</programlisting>
+
+    <para>Agora é possível criar um novo sistema de arquivos que 
+      utilize journaling seguindo os passos abaixo, considerando que 
+      <devicename>da4</devicename> é um disco 
+      <acronym>SCSI</acronym> que foi recentemente adicionado 
+      ao sistema:</para>
+
+    <screen>&prompt.root; <userinput>gjournal load</userinput>
+&prompt.root; <userinput>gjournal label /dev/da4</userinput></screen>
+
+    <para>Neste ponto já devem existir os dispositivos 
+      <devicename>/dev/da4</devicename> e
+      <devicename>/dev/da4.journal</devicename>.
+      Agora o sistema de arquivos pode ser criado:</para>
+
+    <screen>&prompt.root; <userinput>newfs -O 2 -J /dev/da4.journal</userinput></screen>
+
+    <para>O comando previamente executado irá criar um sistema de 
+      arquivos <acronym>UFS</acronym>2 no dispositivo que deve 
+      utilizar <literal>journaling</literal>.</para>
+
+    <para>Você já pode fazer uso do comando <command>mount</command> 
+      para, efetivamente, montar o volume num diretório a sua escolha:</para>
+
+    <screen>&prompt.root; <userinput>mount /dev/da4.journal <replaceable>/mnt</replaceable></userinput></screen>
+
+    <note>
+      <para>Caso existam diferentes partições (
+	<literal>slices</literal>), um <literal>journal</literal> 
+	será criado para cada 
+	uma delas. Por exemplo: se <devicename>ad4s1</devicename> e 
+	<devicename>ad4s2</devicename> forem partições, o 
+	<command>gjournal</command> criará <literal>journal</literal> 
+	para ambas (<devicename>ad4s1.journal</devicename> e 
+	<devicename>ad4s2.journal</devicename>, respectivamente).</para>
+    </note>
+
+    <para>Para obter uma melhor performance, é preferível se manter o 
+	<literal>journal</literal> num disco a parte. Para casos 
+	assim, o disco que venha a fornecer o 
+	<literal>journaling</literal> deve estar listado logo após o 
+	disco em que se pretende utilizar <literal>journaling</literal>. 
+	O <literal>journal</literal> também pode estar presente no 
+	mesmo sistema de arquivos e pode-se utilizar o comando 
+	<command>tunefs</command> para isso. Entretanto, procure sempre 
+	fazer um backup antes de realizar alterações assim no sistema 
+	de arquivos. Em muitos casos o <command>gjournal</command> 
+	pode falhar se for incapaz de criar um <literal>journal</literal>, 
+	mas isso não dá proteção contra perda de dados pelo mau uso 
+	do <command>tunefs</command>.</para>
+
+    <para>Também é possível usar <literal>journal</literal> num disco 
+	de inicialização utilizado por um sistema &os;.  Por favor 
+	leia o artigo <ulink
+	url="&url.articles.gjournal-desktop;">Implementando Journaling 
+	de UFS num Desktop</ulink> para ter instruções mais detalhadas 
+	para realizar esta tarefa.</para>
+  </sect1>
+</chapter>

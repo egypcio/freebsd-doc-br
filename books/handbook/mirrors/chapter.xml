@@ -1,0 +1,3567 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!--
+  The FreeBSD Documentation Project
+  The FreeBSD Brazilian Portuguese Documentation Project
+
+  Original revision: r39575
+
+  $FreeBSD: trunk/docs/pt_BR.ISO8859-1/books/handbook/mirrors/chapter.xml 383 2013-12-28 01:55:49Z egypcio $
+-->
+
+<appendix id="mirrors">
+  <title>Obtendo o &os;</title>
+
+  <sect1 id="mirrors-cdrom">
+    <title>&os; no Varejo</title>
+
+    <sect2>
+      <title>Produtos Avulsos</title>
+
+      <para>O &os; é disponibilizado em forma de 
+	documentação impressa, como um software vendido em avulso ou 
+	em mídias de CD com ajuda dos seguintes revendedores:</para>
+
+      <itemizedlist>
+	<listitem>
+	  <address>
+	    <otheraddr>Fry's Electronics</otheraddr>
+	    <street>600 East Brokaw</street>
+	    <city>San Jose</city>, <state>CA</state>  <postcode>95112</postcode>
+	    <country>Estados Unidos da América</country>
+	    Telefone: <phone>+1 408 350-1484</phone>
+	    Email: <email>service@cs.frys.com</email>
+	    WWW: <otheraddr><ulink url="http://www.frys.com"></ulink></otheraddr>
+	  </address>
+	</listitem>
+      </itemizedlist>
+    </sect2>
+
+    <sect2>
+      <title>Conjuntos de CD e DVD</title>
+
+      <para>O &os; pode ser obtido através da Internet, em um conjunto 
+	de mídias de CD e DVD, com ajuda dos seguintes revendedores:</para>
+
+    <itemizedlist>
+      <listitem>
+        <address>
+	  <otheraddr>&os; Mall, Inc.</otheraddr>
+	  <street>700 Harvest Park Ste F</street>
+	  <city>Brentwood</city>, <state>CA</state>  <postcode>94513</postcode>
+	  <country>Estados Unidos da América</country>
+	  Telefone: <phone>+1 925 240-6652</phone>
+	  Fax: <fax>+1 925 674-0821</fax>
+	  Email: <email>info@freebsdmall.com</email>
+	  WWW: <otheraddr><ulink url="http://www.freebsdmall.com"></ulink></otheraddr>
+        </address>
+      </listitem>
+
+      <listitem>
+	<address>
+	  <otheraddr>Dr. Hinner EDV</otheraddr>
+	  <street>St. Augustinus Str. 10</street>
+	  <postcode>D 81825</postcode> <city>Munique</city>
+	  <country>Alemanha</country>
+	  Telefone: <phone>+49 89 428-419</phone>
+	  WWW: <otheraddr><ulink url="http://www.hinner.de/linux/freebsd.html"></ulink></otheraddr>
+        </address>
+      </listitem>
+
+      <listitem>
+	<address>
+	  <otheraddr>JMC Software</otheraddr>
+	  <country>Irlanda</country>
+	  Telefone: <phone>+353 1 629-1282</phone>
+	  WWW: <otheraddr><ulink url="http://www.thelinuxmall.com"></ulink></otheraddr>
+	</address>
+      </listitem>
+
+      <listitem>
+	<address>
+	  <otheraddr>Linux Distro UK</otheraddr>
+	  <street>42 Wharfedale Road</street>
+	  <city>Margate</city>
+	  <postcode>CT9 2TB</postcode>
+	  <country>Reino Unido</country>
+	  WWW: <otheraddr><ulink url="https://linux-distro.co.uk"></ulink></otheraddr>
+        </address>
+      </listitem>
+
+      <listitem>
+	<address>
+	  <otheraddr>The Linux Emporium</otheraddr>
+	  <street>Hilliard House, Lester Way</street>
+	  <city>Wallingford</city>
+	  <postcode>OX10 9TA</postcode>
+	  <country>Reino Unido</country>
+	  Telefone: <phone>+44 1491 837-010</phone>
+	  Fax: <fax>+44 1491 837016</fax>
+	  WWW: <otheraddr><ulink url="http://www.linuxemporium.co.uk/products/bsd"></ulink></otheraddr>
+        </address>
+      </listitem>
+
+      <listitem>
+	<address>
+	  <otheraddr>Linux+ DVD Magazine</otheraddr>
+	  <street>Lewartowskiego 6</street>
+	  <city>Varsóvia</city>
+	  <postcode>00 190</postcode>
+	  <country>Polônia</country>
+	  Telefone: <phone>+48 22 860-1818</phone>
+	  Email: <email>editors@lpmagazine.org</email>
+	  WWW: <otheraddr><ulink url="http://www.lpmagazine.org"></ulink></otheraddr>
+	</address>
+      </listitem>
+
+      <listitem>
+	<address>
+	  <otheraddr>Linux System Labs Australia</otheraddr>
+	  <street>21 Ray Drive</street>
+	  <city>Balwyn North</city>
+	  <postcode>VIC 3104</postcode>
+	  <country>Austrália</country>
+	  Telefone: <phone>+61 3 9857-5918</phone>
+	  Fax: <fax>+61 3 9857 8974</fax>
+	  WWW: <otheraddr><ulink url="http://www.lsl.com.au"></ulink></otheraddr>
+        </address>
+      </listitem>
+
+      <listitem>
+	<address>
+	  <otheraddr>LinuxCenter.ru</otheraddr>
+	  <street>Galernaya Street, 55</street>
+	  <city>São Petersburgo</city>
+	  <postcode>190000</postcode>
+	  <country>Rússia</country>
+	  Telefone: <phone>+7 812 312-5208</phone>
+	  Email: <email>info@linuxcenter.ru</email>
+	  WWW: <otheraddr><ulink url="http://linuxcenter.ru/shop/freebsd"></ulink></otheraddr>
+	</address>
+      </listitem>
+
+    </itemizedlist>
+    </sect2>
+
+    <sect2>
+      <title>Distribuidores</title>
+
+      <para>Se você é um revendedor varejista e está interessado em 
+	revender o &os; e produtos relacionados, entre em contato 
+	com um dos seguintes distribuidores:</para>
+
+      <itemizedlist>
+        <listitem>
+	  <address>
+	    <otheraddr>Ingram Micro</otheraddr>
+	    <street>1600 E. St. Andrew Place</street>
+	    <city>Santa Ana</city>, <state>CA</state>  <postcode>92705-4926</postcode>
+	    <country>Estados Unidos da América</country>
+	    Telefone: <phone>+1 800 456-8000</phone>
+	    WWW: <otheraddr><ulink url="http://www.ingrammicro.com"></ulink></otheraddr>
+          </address>
+        </listitem>
+
+	<listitem>
+	  <address>
+	    <otheraddr>Kudzu, LLC</otheraddr>
+	    <street>7375 Washington Ave. S.</street>
+	    <city>Edina</city>, <state>MN</state> <postcode>55439</postcode>
+	    <country>Estados Unidos da América</country>
+	    Telefone: <phone>+1 952 947-0822</phone>
+	    Fax: <fax>+1 952 947-0876</fax>
+	    Email: <email>sales@kudzuenterprises.com</email>
+	  </address>
+	</listitem>
+
+	<listitem>
+	  <address>
+	    <otheraddr>LinuxCenter.ru</otheraddr>
+	    <street>Galernaya Street, 55</street>
+	    <city>São Petersburgo</city>
+	    <postcode>190000</postcode>
+	    <country>Rússia</country>
+	    Telefone: <phone>+7 812 3125-208</phone>
+	    Email: <email>info@linuxcenter.ru</email>
+	    WWW: <otheraddr><ulink url="http://linuxcenter.ru/freebsd"></ulink></otheraddr>
+	  </address>
+	</listitem>
+      </itemizedlist>
+    </sect2>
+  </sect1>
+
+  <sect1 id="mirrors-ftp">
+    <title>Sítios FTP</title>
+
+    <para>Os códigos fonte, pacotes e arquivos oficiais do &os; 
+	estão disponíveis via FTP anônimo através de vários 
+	servidores espelho espalhados pelo mundo. O endereço 
+	<ulink url="ftp://ftp.FreeBSD.org/pub/FreeBSD"></ulink> é o 
+	principal sítio FTP do projeto, é muito estável e aceita um 
+	grande número de conexões, mas é aconselhável que você 
+	localize um servidor espelho desse sítio FTP que seja 
+	<quote>o mais próximo possível</quote> do local onde você 
+	está situado (especialmente se você está optando por criar e 
+	configurar seu próprio servidor espelho).</para>
+
+    <para>Além disso, o &os; está disponível via FTP anônimo em 
+	outros sítios. Se você optar por obter o &os; via FTP 
+	anônimo, por favor, tente usar um sítio que esteja o mais 
+	próximo possível de você. Os servidores espelho listados 
+	como <quote>Sítios Primários</quote> normalmente 
+	contém todos os arquivos, códigos fonte, pacotes, releases e 
+	imagens de instalação do &os; (disponíveis para todas as 
+	arquiteturas suportadas), mas provavelmente você fará 
+	downloads mais rápidos se utilizar um sítio que está em seu 
+	país ou região. Os sítios e servidores espelho regionais 
+	contém as versões mais recentes para a(s) arquitetura(s) 
+	mais popular(es), mas pode não conter alguns arquivos do 
+	&os; para a(s) arquitetura(s) em questão. Todos os sítios 
+	oferecem acesso via FTP anônimo, mas alguns sítios também 
+	fornecem acesso através de outros métodos e protocolos. 
+	Os métodos e protocolos disponíveis para cada sítio são 
+	listados entre parênteses, após o nome do servidor.</para>
+
+    &chap.mirrors.ftp.inc;
+  </sect1>
+
+  <sect1 id="mirrors-bittorrent">
+    <title>BitTorrent</title>
+
+    <indexterm>
+      <primary>BitTorrent</primary>
+    </indexterm>
+
+    <para>As imagens de instalação, em formato ISO, das releases do 
+	&os; também são disponibilizadas via BitTorrent. Uma coleção 
+	de torrents está disponível para download em 
+	<ulink url="http://torrents.freebsd.org:8080">http://torrents.freebsd.org:8080</ulink></para> 
+
+    <para>O software cliente para uso do BitTorrent está disponível 
+	através do port 
+	<filename role="package">net-p2p/py-bittorrent</filename>, 
+	ou por meio da instalação de seu pacote pré-compilado.</para>
+
+    <para>Após realizar o download da imagem ISO via BitTorrent, 
+	você deve gravar uma mídia de CD ou DVD como descrito na 
+	<xref linkend="burncd"/>.</para>
+  </sect1>
+
+  <sect1 id="mirrors-svn">
+    <title>Sítios SVN</title>
+
+    <indexterm>
+      <primary>svn</primary>
+    </indexterm>
+
+    <para>Em Julho de 2012, o projeto &os; começou a utilizar 
+	<ulink url="http://subversion.apache.org">Subversion</ulink> 
+	(<emphasis>SVN</emphasis>) como seu principal sistema de 
+	controle de versões para armazenar os códigos fonte do &os;,  
+	documentações e sua Coleção de Ports.</para>
+
+    <note>
+      <para>O Subversion é utilizado geralmente como uma ferramenta 
+	para desenvolvimento. É mais aconselhável, à maioria dos 
+	usuários, que seja utilizado o 
+	<link linkend="updating-upgrading-freebsdupdate">FreeBSD 
+	Update</link> para atualização do sistema base do &os; e o 
+	<link linkend="updating-upgrading-portsnap">Portsnap</link> 
+	para atualizar a Coleção de Ports.</para>
+    </note>
+
+    <para>A rede de sítios SVN do &os; ainda está engatinhando e, 
+	provavelmente, sofrerá algumas alterações. Não conte com o 
+	fato de que esta seja uma lista estática de servidores 
+	disponíveis. Em particular, os certificados SSL utilizados 
+	pelos servidores, em certo ponto, serão alterados.</para>
+
+    <para>No Subversion, as URLs são utilizadas para designar um 
+	repositório seguindo o padrão 
+	<literal>protocolo://servidor/path</literal>. Cada sítio SVN 
+	pode suportar um protocolo diferente, como mostrado 
+	abaixo. O primeiro componente do <literal>path</literal> 
+	é o repositório do &os; que você pretende acessar. Existem 
+	três repositórios diferentes; <literal>base</literal>, 
+	<literal>ports</literal> e <literal>doc</literal>. Esses 
+	repositórios respondem, respectivamente, pelos códigos fonte 
+	do sistema base do &os;, pela Coleção de Ports e pela 
+	documentação do projeto. Por exemplo, a URL 
+	<literal>svn://svn0.us-east.FreeBSD.org/ports/head</literal> 
+	especifica a árvore principal do repositório 
+	<literal>ports</literal> em 
+	<hostid role="fqdn">svn0.us-east.FreeBSD.org</hostid>, 
+	usando o protocolo <literal>svn</literal>.</para>
+
+    <para>Todos os servidores contém os três repositórios.</para>
+
+    <para>O servidor de Subversion principal utilizado pelo projeto 
+	&os;, <hostid role="fqdn">svn.FreeBSD.org</hostid>, é 
+	público e opera em modo somente leitura. Isto pode mudar no 
+	futuro, então encorajamos os usuários a utilizarem um dos 
+	espelhos oficiais. Para acessar os repositórios do &os; 
+	através de um Navegador Web, visite <ulink 
+	url="http://svnweb.FreeBSD.org">http://svnweb.FreeBSD.org</ulink>.</para>
+
+    <informaltable>
+      <tgroup cols="4">
+	<colspec colwidth="3*"/>
+	<colspec colwidth="1*"/>
+	<colspec colwidth="2*"/>
+	<colspec colwidth="10*"/>
+	<thead>
+	  <row>
+	    <entry>Servidor</entry>
+
+	    <entry>Protocolos</entry>
+
+	    <entry>Localização</entry>
+
+	    <entry>Assinatura SSL</entry>
+	  </row>
+	</thead>
+
+	<tbody>
+	  <row>
+	    <entry><hostid
+		role="fqdn">svn0.us-west.FreeBSD.org</hostid></entry>
+
+	    <entry><ulink
+		url="svn://svn0.us-west.FreeBSD.org/base">svn</ulink>, 
+	      <ulink
+		url="http://svn0.us-west.FreeBSD.org/base">http</ulink>, 
+	      <ulink
+		url="https://svn0.us-west.FreeBSD.org/base">https</ulink></entry>
+
+	    <entry>Califórnia, EUA</entry>
+
+	    <entry>SHA1
+	      <literal>79:35:8F:CA:6D:34:D9:30:44:D1:00:AF:33:4D:E6:11:44:4D:15:EC</literal></entry>
+	  </row>
+
+	  <row>
+	    <entry><hostid
+		role="fqdn">svn0.us-east.FreeBSD.org</hostid></entry>
+
+	    <entry><ulink
+		url="svn://svn0.us-east.FreeBSD.org/base">svn</ulink>, 
+	      <ulink
+		url="http://svn0.us-east.FreeBSD.org/base">http</ulink>,
+	      <ulink
+		url="https://svn0.us-east.FreeBSD.org/base">https</ulink></entry>
+
+	    <entry>Nova Jérsia, EUA</entry>
+
+	    <entry>SHA1
+	      <literal>06:D1:23:DE:5E:7A:F7:2B:7A:7E:74:95:5F:54:8D:5C:B0:D6:2E:8F</literal></entry>
+	  </row>
+	</tbody>
+      </tgroup>
+    </informaltable>
+  </sect1>
+
+    <sect1 id="anoncvs">
+      <title>CVS Anônimo</title>
+
+      <sect2>
+	<title><anchor id="anoncvs-intro"/>Introdução</title>
+
+	<indexterm>
+	  <primary>CVS</primary>
+	  <secondary>anonymous</secondary>
+	</indexterm>
+
+	<para>CVS Anônimo (ou, como é conhecido de outra forma, 
+	<emphasis>AnonCVS</emphasis>) é um recurso fornecido pelo 
+	utilitário do CVS que acompanha o &os; para realizar 
+	sincronização entre um host e um servidor CVS remoto. Entre 
+	outras coisas, ele permite a usuários do &os; efetuarem, sem 
+	privilégios especiais, operações de leitura nos servidores 
+	AnonCVS oficiais do projeto  &os;. Para utilizar este 
+	recurso, basta que você utilize a variável de ambiente 
+	<envar>CVSROOT</envar> para apontar para um servidor de 
+	AnonCVS, utilize o comando <command>cvs login</command>, 
+	forneça a senha <quote>anoncvs</quote> quando for solicitada 
+	e então usar o comando &man.cvs.1; para acessar o 
+	repositório como qualquer outro repositório local.</para>
+
+	<note>
+	  <para>O comando <command>cvs login</command> guardará as 
+	    senhas que forem utilizadas para efetuar a autenticação 
+	    em um servidor CVS no arquivo 
+	    <filename>.cvspass</filename>, que ficará no diretório 
+	    <envar>HOME</envar> do usuário que executar o comando. 
+	    Caso este arquivo não exista, você pode receber uma 
+	    mensagem de erro ao tentar executar o comando 
+	    <command>cvs login</command> pela primeira vez. 
+	    Basta que você crie um arquivo vazio e efetue novamente 
+	    a operação para realizar o login.</para>
+	</note>
+
+	<para>Embora possa se dizer que o 
+	<link linkend="cvsup">CVSup</link> e o serviço provido pelo 
+	<emphasis>AnonCVS</emphasis> executem a mesma função, 
+	existem vários dilemas que podem influenciar a escolha do 
+	usuário entre um método de sincronização e outro. Em poucas 
+	palavras, o <application>CVSup</application> é muito mais 
+	eficiente no que se diz respeito ao uso dos recursos de rede 
+	e é, de longe, o mais sofisticado entre os dois. Mas existe 
+	um preço para se usar <application>CVSup</application>; é 
+	necessário que um cliente especial seja instalado e 
+	configurado antes que se possa acessar quaisquer bits em um 
+	enorme pedaço do repositório, conhecido pelo 
+	<application>CVSup</application> como 
+	<emphasis>collection</emphasis>.</para>
+
+	<para>O <application>AnonCVS</application>, por outro lado, 
+	  pode ser usado para examinar qualquer coisa, desde um 
+	  arquivo individual a um programa específico (como 
+	  <command>ls</command> ou <command>grep</command>) 
+	  referenciando o nome do módulo CVS. Obviamente o 
+	  <application>AnonCVS</application> é útil apenas para 
+	  operações de leitura no repositório CVS. Por isso, se você 
+	  pretende apoiar o desenvolvimento do projeto &os; 
+	  compartilhando um repositório CVS local, o 
+	  <application>CVSup</application> é sua única opção.</para>
+      </sect2>
+
+      <sect2>
+	<title><anchor id="anoncvs-usage"/>Usando o AnonCVS</title>
+
+	<para>Configurar o &man.cvs.1; para usar um repositório de 
+	  CVS que ofereça acesso anônimo é uma simples questão de 
+	  alterar o valor da variável de ambiente 
+	  <envar>CVSROOT</envar> para que ela aponte para um dos 
+	  repositórios de <emphasis>AnonCVS</emphasis> do projeto 
+	  &os;. Até o presente momento, os seguintes servidores 
+	  estão disponíveis:</para>
+
+	<itemizedlist>
+	  <listitem>
+	    <para><emphasis>França</emphasis>:
+	      :pserver:anoncvs@anoncvs.fr.FreeBSD.org:/home/ncvs
+	      (Para efetuar login em modo pserver, utilize o comando 
+	      <command>cvs login</command> e utilize a senha 
+	      <quote>anoncvs</quote> quando solicitada. Para 
+	      acessos via <application>SSH</application>, não é 
+	      necessária nenhuma senha).</para>
+	  </listitem>
+	  <!--
+	  <listitem>
+	    <para><emphasis>Japão</emphasis>:
+	      :pserver:anoncvs@anoncvs.jp.FreeBSD.org:/home/ncvs
+	      (Use <command>cvs login</command> e use a senha
+	      <quote>anoncvs</quote> quando solicitada).</para>
+	  </listitem>
+	  -->
+	  <listitem>
+	    <para><emphasis>Taiwan</emphasis>:
+	      :pserver:anoncvs@anoncvs.tw.FreeBSD.org:/home/ncvs
+	      (Para efetuar login em modo pserver, utilize o comando 
+	      <command>cvs login</command> e utilize qualquer senha 
+	      quando solicitada. Para acessos via 
+	      <application>SSH</application>, não é necessária 
+	      nenhuma senha).</para>
+
+	      <programlisting>SSH2 HostKey: 1024 02:ed:1b:17:d6:97:2b:58:5e:5c:e2:da:3b:89:88:26 /etc/ssh/ssh_host_rsa_key.pub
+SSH2 HostKey: 1024 e8:3b:29:7b:ca:9f:ac:e9:45:cb:c8:17:ae:9b:eb:55 /etc/ssh/ssh_host_dsa_key.pub</programlisting>
+
+	  </listitem>
+	  <!--
+	  <listitem>
+	    <para><emphasis>Estados Unidos da América</emphasis>:
+	      anoncvs@anoncvs1.FreeBSD.org:/home/ncvs (Para acesso 
+	      via <application>SSH</application>, utilize a versão 
+	      2. Não é necessário fornecer nenhuma senha de 
+	      acesso).</para>
+
+	    <programlisting>SSH2 HostKey: 2048 53:1f:15:a3:72:5c:43:f6:44:0e:6a:e9:bb:f8:01:62 /etc/ssh/ssh_host_dsa_key.pub</programlisting>
+
+	  </listitem>
+	  -->
+	</itemizedlist>
+
+	<para>Visto que o CVS permite a você realizar um 
+	  <quote>check out</quote> virtual de quaisquer versões dos 
+	  códigos fonte do &os; que existam (ou, em alguns casos, 
+	  irão existir), você precisa se familiarizar com as flags 
+	  de revisão (<option>-r</option>) utilizadas pelo 
+	  &man.cvs.1; para saber são os valores aceitáveis nos 
+	  repositórios do projeto &os;.</para>
+
+	<para>Existem dois tipos de tags, as tags das revisões e as 
+	  tags dos ramos de desenvolvimento. Uma tag de revisão 
+	  refere-se a uma revisão específica. Os conteúdos 
+	  referentes a uma revisão específica serão sempre os 
+	  mesmos, independente do dia em que esta revisão seja 
+	  obtida. Uma tag de ramo, por outro lado, refere-se à 
+	  última revisão numa dada linha de desenvolvimento, criada 
+	  num momento qualquer. Pelo fato de uma tag de ramo não 
+	  se referir a uma revisão específica, o conteúdo obtido 
+	  hoje pode não ser o mesmo obtido amanhã.</para>
+
+	<para>A <xref linkend="cvs-tags"/> contém uma lista das tags 
+	  que podem interessar a alguns usuários. Lembre-se que 
+	  nenhuma destas tags é válida para a Coleção de Ports, já 
+	  que na Coleção de Ports não existem diferentes ramos de 
+	  desenvolvimento.</para>
+
+	<para>Normalmente, quando você especifica a tag do ramo 
+	  que deseja obter, a última versão dos arquivos que fazem 
+	  parte do projeto naquele ramo são fornecidos a você. Se 
+	  você pretende obter uma versão anterior, você pode fazer 
+	  uso da flag <option>-D data</option> para especificar uma 
+	  data desejada. Veja a página de manual &man.cvs.1; para 
+	  mais detalhes e informações.</para>
+      </sect2>
+
+      <sect2>
+	<title>Exemplos</title>
+
+	<para>Embora seja extremamente recomendado que você leia a 
+	  página de manual &man.cvs.1; antes de fazer alguma coisa, 
+	  aqui estão alguns exemplos que demonstram o uso básico de 
+	  servidores que permitam AnonCVS.</para>
+
+	<example>
+	  <title>Checando algo na versão -CURRENT (&man.ls.1;):</title>
+
+	  <screen>&prompt.user; <userinput>setenv CVSROOT :pserver:anoncvs@anoncvs.tw.FreeBSD.org:/home/ncvs</userinput>
+&prompt.user; <userinput>cvs login</userinput>
+<emphasis>Quando solicitada a senha, use qualquer valor.</emphasis>
+&prompt.user; <userinput>cvs co ls</userinput>
+	  </screen>
+	</example>
+
+	<example>
+	  <title>Usando SSH para visualizar a árvore de diretórios  
+	    <filename>src</filename>:</title>
+	  <screen>&prompt.user; <userinput>cvs -d anoncvs@anoncvs1.FreeBSD.org:/home/ncvs co src</userinput>
+The authenticity of host 'anoncvs1.freebsd.org (216.87.78.137)' can't be established.
+DSA key fingerprint is 53:1f:15:a3:72:5c:43:f6:44:0e:6a:e9:bb:f8:01:62.
+Are you sure you want to continue connecting (yes/no)? <userinput>yes</userinput>
+Warning: Permanently added 'anoncvs1.freebsd.org' (DSA) to the list of known hosts.</screen>
+	</example>
+
+	<example>
+	  <title>Checando a versão do &man.ls.1; na árvore de 
+	    desenvolvimento da versão 8-STABLE:</title>
+
+	  <screen>&prompt.user; <userinput>setenv CVSROOT :pserver:anoncvs@anoncvs.tw.FreeBSD.org:/home/ncvs</userinput>
+&prompt.user; <userinput>cvs login</userinput>
+<emphasis>Quando solicitada a senha, entre com o valor <quote>password</quote>.</emphasis>
+&prompt.user; <userinput>cvs co -rRELENG_8 ls</userinput>
+	  </screen>
+	</example>
+
+	<example>
+	  <title>Criando uma lista das alterações (num único arquivo 
+	    diff) do &man.ls.1;:</title>
+
+	  <screen>&prompt.user; <userinput>setenv CVSROOT :pserver:anoncvs@anoncvs.tw.FreeBSD.org:/home/ncvs</userinput>
+&prompt.user; <userinput>cvs login</userinput>
+<emphasis>Quando solicitada a senha, entre com o valor <quote>password</quote>.</emphasis>
+&prompt.user; <userinput>cvs rdiff -u -rRELENG_8_0_0_RELEASE -rRELENG_8_1_0_RELEASE ls</userinput>
+	  </screen>
+	</example>
+
+	<example>
+	  <title>Descobrindo quais outros nomes de módulos podem ser 
+	    utilizados:</title>
+
+	  <screen>&prompt.user; <userinput>setenv CVSROOT :pserver:anoncvs@anoncvs.tw.FreeBSD.org:/home/ncvs</userinput>
+&prompt.user; <userinput>cvs login</userinput>
+<emphasis>Quando solicitada a senha, entre com o valor <quote>password</quote>.</emphasis>
+&prompt.user; <userinput>cvs co modules</userinput>
+&prompt.user; <userinput>more modules/modules</userinput>
+	  </screen>
+	</example>
+      </sect2>
+
+      <sect2>
+	<title>Outros Recursos</title>
+
+	<para>Os seguintes recursos adicionais podem lhe ser úteis 
+	  no aprendizado do CVS:</para>
+
+	<itemizedlist>
+	  <listitem>
+	    <para><ulink
+	      url="http://users.csc.calpoly.edu/~gfisher/classes/308/handouts/cvs-basics.html">CVS Tutorial</ulink> (em inglês), 
+	        da Universidade Politécnica do Estado da Califórnia dos EUA.</para>
+	  </listitem>
+
+	  <listitem>
+	    <para><ulink url="http://www.nongnu.org/cvs/">CVS Home</ulink> (em inglês),
+	      uma comunidade de desenvolvimento e suporte ao CVS.</para>
+	  </listitem>
+
+	  <listitem>
+	    <para><ulink
+		url="http://www.FreeBSD.org/cgi/cvsweb.cgi">CVSweb</ulink>, 
+	      interface Web provida pelo projeto &os; para navegar 
+	      em seu repositório.</para>
+	  </listitem>
+	</itemizedlist>
+      </sect2>
+    </sect1>
+
+
+  <sect1 id="ctm">
+    <title>Usando CTM</title>
+
+      <indexterm>
+	<primary>CTM</primary>
+      </indexterm>
+
+      <para><application>CTM</application> é um método para manter 
+	uma árvore de diretórios remotos em sincronia com uma árvore 
+	central. Ele foi desenvolvido para ser usado em árvores 
+	contendo os códgos fonte do &os;. Algumas pessoas acreditam 
+	que, com o passar do tempo, ele possa ser útil para outras 
+	finalidades. A documentação existente neste momento sobre o 
+	processo de criação de deltas para se utilizar 
+	<application>CTM</application> é pouca e escassa. Então, se 
+	você pretende utilizá-lo para outras finalidades, acesse e 
+	cadastre-se na lista de discussão &a.ctm-users.name; para 
+	obter mais informações.</para>
+
+      <sect2>
+	<title>Porquê eu deveria usar <application>CTM</application>?</title>
+
+	<para>O <application>CTM</application> vai lhe fornecer uma 
+	  cópia local das árvores com o código fonte do &os;. 
+	  Existem diferentes tipos de árvores disponíveis. Se você 
+	  deseja acompanhar a árvore CVS inteira ou apenas um dos 
+	  ramos, o <application>CTM</application> pode lhe 
+	  fornecer a informação que você desejar. Se você é um 
+	  desenvolvedor ativo no projeto FreeBSD, mas tem uma 
+	  péssima, ou nenhuma, conexão via TCP/IP com os servidores 
+	  do projeto e simplesmente deseja que as alterações sejam 
+	  enviadas automaticamente para você, o 
+	  <application>CTM</application> foi feito para 
+	  você. Você só precisará obter até três deltas por dia para 
+	  os ramos mais ativos. No entanto, você deve considerar que 
+	  o envio dos deltas é feito de forma automática via email. 
+	  O tamanho dos deltas para atualização será sempre o menor 
+	  possível. Isto é, tipicamente menor do que 5K, 
+	  ocasionalmente (um em 10) entre 10K e 50K e, de vez em 
+	  quando, ultrapassando 100K.</para>
+
+	<para>Você também precisa estar ciente das diversas 
+	  advertências relacionadas ao trabalho realizado 
+	  diretamente nos códigos fonte ao invés de atentar-se 
+	  somente para uma release lançadas. Isto é um fator muito 
+	  importante, caso você opte por acompanhar o 
+	  desenvolvimento dos códigos fonte <quote>current</quote>. 
+	  É recomendado que você leia a seção 
+	  <link linkend="current">Mantendo o &os; atualizado</link>.</para>
+      </sect2>
+
+      <sect2>
+	<title>Do que eu preciso para usar
+	  <application>CTM</application>?</title>
+
+	<para>Você vai precisar de duas coisas: O programa 
+	  <application>CTM</application> e os deltas iniciais para 
+	  alimentá-lo (para chegar até os níveis de atualização 
+	  <quote>current</quote>).</para>
+
+	<para>O programa <application>CTM</application> faz parte do 
+	  &os; desde a versão 2.0, e se você tem uma cópia do código 
+	  fonte do &os; ele reside em 
+	  <filename>/usr/src/usr.sbin/ctm</filename>.</para>
+
+	<para>Os deltas que <quote>alimentam</quote> o 
+	  <application>CTM</application> podem ser obtidos de duas 
+	  maneiras, FTP ou e-mail. Se você tem acesso via FTP para a 
+	  Internet, então o seguinte sítio FTP disponibiliza acesso ao 
+	  <application>CTM</application>: </para>
+
+	<para><ulink url="ftp://ftp.FreeBSD.org/pub/FreeBSD/CTM"></ulink></para>
+
+	<para>Você também pode verificar a lista de servidores 
+	  espelho disponível na seção 
+	  <link linkend="mirrors-ctm">espelhos</link>.</para>
+
+	<para>Baixe o conteúdo do diretório relevante e procure 
+	  pelo arquivo <filename>README</filename>.</para>
+
+	<para>Se você deseja obter os deltas via e-mail:</para>
+
+	<para>Inscreva-se em uma das listas de distribuição 
+	  <application>CTM</application>. A lista 
+	  &a.ctm-cvs-cur.name; suporta a árvore CVS inteira, a 
+	  &a.ctm-src-cur.name; suporta o ramo de desenvolvimento 
+	  HEAD, &a.ctm-src-7.name; suporta o ramo de versões 7.x e 
+	  etc. (Se você não sabe como se inscrever numa lista, 
+	  clique no nome da lista acima ou visite 
+	  &a.mailman.lists.link; e clique na lista que você deseja 
+	  se inscrever. A página de cada lista deve conter todas as 
+	  informações e instruções de inscrição necessárias).</para>
+
+	<para>Quando você começar a receber as atualizações do CTM 
+	  via e-mail, você pode usar o programa 
+	  <command>ctm_rmail</command> para descompactá-las e 
+	  aplicá-las. Você pode, ainda, usar o programa 
+	  <command>ctm_rmail</command> como uma entrada no arquivo 
+	  <filename>/etc/aliases</filename>, se você quer ter o 
+	  processo executado de forma totalmente automatizada. 
+	  Verifique a página de manual <command>ctm_rmail</command> 
+	  para obter mais detalhes.</para>
+
+	<note>
+	  <para>Não importa o método que você usa para obter os 
+	    deltas <application>CTM</application>, você deve se 
+	    inscrever na lista de discussão &a.ctm-announce.name;. 
+	    No futuro, este será o único lugar onde os anúncios a 
+	    respeito das perações no sistema de 
+	    <application>CTM</application> serão publicados. Clique 
+	    no nome da lista acima e siga as instruções para se 
+	    inscrever na lista.</para>
+	</note>
+      </sect2>
+
+      <sect2>
+	<title>Usando <application>CTM</application> pela 
+	  primeira vez</title>
+
+	<para>Antes que você possa começar a usar deltas 
+	  <application>CTM</application>, você vai precisar de um 
+	  ponto de partida para seguir acompanhando outros deltas 
+	  produzidos a partir dele.</para>
+
+	<para>Primeiro você deve determinar o que você já tem. Todo 
+	  mundo pode começar a partir de um 
+	  <quote>diretório vazio</quote>. Você deve usar um delta 
+	  <quote>Empty</quote> para começar sua árvore 
+	  <application>CTM</application>. Para sua conveniência, em 
+	  um determinado momento, pretende-se que estes 
+	  <quote>deltas de inicialização</quote> estejam presentes 
+	  em mídias de CD. No entanto, isso não acontece nos dias de 
+	  hoje.</para>
+
+	<para>Partindo do princípio de que as árvores de diretórios 
+	  contendo os códigos fonte necessários para a atualização 
+	  do &os; possuem dezenas de megabytes, você deve preferir 
+	  começar a partir de algo que você já tenha em mãos. Por 
+	  exemplo, se você tem uma mídia de CD com uma versão 
+	  -RELEASE, você pode optar por copiar ou extrair o código 
+	  fonte presente nesta mídia para um diretório qualquer em 
+	  seu sistema de arquivos. Isto vai lhe poupar uma 
+	  significativa transferência de dados desnecessária.</para>
+
+	<para>Você pode reconhecer os 
+	  <quote>deltas de inicialização</quote> pelo 
+	  <literal>X</literal> anexado ao número de identificação, 
+	  presente no nome do arquivo 
+	  (<filename>src-cur.3210XEmpty.gz</filename>, por exemplo). 
+	  A designação que segue após o <literal>X</literal> 
+	  corresponde ao conteúdo que deu origem ao arquivo. 
+	  <filename>Empty</filename> refere-se a um diretório vazio. 
+	  Existe uma regra estipulando que a cada 100 deltas sempre 
+	  deve ser gerado um novo delta <literal>Empty</literal>. A 
+	  propósito, eles são grandes! O tamanho médio destes deltas 
+	  <filename>XEmpty</filename> gira em torno de 70 e 80 
+	  megabytes de dados compactados com o 
+	  <command>gzip</command>.</para>
+
+	<para>Depois de ter escolhido um delta base para começar, 
+	  você também vai precisar de todos os outros deltas com 
+	  números maiores do que este delta escolhido.</para>
+      </sect2>
+
+      <sect2>
+	<title>Usando <application>CTM</application> no dia-a-dia</title>
+
+	<para>Para aplicar os deltas, basta que você execute os 
+	  seguintes comandos:</para>
+
+	<screen>&prompt.root; <userinput>cd /onde/voce/quiser/armazenar/suas/coisas</userinput>
+&prompt.root; <userinput>ctm -v -v /local/onde/estao/seus/deltas/src-xxx.*</userinput></screen>
+
+	<para>O <application>CTM</application> interpreta sem 
+	  problemas os deltas que foram criados e compactados 
+	  através do <command>gzip</command>, assim você não 
+	  precisa descompactá-los com o <command>gunzip</command> 
+	  antes. Isso economiza espaço em disco.</para>
+
+	<para>Caso o <application>CTM</application> não se sinta 
+	  seguro sobre todo o processo, ele não vai tocar e alterar 
+	  sua árvore de diretórios. Para verificar um delta você 
+	  também pode usar a opção <option>-c</option> do 
+	  <application>CTM</application> que ele não irá alterar sua 
+	  árvore, ele irá apenas verificar a integridade do delta e 
+	  ver se ele pode ser aplicado sem problemas.</para>
+
+	<para>Existem outras opções que podem ser utilizadas no CTM. 
+	  Leia as páginas de manual, ou procure nos códigos fonte, 
+	  para obter mais informações.</para>
+
+	<para>Isso é realmente tudo o que há para fazer. Toda vez 
+	  que você receber um novo delta, basta aplicá-lo através do 
+	  <application>CTM</application> para manter seus fontes 
+	  atualizados.</para>
+
+	<para>Não apague os deltas. Se for difícil de conseguir que 
+	  eles sejam baixados novamente, você certamente vai querer 
+	  mantê-los por perto caso algo de ruim aconteça. Mesmo que 
+	  você só disponha de disquetes para realizar cópias de 
+	  backup, considere o uso do 
+	  <command>fdwrite</command>.</para>
+      </sect2>
+
+      <sect2>
+	<title>Mantendo suas alterações locais</title>
+
+	<para>Como um desenvolvedor, você pode desejar alterar e 
+	  aplicar alterações em arquivos na árvore do código fonte. 
+	  O <application>CTM</application> suporta modificações 
+	  locais de uma forma limitada: antes de ele verificar a 
+	  presença de um arquivo <filename>foo</filename>, ele 
+	  procura primeiro por <filename>foo.ctm</filename>. Se 
+	  esse arquivo existir, o <application>CTM</application> 
+	  trabalhará com ele ao invés de trabalhar com o arquivo 
+	  <filename>foo</filename>.</para>
+
+	<para>Esse comportamento nos fornece uma maneira simples de 
+	  manter alterações locais: basta copiar os arquivos que 
+	  você pretende modificar para os nomes de arquivos 
+	  correspondentes com um sufixo <filename>.ctm</filename>. 
+	  Assim você pode, livremente, modificar o código enquanto o 
+	  <application>CTM</application> mantém o arquivo 
+	  <filename>.ctm</filename> atualizado.</para>
+      </sect2>
+
+      <sect2>
+	<title>Outras opções interessantes no uso do 
+	  <application>CTM</application></title>
+
+	<sect3>
+	  <title>Determinando exatamente o que será modificado 
+	    durante um processo de atualização</title>
+
+	  <para>Você pode determinar a lista de alterações que o 
+	    <application>CTM</application> irá realizar no seu 
+	    repositório de origem usando a opção 
+	    <option>-l</option>.</para>
+
+	  <para>Isso é útil se você pretende manter registros das 
+	    alterações, dos pré ou pós-processamentos realizados 
+	    em arquivos de uma maneira geral, ou se você estiver 
+	    se sentindo um pouco paranóico.</para>
+	</sect3>
+
+	<sect3>
+	  <title>Criando cópias de Backup antes de atualizar</title>
+
+	  <para>Às vezes, você pode querer fazer algumas cópias de 
+	    Backup dos arquivos envolvidos num processo de 
+	    atualização executado pelo 
+	    <application>CTM</application>.</para>
+
+	  <para>Especificando a opção 
+	    <option>-B meu-arquivo-de-backup</option>, fará com que 
+	    o <application>CTM</application> gere uma cópia de 
+	    Backup contendo todos os arquivos que serão modificados 
+	    por um delta no arquivo denominado 
+	    <filename>meu-arquivo-de-backup</filename>.</para>
+	</sect3>
+
+	<sect3>
+	  <title>Restringindo o escopo de algumas atualizações</title>
+
+	  <para>Às vezes, você pode se interessar em restringir o 
+	    escopo de uma dada atualização fornecida pelo 
+	    <application>CTM</application>, ou pode estar 
+	    interessado em extrair apenas alguns arquivos de uma 
+	    determinada sequência de deltas.</para>
+
+	  <para>Especificando, por meio de expressões regulares, 
+	    você pode controlar a lista dos arquivos que o 
+	    <application>CTM</application> irá 
+	    acessar. Para isso, utilize as opções 
+	    <option>-e</option> e <option>-x</option>.</para>
+
+	  <para>Por exemplo, para extrair uma cópia atualizada de 
+	    <filename>lib/libc/Makefile</filename> de um conjunto de 
+	    deltas, execute os comandos:</para>
+
+	  <screen>&prompt.root; <userinput>cd /onde/voce/quiser/armazenar/suas/coisas</userinput>
+&prompt.root; <userinput>ctm -e '^lib/libc/Makefile' ~ctm/src-xxx.*</userinput></screen>
+
+	  <para>Para cada arquivo presente em um delta 
+	    <application>CTM</application>, as opções 
+	    <option>-e</option> e <option>-x</option> são aplicadas 
+	    na ordem fornecida na linha de comando. O arquivo é 
+	    processado pelo <application>CTM</application> somente 
+	    após a intepretação completa das duas opções, 
+	    <option>-e</option> e <option>-x</option>.</para>
+	</sect3>
+      </sect2>
+
+      <sect2>
+	<title>Planos futuros para o <application>CTM</application></title>
+
+	<para>Toneladas destes planos:</para>
+
+	<itemizedlist>
+	  <listitem>
+	    <para>Utilizar algum tipo de autenticação para o sistema 
+	      de <application>CTM</application>, de modo a permitir 
+	      a detecção de deltas e alterações falsificadas.</para>
+	  </listitem>
+
+	  <listitem>
+	    <para>Redefinir algumas das opções que possam ser usadas 
+	      no <application>CTM</application>. Elas se tornaram 
+	      confusas e pouco intuitivas.</para>
+	  </listitem>
+	</itemizedlist>
+      </sect2>
+
+      <sect2>
+	<title>Miscelânia</title>
+
+	<para>Também existem deltas disponíveis para a 
+	  Coleção de Ports, mas o interesse em obter estes deltas 
+	  não tem sido muito grande.</para>
+      </sect2>
+
+    <sect2 id="mirrors-ctm">
+      <title>Servidores Espelho</title>
+
+    <para>O <link linkend="ctm">CTM</link> está disponível através 
+      do uso de FTP anônimo com ajuda dos sítios listados abaixo. 
+      Se você se interessar por obter o 
+      <application>CTM</application>, por favor, utilize um dos 
+      servidores espelho que seja o mais próximo possível de sua 
+      localização.</para>
+
+    <para>Em caso de problemas, contate a lista &a.ctm-users.name;.</para>
+
+    <variablelist>
+      <varlistentry>
+	<term>Califórnia, Servidor Oficial</term>
+
+	<listitem>
+	  <itemizedlist>
+	    <listitem>
+	      <para><ulink url="ftp://ftp.FreeBSD.org/pub/FreeBSD/development/CTM"></ulink></para>
+	    </listitem>
+	  </itemizedlist>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>África do Sul, Servidor de Backup com deltas antigos</term>
+
+	<listitem>
+	  <itemizedlist>
+	    <listitem>
+	      <para><ulink url="ftp://ftp.za.FreeBSD.org/pub/FreeBSD/CTM"></ulink></para>
+	    </listitem>
+	  </itemizedlist>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>Taiwan / República da China</term>
+
+	<listitem>
+	  <itemizedlist>
+	    <listitem>
+	      <para><ulink url="ftp://ctm.tw.FreeBSD.org/pub/FreeBSD/development/CTM"></ulink></para>
+	    </listitem>
+
+	    <listitem>
+	      <para><ulink url="ftp://ctm2.tw.FreeBSD.org/pub/FreeBSD/development/CTM"></ulink></para>
+	    </listitem>
+
+	    <listitem>
+	      <para><ulink url="ftp://ctm3.tw.FreeBSD.org/pub/FreeBSD/development/CTM"></ulink></para>
+	    </listitem>
+	  </itemizedlist>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>Se você não localizou um servidor espelho próximo a você, 
+      ou este espelho encontra-se incompleto, tente utilizar 
+      ferramentas de busca na Internet como a 
+      <ulink url="http://www.alltheweb.com">alltheweb</ulink> 
+      para localizar um sítio próximo.</para>
+  </sect2></sect1>
+
+  <sect1 id="cvsup">
+    <title>Usando CVSup</title>
+
+    <sect2 id="cvsup-intro">
+      <title>Introdução</title>
+
+      <para><application>CVSup</application> é um software utilizado 
+	para distribuição e atualização de códigos fonte, presentes 
+	em diferentes árvores ou galhos de desenvolvimento, num 
+	repositório CVS remoto. Os códigos fonte do &os; são 
+	mantidos em um repositório CVS em um servidor de 
+	desenvolvimento central, na Califórnia. Com o 
+	<application>CVSup</application>, os usuários do &os; 
+	podem facilmente manter suas árvores de código fonte 
+	atualizadas.</para>
+
+      <para>O <application>CVSup</application> é baseado na 
+	estratégia de <emphasis>solicitação dos clientes</emphasis> 
+	para realizar suas atualizações . Sob este modelo 
+	estratégico <literal>(pull model)</literal>, cada cliente 
+	deve solicitar ao servidor suas atualizações quando acharem 
+	que for conveniente. O servidor aguarda passivamente por 
+	solicitações de atualização de clientes. Assim, todas as 
+	atualizações são solicitadas pelo cliente. O servidor nunca 
+	envia atualizações não solicitadas. Os usuários devem 
+	executar o cliente <application>CVSup</application> 
+	manualmente para obter uma atualização, ou eles devem 
+	configurar e agendar uma tarefa através do uso do 
+	<command>cron</command> para, automaticamente, 
+	obterem atualizações regularmente.</para>
+
+      <para>O termo <application>CVSup</application>, escrito nessa 
+	forma, refere-se ao pacote de software inteiro. Seus 
+	principais componentes são o cliente 
+	<command>cvsup</command> que roda na máquina de cada 
+	usuário, e o <command>cvsupd</command> que é executado em 
+	cada um dos servidores espelho do &os;.</para>
+
+      <para>Ao ler a documentação do &os; e suas listas de 
+	discussão, você pode ver referências ao 
+	<application>Sup</application>. O 
+	<application>Sup</application> foi o antecessor do 
+	<application>CVSup</application>, e serviu a um propósito 
+	semelhante. O <application>CVSup</application> é muito usado 
+	da mesma forma que o <application>Sup</application> e, de 
+	fato, usa arquivos de configuração que são compatíveis com o 
+	<command>sup</command>. Atualmente o 
+	<application>Sup</application> não é mais usado pelo projeto 
+	&os; porque o <application>CVSup</application> mostrou-se 
+	mais rápido e mais flexível.</para>
+
+      <note>
+	<para>O utilitário <application>csup</application> 
+	  corresponde ao software cliente do 
+	  <application>CVSup</application> reescrito em linguagem C. 
+	  Suas maiores vantagens são os fatos de ele ser mais rápido 
+	  e não depender da linguagem Modula-3. Desta forma não se 
+	  faz necessária a instalação adicional de Modula-3 para 
+	  cumprir exigências. Além disso, você pode usá-lo 
+	  <quote>fora-da-caixa</quote>, uma vez que o 
+	  <application>csup</application> está incluído no sistema 
+	  base. Se você decidiu usar 
+	  <application>csup</application>, basta pular as etapas da 
+	  instalação do <application>CVSup</application> e 
+	  substituir as referências ao cliente 
+	  <application>CVSup</application> por 
+	  <application>csup</application> enquanto segue o restante 
+	  deste artigo.</para>
+      </note>
+    </sect2>
+
+    <sect2 id="cvsup-install">
+      <title>Instalação</title>
+
+      <para>A maneira mais fácil de instalar o 
+	<application>CVSup</application> é usar o pacote 
+	<filename role="package">net/cvsup</filename> pré-compilado, 
+	disponível no sistema de <link linkend="ports">pacotes 
+	pré-compilados</link> do &os;. Se você preferir compilar e 
+	instalar o <application>CVSup</application> a partir do 
+	código fonte, você pode usar o port 
+	<filename role="package">net/cvsup</filename>. Mas esteja 
+	ciente de que o port 
+	<filename role="package">net/cvsup</filename> dependerá da 
+	instalação de Modula-3, que irá consumir uma quantidade 
+	substancial de tempo e espaço em disco para finalizar todo o 
+	processo de compilação e instalação.</para>
+
+	<note>
+	  <para>Se você for usar <application>CVSup</application> 
+	  numa máquina que não terá um servidor 
+	  <application>&xorg;</application> instalado, certifique-se 
+	  de usar o port que não inclui a interface gráfica do 
+	  <application>CVSup</application>, o 
+	  <filename role="package">net/cvsup-without-gui</filename>.
+	  </para>
+	</note>
+    </sect2>
+
+    <sect2 id="cvsup-config">
+      <title>Configuração</title>
+
+      <para>As operações realizadas pelo 
+	<application>CVSup</application> são controladas por um 
+	arquivo de configuração chamado 
+	<filename>supfile</filename>. Existem alguns arquivos de 
+	exemplo disponíveis no diretório 
+	<filename>/usr/share/examples/cvsup</filename>.</para>
+
+      <para>A informação contida em um <filename>supfile</filename> 
+	responde as seguintes perguntas feitas pelo 
+	<application>CVSup</application>:</para>
+
+      <itemizedlist>
+	<listitem>
+	  <para><link linkend="cvsup-config-files">Quais arquivos 
+	      você gostaria de receber?</link></para>
+	</listitem>
+
+	<listitem>
+	  <para><link linkend="cvsup-config-vers">Quais versões 
+	      desses arquivos você gostaria de receber?</link></para>
+	</listitem>
+
+	<listitem>
+	  <para><link linkend="cvsup-config-where">De onde você 
+	      gostaria de receber esses arquivos?</link></para>
+	</listitem>
+
+	<listitem>
+	  <para><link linkend="cvsup-config-dest">Onde você gostaria 
+	      de armazenar esses arquivos em seu sistema?</link></para>
+	</listitem>
+
+	<listitem>
+	  <para><link linkend="cvsup-config-status">Onde o 
+	      <command>cvsup</command> deveria armazenar seus arquivos
+	      de status?</link></para>
+	</listitem>
+      </itemizedlist>
+
+      <para>Nas seções seguintes, vamos construir um 
+	<filename>supfile</filename> bem simples respondendo cada 
+	uma destas perguntas. Em primeiro lugar, descreveremos a 
+	estrutura geral de um <filename>supfile</filename>.</para>
+
+      <para>O <filename>supfile</filename> é um arquivo de texto 
+	plano. Os comentários começam com <literal>#</literal> e 
+	estendem-se até o final de uma linha. Linhas que estão em 
+	branco e linhas que contêm apenas comentários são ignoradas.</para>
+
+      <para>Ignoradas as linhas em branco e os comentários, cada 
+	linha restante descreve um conjunto de arquivos que o 
+	usuário deseja receber. A linha é iniciada com o nome de uma 
+	<quote>coleção</quote>, um agrupamento lógico de ficheiros 
+	definidos pelo servidor. O nome da coleção diz ao servidor 
+	quais arquivos você deseja. Depois do nome da coleção 
+	seguem-se zero ou mais campos, separados por espaço em 
+	branco. Estes campos respondem as perguntas listadas acima. 
+	Existem dois tipos de campos: campos de flags e campos de 
+	valores. Um campo de flag consiste em uma palavra-chave 
+	isolada como, por exemplo, <literal>delete</literal> ou 
+	<literal>compress</literal>. Um campo de valor também começa 
+	com uma palavra-chave, mas essa palavra-chave é seguida (sem 
+	nenhum espaço em branco) por <literal>=</literal> e, também 
+	sem nenhum outro espaço, uma segunda palavra-chave. Por 
+	exemplo, <literal>release=cvs</literal> é um campo de valor 
+	num <filename>supfile</filename>.</para>
+
+      <para>O <filename>supfile</filename> normalmente especifica 
+	mais de uma coleção a se receber. Uma forma de estruturar um 
+	<filename>supfile</filename> é especificar todos os campos 
+	relevantes explicitamente para cada coleção. No entanto, 
+	isto tende a fazer as linhas supfile bem longas, tornando 
+	esta prática inconveniente (porque a maioria dos campos são 
+	os mesmos para todos os conjuntos de coleções). O 
+	<application>CVSup</application> fornece um mecanismo para 
+	evitar estes problemas. As linhas que comecem com 
+	<literal>*default</literal>, uma pseudo-coleção, podem ser 
+	usadas para definir as flags e os valores que serão usados
+	como padrão para as coleções seguintes, presentes no 
+	<filename>supfile</filename>. Um valor padrão pode ser 
+	substituído por uma coleção individual, especificando um 
+	valor diferente para a coleção em si. Padrões também podem 
+	ser alterados ou ampliados no 
+	<filename>supfile</filename> por outras linhas que iniciem 
+	com <literal>*default</literal>.</para>
+
+      <para>Com essas informações, vamos agora avançar para a 
+	construção de um <filename>supfile</filename> para receber e 
+	atualizar a árvore principal contendo o código fonte do 
+	<link linkend="current">&os;-CURRENT</link>.</para>
+
+      <itemizedlist>
+	<listitem>
+	  <para><anchor id="cvsup-config-files"/>Quais arquivos 
+	    você gostaria de receber?</para>
+
+	  <para>Os arquivos disponíveis via 
+	    <application>CVSup</application> são organizadas em 
+	    grupos denominados <quote>coleções</quote>. As coleções 
+	    que estão disponíveis estão descritas na 
+	    <link linkend="cvsup-collec">seção seguinte</link>. 
+	    Neste exemplo, queremos receber a árvore contendo o 
+	    código fonte de todo o sistema base do &os;. Há uma 
+	    coleção única denominada <literal>src-all</literal> que 
+	    nos fornecerá os arquivos referentes a todo o sistema 
+	    base do &os;. Como um primeiro passo para a construção 
+	    do nosso <filename>supfile</filename>, nós devemos 
+	    simplesmente listar as coleções, uma por linha (neste 
+	    caso, apenas uma):</para>
+
+	  <programlisting>src-all</programlisting>
+	</listitem>
+
+	<listitem>
+	  <para><anchor id="cvsup-config-vers"/>Quais versões 
+	    desses arquivos você gostaria de receber?</para>
+
+	  <para>Com o <application>CVSup</application>, você pode 
+	    receber praticamente qualquer 
+	    versão dos códigos fonte que já existiram. Isso é 
+	    possível porque o servidor 
+	    <application>cvsupd</application> trabalha diretamente 
+	    com repositório CVS, que contém todas as versões. Você 
+	    especifica qual delas você quer usar utilizando os 
+	    campos de valor <literal>tag=</literal> e 
+	    <literal>date=</literal>.</para>
+
+	  <warning>
+	  <para>Tenha muito cuidado ao especificar qualquer valor 
+	    para <literal>tag=</literal> no 
+	    <filename>supfile</filename>. Alguns valores de tags 
+	    são válidos apenas para algumas coleções. Se você 
+	    especificar uma tag incorreta ou inexistente naquela 
+	    coleção o <application>CVSup</application> vai apagar 
+	    arquivos que você provavelmente não quer perder. Em 
+	    particular, a utilização de <literal>tag=.</literal> 
+	    (com a presença deste ponto final) é feita 
+	    <emphasis>SOMENTE</emphasis> para a coleção 
+	    <literal>ports-*</literal>.</para>
+	  </warning>
+
+	  <para>O campo <literal>tag=</literal> nomeia uma tag 
+	    simbólica no repositório. Existem dois tipos de tags, as 
+	    tags de revisões e as tags dos galhos de 
+	    desenvolvimento. Uma tag de revisão refere-se a uma 
+	    revisão específica. Seu significado permanece o mesmo do 
+	    dia a dia. Uma tag especificando um galho de 
+	    desenvolvimento, por outro lado, refere-se à última 
+	    revisão numa dada linha de desenvolvimento, em qualquer 
+	    momento dado. Uma tag de galho de desenvolvimento não se 
+	    refere a uma revisão específica, ela pode significar 
+	    alguma coisa amanhã diferente do que significa hoje.</para>
+
+	  <para>A <xref linkend="cvs-tags"/> contém as denominações 
+	    de galhos de desenvolvimentos que podem lhe interessar. 
+	    Quando se especifica uma tag de galho num 
+	    <filename>supfile</filename>, deve-se preceder esta 
+	    configuração com o campo <literal>tag=</literal> (o 
+	    galho referente a <literal>RELENG_9</literal> se tornará 
+	    <literal>tag=RELENG_9</literal>). Tenha sempre em mente 
+	    que o uso de <literal>tag=.</literal> (com este ponto 
+	    final) é relevante somente para a Coleção de Ports.</para>
+
+	  <warning>
+	    <para>Tenha muito cuidado ao digitar o nome da tag 
+	      exatamente como mostrado. O 
+	      <application>CVSup</application> não pode distinguir 
+	      entre as tags válidas e inválidas. Se você digitar 
+	      incorretamente a tag, o 
+	      <application>CVSup</application> irá se comportar como 
+	      se você tivesse especificado uma tag válida. Usar uma 
+	      tag inválida fará o CVSup referenciar um repositório 
+	      vazio, sem nenhum arquivo. Neste caso, ele apagará 
+	      todos os arquivos em seu repositório local, 
+	      configurado no <filename>supfile</filename>.</para>
+	  </warning>
+
+	  <para>Quando você especificar uma tag de galho, 
+	    normalmente você deve receber as últimas versões dos 
+	    arquivos presentes no galho de desenvolvimento 
+	    especificado. Se você deseja receber alguma versão 
+	    anterior, você pode fazê-lo especificando uma data como 
+	    valor para o campo <option>date=</option>. A página de 
+	    manual &man.cvsup.1; explica como fazer isso.</para>
+
+	  <para>Para nosso exemplo, queremos receber os fontes 
+	    referentes ao desenvolvimento do &os;-CURRENT. Nós 
+	    devemos adicionar a seguinte linha no início de nosso 
+	    <filename>supfile</filename>:</para>
+
+	  <programlisting>*default tag=.</programlisting>
+
+	  <para>Há um caso especial importante que entra em jogo, se 
+	    você não especificar nenhum valor para 
+	    <literal>tag=</literal> e <literal>date=</literal>. 
+	    Nesse caso, você receberá os arquivos RCS diretamente do 
+	    repositório do servidor CVS, ao invés de receber uma 
+	    versão específica. Desenvolvedores geralmente preferem 
+	    este modo de operação. Ao manter uma cópia do 
+	    repositório em seus sistemas, eles ganham a capacidade 
+	    de procurar, no histórico das revisões, por versões 
+	    anteriores de arquivos específicos. No entanto, esse 
+	    ganho é obtido a um custo grande em termos de espaço 
+	    em disco.</para>
+	</listitem>
+
+	<listitem>
+	  <para><anchor id="cvsup-config-where"/>De onde você 
+	    gostaria de receber esses arquivos?</para>
+
+	  <para>Usamos o campo <literal>host=</literal> para dizer 
+	    ao <command>cvsup</command> onde obter suas coleções e 
+	    atualizações. Qualquer um dos 
+	    <link linkend="cvsup-mirrors">sítios CVSup</link> e seus 
+	    servidores espelho podem ser utilizados, mas 
+	    recomendamos que você busque e use um servidor que 
+	    esteja o mais próximo possível de sua localidade. Neste 
+	    exemplo, usaremos 
+	    <hostid role="fqdn">cvsup.br.freebsd.org</hostid> para 
+	    obter nossas coleções.</para>
+
+	  <programlisting>*default host=cvsup.br.freebsd.org</programlisting>
+
+	  <para>Em qualquer execução do cvsup, através da linha de 
+	    comando, você pode substituir a configuração de host 
+	    utilizando a opção 
+	    <option>-h <replaceable>hostname</replaceable></option>.</para>
+	</listitem>
+
+	<listitem>
+	  <para><anchor id="cvsup-config-dest"/>Onde você gostaria 
+	    de armazenar esses arquivos em seu sistema?</para>
+
+	  <para>O campo <literal>prefix=</literal> diz ao 
+	    <command>cvsup</command> onde colocar os arquivos que 
+	    recebe. Neste exemplo, vamos colocar os arquivos de 
+	    origem diretamente em <filename>/usr/src</filename>. O 
+	    diretório <filename>src</filename> já está implícito nas 
+	    coleções que nós escolhemos para receber, por isso esta 
+	    é a configuração correta a se utilizar:</para>
+
+	  <programlisting>*default prefix=/usr</programlisting>
+	</listitem>
+
+	<listitem>
+	  <para><anchor id="cvsup-config-status"/>Onde o 
+	    <command>cvsup</command> deveria armazenar seus arquivos
+	    de status?</para>
+
+	  <para>O cliente do <application>CVSup</application> mantém 
+	    certos arquivos de status, armazenados num diretório 
+	    <quote>base</quote>. Esses arquivos ajudam o 
+	    <application>CVSup</application> a trabalhar de forma 
+	    mais eficiente, mantendo o controle de quais 
+	    atualizações você já recebeu. Nós vamos usar o diretório 
+	    base padrão, <filename>/var/db</filename>:</para>
+
+	  <programlisting>*default base=/var/db</programlisting>
+
+	  <para>Se o diretório que você pretende utilizar como 
+	    diretório base não existe, agora seria um bom momento 
+	    para criá-lo. O <command>cvsup</command> não irá 
+	    executar, caso este diretório não exista.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Outras opções presentes no 
+	    <filename>supfile</filename>:</para>
+
+	  <para>Existe mais uma linha que, normalmente, tem de estar 
+	    presente no <filename>supfile</filename>:</para>
+
+	  <programlisting>*default release=cvs delete use-rel-suffix compress</programlisting>
+
+	  <para><literal>release=cvs</literal> indica que o servidor 
+	    irá fornecer dados a partir do repositório CVS do &os;. 
+	    Isso é, na maioria dos casos, a opção que deve ser 
+	    utilizada. Existem outras possibilidades, mas detalhes a 
+	    respeito dessas possibilidades estão além do escopo 
+	    desta documentação.</para>
+
+	  <para><literal>delete</literal> dá permissão ao 
+	    <application>CVSup</application> para apagar arquivos. 
+	    Você sempre deve especificar esta opção para que o 
+	    <application>CVSup</application> possa manter a árvore 
+	    dos diretórios presentes em seu repositório local 
+	    completamente atualizada. Ele cuida para que, se 
+	    necessário, apenas os arquivos presentes em seu 
+	    repositório local e catalogados no diretório base sejam 
+	    excluídos. Quaisquer arquivos extras que tejam sido 
+	    adicionados por você não serão alterados.</para>
+
+	  <para><literal>use-rel-suffix</literal> é... mistério! Se 
+	    você realmente quer saber sobre isso, leia a página de 
+	    manual &man.cvsup.1;. Caso contrário, use e não se 
+	    preocupe com isso.</para>
+
+	  <para><literal>compress</literal> permite o uso de 
+	    compressão <literal>(gzip)</literal> no canal de 
+	    comunicação entre cliente e servidor. Se o seu link de 
+	    dados é de, aproximadamente, 2Mbps ou superior você 
+	    provavelmente não deve usar esta opção. Caso contrário, 
+	    ela te ajudará substancialmente.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Colocando tudo junto:</para>
+
+	  <para>Aqui está o <filename>supfile</filename> que foi 
+	    montado e descrito em nosso exemplo:</para>
+
+	  <programlisting>*default tag=.
+*default host=cvsup.br.freebsd.org
+*default prefix=/usr
+*default base=/var/db
+*default release=cvs delete use-rel-suffix compress
+src-all</programlisting>
+	</listitem>
+      </itemizedlist>
+      <sect3 id="cvsup-refuse-file">
+       <title>O arquivo <filename>refuse</filename></title>
+
+       <para>Como mencionado no início desta documentação, o 
+	<application>CVSup</application> utiliza uma estratégia que 
+	atende a <emphasis>solicitação de clientes</emphasis> 
+	<literal>(pull model)</literal> para realizar suas 
+	atualizações. Isso significa, basicamente, que você se 
+	conectar ao servidor e ele diz: <quote>Aqui está o que você 
+	pode baixar de mim: ...</quote>, e, então, seu cliente 
+	responde: <quote>OK, vou levar só isso, isso, aquilo e isso 
+	aqui</quote>. Na configuração padrão, o cliente do 
+	<application>CVSup</application> irá solicitar e baixar 
+	todos os arquivos associados a uma coleção e a tag que 
+	você escolheu no arquivo de configuração. No entanto, isso 
+	nem sempre é o que você quer, especialmente se você estiver 
+	sincronizando as coleções <filename>doc</filename>, 
+	<filename>ports</filename> ou <filename>www</filename> 
+	&mdash; grande maioria das pessoas não pode ler quatro ou 
+	cinco idiomas, e, portanto, não precisa baixar os arquivos 
+	específicos de um idioma que não compreenda.</para>
+
+       <para>Se você está, por exemplo, planejando obter apenas 
+	parte da coleção de ports, você pode contornar esse fato 
+	especificando cada coleção individualmente (ao invés de usar 
+	<emphasis>ports-all</emphasis>, você pode obter apenas 
+	<emphasis>ports-astrology</emphasis>, 
+	<emphasis>ports-biology</emphasis> e etc). No entanto, as 
+	coleções <filename>doc</filename> e <filename>www</filename> 
+	não possuem linhagens e ramificações específicas. Você terá 
+	de usar uma funcionalidade interessante do 
+	<application>CVSup</application>, o arquivo 
+	<filename>refuse</filename>.</para>
+
+       <para>O arquivo <filename>refuse</filename>, essencialmente, 
+	diz ao <application>CVSup</application> que ele não deve 
+	baixar todos os arquivos de uma determinada coleção. Em 
+	outras palavras, ele diz ao cliente quais arquivos presentes 
+	no servidor ele deve ignorar. O arquivo 
+	<filename>refuse</filename> pode ser encontrado ou colocado 
+	no diretório <filename>/var/db/sup</filename>, onde 
+	<filename>/var/db</filename> é o diretório base configurado 
+	no seu <filename>supfile</filename> e usado pelo 
+	<application>CVSup</application> como diretório base. Desta 
+	forma, a localização exata do arquivo será 
+	<filename>/var/db/sup/refuse</filename>.</para>
+
+       <para>O arquivo <filename>refuse</filename> tem um formato 
+	muito simples, que contém os nomes de arquivos ou diretórios 
+	que você não deseja baixar. Por exemplo, se você não é apto 
+	a ler quaisquer outros idiomas que não sejam Português ou 
+	Inglês, e você não sente necessidade de ler a tradução alemã, 
+	húngara, russa e japonesa da documentação do &os;, você pode 
+	colocar o seguinte conteúdo no arquivo 
+	<filename>refuse</filename>:</para>
+
+       <screen>doc/bn_*
+doc/da_*
+doc/de_*
+doc/el_*
+doc/es_*
+doc/fr_*
+doc/hu_*
+doc/it_*
+doc/ja_*
+doc/mn_*
+doc/nl_*
+doc/no_*
+doc/pl_*
+doc/ru_*
+doc/sr_*
+doc/tr_*
+doc/zh_*</screen>
+
+       <para>e assim por diante para as outras línguas (você pode 
+	encontrar a lista completa das línguas disponíveis acessando 
+	o <ulink url="http://www.FreeBSD.org/cgi/cvsweb.cgi/">
+	Repositório CVS Web do &os;</ulink>).</para>
+
+       <para>Com este recurso muito útil, aqueles usuários que 
+	utilizam links lentos ou que pagam por minuto para utilizar 
+	uma conexão com a Internet serão capazes de economizar tempo 
+	valioso, visto que eles não precisam fazer download de 
+	arquivos que nunca irão usar. Para mais informações sobre o 
+	arquivo <filename>refuse</filename> e outras características 
+	puras de <application>CVSup</application>, por favor, 
+	consulte a página de manual.</para>
+      </sect3>
+    </sect2>
+
+    <sect2>
+      <title>Utilização</title>
+
+      <para>Agora você está apto a tentar executar uma operação de 
+	update através do <application>CVSup</application>. O 
+	comando para efetuar esta operação é bem simples:</para>
+
+      <screen>&prompt.root; <userinput>cvsup <replaceable>supfile</replaceable></userinput></screen>
+
+      <para>onde 
+	<filename><replaceable>supfile</replaceable></filename> é, 
+	naturalmente, o nome do arquivo com as configurações que 
+	você acabou de criar. Supondo que você esteja executando o 
+	<command>cvsup</command> em um ambiente com X11, ele irá 
+	exibir uma janela com alguns botões. Pressione o botão 
+	<guibutton>Go</guibutton> e veja o processo de atualização 
+	ser executado normalmente.</para>
+
+      <para>Uma vez que, neste exemplo, você está atualizando a 
+	árvore de códigos presentes em 
+	<filename>/usr/src</filename>, você terá de executar o 
+	programa como <username>root</username> para que 
+	o <command>cvsup</command> tenha as permissões necessárias 
+	para atualizar seus arquivos.</para>
+
+      <para>Tendo acabado de criar o arquivo de configuração e nunca 
+	ter usado este programa antes pode fazer com que você, 
+	compreensivelmente, esteja um pouco nervoso. Existe uma 
+	maneira fácil de fazer um teste sem afetar nenhum conteúdo 
+	no sistema. Crie um diretório vazio em algum lugar 
+	conveniente e utilize este novo caminho como argumento extra 
+	na linha de comando:</para>
+
+      <screen>&prompt.root; <userinput>mkdir /var/tmp/um-diretorio</userinput>
+&prompt.root; <userinput>cvsup <replaceable>supfile</replaceable> /var/tmp/um-diretorio</userinput></screen>
+
+      <para>O diretório que você especificar será utilizado como 
+	diretório de destino para todas as atualizações de arquivos. 
+	O <application>CVSup</application> irá examinar seus 
+	arquivos usuais no diretório <filename>/usr/src</filename>, 
+	mas não vai modificar ou excluir quaisquer um destes 
+	arquivos. Todas as atualizações serão processadas e 
+	armazenadas em 
+	<filename>/var/tmp/um-diretorio/usr/src</filename>. O 
+	<application>CVSup</application> também vai deixar os 
+	arquivos de status em seu diretório base intocados quando 
+	executado desta forma. As novas versões desses arquivos 
+	serão gravadas no diretório especificado. Enquanto você 
+	tiver acesso de leitura ao diretório 
+	<filename>/usr/src</filename>, você não precisa ser 
+	<username>root</username> para executar este tipo de teste.</para>
+
+      <para>Se você não estiver executando o 
+	<command>cvsup</command> em um ambiente com X11 ou se você 
+	simplesmente não simpatiza com GUI, você pode adicionar 
+	algumas opções quando executar o 
+	<command>cvsup</command>:</para>
+
+      <screen>&prompt.root; <userinput>cvsup -g -L 2 <replaceable>supfile</replaceable></userinput></screen>
+
+      <para>O <option>-g</option> diz ao 
+	<application>CVSup</application> para não usar interface 
+	gráfica (GUI). Isso é interpretado automáticamente se você 
+	não estiver executando X11 em seu sistema. Caso contrário, 
+	você tem de especificar e utilizar essa opção.</para>
+
+      <para>A opção <option>-L</option>, acompanhada do parâmetro 
+	<option>2</option> (dois), diz ao 
+	<application>CVSup</application> para exibir os detalhes de 
+	todas operações que ele estiver fazendo. Existem três 
+	níveis de avisos, variando de 0 (zero) à 2 (dois). O padrão 
+	é 0 (zero), o que significa silêncio absoluto (serão 
+	exibidas apenas mensagens de erro).</para>
+
+      <para>Existem muitas outras opções disponíveis. Para uma breve 
+	lista destas opções, execute <command>cvsup -H</command>. 
+	Para descrições mais detalhadas, consulte a página de manual 
+	do <command>cvsup</command>.</para>
+
+      <para>Quando estiver satisfeito com a forma na qual as 
+	atualizações estão sendo executaras, você pode agendar 
+	execuções periódicas usando o &man.cron.8;. Obviamente, você 
+	não deve deixar o <application>CVSup</application> usar 
+	interface gráfica (GUI) quando for executado a partir do 
+	&man.cron.8;.</para>
+    </sect2>
+
+    <sect2 id="cvsup-collec">
+      <title>Coleções do <application>CVSup</application></title>
+
+      <para>As coleções disponíveis via 
+	<application>CVSup</application> são organizadas 
+	hierarquicamente. Existem algumas coleções grandes, e estas, 
+	por sua vez, são divididas em pequenas sub-coleções. Obter 
+	uma destas coleções grandes é equivalente a receber, também, 
+	cada uma de suas sub-coleções. As relações hierárquicas 
+	entre coleções são refletidas pelo uso de indentação na 
+	lista abaixo.</para>
+
+      <para>As coleções mais comumente utilizadas são a 
+	<literal>src-all</literal>, e a 
+	<literal>ports-all</literal>. As outras coleções são 
+	utilizadas apenas por pequenos grupos de pessoas para fins 
+	específicos, e alguns servidores espelho podem não prover 
+	estas coleções pouco utilizadas.</para>
+
+      <variablelist>
+	<varlistentry>
+	  <term><literal>cvs-all release=cvs</literal></term>
+
+	  <listitem>
+	    <para>Repositório CVS principal do &os;, incluindo os 
+		códigos de criptografia.</para>
+
+	    <variablelist>
+	      <varlistentry>
+		<term><literal>distrib release=cvs</literal></term>
+
+		<listitem>
+		  <para>Arquivos relacionados à distribuição e 
+			espelhamento do &os;.</para>
+		</listitem>
+	      </varlistentry>
+
+	      <varlistentry>
+		<term><literal>ports-all release=cvs</literal></term>
+
+		<listitem>
+		  <para>Coleção de Ports do &os;</para>
+
+		  <important id="cvsup-collec-pbase-warn">
+
+		    <para>Se você não quiser atualizar toda a 
+		      Coleção de Ports (a árvore 
+		      <literal>ports-all</literal> completa), mas 
+		      apenas algumas das sub-coleções listados 
+		      abaixo, certifique-se de 
+		      <emphasis>sempre</emphasis> atualizar a 
+		      sub-coleção <literal>ports-base</literal>! 
+		      Sempre que algo muda na infraestrutura da 
+		      Coleção de Ports as mudanças são repassadas e 
+		      representadas pela sub-coleção 
+		      <literal>ports-base</literal>. É praticamente 
+		      certo que, muito em breve, essas mudanças 
+		      sejam utilizadas por alguns ports. Assim, se 
+		      você atualizar apenas algumas das sub-coleções 
+		      de ports e esquecer da ports-base, há uma 
+		      chance muito alta de que suas compilações 
+		      venham a falhar, exibindo alguma mensagem de 
+		      erro misteriosa. A 
+		      <emphasis>primeira coisa a se fazer</emphasis> 
+		      neste caso é ter a certeza de que, pelo menos, 
+		      sua sub-coleção <literal>ports-base</literal> 
+		      é a mais recente possível.</para>
+		  </important>
+
+		  <important id="cvsup-collec-index-warn">
+
+		    <para>Se você estiver pretendendo compilar seu 
+			próprio <filename>INDEX</filename> para 
+			utilizar com sua Coleção de Ports local, você 
+			<emphasis>deve</emphasis> obter 
+			<emphasis>TODOS</emphasis> os ports (a 
+			árvore <literal>ports-all</literal> 
+			completa). O procedimento de se compilar 
+			apenas uma parte do 
+			<filename>INDEX</filename> para a Coleção de 
+			Ports não é suportado. Veja mais detalhes na 
+			página de 
+			<ulink url="&url.books.faq;/applications.html#MAKE-INDEX">FAQ</ulink>.</para>
+		  </important>
+
+		  <variablelist>
+		    <varlistentry>
+		      <term><literal>ports-accessibility
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares para ajudar usuários com 
+				necessidades especiais.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-arabic
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Suporte ao idioma Árabe.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-archivers
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares para usar e trabalhar com 
+				arquivamento de dados.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-astro
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares relacionados com astronomia.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-audio
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Suporte a áudio e som.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-base
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Infraestrutura base para a Coleção de 
+			  Ports. Vários arquivos pertencentes aos 
+			  diretórios <filename>Mk</filename> e
+			  <filename>Tools</filename>, dois importantes subdiretórios de
+			  <filename>/usr/ports</filename>.</para>
+
+			<note>
+
+			  <para>Por favor, veja o 
+			    <link linkend="cvsup-collec-pbase-warn">aviso importante</link>
+			    acima: <emphasis>sempre</emphasis> que 
+			    você atualizar qualquer parte da Coleção 
+			    de Ports do &os; você 
+			    <emphasis>deve</emphasis> atualizar esta 
+			    sub-coleção!</para>
+			</note>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-benchmarks
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares para execução de benchmarks.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-biology
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares ligados a área de biologia.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-cad
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares de design assistidos por 
+			computador.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-chinese
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Suporte ao idioma Chinês.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-comms
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares viabilizadores de
+			comunicação.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-converters
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Conversores de códigos de caracteres.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-databases
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares ligados a uso de Banco de Dados.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-deskutils
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares úteis para seu
+			ambiente de trabalho.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-devel
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares para desenvolvimento.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-dns
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares ligados a DNS.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-editors
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares para edição de textos.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-emulators
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Emuladores em geral.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-finance
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares ligados a finanças, sistemas 
+			monetários e afins.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-ftp
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares ligados a FTP (clientes e servidores).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-games
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Jogos.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-german
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Suporte ao idioma Alemão.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-graphics
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares que trabalhem, de alguma 
+			forma, com design gráfico.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-hebrew
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Suporte ao idioma Hebraico.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-hungarian
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Suporte ao idioma Húngaro.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-irc
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>IRC - Internet Relay Chat.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-japanese
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Suporte ao idioma Japonês.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-java
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares para uso do &java;.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-korean
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Suporte ao idioma Coreano.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-lang
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Linguagens de programação.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-mail
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares para uso de Correio 
+			Eletrônico, seja como cliente ou servidor.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-math
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares de computação numérica.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-misc
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Miscelânia.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-multimedia
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares para uso de multimedia.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-net
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares ligados a rede de 
+			computadores e conectividade.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-net-im
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares de mensagens instantâneas.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-net-mgmt
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares para gerenciamento e 
+			monitoramento de redes.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-net-p2p
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares voltados ao uso de redes 
+			ponto-a-ponto.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-news
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares para uso da USENET.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-palm
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares de suporte para 
+			<trademark class="trade">Palm</trademark></para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-polish
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Suporte ao idioma Polonês.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-ports-mgmt
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Utilitários para gerenciar ports e 
+			pacotes.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-portuguese
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Suporte ao idioma Português.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-print
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares que forneçam suporte a 
+			impressão.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-russian
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Suporte ao idioma Russo.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-science
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares ligados ao meio científicos.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-security
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares para segurança da informação.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-shells
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Shells.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-sysutils
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Utilitários diversos para o sistema.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-textproc
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Utilitários para processamento de 
+			textos. (edição para ambiente desktop não 
+			inclusa).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-ukrainian
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Suporte ao idioma Ucraniano.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-vietnamese
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Suporte ao idioma Vietnamita.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-www
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares relacionados com a World 
+			Wide Web.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-x11
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares de suporte ao ambiente X11.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-x11-clocks
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Relógios para ambiente X11.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-x11-drivers
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Drivers para ambiente X11.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-x11-fm
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Gerenciadores de arquivos para 
+			ambiente X11.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-x11-fonts
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Fontes, e ferramentas relacionadas, 
+			para ambiente X11.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-x11-toolkits
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Toolkits (ferramentas) para ambiente X11.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-x11-servers
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares provedores (servidores) de 
+			ambiente X11.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-x11-themes
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Temas para ambiente X11.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>ports-x11-wm
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Gerenciadores de janelas para 
+			ambiente X11.</para>
+		      </listitem>
+		    </varlistentry>
+		  </variablelist>
+		</listitem>
+	      </varlistentry>
+
+	      <varlistentry>
+		<term><literal>projects-all release=cvs</literal></term>
+		<listitem>
+		  <para>Códigos fonte do repositório de projetos do &os;.</para>
+		</listitem>
+	      </varlistentry>
+
+	      <varlistentry>
+		<term><literal>src-all release=cvs</literal></term>
+
+		<listitem>
+		  <para>Código fonte do &os;, incluindo os códigos 
+			de criptografia.</para>
+
+		  <variablelist>
+		    <varlistentry>
+		      <term><literal>src-base
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Arquivos diversos pertencentes a 
+			<filename>/usr/src</filename>.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-bin
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares e ferramentas que podem ser 
+			utilizadas em modo single-user 
+			(<filename>/usr/src/bin</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-cddl
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares e bibliotecas sob licença 
+			CDDL (<filename>/usr/src/cddl</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-contrib
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares e bibliotecas pertencentes a 
+			projetos incorporados ao &os;, geralmente 
+			sem sofrer modificações no código (<filename>/usr/src/contrib</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-crypto release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares e bibliotecas criptográficas 
+			incorporados ao &os;, geralmente sem sofrer 
+			modificalções no código (<filename>/usr/src/crypto</filename>).</para>
+			  </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-eBones release=cvs</literal></term>
+
+		      <listitem>
+			<para>Kerberos e DES 
+			(<filename>/usr/src/eBones</filename>). 
+			Não utilizados nas versões correntes do &os;.</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-etc
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Arquivos de configuração do sistema 
+			(<filename>/usr/src/etc</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-games
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Jogos (<filename>/usr/src/games</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-gnu
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares e bibliotecas sob licença 
+			GPL (<filename>/usr/src/gnu</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-include
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Arquivos de cabeçalhos dos códigos fonte 
+			(<filename>/usr/src/include</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-kerberos5
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Pacotes de segurança para Kerberos5 
+			(<filename>/usr/src/kerberos5</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-kerberosIV
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Pacotes de segurança para KerberosIV 
+			(<filename>/usr/src/kerberosIV</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-lib
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Bibliotecas do sistema 
+			(<filename>/usr/src/lib</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-libexec
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares normalmente executados por 
+			outros programas 
+			(<filename>/usr/src/libexec</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-release
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Arquivos necessários para produção de 
+			uma release do &os; 
+			(<filename>/usr/src/release</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-rescue
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares estáticos, utilizados num 
+			procedimento de resgate. Consulte a página 
+			de manual &man.rescue.8; para mais detalhes 
+			(<filename>/usr/src/rescue</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-sbin release=cvs</literal></term>
+
+		      <listitem>
+			<para>Softwares e ferramentas que podem ser 
+			utilizadas em modo single-user
+			  (<filename>/usr/src/sbin</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-secure
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Bibliotecas criptograficas e 
+			softwares relacionados 
+			(<filename>/usr/src/secure</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-share
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Arquivos que são compartilhados por 
+			diversas aplicações 
+			(<filename>/usr/src/share</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-sys
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>O kernel do &os; 
+			  (<filename>/usr/src/sys</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-sys-crypto
+			release=cvs</literal></term>
+
+		      <listitem>
+			<para>Códigos de criptografia ligados ao 
+			kernel do &os; 
+			(<filename>/usr/src/sys/crypto</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-tools
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Diversas ferramentas para manutenção do &os;
+			  (<filename>/usr/src/tools</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-usrbin
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Utilitários providos aos usuários 
+			  (<filename>/usr/src/usr.bin</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+
+		    <varlistentry>
+		      <term><literal>src-usrsbin
+			  release=cvs</literal></term>
+
+		      <listitem>
+			<para>Utilitários do sistema 
+			  (<filename>/usr/src/usr.sbin</filename>).</para>
+		      </listitem>
+		    </varlistentry>
+		  </variablelist>
+		</listitem>
+	      </varlistentry>
+	    </variablelist>
+	  </listitem>
+	</varlistentry>
+
+	<varlistentry>
+	  <term><literal>distrib release=self</literal></term>
+
+	  <listitem>
+	    <para>Arquivos de configuração para o servidor 
+		<application>CVSup</application> utilizados por 
+		servidores espelho.</para>
+	  </listitem>
+	</varlistentry>
+
+	<varlistentry>
+	  <term><literal>gnats release=current</literal></term>
+
+	  <listitem>
+	    <para>Base de dados GNATS para rastreamento e controle de bugs.</para>
+	  </listitem>
+	</varlistentry>
+
+	<varlistentry>
+	  <term><literal>mail-archive release=current</literal></term>
+
+	  <listitem>
+	    <para>Histórico das listas de discussão do &os;.</para>
+	  </listitem>
+	</varlistentry>
+
+	<varlistentry>
+	  <term><literal>www release=current</literal></term>
+
+	  <listitem>
+	    <para>Arquivos précompilados do sítio web do &os; 
+		utilizados por servidores espelho (códigos fonte 
+		não estão inclusos).</para>
+	  </listitem>
+	</varlistentry>
+      </variablelist>
+    </sect2>
+
+    <sect2>
+      <title>Mais Informações</title>
+
+      <para>Para consultar as FAQ e outras informações sobre o 
+	<application>CVSup</application>, consulte a 
+	<ulink url="http://www.cvsup.org">página oficial do 
+	CVSup</ulink>.</para>
+
+      <para>A maioria das discussões relacionadas a 
+	<application>CVSup</application> no &os; acontece na 
+	&a.hackers;. Novas versões do software são anunciadas lá 
+	e na &a.announce;.</para>
+
+      <para>Para obter respostas às perguntas mais frequentes a 
+	respeito do <application>CVSup</application>, ou saber sobre 
+	procedimentos para reportar bugs, consulte a 
+	<ulink url="http://www.cvsup.org/faq.html#bugreports">CVSup FAQ</ulink>.</para>
+    </sect2>
+
+    <sect2 id="cvsup-mirrors">
+    <title>Sítios e Servidores Espelho</title>
+
+    <para>Servidores espelho para uso do 
+	<link linkend="cvsup">CVSup</link> estão disponíveis nos 
+	seguintes sítios:</para>
+
+    &chap.mirrors.cvsup.inc;
+    </sect2>
+  </sect1>
+
+  <sect1 id="cvs-tags">
+    <title>Tags do CVS</title>
+
+    <para>Ao obter ou atualizar códigos fonte usando 
+	<application>csup</application> ou 
+	<application>CVSup</application>, uma tag de revisão deve 
+	ser especificada. Uma tag de revisão pode se referir a uma 
+	determinada linha de desenvolvimento do &os; ou a um 
+	determinado ponto específico na linha de tempo no processo 
+	de desenvolvimento. O primeiro tipo é chamado de 
+	<quote>branch tags</quote>. O segundo tipo é chamado de 
+	<quote>release tags</quote>.</para>
+
+    <sect2>
+      <title>Tags de Galhos</title>
+
+      <para>Todas as tags seguintes, com exceção da 
+	<literal>HEAD</literal> (que é sempre uma tag válida), só se 
+	aplicam a árvore <filename>src</filename>. As árvores das 
+	coleções <filename>ports</filename>, 
+	<filename>doc</filename> e <filename>www</filename> não 
+	apresentam <literal>branch tags</literal> (tags de galho, 
+	como já chamamos anteriormente).</para>
+
+    <variablelist>
+      <varlistentry>
+	<term>HEAD</term>
+
+	<listitem>
+
+	  <para>Nome simbólico para referenciar a linha 
+	    desenvolvimento principal/corrente, ou &os;-CURRENT. 
+	    Além disso, é o padrão usado pelo CVSup quando nenhuma 
+	    revisão é especificada.</para>
+
+	  <para>No CVSup, esta tag é representada por um ponto final 
+	    <literal>(.)</literal> &mdash; o caractere em si.</para>
+
+	  <note>
+	    <para>Esse é o padrão quando nenhuma tag de revisão é 
+	     especificada. Geralmente <emphasis>não</emphasis> é uma 
+	     boa idéia para fazer o checkout ou atualizar códigos 
+	     fonte para as versões presentes na linha de 
+	     desenvolvimento principal/corrent numa máquina que 
+	     tenha o sistema estável, a menos que esta seja 
+	     realmente a sua intenção.</para>
+	  </note>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_9</term>
+
+	<listitem>
+	  <para>Linha de desenvolvimento do &os;-9.X, também conhecido
+	    como &os; 9-STABLE</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_9_0</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-9.0, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_8</term>
+
+	<listitem>
+	  <para>Linha de desenvolvimento do &os;-8.X, também conhecido
+	    como &os; 8-STABLE</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_8_3</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-8.3, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_8_2</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-8.2, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_8_1</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-8.1, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_8_0</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-8.0, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_7</term>
+
+	<listitem>
+	  <para>Linha de desenvolvimento do &os;-7.X, também conhecido
+	    como &os; 7-STABLE</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_7_4</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-7.4, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_7_3</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-7.3, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_7_2</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-7.2, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_7_1</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-7.1, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_7_0</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-7.0, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_6</term>
+
+	<listitem>
+	  <para>Linha de desenvolvimento do &os;-6.X, também conhecido
+	    como &os; 6-STABLE</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_6_4</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-6.4, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_6_3</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-6.3, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_6_2</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-6.2, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_6_1</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-6.1, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_6_0</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-6.0, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_5</term>
+
+	<listitem>
+	  <para>Linha de desenvolvimento do &os;-5.X, também conhecido
+	    como &os; 5-STABLE.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_5_5</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-5.5, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_5_4</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-5.4, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_5_3</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-5.3, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_5_2</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-5.2 and &os;-5.2.1, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_5_1</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-5.1, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_5_0</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-5.0, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4</term>
+
+	<listitem>
+	  <para>Linha de desenvolvimento do &os;-4.X, também conhecido
+	    como &os; 4-STABLE.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_11</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-4.11, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_10</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-4.10, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_9</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-4.9, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_8</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-4.8, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_7</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-4.7, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_6</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-4.6 and &os;-4.6.2, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_5</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-4.5, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_4</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-4.4, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_3</term>
+
+	<listitem>
+	  <para>Galho de release para o &os;-4.3, utilizado apenas para
+	    alertas de segurança e atualizações críticas.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_3</term>
+
+	<listitem>
+	  <para>Linha de desenvolvimento do &os;-3.X, também conhecido
+	    como 3.X-STABLE.</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_2_2</term>
+
+	<listitem>
+	  <para>Linha de desenvolvimento do &os;-2.2.X, também conhecido
+	    como 2.2-STABLE.  Esta linha de desenvolvimento é 
+	    considerada obsoleta.</para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+    </sect2>
+
+    <sect2>
+      <title>Tags de Releases</title>
+
+      <para>Essas tags se referem a um ponto específico no tempo em 
+	que uma versão específica (-RELEASE) do &os; foi lançada. O 
+	processo de engenharia de lançamento está documentado em 
+	mais detalhes nos documentos de 
+	<ulink url="&url.base;/releng">Informação sobre Engenharia de Releases</ulink> 
+	e <ulink url="&url.articles.releng;/release-proc.html">Processo de Desenvolvimento de Releases</ulink>. 
+	A árvore <filename class="directory">src</filename> usa 
+	nomes de tags que começam com o prefixo 
+	<literal>RELENG_</literal>. A árvore referente a Coleção de 
+	Ports (<filename class="directory">ports</filename>) e a 
+	árvore <filename class="directory">doc</filename> usam tags 
+	cujos nomes começam com o prefixo 
+	<literal>RELEASE</literal>. Por fim, a árvore 
+	<filename class="directory">www</filename> não usa um nome 
+	especial para suas releases.</para>
+
+    <variablelist>
+      <varlistentry>
+	<term>RELENG_9_0_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 9.0</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_8_3_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 8.3</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_8_2_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 8.2</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_8_1_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 8.1</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_8_0_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 8.0</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_7_4_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 7.4</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_7_3_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 7.3</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_7_2_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 7.2</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_7_1_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 7.1</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_7_0_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 7.0</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_6_4_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 6.4</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_6_3_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 6.3</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_6_2_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 6.2</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_6_1_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 6.1</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_6_0_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 6.0</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_5_5_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 5.5</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_5_4_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 5.4</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_11_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 4.11</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_5_3_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 5.3</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_10_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 4.10</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_5_2_1_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 5.2.1</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_5_2_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 5.2</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_9_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 4.9</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_5_1_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 5.1</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_8_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 4.8</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_5_0_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 5.0</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_7_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 4.7</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_6_2_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 4.6.2</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_6_1_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 4.6.1</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_6_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 4.6</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_5_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 4.5</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_4_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 4.4</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_3_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 4.3</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_2_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 4.2</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_1_1_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 4.1.1</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_1_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 4.1</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_4_0_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os; 4.0</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_3_5_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os;-3.5</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_3_4_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os;-3.4</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_3_3_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os;-3.3</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_3_2_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os;-3.2</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_3_1_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os;-3.1</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_3_0_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os;-3.0</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_2_2_8_RELEASE</term>
+
+	<listitem>
+	  <para>&os;-2.2.8</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_2_2_7_RELEASE</term>
+
+	<listitem>
+	  <para>&os;-2.2.7</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_2_2_6_RELEASE</term>
+
+	<listitem>
+	  <para>&os;-2.2.6</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_2_2_5_RELEASE</term>
+
+	<listitem>
+	  <para>&os;-2.2.5</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_2_2_2_RELEASE</term>
+
+	<listitem>
+	  <para>&os;-2.2.2</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_2_2_1_RELEASE</term>
+
+	<listitem>
+	  <para>&os;-2.2.1</para>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>RELENG_2_2_0_RELEASE</term>
+
+	<listitem>
+	  <para>&os;-2.2.0</para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+    </sect2>
+  </sect1>
+
+  <sect1 id="mirrors-rsync">
+    <title>Sítios rsync</title>
+
+    <para>Os sítios listados abaixo disponibilizam o &os; através do 
+      protocolo rsync. O utilitário <application>rsync</application> 
+      trabalha, em muitos aspectos, da mesma maneira como o 
+      &man.rcp.1;, mas tem mais opções e utiliza um protocolo de 
+      atualização remota que transfere apenas as diferenças entre os 
+      conjuntos de arquivos. Assim, a sincronização de dados através 
+      da rede torna-se mais rápida. Isso é muito útil se você for um 
+      servidor espelho de sítios FTP ou repositórios CVS do &os;. A 
+      suíte <application>rsync</application> está disponível para 
+      vários sistemas operacionais. No &os;, consulte o port 
+      <filename role="package">net/rsync</filename> ou utilize o 
+      pacote pré-compilado.</para>
+
+    <variablelist>
+      <varlistentry>
+	<term>República Checa</term>
+
+	<listitem>
+	  <para>rsync://ftp.cz.freebsd.org</para>
+
+	  <para>Coleções disponíveis:</para>
+	  <itemizedlist>
+	    <listitem><para>ftp: Um espelho parcial do servidor 
+	      FTP do &os;.</para></listitem>
+	    <listitem><para>&os;: Um espelho completo do servidor 
+	      FTP do &os;.</para></listitem>
+	  </itemizedlist>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>Holanda</term>
+
+	<listitem>
+	  <para>rsync://ftp.nl.freebsd.org</para>
+
+	  <para>Coleções disponíveis:</para>
+	  <itemizedlist>
+	    <listitem><para>&os;: Um espelho completo do servidor 
+	      FTP do &os;.</para></listitem>
+	  </itemizedlist>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>Rússia</term>
+
+	<listitem>
+	  <para>rsync://ftp.mtu.ru</para>
+
+	  <para>Coleções disponíveis:</para>
+	  <itemizedlist>
+	    <listitem><para>&os;: Um espelho completo do servidor 
+	      FTP do &os;.</para></listitem>
+	    <listitem><para>&os;-gnats: Banco de dados do sistema de 
+	      detecção de bugs do GNATS.</para></listitem>
+	    <listitem><para>&os;-Archive: Um espelho completo do servidor 
+	      FTP do &os;, com imagens, releases e pacotes antigos.</para></listitem>
+	  </itemizedlist>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>Suécia</term>
+
+	<listitem>
+	  <para>rsync://ftp4.se.freebsd.org/</para>
+
+	  <para>Coleções disponíveis:</para>
+	  <itemizedlist>
+	    <listitem><para>&os;: Um espelho completo do servidor 
+	      FTP do &os;.</para></listitem>
+	  </itemizedlist>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>Taiwan</term>
+
+	<listitem>
+	  <para>rsync://ftp.tw.freebsd.org</para>
+	  <para>rsync://ftp2.tw.freebsd.org</para>
+	  <para>rsync://ftp6.tw.freebsd.org</para>
+
+	  <para>Coleções disponíveis:</para>
+	  <itemizedlist>
+	    <listitem><para>&os;: Um espelho completo do servidor 
+	      FTP do &os;.</para></listitem>
+	  </itemizedlist>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>Reino Unido</term>
+
+	<listitem>
+	  <para>rsync://rsync.mirrorservice.org</para>
+
+	  <para>Coleções disponíveis:</para>
+	  <itemizedlist>
+	    <listitem><para>sites/ftp.freebsd.org: Um espelho 
+	      completo do servidor FTP do &os;.</para></listitem>
+	  </itemizedlist>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>Estados Unidos da América</term>
+
+	<listitem>
+	  <para>rsync://ftp-master.freebsd.org</para>
+
+	  <para>Este servidor só pode ser acessado pelos principais 
+	    servidores espelho do projeto &os;.</para>
+	  <para>Coleções disponíveis:</para>
+	  <itemizedlist>
+	    <listitem><para>&os;: Um espelho completo do servidor 
+	      FTP do &os;.</para></listitem>
+	    <listitem><para>acl: Lista de acesso dos espelhos que 
+	      podem acessar este servidor.</para></listitem>
+	  </itemizedlist>
+
+	  <para>rsync://ftp13.freebsd.org</para>
+
+	  <para>Coleções disponíveis:</para>
+	  <itemizedlist>
+	    <listitem><para>&os;: Um espelho completo do servidor 
+	      FTP do &os;.</para></listitem>
+	  </itemizedlist>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+</appendix>

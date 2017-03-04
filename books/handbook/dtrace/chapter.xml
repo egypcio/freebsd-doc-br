@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!--
+Recently I suggested to myself that this should become a profiling
+and debugging chapter, which covers things like ktrace(1) and
+using other debugging (like -x in shell scripts).  But then I
+realized that, over time and while DTrace becomes better supported,
+that might make this chapter too large.
+-->
+
+<!--
+  The FreeBSD Documentation Project
+  The FreeBSD Brazilian Portuguese Documentation Project
+
+  Original revision: r39544
+
+  $FreeBSD: trunk/docs/pt_BR.ISO8859-1/books/handbook/dtrace/chapter.xml 354 2013-06-14 23:07:55Z egypcio $
+-->
+
+<chapter id="dtrace">
+  <chapterinfo>
+    <authorgroup>
+      <author>
+	<firstname>Tom</firstname>
+	<surname>Rhodes</surname>
+	<contrib>Escrito por </contrib>
+      </author>
+    </authorgroup>
+  </chapterinfo>
+
+  <title>&dtrace;</title>
+
+  <sect1 id="dtrace-synopsis">
+    <title>Sinopse</title>
+
+    <indexterm><primary>&dtrace;</primary></indexterm>
+    <indexterm>
+      <primary>&dtrace; support</primary>
+      <see>&dtrace;</see>
+    </indexterm>
+
+  <para>&dtrace;, também conhecido como Dynamic Tracing, foi 
+     desenvolvido pela &sun; como uma ferramenta para localizar 
+     gargalos de desempenho  em sistemas de produção e pré-produção. 
+     Não é, de forma alguma, uma ferramenta de depuração, mas uma 
+     ferramenta para a análise do sistema em tempo real para localizar 
+     o desempenho e outras questões.</para>
+
+  <para>&dtrace; é uma ferramenta notável de análise, com uma impressionante
+     variedade de recursos para o diagnóstico de problemas no sistema. Pode também ser
+     usado para executar scripts pré-programados para tirar maior vantagem de sua
+     capacidades. Os usuários podem até mesmo ser autores de seus próprios utilitários 
+     fazendo uso da &dtrace; D Language, o que lhes permite personalizar o seu perfil
+     com base nas necessidades específicas.</para>
+
+    <para>Após ler este capítulo, você saberá:</para>
+
+    <itemizedlist>
+      <listitem>
+	<para>O que é e quais funcionalidades o &dtrace; oferece.</para>
+      </listitem>
+
+      <listitem>
+	<para>As diferenças entre o &solaris; &dtrace; e o &dtrace; 
+	  oferecido no &os;.</para>
+      </listitem>
+
+      <listitem>
+	<para>Como habilitar e utilizar o &dtrace; no &os;.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Antes de ler este capítulo, você deveria:</para>
+
+    <itemizedlist>
+      <listitem>
+	<para>Compreender conceitos básicos sobre &unix; e &os;
+	  (<xref linkend="basics"/>).</para>
+      </listitem>
+
+      <listitem>
+	<para>Estar familiarizado com procedimentos básicos 
+	  de configuração/compilação do kernel do &os; 
+	  (<xref linkend="kernelconfig"/>).</para>
+      </listitem>
+
+      <listitem>
+	<para>Ter certa familiaridade com conceitos de segurança 
+	  e como eles se aplicam no &os; 
+          (<xref linkend="security"/>).</para>
+      </listitem>
+
+      <listitem>
+	<para>Compreender como obter e recompilar os códigos fonte 
+	  do &os; (<xref linkend="updating-upgrading"/>).</para>
+      </listitem>
+    </itemizedlist>
+
+    <!--
+      Temporary warning to avoid listing experimental versions
+      and production versions of FreeBSD with this technology.
+    -->
+    <warning>
+      <para>Este recurso é considerado experimental. Algumas opções 
+	podem faltar em termos de funcionalidade, outras partes 
+	podem não funcionar de jeito nenhum. Com o tempo, esse 
+	recurso será considerado como algo que possa ser utilizado 
+	em produção e esta documentação será alterada para 
+	refletir tal situação.</para>
+    </warning>
+  </sect1>
+
+  <sect1 id="dtrace-implementation">
+    <title>Diferenças de Implementação</title>
+
+    <para>Embora o &dtrace; no &os; seja muito semelhante ao 
+      encontrado no &solaris;, existem diferenças que devem ser 
+      explicadas antes de você continuar. A principal diferença que 
+      os usuários irão notar é que, no &os;, o &dtrace; precisa ser 
+      habilitado de uma forma específica para ser utilizado. 
+      Existem opções adicionais no kernel e módulos que devem ser 
+      habilitados para que o &dtrace; funcione corretamente. Essas 
+      opções e esses módulos serão explicados mais tarde.</para>
+
+    <para>Existe uma opção no kernel (<literal>DDB_CTF</literal>) que
+      é usada para ativar o suporte a <acronym>CTF</acronym> 
+      (Compact C Type Format) do &solaris;. O uso dessa opção permite 
+      que seja possível obter determinados dados de módulos 
+      e do próprio kernel. O <acronym>CTF</acronym>
+      encapsula uma forma reduzida de informações de depuração
+      semelhante ao <acronym>DWARF</acronym> e aos stabs.
+      Este dados <acronym>CTF</acronym> são adicionados aos binários 
+      pelas ferramentas <command>ctfconvert</command> e 
+      <command>ctfmerge</command>. A ferramenta 
+      <command>ctfconvert</command> analisa as seções de depuração em 
+      formato <acronym>DWARF</acronym> <acronym>ELF</acronym> criadas 
+      pelo compilador e a ferramenta <command>ctfmerge</command> 
+      funde seções dos objetos <acronym>CTF</acronym> 
+      <acronym>ELF</acronym> em quaisquer executáveis ou bibliotecas 
+      compartilhadas. Mais detalhes sobre como habilitar essa 
+      funcionalidade no kernel do &os; ainda estão por vir.</para>
+
+    <para>Diferentes provedores existem para &os; e para &solaris;.
+       O mais notável é o <literal>dtmalloc</literal>, que
+       permite traçar chamadas a função <function>malloc()</function> 
+       por tipo no kernel do &os;.</para>
+
+    <para>Apenas o usuário <username>root</username> pode usar o 
+       &dtrace; no &os;. Isso está relacionado com diferenças ligadas 
+       a segurança. O &solaris; executa algumas verificações de 
+       segurança em baixo nível que ainda não existem no &os;. Visto isso, 
+       o uso do <devicename>/dev/dtrace/dtrace</devicename> é estritamente
+       limitado ao <username>root</username>.</para>
+
+    <para>Por fim, o &dtrace; está sob licença <acronym>CDDL</acronym> 
+      (<literal>Common Development and Distribution License</literal>) 
+      da &sun;. Os termos da <acronym>CDDL</acronym> estão disponíveis no 
+      código fonte do &os; em 
+      <filename>/usr/src/cddl/contrib/opensolaris/OPENSOLARIS.LICENSE</filename>. 
+      Você também pode consultar os termos online em 
+      <ulink url="http://www.opensolaris.org/os/licensing"></ulink>.</para>
+
+    <para>Esta licença diz que um &os; que tenha opções para uso do 
+      &dtrace; habilitadas no kernel ainda está licenciado sob licença 
+      <acronym>BSD</acronym>, mas ela acaba com tudo isso quando 
+      exige que módulos sejam distribuídos em formato binário, ou 
+      quando esses binários são carregados pelo sistema.</para>
+  </sect1>
+
+  <sect1 id="dtrace-enable">
+    <title>Habilitando Suporte ao &dtrace;</title>
+
+    <para>Para habilitar o suporte ao &dtrace;, adicione as 
+      seguintes entradas no arquivo de configuração do kernel:</para>
+
+    <programlisting>
+        options        KDTRACE_HOOKS
+        options        DDB_CTF</programlisting>
+
+    <note>
+      <para>Usuários de arquitetura amd64 podem desejar adicionar, 
+	também, a seguinte opção:</para>
+
+      <programlisting>options        KDTRACE_FRAME</programlisting>
+
+      <para>Esta opção fornece suporte para o uso de <acronym>FBT</acronym>. 
+       O &dtrace; funciona normalmente sem essa opção; no entanto, 
+       haverá suporte limitado para rastreamento de determinadas 
+       funções em fronteira/limite (<literal>boundary</literal>).</para>
+      </note>
+
+    <para>Todos os códigos fonte devem ser recompilados e instalados 
+      com as opções de <acronym>CTF</acronym> habilitadas. Para 
+      executar esse procedimento, recompile o kernel do &os; usando 
+      os seguintes comandos:</para>
+
+    <!-- XXXTR: WITH_CTF has been reported to leave a user with a
+         broken system when used with buildworld.  Until this is
+         fixed, comment out those parts.  When uncommenting, kill
+         the extra screen.
+         -->
+
+    <screen>&prompt.root; <userinput>cd /usr/src</userinput>
+<!-- &prompt.root; <userinput>make WITH_CTF=1 buildworld</userinput> -->
+&prompt.root; <userinput>make WITH_CTF=1 kernel</userinput>
+<!-- &prompt.root; <userinput>make WITH_CTF=1 installworld</userinput>
+&prompt.root; <userinput>mergemaster -Ui</userinput> --></screen>
+
+    <para>Após término de toda compilação, o sistema precisará ser reiniciado.</para>
+
+    <para>Depois de reiniciar o sistema e permitir que o novo kernel 
+       seja carregado na memória, deve ser adicionado o suporte 
+       para o shell Korn. Ele é necessário porque o kit de ferramentas (<literal>Toolkit</literal>)
+       do &dtrace; tem várias funcionalidades que necessitam ser 
+       executadas via <command>ksh</command>. Instale o pacote 
+       <filename role="package">shells/ksh93</filename> 
+       para possibilitar essa execução. Também é possível executar essas 
+       funcionalidades com ajuda do pacote  
+       <filename role="package">shells/pdksh </filename> ou do
+       <filename role="package">shells/mksh</filename>.</para>
+
+    <para>Por fim, obtenha o <literal>Toolkit</literal> mais recente do &dtrace;, 
+      disponível em 
+      <ulink url="http://www.opensolaris.org/os/community/dtrace/dtracetoolkit"></ulink>.
+      Existe um mecanismo de instalação incluído; no entanto, a instalação
+      não é necessária para fazer uso de algumas ferramentas já disponíveis no pacote.</para>
+
+  </sect1>
+
+  <sect1 id="dtrace-using">
+    <title>Utilizando o &dtrace;</title>
+
+    <para>Antes de fazer uso de funcionalidade do &dtrace;, o 
+       dispositivo do &dtrace; deve existir em seu sistema. Para 
+       carregar o dispositivo, execute o seguinte comando:</para>
+
+    <screen>&prompt.root; <userinput>kldload dtraceall</userinput></screen>
+
+    <para>A partir deste momento, o suporte ao &dtrace; já deve estar 
+      disponível. Para ver todas as sondas, você pode executar o 
+      seguinte comando:</para>
+
+    <screen>&prompt.root; <userinput>dtrace -l | more</userinput></screen>
+
+    <para>Toda a saída é passada para o comando 
+      <command>more</command>, visto que a saída do comando iria, 
+      rapidamente, estourar o buffer da tela. Neste ponto, já se 
+      considera que o &dtrace; está em funcionamento. Agora já se pode
+      analisar o <literal>Toolkit</literal>.</para>
+
+    <para>O <literal>Toolkit</literal> é um conjunto de scripts prontos para 
+      coletar informações do sistema. Existem scripts
+      para verificar arquivos abertos, uso de memória, uso de 
+      <acronym>CPU</acronym> e muito mais. Extraia-os com o seguinte
+      comando:</para>
+
+    <screen>&prompt.root; <userinput>gunzip -c DTraceToolkit* | tar xvf -</userinput></screen>
+
+    <para>Entre no diretório criado pela descompactação do conteúdo 
+      do <literal>Toolkit</literal> com ajuda do comando 
+      <command>cd</command> e altere a permissão de execução em 
+      todos os arquivos que tenham seus caracteres em letras 
+      minúsculas utilizando o comando <command>chmod</command> 
+      para <literal>755</literal>.</para>
+
+    <para>Todos os scripts necessitarão de modificações no código.
+      Aqueles que fizerem referência ao uso de 
+      <filename>/usr/bin/ksh</filename> precisarão referenciar 
+      <filename>/usr/local/bin/ksh</filename>, os que usarem
+      <filename>/usr/bin/sh</filename> deverão ser alterados para usar 
+      <filename>/bin/sh</filename> e, finalmente, os que estiverem 
+      fazendo uso de <filename>/usr/bin/perl</filename> 
+      deverão usar <filename>/usr/local/bin/perl</filename>.</para>
+
+    <important>
+      <para>Nesse ponto é prudente que você pare e pense no fato de 
+	que o suporte a &dtrace; no &os; ainda está 
+        <emphasis>INCOMPLETO</emphasis> e é 
+        <emphasis>EXPERIMENTAL</emphasis>.  Muitos dos scripts 
+        presentes no <literal>Toolkit</literal> não funcionarão 
+        como devem funcionar junto ao &solaris; ou tentarão explorar 
+        funcionalidades ainda não suportadas pelo &os; no 
+        momento.</para>
+    </important>
+
+    <para>Até o presente momento em que se escreve este documento, 
+      apenas doisa dos scripts do <literal>Toolkit</literal> para 
+      &dtrace; são suportados pelo &os;: 
+      <filename>hotkernel</filename> e <filename>procsystime</filename>.  
+      Esses dois são os scripts que você irá explorar neste 
+      documento.</para>
+
+    <para>O <filename>hotkernel</filename> está destinado a identificar
+      qual função está usando mais tempo de acordo com o escalonador 
+      do kernel. Executado sem argumentos, ele produzirá uma saída 
+      similar a esta:</para>
+
+    <screen>&prompt.root; <userinput>./hotkernel</userinput>
+Sampling... Hit Ctrl-C to end.</screen>
+
+    <para>Você deve usar a combinação de teclas 
+      <keycombo action="simul"><keycap>Ctrl</keycap><keycap>C</keycap>
+      </keycombo> para parar o processo.  Ao término do processo, 
+      o script exibirá uma lista de funções e as informações de 
+      tempo, ordenada de forma crescente de acordo com o tempo. Veja 
+      um exemplo:</para>
+
+    <screen>kernel`_thread_lock_flags                                   2   0.0%
+0xc1097063                                                  2   0.0%
+kernel`sched_userret                                        2   0.0%
+kernel`kern_select                                          2   0.0%
+kernel`generic_copyin                                       3   0.0%
+kernel`_mtx_assert                                          3   0.0%
+kernel`vm_fault                                             3   0.0%
+kernel`sopoll_generic                                       3   0.0%
+kernel`fixup_filename                                       4   0.0%
+kernel`_isitmyx                                             4   0.0%
+kernel`find_instance                                        4   0.0%
+kernel`_mtx_unlock_flags                                    5   0.0%
+kernel`syscall                                              5   0.0%
+kernel`DELAY                                                5   0.0%
+0xc108a253                                                  6   0.0%
+kernel`witness_lock                                         7   0.0%
+kernel`read_aux_data_no_wait                                7   0.0%
+kernel`Xint0x80_syscall                                     7   0.0%
+kernel`witness_checkorder                                   7   0.0%
+kernel`sse2_pagezero                                        8   0.0%
+kernel`strncmp                                              9   0.0%
+kernel`spinlock_exit                                       10   0.0%
+kernel`_mtx_lock_flags                                     11   0.0%
+kernel`witness_unlock                                      15   0.0%
+kernel`sched_idletd                                       137   0.3%
+0xc10981a5                                              42139  99.3%</screen>
+
+    <!-- XXXTR: I attempted to use objdump and nm on /boot/kernel/kernel
+        to find 0xc10981a5, but to no avail.  It would be nice to know
+	how we should look that up.
+	-->
+
+    <para>Esse script também funcionará para analisar módulos do kernel. 
+      Para utilizar essa funcionalidade, execute-o com o parâmetro <option>-m</option>:</para>
+
+    <screen>&prompt.root; <userinput>./hotkernel -m</userinput>
+Sampling... Hit Ctrl-C to end.
+^C
+MODULE                                                  COUNT   PCNT
+0xc107882e                                                  1   0.0%
+0xc10e6aa4                                                  1   0.0%
+0xc1076983                                                  1   0.0%
+0xc109708a                                                  1   0.0%
+0xc1075a5d                                                  1   0.0%
+0xc1077325                                                  1   0.0%
+0xc108a245                                                  1   0.0%
+0xc107730d                                                  1   0.0%
+0xc1097063                                                  2   0.0%
+0xc108a253                                                 73   0.0%
+kernel                                                    874   0.4%
+0xc10981a5                                             213781  99.6%</screen>
+
+    <!-- XXXTR: I was unable to match these up with output from
+        kldstat and kldstat -v and grep.  Maybe I'm missing something
+	seriously obvious.  It is 5AM btw.
+	-->
+
+    <para>O <filename>procsystime</filename> captura e exibe quanto 
+      tempo as syscalls de um determinado <acronym>PID</acronym> ou 
+      nome de processo estão usando. No exemplo a seguir, uma 
+      instância do <filename>/bin/csh</filename> é escolhida para 
+      ser analisada. O <filename>procsystime</filename> é executado e 
+      permanece aguardando por alguns segundos enquanto alguns 
+      comando são processados por um processo que esteja a fazer 
+      uso do <command>csh</command>. Os resultados deste exemplo 
+      foram os seguintes:</para>
+
+    <screen>&prompt.root; <userinput>./procsystime -n csh</userinput>
+Tracing... Hit Ctrl-C to end...
+^C
+
+Elapsed Times for processes csh,
+
+         SYSCALL          TIME (ns)
+          getpid               6131
+       sigreturn               8121
+           close              19127
+           fcntl              19959
+             dup              26955
+         setpgid              28070
+            stat              31899
+       setitimer              40938
+           wait4              62717
+       sigaction              67372
+     sigprocmask             119091
+    gettimeofday             183710
+           write             263242
+          execve             492547
+           ioctl             770073
+           vfork            3258923
+      sigsuspend            6985124
+            read         3988049784</screen>
+
+    <para>Como mostrado, a syscall <function>read()</function> 
+      parece ser utilizada na maior parte do tempo (nanosegundos) 
+      e a syscall <function>getpid()</function> está a ser 
+      utilizada por muito pouco tempo.</para>
+  </sect1>
+
+  <sect1 id="dtrace-language">
+    <title>A Linguagem D</title>
+
+    <para>O <literal>Toolkit</literal> do &dtrace; inclui vários scripts 
+      escritos numa linguagem especial utilizada pelo &dtrace;. 
+      Essa linguagem, de acordo com documentações da &sun;, é chamada de 
+      <quote>Linguagem D</quote> e é muito semelhante a C++. Uma abordagem 
+      mais aprofundada a respeito dessa linguagem está fora do âmbito deste 
+      documento. Ela é amplamente discutida em 
+      <ulink url="http://wikis.sun.com/display/DTrace/Documentation"></ulink>.</para>
+  </sect1>
+</chapter>
+
+    <!-- XXXTR: Should probably put links and resources here.  I'm
+        nervous about this chapter as it may require a partial
+	re-write and large modification once DTrace is complete, but
+	at least we can get everyone started ...
+	-->

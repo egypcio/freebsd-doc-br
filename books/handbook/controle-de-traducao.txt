@@ -1,0 +1,75 @@
+#              Part 0  -  Basic Skeleton                         # 
+##################################################################
+Linhas #      Capitulo       # Revisão #   Responsavel , Data Inicio
+##################################################################
+312    # book.xml            # r39544  # Liberado para Revisão
+708    # preface             # r39544  # Liberado para Revisão
+3394   # mirrors             # r39575  # Liberado para Revisão
+580    # bibliography        # r39544  # Liberado para Revisão
+2142   # eresources          # r39544  # Liberado para Revisão
+40     # pgpkeys             # r39631  # Liberado para Revisão
+2039   # glossary.ent        # r39534  #
+25     # colophon.xml        # r39631  # Liberado para Revisão
+##################################################################
+9215 Linhas
+
+#              Part I  - Getting Started                         # 
+##################################################################
+Linhas #      Capitulo       # Revisão #   Responsavel , Data Inicio
+##################################################################
+1048   # introduction        # r39576  # Liberado para Revisão
+5011   # install             # r39550  # Marcos Alves, 16/10/2012 
+2731   # bsdinstall          # r39550  # Liberado para Revisão
+2716   # basics              # r39544  # Vinícius Zavam, 30/03/2014 (Adotado)
+1623   # ports               # r39649  # Liberado para Revisão
+1743   # x11                 # r39595  # Vinícius Zavam, 30/03/2014
+##################################################################
+14.834 Linhas
+ 
+#              Part II - Common Tasks                            # 
+##################################################################
+Linhas #      Capitulo       # Revisão #   Responsavel , Data Inicio
+##################################################################
+1347   # desktop             # r39544  #
+1938   # multimedia          # r39544  #
+1548   # kernelconfig        # r39544  #
+4896   # printing            # r39544  #
+1345   # linuxemu            # r39544  #
+##################################################################
+11.074 Linhas
+
+#              Part III  - System Administration                 #
+##################################################################
+Linhas #      Capitulo       # Revisão #   Responsavel , Data Inicio
+##################################################################
+3556   # config              # r39544  #
+1055   # boot                # r39544  # Liberado para Revisão
+1034   # users               # r39544  #
+4151   # security            # r39576  # Orfão (02/01/2014)
+988    # jails               # r39566  # Liberado para Revisão
+2075   # mac                 # r39544  #
+717    # audit               # r39544  # Liberado para Revisão
+4871   # disks               # r39606  # Luiz Gustavo, 30/09/2012
+981    # geom                # r39544  # Liberado para Revisão
+885    # filesystems         # r39544  # Liberado para Revisão
+1296   # vinum               # r39544  #
+1300   # virtualization      # r39595  # Liberado para Revisão
+943    # l10n                # r39544  # Liberado para Revisão
+3180   # cutting-edge        # r39544  #
+387    # dtrace              # r39544  # Liberado para Revisão
+##################################################################
+27.419 Linhas
+
+#              Part IV  -  Network Communication                 #
+##################################################################
+Linhas #      Capitulo       # Revisão #   Responsavel , Data Inicio
+##################################################################
+2931   # serialcomms         # r39553  #
+3243   # ppp-and-slip        # r39544  #
+2230   # mail                # r39544  #
+5909   # network-servers     # r39544  #
+3376   # firewalls           # r39544  # Ricardo Ferreira, 21/09/2012
+6493   # advanced-networking # r39544  #
+##################################################################
+24.182 Linhas
+

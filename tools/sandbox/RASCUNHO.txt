@@ -1,0 +1,7 @@
+#
+# Esse arquivo nao tem funcao alguma no DOC-BR, a nao ser
+# servir de rascunho para aprendizado/testes de operacoes
+# basicas com CVS. Edite-o a vontade para aprender.
+#
+=> Patrick, testando novo sistema de logs por email (teste 14)
+

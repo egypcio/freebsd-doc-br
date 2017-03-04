@@ -1,0 +1,691 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE article PUBLIC "-//FreeBSD//DTD DocBook XML V4.2-Based Extension//EN"
+	"../../../share/xml/freebsd42.dtd" [
+<!ENTITY % entities PUBLIC "-//FreeBSD//ENTITIES DocBook FreeBSD Entity Set//PT" "../../share/xml/entities.ent">
+%entities;
+]>
+
+<!--
+     The FreeBSD Documentation Project
+     The FreeBSD Brazilian Portuguese Documentation Project
+
+     Original revision: r40061
+
+     $FreeBSD: trunk/docs/pt_BR.ISO8859-1/articles/contributing/article.xml 295 2012-11-18 15:09:45Z atnpessoa@gmail.com $
+-->
+
+<article lang='pt_br'>
+  <articleinfo>
+    <title>Contribuindo para o FreeBSD</title>
+
+    <abstract>
+      <para>Este artigo descreve as diferentes maneiras pelas quais um
+	indivíduo ou uma organização podem
+	contribuir com o projeto FreeBSD.</para>
+    </abstract>
+
+    <authorgroup>
+      <author>
+	<firstname>Jordan</firstname>
+	<surname>Hubbard</surname>
+	<contrib>Colaboração de </contrib>
+      </author>
+    </authorgroup>
+
+    <legalnotice id="trademarks" role="trademarks">
+      &tm-attrib.freebsd;
+      &tm-attrib.ieee;
+      &tm-attrib.general;
+    </legalnotice>
+
+    <pubdate>$FreeBSD: trunk/docs/pt_BR.ISO8859-1/articles/contributing/article.xml 295 2012-11-18 15:09:45Z atnpessoa@gmail.com $</pubdate>
+
+    <releaseinfo>$FreeBSD: trunk/docs/pt_BR.ISO8859-1/articles/contributing/article.xml 295 2012-11-18 15:09:45Z atnpessoa@gmail.com $</releaseinfo>
+  </articleinfo>
+
+  <indexterm><primary>Contribuindo</primary></indexterm>
+
+  <para>Então você quer contribuir com o FreeBSD?  Isso
+    é ótimo!  O FreeBSD depende das
+    contribuições da sua base de usuários para
+    sobreviver.  Suas contribuições não
+    são apenas apreciadas, elas são vitais para que o
+    FreeBSD continue crescendo.</para>
+
+  <para>Ao contrário do que algumas pessoas podem tentar
+    fazê-lo acreditar, você não precisa ser um
+    programador super experiente ou amigo pessoal de um membro do
+    <literal>Core Team</literal> do FreeBSD para ter suas
+    contribuições aceitas.  Um grande e crescente
+    número de colaboradores internacionais, de idades e de
+    áreas técnicas extremamente variadas desenvolvem o
+    FreeBSD.  Há sempre mais trabalho a ser realizado do que
+    pessoas disponíveis para fazê-lo.  Toda e qualquer
+    ajuda é sempre bem vinda.</para>
+
+  <para>O projeto FreeBSD é responsável por todo um
+    sistema operacional, ou seja, é responsável por
+    muito mais que apenas um <literal>kernel</literal> ou alguns
+    utilitários dispersos.  Da forma como está, o nosso
+    <filename>TODO</filename>, possui tarefas em uma escala muito
+    ampla: da documentação, da realização
+    de beta testes e de apresentação, ao instalador do
+    sistema e desenvolvimento altamente especializado de componentes
+    para o <literal>kernel</literal>.  Pessoas de todos os
+    níveis de habilidade, de qualquer área
+    técnica, certamente podem ajudar o projeto de alguma
+    forma.</para>
+
+  <para>As instituições comerciais envolvidas em
+    projetos relacionados ao FreeBSD; também, são
+    encorajadas a nos contatar.  Você necessita de uma
+    extensão especial para fazer seu produto funcionar?
+    Você irá nos encontrar receptivos aos seus pedidos,
+    desde que eles não sejam demasiadamente descabidos.
+    Você está trabalhando em um produto que agrega valor
+    ao sistema?  Por favor, deixe-nos saber!  Nós talvez
+    possamos trabalhar em conjunto em algum aspecto dele.  O mundo do
+    <foreignphrase>software</foreignphrase> livre desafia muitos dos
+    conceitos existentes sobre como um
+    <foreignphrase>software</foreignphrase> é desenvolvido,
+    vendido e mantido; e, nós o incitamos a dar ao menos uma
+    segunda olhada.</para>
+
+  <sect1 id="contrib-what">
+    <title>O que é necessário?</title>
+
+    <para>A seguinte lista de tarefas e sub-projetos representa uma
+      amálgama de várias listas de
+      <filename>TODO</filename> e solicitações enviadas
+      por usuários.</para>
+
+    <sect2 id="non-programmer-tasks">
+      <title>Tarefas em execução por
+	não-programadores.</title>
+
+      <para>Muitas das pessoas que estão envolvidas com o
+	FreeBSD não são programadores.  O projeto inclui
+	autores de documentação, <literal>Web
+	  designers</literal>, e pessoal de suporte.  Tudo o que estas
+	pessoas precisam para contribuir é algum tempo livre
+	para investir e vontade de aprender.</para>
+
+      <orderedlist>
+	<listitem>
+	  <para>Leia o <literal>FAQ</literal> e &a.ptbr.p.handbook;
+	    periodicamente.  Se algo estiver mal explicado,
+	    desatualizado ou mesmo completamente errado; por favor,
+	    deixe-nos saber.  Ou melhor, envie-nos uma
+	    correção.  (Docbook não é
+	    difícil de aprender, mas não há
+	    nenhuma objeção à submissões
+	    em formato ASCII).</para>
+	</listitem>
+
+	<listitem>
+	  <para>Ajude a traduzir a documentação do
+	    FreeBSD para a sua língua nativa.  Se a
+	    documentação já existir no seu
+	    idioma, você pode ajudar a traduzir novos documentos
+	    ou verificar se as traduções existentes
+	    estão atualizadas.  Primeiro, verifique o <ulink
+	    url="&url.books.fdp-primer;/translations.html">FAQ sobre
+	    traduções</ulink> no &a.ptbr.p.fdpp;.
+	    Você não estará se comprometendo a
+	    traduzir todos os documentos do FreeBSD fazendo isto
+	    &mdash; como um voluntário, você pode
+	    traduzir muitos ou poucos documentos, quantos desejar.
+	    Uma vez que alguém começa a traduzir, outros
+	    quase sempre se juntam ao esforço.  Se você
+	    somente tiver tempo livre ou energia para traduzir uma
+	    pequena parte da documentação; por favor,
+	    traduza as instruções de
+	    instalação.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Leia a &a.questions; e o &ng.misc; ocasionalmente (ou
+	    regularmente se possível).  Pode ser muito
+	    recompensador compartilhar a sua experiência e
+	    ajudar outras pessoas a resolverem seus problemas; Muitas
+	    vezes apenas este processo o levará à
+	    aprender coisas!  Estes fóruns também podem
+	    ser uma fonte de idéias para assuntos aos quais se
+	    dedicar.</para>
+	</listitem>
+      </orderedlist>
+    </sect2>
+
+    <sect2 id="ongoing-programmer-tasks">
+      <title>Tarefas em execução por
+	programadores</title>
+
+      <para>A maioria das tarefas listadas aqui requerem um
+	investimento considerável de tempo ou conhecimento
+	profundo do kernel do FreeBSD; ou, ambos.  Entretanto,
+	também existem muitas tarefas úteis que
+	são apropriadas para os <quote>hackers de final de
+	semana</quote>.</para>
+
+      <orderedlist>
+	<listitem>
+	  <para>Se você executar o FreeBSD-CURRENT e tiver uma
+	    boa conexão Internet, existe uma máquina
+	    <hostid role="fqdn">current.FreeBSD.org</hostid> que
+	    produz um lançamento
+	    (<foreignphrase>release</foreignphrase>) completo uma vez
+	    por dia &mdash; tente instalar diariamente o
+	    lançamento mais recente gerado e relate todas as
+	    falhas encontradas no processo.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Leia a &a.bugs;.  Pode existir um problema o qual
+	    você possa comentar construtivamente ou mesmo uma
+	    correção que possa testar.  Ou, você
+	    pode ainda tentar reparar um dos problemas sozinho.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Se você souber de qualquer problema que tenha
+	    sido corrigido com sucesso no <literal>-CURRENT</literal>
+	    e cuja correção não tenha sido
+	    aplicada ao <literal>-STABLE</literal> após um
+	    intervalo razoável de tempo (normalmente algumas
+	    semanas), envie ao
+	    <foreignphrase>committer</foreignphrase> um lembrete
+	    educado.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Mova as contribuições de
+	    <foreignphrase>software</foreignphrase> para
+	    <filename class="directory">src/contrib</filename>
+	    na árvore do código fonte.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Tenha certeza que o código disponível em
+	    <filename class="directory">src/contrib</filename> 
+	    está atualizado.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Compile o sistema (ou apenas uma parte dele) com
+	    <literal>warnings</literal> extras habilitados e remova os
+	    <literal>warnings</literal>.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Corrija <literal>warnings</literal> de
+	    <literal>ports</literal> que ainda fazem coisas
+	    ultrapassadas tais como utilizar
+	    <function>gets()</function> ou incluir
+	    <filename>malloc.h</filename>.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Se você contribuiu com algum dos
+	    <literal>ports</literal>, e teve que fazer alguma
+	    mudança específica para o &os;, envie suas
+	    correções de volta aos autores originais
+	    (isto tornará sua vida mais fácil quando
+	    eles lançarem a próxima
+	    versão).</para>
+	</listitem>
+
+	<listitem>
+	  <para>Consiga cópias de padrões formais tais
+	    como &posix;.  Você pode obter alguns
+	    <foreignphrase>links</foreignphrase> sobre estes
+	    padrões no sítio www <ulink
+	      url="&url.base;/projects/c99/index.html">FreeBSD 
+	      C99 &amp; Projeto de Conformidade com Padrões
+	      Posix</ulink>.  Compare o comportamento do FreeBSD
+	    àquele requerido pelo padrão.  Se o
+	    comportamento diferir, particularmente em pontos sutis ou
+	    obscuros da especificação, envie-nos um
+	    <literal>PR</literal> sobre ele.  Se você for capaz,
+	    descubra como corrigi-lo e inclua um
+	    <literal>patch</literal> em seu <literal>PR</literal>.  Se
+	    você acredita que o padrão está
+	    errado, peça ao comitê de padrões que
+	    considere a pergunta.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Sugira novas tarefas para esta lista!</para>
+	</listitem>
+      </orderedlist>
+    </sect2>
+
+    <sect2>
+      <title>Trabalhe no banco de dados de <literal>PR</literal>
+	(relatório de problemas)</title>
+
+      <indexterm>
+	<primary>base de dados de relatórios de
+	  problemas</primary>
+      </indexterm>
+
+      <para>A <ulink
+	url="&url.base;/cgi/query-pr-summary.cgi">Lista
+	de <literal>PRs</literal> do FreeBSD</ulink> mostra todos os
+	relatórios de problemas ativos no momento e os pedidos
+	de melhoria que foram submetidos pelos usuários do
+	FreeBSD.  O banco de dados inclui tarefas para programadores e
+	para não-programadores.  Consulte os
+	<literal>PRs</literal> abertos, e veja se algum deles é
+	de seu interesse.  Alguns deles podem ser tarefas muito
+	simples que necessitam apenas que um par extra de olhos olhe
+	para eles e confirme que a correção proposta
+	funciona.  Outros podem ser muito mais complexos, ou podem nem
+	ter vindo com uma correção.</para>
+
+      <para>Comece com os <literal>PR</literal>s que ainda não
+	foram atribuídos a ninguém.  Se um
+	<literal>PR</literal> estiver atribuído a outra pessoa,
+	mas se parecer com algo que você possa cuidar, envie um
+	e-mail para a pessoa encarregada do mesmo e pergunte se
+	você pode trabalhar nele &mdash; ele pode já ter
+	um <literal>patch</literal> pronto para ser testado, ou
+	você pode discutir novas idéias com ele.</para>
+    </sect2>
+
+    <sect2>
+      <title>Escolha um dos itens da <quote>página de
+	idéias</quote></title>
+
+    <para>A <ulink url="http://wiki.freebsd.org/IdeasPage">lista de
+      projetos do &os; e de idéias para voluntários</ulink>
+      também está disponível para as pessoas
+      dispostas a contribuir com o projeto &os;.  A lista é
+      atualizada regularmente e contém itens sobre cada projeto
+      para programadores e para não programadores.</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="contrib-how">
+    <title>Como contribuir</title>
+
+    <para>Contribuições para o sistema geralmente caem
+      em uma ou mais das seguintes 5 categorias:</para>
+
+    <sect2 id="contrib-general">
+      <title>Relatórios de Erro e Comentários em
+	Geral</title>
+
+      <para>Uma idéia ou sugestão técnica de
+	interesse <emphasis>geral</emphasis> deve ser enviada para a
+	&a.hackers;.  Da mesma forma, pessoas com interesse neste tipo
+	de assunto (e uma tolerância para um
+	<emphasis>alto</emphasis> volume de mensagens!), devem se
+	inscrever na &a.hackers;.  Consulte o <ulink
+	  url="&url.books.handbook;/eresources.html#ERESOURCES-MAIL">&a.ptbr.p.handbook;</ulink> 
+	para maiores informações sobre esta e outras
+	listas de discussão.</para>
+
+      <para>Se você encontrar um erro ou estiver enviando uma
+	alteração específica; por favor,
+	faça o relatório utilizando o programa
+	&man.send-pr.1; ou a sua <ulink
+	  url="&url.base;/send-pr.html">interface WWW
+	  equivalente</ulink>.  A não ser que ele exceda 65KB,
+	inclua qualquer <literal>patch</literal> diretamente no
+	relatório.  Se o <literal>patch</literal> é
+	destinado a ser aplicado na árvore de código,
+	coloque a palavra <literal>[PATCH]</literal> na sinópse
+	do relatório.  Quando incluir um
+	<literal>patch</literal>, <emphasis>não</emphasis> o
+	faça utilizando copiar-e-colar porque ao copiar-e-colar
+	os <literal>tabs</literal> serão convertidos para
+	espaços, e tornará o <literal>patch</literal>
+	inutilizável.  Quando os <literal>patches</literal>
+	forem muito maiores que 20KB,  considere a possibilidade de
+	comprimi-los (por ex. usando &man.gzip.1; or &man.bzip2.1;) e
+	utilize o &man.uuencode.1; para incluir a versão
+	compactada no seu relatório de problema.</para>
+
+      <para>Depois de enviar o relatório, voce deve receber uma
+	confirmação junto com um número de
+	registro.  Guarde este número de registro, de forma que
+	você possa nos manter atualizados sobre o seu problema
+	enviando um e-mail para &a.bugfollowup;.  Coloque o
+	número no assunto da mensagem, por ex.  <literal>"Re:
+	  kern/3377"</literal>.  Informações adicionais
+	sobre qualquer relatório de problema
+	(<foreignphrase>Problem Report</foreignphrase>) devem ser
+	submetidas desta forma.</para>
+
+      <para>Se você não receber a
+	confirmação em prazo razoável (3 dias a 1
+	semana, dependendo da sua conexão de e-mail), ou
+	está por alguma razão impossibilitado de
+	utilizar o comando &man.send-pr.1; ; então, você
+	pode pedir que alguém o envie para você enviando
+	e-mail para &a.bugs;.</para>
+
+      <para>Consulte também <ulink
+	  url="&url.articles.problem-reports;/article.html">este
+	  artigo</ulink> sobre como escrever um bom relatório
+	de problema.</para>
+    </sect2>
+
+    <sect2>
+      <title>Alterações na
+	Documentação</title>
+
+      <indexterm>
+	<primary>Envio de documentação</primary>
+      </indexterm>
+
+      <para>Alterações na documentação
+	são administradas pela &a.doc;.  Por favor, verifique o
+	<ulink
+	url="&url.books.fdp-primer;/index.html">&a.ptbr.p.fdpp;</ulink> 
+	para obter instruções detalhadas.  Envie suas
+	colaborações e alterações
+	(inclusive as pequenas são bem vindas!) usando o
+	&man.send-pr.1; como descrito no <link
+	  linkend="contrib-general"> Relatórios de Erro e
+	  Comentários em Geral</link>.</para>
+    </sect2>
+
+    <sect2>
+      <title>Alterações no Código Fonte
+	Existente</title>
+
+      <indexterm><primary>FreeBSD-CURRENT</primary></indexterm>
+
+      <para>Uma adição ou alteração ao
+	código fonte existente é um caso um pouco mais
+	complicado e depende muito de quão desatualizado
+	você está em relação ao estado
+	atual de desenvolvimento do FreeBSD.  Existe um
+	lançamento (<foreignphrase>release</foreignphrase>)
+	especial em andamento do FreeBSD conhecido como
+	<quote>FreeBSD-CURRENT</quote> o qual é disponibilizado
+	em uma grande variedade de formas para a comodidade dos
+	desenvolvedores que trabalham ativamente no sistema.  Consulte
+	o <ulink url="
+	&url.books.handbook;/current-stable.html">&a.ptbr.p.handbook;</ulink> 
+	para maiores informações sobre como obter e
+	utilizar o FreeBSD-CURRENT.</para>
+
+      <para>Trabalhar com versões antigas do código,
+	infelizmente, muitas vezes significa que as suas
+	alterações serão demasiadamente obsoletas
+	ou muito divergentes para possibilitar uma fácil
+	re-integração ao FreeBSD.  As possibilidades de
+	que isso ocorra podem ser minimizadas um pouco através
+	da sua inscrição nas listas &a.announce; e
+	&a.current;, nas quais as discussões sobre o estado
+	atual do sistema ocorrem.</para>
+
+      <para>Supondo que você consiga obter acesso à
+	código fonte do sistema razoavelmente atualizado para
+	basear as suas alterações nele, o próximo
+	passo é produzir um conjunto de
+	<literal>diffs</literal> para enviar aos mantenedores do
+	FreeBSD.  Isto é feito com o comando
+	&man.diff.1;.</para>
+
+      <para>O formato preferido do &man.diff.1; para enviar um
+	<literal>patch</literal>, é o formato de saída
+	unificada gerado por <command>diff -u</command>.</para>
+
+      <indexterm>
+	<primary><command>diff</command></primary>
+      </indexterm>
+
+      <screen>&prompt.user; <userinput>diff -u oldfile newfile</userinput></screen>
+
+      <para>ou</para>
+
+      <screen>&prompt.user; <userinput>diff -u -r -N olddir newdir</userinput></screen>
+
+      <para>deverá gerar um conjunto de <literal>diffs</literal>
+	unificados para o arquivo de origem informado ou hierarquia de
+	diretórios.</para>
+
+      <para>Consulte o manual do &man.diff.1; para maiores
+	informações.</para>
+
+      <para>Uma vez que você tenha o conjunto de
+	<literal>diffs</literal> (os quais você pode testar com
+	o comando &man.patch.1;), você deve submetê-los
+	para inclusão no FreeBSD.  Utilize o comando
+	&man.send-pr.1; como descrito no <link
+	  linkend="contrib-general">Relatórios de Erro e
+	  Comentários em Geral</link>.
+	<emphasis>Não</emphasis> envie os
+	<literal>diffs</literal> apenas para a &a.hackers; ou eles
+	serão perdidos!  Nós apreciamos extremamente a
+	sua submissão (este é um projeto
+	voluntário!); porque nós somos ocupados,
+	nós podemos não ter como tratá-la
+	imediatamente, mas ela permanecerá em nosso bando de
+	dados de <literal>PRs</literal> até que nós o
+	façamos.  Marque a sua submissão incluindo a
+	palavra <literal>[PATCH]</literal> na sinópse do
+	relatório.</para>
+
+      <indexterm>
+	<primary><command>uuencode</command></primary>
+      </indexterm>
+
+      <para>Se você sentir que é apropriado (por ex.
+	você adicionou, deletou ou renomeou arquivos), empacote
+	as suas mudanças em um arquivo <command>tar</command> e
+	execute o programa &man.uuencode.1; nele.  Arquivos criados
+	com o &man.shar.1; também são bem vindos.</para>
+
+      <para>Se suas mudanças são de uma natureza
+	potencialmente sensível, tais como você
+	estar inseguro sob quais políticas de direito
+	autoral as novas versões serão
+	distribuídas, então você deve enviá-las
+	diretamente para o &a.core; ao invés de
+	submetê-las com o &man.send-pr.1;.  O &a.core; é formado
+	por um grupo muito pequeno de pessoas as quais
+	cuidam de muitas das tarefas diárias de administração do 
+	projeto &os;.  Observe que este grupo também é <emphasis>muito
+	ocupado</emphasis> e portanto você só deve enviar
+	um e-mail a eles se for realmente necessário.</para>
+
+      <para>Por favor, consulte a &man.intro.9; e a &man.style.9; para
+	obter alguma informação sobre o estilo de
+	codificação.  Nós apreciaríamos se
+	você estivesse ao menos ciente destas
+	informações antes de submeter o seu
+	código.</para>
+    </sect2>
+
+    <sect2>
+      <title>Código Novo ou Pacotes Principais de Valor
+	Adicional (<foreignphrase>Major Value-Added
+	  Packages</foreignphrase>)</title>
+
+      <para>No caso de uma contribuição significativa de
+	um trabalho de grande porte, ou a adição de uma
+	nova característica importante ao FreeBSD, torna-se
+	quase sempre necessário que se envie as
+	alterações em um arquivo <literal>tar
+	  uuencoded</literal> ou então que se faça o
+	<foreignphrase>upload</foreignphrase> das mesmas para um
+	servidor WWW ou FTP para que as outras pessoas possam
+	acessá-las.  Se você não possui acesso a
+	um servidor WWW ou FTP, pergunte em uma lista de
+	discussão apropriada do FreeBSD se alguém pode
+	hospedar essas alterações para
+	você.</para>
+
+      <para>Quando se trabalha com grandes quantidades de
+	código, o sensível assunto de direitos autorais
+	invariavelmente vem a tona.  Os direitos autorais aceitos para
+	os códigos incluídos no FreeBSD
+	são:</para>
+
+      <orderedlist>
+	<listitem>
+	<indexterm>
+	  <primary>Licensa BSD</primary>
+	</indexterm>
+
+	  <para>Os direitos autorais BSD.  Este tipo de licensa
+	    é a mais preferível devido a sua natureza
+	    <quote>não restritiva</quote> e pela sua afinidade
+	    com iniciativas comerciais.  Longe de desencorajar o uso
+	    comercial, o Projeto FreeBSD encoraja ativamente tais
+	    participações, uma vez que estes interesses
+	    comerciais podem eventualmente se converter em
+	    investimentos no próprio FreeBSD.</para>
+	</listitem>
+
+	<listitem>
+	<indexterm>
+	  <primary>GPL</primary><see>GNU General Public License</see>
+	</indexterm>
+	<indexterm>
+	  <primary>Licença Pública Geral GNU
+	    (<foreignphrase>GNU General Public
+	      License</foreignphrase>)</primary>
+	</indexterm>
+
+	  <para>A licensa pública geral GNU, ou
+	    <quote>GPL</quote>.  Esta licensa não é
+	    tão popular conosco, devido aos esforços
+	    extras que exigem de qualquer pessoa que venha a utilizar
+	    o código com finalidades comerciais, mas dada a
+	    grande quantidade de código GPL que nós
+	    necessitamos atualmente (compilador, montador assembler,
+	    formatador de texto, etc) seria tolice recusar
+	    contribuições adicionais sob esta licensa.
+	    O código sob a GPL também vai para uma parte
+	    diferente da árvore, mais especificamente para
+	    <filename class="directory">/sys/gnu</filename> ou
+	    <filename class="directory">/usr/src/gnu</filename>, de 
+	    forma que é muito fácil 
+	    identificá-lo para qualquer um que a GPL 
+	    representa um problema.</para>
+	</listitem>
+      </orderedlist>
+
+      <para>As contribuições que vêm sob qualquer
+	outro tipo de licensa devem ser cuidadosamente revisadas antes
+	de sua inclusão no FreeBSD ser considerada.
+	Contribuições com algum tipo de
+	restrição particular ao seu uso comercial
+	são geralmente rejeitadas, embora os autores sejam
+	sempre incentivados a tornarem tais alteração
+	disponíveis por meio de canais próprios.</para>
+
+      <para>Para colocar o seu trabalho sob licensa
+	<quote>estilo-BSD</quote>, inclua o texto abaixo no
+	início de cada um dos arquivos que você deseja
+	proteger, substituindo o texto entre <literal>%%</literal> com
+	as informações apropriadas:</para>
+
+      <programlisting>Copyright (c) %%proper_years_here%%
+	%%your_name_here%%, %%your_state%%  %%your_zip%%.
+	All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met:
+1. Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer as
+   the first lines of this file unmodified.
+2. Redistributions in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in the
+   documentation and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY %%your_name_here%% ``AS IS'' AND ANY EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL %%your_name_here%% BE LIABLE FOR ANY DIRECT, INDIRECT,
+INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+	&dollar;&os;&dollar;</programlisting>
+
+      <para>Para a sua comodidade, uma cópia deste texto pode
+	ser encontrada em
+	<filename>/usr/share/examples/etc/bsd-style-copyright
+	</filename>.</para>
+    </sect2>
+
+    <sect2>
+      <title>Dinheiro, Hardware ou Acesso Internet</title>
+
+      <para>Nós ficamos sempre muito felizes em aceitar
+	doações para agregar a causa do Projeto FreeBSD,
+	em um esforço voluntário como o nosso, um pouco
+	pode significar muito!  Doações de
+	<foreignphrase>hardware</foreignphrase> também
+	são muito importantes para expandir a nossa lista de
+	periféricos suportados, uma vez que normalmente
+	não temos recursos para comprar estes ítens
+	nós mesmos.</para>
+
+      <sect3>
+	<title><anchor id="donations"/>Doando Dinheiro</title>
+
+	<para>A Fundação FreeBSD é uma entidade
+	  sem fins lucrativos e isenta de impostos, estabelecida com o
+	  objetivo de promover os objetivos do Projeto FreeBSD.  Como
+	  uma entidade 501(c)3, a fundação é
+	  isenta de recolher as taxas do governo federal, bem como as
+	  do Estado do Colorado.  As doações para uma
+	  entidade isenta de impostos são freq&uuml;entemente
+	  dedutíveis dos impostos federais.</para>
+
+	<para>As doações podem ser enviadas
+	  através de cheques para: 
+	  <address> 
+	    The FreeBSD Foundation 
+	    <street>7321 Brockway Dr.</street>
+	    <city>Boulder</city>, 
+	    <state>CO</state>, <postcode>80303</postcode> 
+	    <country>USA</country>
+	  </address></para>
+
+	<para>A Fundação FreeBSD é agora capaz de
+	  receber doações através da web com o
+	  PayPal.  Para fazer uma doação; por favor,
+	  visite o <ulink
+	    url="http://www.freebsdfoundation.org">sítio
+	    www</ulink> da Fundação.</para>
+
+	<para>Maiores informações sobre a
+	  Fundação FreeBSD podem ser obtidas no
+	  documento <ulink
+	    url="http://people.freebsd.org/~jdp/foundation/announcement.html">A
+	    Fundação FreeBSD - Uma
+	    introdução</ulink>.  Para contatar a
+	  Fundação por e-mail, escreva para
+	  <email>bod@FreeBSDFoundation.org</email>.</para>
+      </sect3>
+
+      <sect3>
+	<title>Doando <foreignphrase>Hardware</foreignphrase></title>
+	<indexterm>
+	  <primary>doacões</primary>
+	</indexterm>
+
+	<para>O projeto de FreeBSD aceita alegremente
+	  doações de
+	  <foreignphrase>hardware</foreignphrase> para as quais pode
+	  encontrar bom uso.  Se voce estiver interessado em doar
+	  componentes de <foreignphrase>hardware</foreignphrase>; por
+	  favor, contate o 
+	  <ulink url="&url.base;/donations/">Escritório de 
+	  Relacionamento com Doadores</ulink>.</para> 
+	</sect3>
+    </sect2>
+  </sect1>
+</article>

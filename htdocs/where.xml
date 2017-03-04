@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//FreeBSD//DTD XHTML 1.0 Transitional-Based Extension//EN"
+"http://www.FreeBSD.org/XML/doc/share/xml/xhtml10-freebsd.dtd" [
+<!ENTITY title "Obtendo o FreeBSD">
+<!ENTITY url.rel "ftp://ftp.FreeBSD.org/pub/FreeBSD/releases">
+]>
+
+<!--
+  The FreeBSD Documentation Project
+  The FreeBSD Brazilian Portuguese Documentation Project
+
+  Original revision:  r39730
+
+  $FreeBSD: trunk/docs/pt_BR.ISO8859-1/htdocs/where.xml 220 2012-10-20 04:24:12Z ebrandi@fugspbr.org $
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+      <title>&title;</title>
+
+      <cvs:keyword xmlns:cvs="http://www.FreeBSD.org/XML/CVS">$FreeBSD: trunk/docs/pt_BR.ISO8859-1/htdocs/where.xml 220 2012-10-20 04:24:12Z ebrandi@fugspbr.org $</cvs:keyword>
+    </head>
+
+    <body class="navinclude.download">
+
+    <a name="releases"></a>
+
+    <h2><a href="&base;/releases/index.html">Informações sobre
+      versões</a></h2>
+
+    <p>Descrições detalhadas das versões passadas, presentes e
+      futuras.  Esta página deve a ser sua referência primária 
+      para determinar qual é a última versão do FreeBSD.</p>
+    
+    <a name="install"></a>
+
+    <h2><a href="&base;/doc/pt_BR.ISO8859-1/books/handbook/install.html">Instalando
+	o FreeBSD</a></h2>
+
+    <p>Existem muitas opções de meios para se instalar o FreeBSD, 
+      incluindo a partir de CD-ROM, DVD, disquetes, partição
+      MS-DOS&reg;, fitas magnéticas, FTP anônimo e NFS.  Por favor
+      leia o <a
+      href="&base;/doc/pt_BR.ISO8859-1/books/handbook/install.html">guia
+      de instalação</a> antes de efetuar o download da distribuição
+      inteira do FreeBSD.</p>
+      
+    <a name="distribution"></a>
+
+    <h2>Comprando o FreeBSD</h2>
+
+    <p>O FreeBSD pode ser adquirido em CD-ROM ou em DVD na <a
+      href="http://www.freebsdmall.com/">FreeBSD Mall</a>, ou em um 
+      dos outros <a
+      href="&base;/doc/pt_BR.ISO8859-1/books/handbook/mirrors.html">Publishers
+      de CD-ROM e DVD</a>.</p>
+
+    <a name="download"></a>
+
+    <h2>Download do FreeBSD</h2>
+
+    <p>Se você planeja obter o FreeBSD por FTP ou HTTP, por favor
+      verifique a lista de <a
+              href="&base;/doc/en_US.ISO8859-1/books/handbook/mirrors-ftp.html"><strong>
+      sites espelho</strong></a> no handbook para ver se existe um
+      site próximo de você.  Alternativamente, você pode querer fazer
+      o download do &os; usando o protocolo BitTorrent.  Os arquivos
+      <q>.torrent</q> podem ser obtidos a partir do <a
+      href="http://torrents.FreeBSD.org:8080/">&os; BitTorrent
+      Tracker</a>.</p>
+    
+    <table class="tblbasic">
+      <thead>
+	<tr style="text-align: center;">
+	  <td colspan="2">Versão &amp; Plataforma</td>
+	  <td>Distribuição</td>
+	  <td title="Imagem de CD ISO9660e"><a href="&base;/doc/en_US.ISO8859-1/books/handbook/install-diff-media.html#INSTALL-CDROM">ISO</a></td>
+	  <td>Notas de<br/>Versão</td>
+	  <td>Notas de<br/>Hardware</td>
+	  <td>Notas de<br/>Instalação</td>
+	  <td>Errata</td>
+	</tr>
+      </thead>
+      <tbody>
+	<tr>
+	  <td colspan="2">FreeBSD &rel.current;-RELEASE</td>
+	  <td colspan="2"></td>
+	  <td rowspan="7"><a href="&base;/releases/&rel.current;R/relnotes.html">[Ver]</a></td>
+	  <td rowspan="7"><a href="&base;/releases/&rel.current;R/hardware.html">[Ver]</a></td>
+	  <td rowspan="7"><a href="&base;/releases/&rel.current;R/installation.html">[Ver]</a></td>
+	  <td rowspan="7"><a href="&base;/releases/&rel.current;R/errata.html">[Ver]</a></td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td>amd64</td>
+	  <td><a href="&url.rel;/amd64/amd64/&rel.current;-RELEASE">[Distribuição]</a></td>
+	  <td><a href="&url.rel;/amd64/amd64/ISO-IMAGES/&rel.current;/">[ISO]</a></td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td>i386</td>
+	  <td><a href="&url.rel;/i386/i386/&rel.current;-RELEASE">[Distribuição]</a></td>
+	  <td><a href="&url.rel;/i386/i386/ISO-IMAGES/&rel.current;/">[ISO]</a></td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td>ia64</td>
+	  <td><a href="&url.rel;/ia64/ia64/&rel.current;-RELEASE">[Distribuição]</a></td>
+	  <td><a href="&url.rel;/ia64/ia64/ISO-IMAGES/&rel.current;/">[ISO]</a></td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td>powerpc</td>
+	  <td><a href="&url.rel;/powerpc/powerpc/&rel.current;-RELEASE">[Distribuição]</a></td>
+	  <td><a href="&url.rel;/powerpc/powerpc/ISO-IMAGES/&rel.current;/">[ISO]</a></td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td>powerpc64</td>
+	  <td><a href="&url.rel;/powerpc/powerpc64/&rel.current;-RELEASE">[Distribuição]</a></td>
+	  <td><a href="&url.rel;/powerpc/powerpc64/ISO-IMAGES/&rel.current;/">[ISO]</a></td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td>sparc64</td>
+	  <td><a href="&url.rel;/sparc64/sparc64/&rel.current;-RELEASE">[Distribuição]</a></td>
+	  <td><a href="&url.rel;/sparc64/sparc64/ISO-IMAGES/&rel.current;/">[ISO]</a></td>
+	</tr>
+	<tr>
+	  <td colspan="2">FreeBSD &rel2.current;-RELEASE</td>
+	  <td colspan="2"></td>
+	  <td rowspan="5"><a href="&base;/releases/&rel2.current;R/relnotes.html">[Ver]</a></td>
+	  <td rowspan="5"><a href="&base;/releases/&rel2.current;R/hardware.html">[Ver]</a></td>
+	  <td rowspan="5"><a href="&base;/doc/en_US.ISO8859-1/books/handbook/install.html">[Ver]</a></td>
+	  <td rowspan="5"><a href="&base;/releases/&rel2.current;R/errata.html">[Ver]</a></td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td>amd64</td>
+	  <td><a href="&url.rel;/amd64/&rel2.current;-RELEASE">[Distribuição]</a></td>
+	  <td><a href="&url.rel;/amd64/ISO-IMAGES/&rel2.current;/">[ISO]</a></td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td>i386</td>
+	  <td><a href="&url.rel;/i386/&rel2.current;-RELEASE">[Distribuição]</a></td>
+	  <td><a href="&url.rel;/i386/ISO-IMAGES/&rel2.current;/">[ISO]</a></td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td>pc98</td>
+	  <td><a href="&url.rel;/pc98/&rel2.current;-RELEASE">[Distribuição]</a></td>
+	  <td><a href="&url.rel;/pc98/ISO-IMAGES/&rel2.current;/">[ISO]</a></td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td>sparc64</td>
+	  <td><a href="&url.rel;/sparc64/&rel2.current;-RELEASE">[Distribuição]</a></td>
+	  <td><a href="&url.rel;/sparc64/ISO-IMAGES/&rel2.current;/">[ISO]</a></td>
+	</tr>
+	<tr>
+	  <td colspan="2">FreeBSD &rel3.current;-RELEASE</td>
+	  <td colspan="2"></td>
+	  <td rowspan="7"><a href="&base;/releases/&rel3.current;R/relnotes.html">[Ver]</a></td>
+	  <td rowspan="7"><a href="&base;/releases/&rel3.current;R/hardware.html">[Ver]</a></td>
+	  <td rowspan="7"><a href="&base;/doc/en_US.ISO8859-1/books/handbook/install.html">[Ver]</a></td>
+	  <td rowspan="7"><a href="&base;/releases/&rel3.current;R/errata.html">[Ver]</a></td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td>amd64</td>
+	  <!--<td><a href="&url.rel;/amd64/&rel3.current;-RELEASE">[Distribuição]</a></td>-->
+	  <td colspan="2" align="right"><a href="&url.rel;/amd64/ISO-IMAGES/&rel3.current;/">[ISO]</a></td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td>i386</td>
+	  <!--<td><a href="&url.rel;/i386/&rel3.current;-RELEASE">[Distribuição]</a></td>-->
+	  <td colspan="2" align="right"><a href="&url.rel;/i386/ISO-IMAGES/&rel3.current;/">[ISO]</a></td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td>pc98</td>
+	  <!--<td><a href="&url.rel;/pc98/&rel3.current;-RELEASE">[Distribuição]</a></td>-->
+	  <td colspan="2" align="right"><a href="&url.rel;/pc98/ISO-IMAGES/&rel3.current;/">[ISO]</a></td>
+	</tr>
+	<tr>
+	  <td></td>
+	  <td>sparc64</td>
+	  <!--<td><a href="&url.rel;/sparc64/&rel3.current;-RELEASE">[Distribuição]</a></td>-->
+	  <td colspan="2" align="right"><a href="&url.rel;/sparc64/ISO-IMAGES/&rel3.current;/">[ISO]</a></td>
+	</tr>
+      </tbody>
+    </table>
+
+    <p><em>Note:</em> If you are in doubt of which platform /
+      architecture to get, you probably need <em>i386</em> if you have
+      an older computer, and <em>amd64</em> if you have a newer
+      computer.</p>
+
+    &beta.desc;
+
+    <p>If you are interested in a purely experimental
+      <strong>snapshot</strong> release of FreeBSD-CURRENT (AKA
+      &rel.head;-CURRENT), aimed at developers and bleeding-edge
+      testers only, then please see the <a
+	href="&base;/snapshots/">&os; Snapshot Releases</a> page.  For
+      more information about past, present and future releases in
+      general, please visit the <a
+	href="&base;/releases/index.html">release information
+	page</a>.</p>
+
+    <a name="derived"></a>
+    <h2>FreeBSD-derived Operating System Distribuiçãos</h2>
+
+    <p>FreeBSD is widely used as a building block for other commercial
+      and open-source operating systems.  The projects below are
+      widely used and of particular interest to FreeBSD users.</p>
+
+    <ul>
+      <li><p><a href="http://www.freenas.org">FreeNAS</a> is an open
+	source storage platform based on FreeBSD and supports sharing
+	across Windows, Apple, and UNIX-like systems.</p></li>
+
+      <li><p><a href="http://www.pcbsd.org">PC-BSD</a> is a FreeBSD
+	derivative with a graphical installer and impressive desktop
+	tools aimed at ease of use for the casual computer
+	user.</p></li>
+
+      <li><p><a href="http://www.pfsense.org">pfSense</a> is a free,
+	open source customized distribution of FreeBSD tailored for
+	use as a firewall and router.</p></li>
+    </ul>
+
+    <a name="apps"></a>
+
+    <h2>Applications and Utility Software</h2>
+
+    <h3>The Ports Collection</h3>
+
+    <p>The FreeBSD Ports Collection is a diverse collection of utility
+      and application software that has been ported to FreeBSD.</p>
+
+    <ul>
+      <li><a href="ftp://ftp.FreeBSD.org/pub/FreeBSD/ports/">FreeBSD
+	  Ports Collection</a></li>
+
+      <li><a href="&base;/ports/index.html">Web interface to the Ports
+	  Collection</a></li>
+
+      <li><a href="http://www.freshports.org/">FreshPorts - a more
+	  advanced web interface to the Ports Collection</a></li>
+    </ul>
+
+    <p>For information about how <em>you</em> can contribute
+      <em>your</em> favorite piece of software to the Ports Collection,
+      have a look at <em><a
+	  href="&base;/doc/en_US.ISO8859-1/books/porters-handbook/index.html">The
+	  Porter's Handbook</a></em> and the article <em><a
+	  href="&base;/doc/en_US.ISO8859-1/articles/contributing/index.html">Contributing
+	  to FreeBSD</a></em>.</p>
+
+  </body>
+</html>

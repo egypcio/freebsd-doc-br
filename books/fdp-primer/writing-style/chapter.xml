@@ -1,0 +1,540 @@
+<!-- Copyright (c) 1998 Nik Clayton, All rights reserved.
+
+     Redistribution and use in source (SGML DocBook) and 'compiled' forms
+     (SGML HTML, PDF, PostScript, RTF and so forth) with or without
+     modification, are permitted provided that the following conditions
+     are met:
+
+      1. Redistributions of source code (SGML DocBook) must retain the above
+	 copyright notice, this list of conditions and the following
+	 disclaimer as the first lines of this file unmodified.
+
+      2. Redistributions in compiled form (transformed to other DTDs,
+	 converted to PDF, PostScript, RTF and other formats) must reproduce
+	 the above copyright notice, this list of conditions and the
+	 following disclaimer in the documentation and/or other materials
+	 provided with the distribution.
+
+     THIS DOCUMENTATION IS PROVIDED BY NIK CLAYTON "AS IS" AND ANY EXPRESS OR
+     IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+     OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+     DISCLAIMED. IN NO EVENT SHALL NIK CLAYTON BE LIABLE FOR ANY DIRECT,
+     INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+     (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+     SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+     HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+     STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+     ANY WAY OUT OF THE USE OF THIS DOCUMENTATION, EVEN IF ADVISED OF THE
+     POSSIBILITY OF SUCH DAMAGE.
+
+     The FreeBSD Documentation Project
+     The FreeBSD Brazilian Portuguese Documentation Project
+
+     $FreeBSD: trunk/docs/pt_BR.ISO8859-1/books/fdp-primer/writing-style/chapter.xml 165 2012-10-04 21:26:02Z ebrandi@fugspbr.org $
+
+     Original revision: r38872
+
+-->
+
+	<chapter id="writing-style">
+	  <title>Estilo de Escrita</title>
+	  
+	  <para>A fim de promover a consistência entre os 
+	    inúmeros autores da documentação do 
+	    FreeBSD, foram criadas algumas diretrizes para que os 
+	    autores sigam.</para>
+	  
+      <variablelist>
+	<varlistentry>
+	  <term>Use a Grafia Inglesa Americana</term>
+
+	  <listitem>
+	  <para>Existem diversas variantes do inglês, com 
+	    grafias diferentes para a mesma palavra.  Onde as 
+	    grafias diferem, use a variante inglesa americana.  
+	    Por exemplo:
+	    <quote>color</quote>, não <quote>colour</quote>,
+	    <quote>rationalize</quote>, não
+	    <quote>rationalise</quote>, e assim por diante.</para>
+
+	  <note>
+	  <para>O uso do Inglês Britânico pode ser aceito 
+	    para a contribuição de artigos, contudo a 
+	    ortografia deverá ser consistente ao longo de todo o 
+	    documento.  Os outros documentos, tais como livros, web sites, 
+	    páginas de manual, etc. deverão utilizar o 
+	    Inglês Americano.</para>
+	  </note>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>Não use contrações</term>
+	      
+	<listitem>
+	  <para>Não use contrações.  Soletre 
+	    sempre a frase por completo.  A frase <quote>
+	    <foreignphrase> Don't use contractions</foreignphrase>
+	    </quote> seria errada.</para> 
+
+	  <para>Evite fazer uso das contrações para 
+	    obter um tom mais formal, será mais preciso, e 
+	    ligeiramente mais fácil para os tradutores.</para>
+	 </listitem>
+      </varlistentry>
+	    
+      <varlistentry>
+	<term>Use a vírgula de série</term>
+	      
+	<listitem>
+	  <para>Em uma lista de artigos dentro de um 
+	    parágrafo, separe cada artigo do outro com uma 
+	    vírgula.  Separe o último artigo do outro 
+	    com uma vírgula e a palavra <quote>e</quote>.
+	    </para>
+
+	  <para>Por o exemplo, observe o seguinte: </para>
+	  
+	  <blockquote>
+	    <para>Esta é uma lista de um, dois e três
+	      artigos.</para>
+	  </blockquote>
+	  
+	  <para>Isto é uma lista de três artigos,
+	    <quote>um</quote>, <quote>dois</quote>, e
+	    <quote>três</quote>, ou de uma lista de dois 
+	    artigos, <quote>um</quote> e <quote>dois e 
+	    três</quote>?</para>
+	  
+	  <para>É melhor ser explícito e incluir uma
+	    vírgula de série: </para>
+	  
+	  <blockquote>
+	    <para>Esta é uma lista de um, dois, e três
+	      artigos.</para>
+	  </blockquote>
+	</listitem>
+      </varlistentry>
+	    
+      <varlistentry>
+	<term>Evite frases redundantes</term>
+	      
+	<listitem>
+	  <para>Tente não usar frases redundantes.  No detalhe,
+	    <quote>o comando</quote>, <quote>o arquivo</quote>, e
+	    <quote>o comando man</quote> são provavelmente
+	    redundantes.</para>
+
+	  <para>Estes dois exemplos mostram isto para comandos.  O
+	    segundo exemplo é preferido.</para>
+	  
+	  <informalexample>
+	    <para>Use o comando <command>cvsup</command> para 
+	    atualizar seus fontes.</para>
+	  </informalexample>
+	      
+	  <informalexample>
+	    <para>Use o <command>cvsup</command> para atualizar seus
+	      fontes.</para>
+	  </informalexample>
+	  
+	  <para>Estes dois exemplos mostram isto para nomes de 
+	    arquivo.  O segundo exemplo é preferido.</para>
+	  
+	  <informalexample>
+	    <para>&hellip; no arquivo
+	      <filename>/etc/rc.local</filename>&hellip;</para>
+	  </informalexample>
+	  
+	  <informalexample>
+	    <para>&hellip; no
+	      <filename>/etc/rc.local</filename>&hellip;</para>
+	  </informalexample>
+	  
+	  <para>Estes dois exemplos mostram isto para 
+	    referências aos manuais.  O segundo exemplo 
+	    é preferido (o segundo exemplo usa 
+	    <sgmltag>citerefentry</sgmltag>).</para>
+	  
+	  <informalexample>
+	    <para>Veja o <command>man csh</command> para maiores
+	      informações</para>
+	  </informalexample>
+	  
+	  <informalexample>
+	    <para>veja o &man.csh.1;</para>
+	  </informalexample>
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+	<term>Dois espaços no final das 
+	  sentenças.</term>
+
+	 <listitem>
+	  <para>Use sempre dois espaços no fim das
+	    sentenças, isto melhora a legibilidade, e 
+	    facilita o uso de ferramentas tais como o
+	    <application>Emacs</application>.</para>
+
+	  <para>Lembre-se que uma letra em caixa alta depois de um
+	    período, nem sempre denota uma sentença 
+	    nova, especialmente na grafia de nomes.  <quote>Jordan K.
+	    Hubbard</quote> é um bom exemplo; tem um
+	    <literal>H</literal> em caixa alta depois de um
+	    período e um espaço, e não há
+	    certamente uma sentença nova lá.</para> 
+	</listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>Para maiores informações sobre estilo de 
+      escrita, consulte <ulink url="http://www.bartleby.com/141/">
+      Elementos de Estilo</ulink>, por William Strunk.</para>
+
+    <sect1 id="writing-style-guide">
+
+    <title>Guia de Estilo</title>
+
+      <para>Para manter o código fonte da 
+	documentação consistente quando muitas pessoas 
+	diferentes o estão editando, por favor siga estas 
+	convenções de estilo.</para> 
+
+      <sect2>
+	<title>Caixa de Letra (Maiúscula/Minúscula)
+	  </title>
+
+	<para>As <literal>tags</literal> devem ser utilizadas em 
+	  caixa baixa, <literal>&lt;para&gt;</literal>, 
+	  <emphasis>não</emphasis> 
+	  <literal>&lt;PARA&gt;</literal>.</para> 
+
+	<para>O texto que aparece em contextos do SGML é 
+	  escrito geralmente em caixa alta, 
+	  <literal>&lt!ENTITY&hellip;&gt;</literal>, e 
+	  <literal>&lt;!DOCTYPE&hellip;&gt;</literal>, 
+	  <emphasis>não</emphasis> 
+	  <literal>&lt;!entity&hellip;&gt;</literal> e 
+	  <literal>&lt;!doctype&hellip;&gt;</literal>.</para>
+      </sect2>
+
+      <sect2>
+	<title>Acrônimos</title>
+
+	<para>Um acrônimo normalmente deve ser soletrado na primeira 
+	  vez que ele aparecer em um livro, como por exemplo: 
+	  "Network Time Protocol (<acronym role="Network Time 
+	  Protocol">NTP</acronym>)".  Depois que um acrônimo for 
+	  definido, você deveria passar a utilizar apenas ele 
+	  (e não o termo completo, a não ser que isso 
+	  faça mais sentido contextualmente).  Normalmente um 
+	  acrônimo é definido uma única vez por 
+	  livro.  Mas se você preferir, você também pode 
+	  definí-lo quando ele aparecer pela primeira vez em 
+	  cada capítulo.</para>
+
+	<para>Nas três primeiras vezes que um acrônimo for 
+	  utilizado ele deve ser destacado com a tag 
+	  &lt;acronym&gt; utilizando o atributo <literal>role
+	  </literal> setado com o termo completo como seu valor.  
+	  Isto irá permitir que o link para o 
+	  glossário seja criado, e habilitará um 
+	  <foreignphrase>mouseover</foreignphrase> que quando 
+	  renderizado irá exibir o termo completo.</para>
+      </sect2>
+
+      <sect2>
+	<title>Identação</title>
+
+	<para>Cada arquivo começa com a identação
+	  ajustada na coluna 0, <emphasis>independentemente</emphasis> 
+	  do nível de identação do arquivo que 
+	  pode vir a incluí-lo.</para> 
+
+	<para>As tags de abertura aumentam o nível de 
+	  identação em 2 espaços, as tags de 
+	  fechamento diminuem o nível de 
+	  identação em 2 espaços.  Blocos de 
+	  8 espaços no começo de uma linha devem ser 
+	  subistituidos por um Tab.  Não use espaços 
+	  na frente dos Tabs, e não adicione espaços 
+	  em branco no final de uma linha.  O conteúdo dentro 
+	  de um elemento deve ser identado por dois espaços 
+	  caso ele ocupe mais de uma linha.</para> 
+
+	<para>Por exemplo, o código para esta 
+	  seção seria algo como:</para>
+
+      <programlisting><![ CDATA [+--- This is column 0
+V
+<chapter>
+  <title>...</title>
+
+  <sect1>
+    <title>...</title>
+
+    <sect2>
+      <title>Indentation</title>
+
+      <para>Each file starts with indentation set at column 0,
+	<emphasis>regardless</emphasis> of the indentation level of the file
+	which might contain this one.</para>
+      ...  
+    </sect2>
+  </sect1>
+</chapter>]]></programlisting>
+
+	<para>Se você usar o <application>Emacs</application> ou 
+	  <application>XEmacs</application> para editar os arquivos 
+	  o <literal>sgml-mode</literal> será
+	  carregado automaticamente, e as variáveis locais 
+	  do Emacs ao final de cada arquivo devem reforçar 
+	  estes estilos.</para>
+
+	<para>Os usuários do <application>Vim</application> 
+	  podem querer configurar o seu editor da seguinte 
+	  forma:</para> 
+    
+	<programlisting>augroup sgmledit 
+  autocmd FileType sgml set formatoptions=cq2l " Special formatting options 
+  autocmd FileType sgml set textwidth=70       " Wrap lines at 70 spaces 
+  autocmd FileType sgml set shiftwidth=2       " Automatically indent 
+  autocmd FileType sgml set softtabstop=2      " Tab key indents 2 spaces 
+  autocmd FileType sgml set tabstop=8          " Replace 8 spaces with a tab 
+  autocmd FileType sgml set autoindent         " Automatic indentation 
+augroup END</programlisting>   
+      </sect2>
+
+      <sect2>
+	<title>Estilo de Tags</title>
+
+	<sect3>
+	  <title>Espaçamento de Tags</title>
+  
+	  <para>Tags que começam na mesma 
+	    identação que um Tag precedente devem ser 
+	    separados por uma linha em branco, e aqueles que 
+	    não estão na mesma identação 
+	    que um Tag precedente não, observe:</para>
+  
+	  <informalexample>
+	    <programlisting><![ CDATA [<article>
+  <articleinfo>
+    <title>NIS</title>
+
+    <pubdate>October 1999</pubdate>
+
+    <abstract>
+      <para>...
+  ...
+  ...</para>
+    </abstract>
+  </articleinfo>
+
+  <sect1>
+    <title>...</title>
+
+    <para>...</para>
+  </sect1>
+
+  <sect1>
+    <title>...</title>
+
+    <para>...</para>
+  </sect1>
+</article>]]></programlisting>
+	  </informalexample>
+	</sect3>
+
+	<sect3>
+	  <title>Separando Tags</title>
+
+	  <para>Tags tais como <sgmltag>itemizedlist</sgmltag> que 
+	    terão sempre algum Tag adicional dentro dele, e que
+	    não fazem exame dos dados eles mesmos, 
+	    estarão sempre sozinhos em uma linha.</para>
+
+	  <para>Tags tais como <sgmltag>para</sgmltag> e 
+	    <sgmltag>term</sgmltag> não necessitam outros Tags
+	    para conter caracteres normais, e o seu 
+	    conteúdo começa imediatamente depois do 
+	    Tag, <emphasis>na mesma linha</emphasis>.</para> 
+
+	  <para>O mesmo se aplica quando estes dois tipos de Tag se 
+	    fecham.</para> 
+
+	  <para>Isto conduz a um problema óbvio ao misturar 
+	    estes Tags.</para>
+
+	  <para>Quando um Tag de abertura que não pode conter
+	    caracteres normais é utilizado logo 
+	    após um Tag do tipo que requer outros Tags dentro 
+	    dele para conter caracteres normais, eles devem 
+	    estar em linhas separadas e o segundo Tag deve ser 
+	    corretamente identado.</para>
+
+	  <para>Quando um Tag que possa conter caracteres 
+	    normais se fecha imediatamente depois que um Tag que 
+	    não pode conter caracteres normais 
+	    se fecha, eles podem coexistir na mesma linha.</para>
+	</sect3>
+      </sect2>
+
+      <sect2>
+	<title>Mudanças nos espaços em branco.</title>
+
+	<para>Ao enviar mudanças, não envie 
+	  mudanças de conteúdo ao mesmo tempo que 
+	  mudanças no formato.</para>
+      
+	<para>Desta forma as equipes que convertem o manual para 
+	  outras línguas podem ver rapidamente o que de fato 
+	  mudou no conteúdo com o seu envio, sem ter que se 
+	  decidir se uma linha mudou por causa do conteúdo, 
+	  ou apenas porque foi reformatada.</para> 
+
+	<para>Por exemplo, se você adicionar duas 
+	  sentenças a um parágrafo, de forma que o 
+	  comprimento das linhas no mesmo agora excedem 80 colunas, 
+	  envie sua mudança sem corrigir o comprimento da 
+	  linha.  Ajuste então a quebra de linha e envie uma 
+	  segunda mudança.  Na mensagem de 
+	  <literal>commit</literal> da segunda mudança, 
+	  deixe claro que se trata apenas de um ajuste de 
+	  formatação, e que a equipe da 
+	  tradução pode ignorá-la.</para>
+      </sect2>
+
+      <sect2> 
+	<title><foreignphrase>Nonbreaking space</foreignphrase>
+	  </title> 
+    
+	<para>Evite as quebras de linha nos locais onde elas ficarem 
+	  feias ou onde dificultarem a compreensão de uma 
+	  sentença.  As quebras de linha dependem da largura 
+	  do meio de saída escolhido.  Em particular, 
+	  visualizar um documento em HTML com um navegador em modo 
+	  texto pode conduzir a parágrafos mal formatados como o 
+	  exemplo a seguir:</para>
+  
+	<literallayout class="monospaced">
+   Data capacity ranges from 40 MB to 15 
+   GB.  Hardware compression &hellip;</literallayout> 
+    
+	<para>A entidade geral <literal>&amp;nbsp;</literal> proibe a 
+	  quebra de linha entre partes que devem permanecer juntas.  
+	  Utilize <foreignphrase>nonbreaking spaces </foreignphrase> 
+	  nos seguintes lugares:</para>
+    
+	<itemizedlist> 
+	  <listitem> 
+	    <para>Entre números e suas unidades:</para> 
+
+	    <programlisting><![ CDATA [57600&nbsp;bps]]></programlisting> 
+	  </listitem> 
+    
+	  <listitem> 
+	    <para>Entre os nomes dos programas e os seus 
+	      números de versão:</para> 
+	    <programlisting><![ CDATA [FreeBSD&nbsp;4.7]]></programlisting> 
+	  </listitem> 
+    
+	  <listitem> 
+	    <para>Entre nomes compostos (utilize com cuidado quando 
+	      estiver lidando com nomes com mais de 3 ou 4 palavras, 
+	      como por exemplo, <quote>The FreeBSD Brazilian 
+	      Portuguese Documentation Project</quote>):</para> 
+	    <programlisting><![ CDATA [Sun&nbsp;Microsystems]]></programlisting> 
+	  </listitem> 
+	</itemizedlist> 
+      </sect2> 
+    </sect1>
+
+    <sect1 id="writing-style-word-list">
+    <title>Lista de Palavras</title>
+
+      <para>O que se segue é uma pequena lista das palavras 
+	com a grafia da maneira que deve ser usada no projeto da 
+	documentação do FreeBSD.  Se a palavra que 
+	você está procurando não estiver nesta 
+	lista, por favor consulte a 
+	<ulink url="http://www.oreilly.com/oreilly/author/stylesheet.html">
+	lista de palavras da O'Reilly</ulink>.</para>
+
+    <itemizedlist>
+      <listitem>
+	<para>2.2.X</para>
+      </listitem>
+
+      <listitem>
+	<para>4.X-STABLE</para>
+      </listitem>
+
+      <listitem>
+	<para>CD-ROM</para>
+      </listitem>
+
+      <listitem>
+	<para>DoS <emphasis>(Denial of Service)</emphasis> </para>
+      </listitem>
+
+      <listitem>
+	<para>Ports Collection</para>
+      </listitem>
+
+      <listitem>
+	<para>IPsec</para>
+      </listitem>
+
+      <listitem>
+	<para>Internet</para>
+      </listitem>
+
+      <listitem>
+	<para>MHz</para>
+      </listitem>
+
+      <listitem>
+	<para>Soft Updates</para>
+      </listitem>
+
+      <listitem>
+	<para>Unix</para>
+      </listitem>
+
+      <listitem>
+	<para>disk label</para>
+      </listitem>
+
+      <listitem>
+	<para>email</para>
+      </listitem>
+
+      <listitem>
+	<para>file system</para>
+      </listitem>
+
+      <listitem>
+	<para>manual page</para>
+      </listitem>
+
+      <listitem>
+	<para>mail server</para>
+      </listitem>
+
+      <listitem>
+	<para>name server</para>
+      </listitem>
+
+      <listitem>
+	<para>null-modem</para>
+      </listitem>
+
+      <listitem>
+	<para>web server</para>
+      </listitem>
+    </itemizedlist>
+
+  </sect1>
+</chapter>

@@ -1,0 +1,315 @@
+(TM) -> (R)
+Arizona -> Arizona
+At the time of this writing -> no momento da prepara&ccedil;&atilde;o deste documento
+BIOS -> <acronym>BIOS</acronym>
+CD sets -> conjunto de CDs|jogo de CDs
+CDROM Publishers -> Publicadores de CDROM
+CSRG -> <acronym>CSRG</acronym>|<acronym>CSRG</acronym> (Grupo de Pesquisa em Sistemas Computacionais)
+Computer Systems Research Group (CSRG) -> Grupo de Pesquisa em Sistemas Computacionais (<acronym>CSRG</acronym>) 
+FAQ -> <literal>FAQ</literal>
+FreeBSD Documentation Project -> Projeto de Documenta&ccedil;&atilde;o do FreeBSD
+FreeBSD Documentation Project Primer -> &a.ptbr.p.fdpp;
+FreeBSD Mall -> FreeBSD Mall
+FreeBSD handbook -> &a.ptbr.p.handbook;
+GNU Public License -> GPL|http://www.magnux.org/doc/GPL-pt_BR.txt -> Licen&ccedil;a P&uacute;blica Geral GNU (GPL)
+GPL -> GPL|http://www.magnux.org/doc/GPL-pt_BR.txt -> Licen&ccedil;a P&uacute;blica Geral GNU (GPL)
+GUI -> <acronym>GUI</acronym>
+Germany, Trier -> Alemanha, Trier
+ISP -> Provedor de Servi&ccedil;o Internet
+Iceland -> Isl&acirc;ndia
+Illinois -> Illinois
+Kiev -> Kiev
+MFC -> acr&ocirc;nimo para obtido "a partir do ramo -CURRENT" (<foreignphrase>Merged From -CURRENT</foreignphrase>)
+Massachusetts -> Massachusetts
+Merged From -CURRENT -> acr&ocirc;nimo para obtido "a partir do ramo -CURRENT" (<foreignphrase>Merged From -CURRENT</foreignphrase>)
+Minnesota -> Minnesota
+NAT -> <acronym>NAT</acronym>
+NEWS -> <acronym>NEWS</acronym> (Netware Early Warning System)|<acronym>NEWS</acronym>|<foreignphrase>Netware Early Warning System</foreignphrase>
+NeWS -> <acronym>NeWS</acronym> (Network extensible Window System)|<acronym>NeWS</acronym>|<foreignphrase>Network extensible Window System</foreignphrase>
+Netherlands -> Holanda
+Portuguese Brazilian speakers -> falantes de Portugu&ecirc;s do Brasil
+PostScript -> PostScript
+Retail Boxed Products -> Vendem box sets a varejo
+SPAM -> <literal>SPAM</literal>
+Show you how to install the wealth of third party applications available for FreeBSD -> Monstrando-lhe como instalar a riqueza de aplica&ccedil;&otile;es dispon&iacute;veis para FreeBSD
+Stacken, KTH, Sweden -> Stacken, KTH, Su&eacute;cia
+Taiwan -> Taiwan (Formosa)
+Taiwan, Chiayi -> Taiwan (Formosa), Chiayi
+That is really all there is to it -> Isto &eacute; tudo
+Trinity College, Dublin -> Trinity College, Dublin
+U. C. Berkeley -> University of California at Berkeley -> Universidade da California em Berkeley
+UN*X-like -> <foreignphrase>UN*X-like</foreignphrase>
+UN*X-like -> <foreignphrase>UN*X-like</foreignphrase>
+US -> EUA|EEUU|conosco
+United States -> Estados Unidos da Am&eacute;rica
+United States of America -> Estados Unidos da Am&eacute;rica
+Unix basics -> princ&iacute;pios de Unix
+Virginia -> Virg&iacute;nia
+X window system -> X, sistema de interface gr&aacute;fica
+X, the Unix windowing system -> X, o sistema de interface gr&aacute;fica do sistema Unix
+additional software -> programas adicionais
+advisory -> aviso
+advocacy -> <foreignphrase>advocacy</foreignphrase>
+advocate -> advogar
+appearing -> aparecendo|surgindo
+arcane -> arcano
+archiving tool -> ferramenta de armazenamento|arquivamento
+augmented -> suplementado
+authored -> est&aacute; escrito
+assign -> atribuir|determinar|relacionar
+azimuth -> azimute|posicionamento|coordenada (de antenas)
+background -> hist&oacute;rico
+background process -> processo em segundo plano
+backup -> c&oacute;pia de seguran&ccedil;a
+backward-compatible -> compatibilidade com vers&otilde;es anteriores|compat&iacute;vel de forma regressa (<foreignphrase>backward-compatible</foreignphrase>)
+benchmark -> an&aacute;lise de desempenho|programa para an&aacute;lise de desempenho (<foreignphrase>benchmark</foreignphrase>)
+bit -> peda&ccedil;o
+bits (se for bit de byte) -> <foreignphrase>bits</foreignphrase>
+byte -> <foreignphrase>byte</foreignphrase>
+boiler plate -> texto padronizado
+boot -> <literal>boot</literal>|inicializar|processo de inicializa&ccedil;&atilde;o
+booting -> <literal>boot</literal>|processo de <literal>boot</literal>|inicializa&ccedil;&atilde;o
+box set -> <foreignphrase>box sets</foreignphrase>
+branch -> <literal>branch</literal>|ramo|s&eacute;rie
+branch tag -> etiqueta de ramo (<foreignphrase>branch tag</foreignphrase>)
+browser -> navegador
+bug -> falha|defeito|erro|problema|<foreignphrase>bugs</foreignphrase>
+bug tracking -> rastreamento de falha
+build -> construir|compilar
+built in -> embutido
+bundled -> inclu&iacute;do|fornecido
+carry -> conter
+caveat -> poss&iacute;vel problema
+change -> modificar|mudar
+character -> caractere
+chat -> bate-papo|conversa|<foreignphrase>chat</foreignphrase>
+check -> verifique
+chunks -> parcelas|peda&ccedil;os
+claim -> reinvidicac&cedil;&atilde;o|reclamar|exigir|invocar
+claimed -> reinvidicada|reclamada|exigida|invocada
+command line shell -> ambiente de linha de comando 
+commercial maintainers of CVS -> consultores comerciais de CVS
+commit -> <literal>commit</literal>
+committer -> desenvolvedor (<foreignphrase>committer</foreignphrase>)
+compiled -> compilado
+compiled form -> forma <quote>compilada<quote>|formato compilado
+compliant -> de acordo|em acordo|adequado|compat&iacute;vel
+compress -> compress&atilde;o
+computer aided design tools -> ferramentas computacionais de aux&iacute;lio a projeto (<acronym>CAD</acronym>)
+copyright -> direito autoral
+copyright notice -> aviso de direito autoral|aviso de <foreignphrase>copyright</foreignphrase>
+core team -> grupo central (<literal>core team</literal>)
+coup d'etat -> golpe de estado
+cron job -> <literal>job</literal> <command>cron</command>
+cryptgraphy -> criptografia
+current -> <literal>current</literal>|corrente|corrente (<literal>current</literal>)
+currently -> atualmente
+customization -> personaliza&ccedil;&atilde;o
+cyberspace -> ciberespa&ccedil;o
+database -> banco de dados
+debug -> depurar|depura&ccedil;&atilde;o
+decompress -> descomprimir
+default -> valor padr&atilde;o|padr&atilde;o
+depth -> escala|profundidade|nivel
+design -> projeto|desenho|engenharia|concep&ccedil;&atilde;o|desenvolvimento
+desktop -> <foreignphrase>desktop</foreignphrase>
+desktop publishing -> editora&ccedil;&atilde;o eletr&ocirc;nica
+developer -> desenvolvedor|colaborador
+device driver -> controlador de dispositivo
+dial up -> discar (se adequar-se a condicao verbal "to dial up")|discado|discagem|rede <literal>dial-up</litera
+dial-up -> discado|discagem|rede <literal>dial-up</literal>
+dialup -> discado|discagem|rede <literal>dial-up</literal>
+documentation -> documenta&ccedil;&atilde;o
+download -> baixar da internet|baixar da porta serial|baixar da rede|baixar de ...|<foreignphrase>download</foreignphrase>
+email -> e-mail|correio eletr&ocric;nico|endere&ccedil;o de correio eletr&ocric;nico
+embedded -> acoplado|embutido|<foreignphrase>embedded</foreignphrase>
+encrypt -> criptografar
+encryption -> criptografia
+engine -> ferramenta
+exemplary -> exemplar
+extra -> adicional
+feature -> funcionalidade|caracter&iacute;stica
+fetch -> obter|pegar
+filesystem -> sistema de arquivos (<foreignphrase>filesystem</foreignphrase>)
+firewall -> <foreignphrase>firewall</foreignphrase>
+flag field -> campo de sinaliza&ccedil;&atilde;o
+flavor -> variedade|sabor
+foreground process -> processo em primeiro plano
+form -> formato|formul&aacute;rio
+fs -> sistema de arquivos (<foreignphrase>filesystem</foreignphrase>)
+full featured -> completo
+gateway -> servidores de ligação|<foreignphrase>gateway</foreignphrase>|ligação
+getting started -> come&ccedil;ando a usar
+glitches -> pequenos problemas temporarios de instabilidade (<foreignphrase>glitches</foreignphrase>)
+grouping -> agrupamento
+guidelines -> considera&ccedil;&otilde;es|linhas gerais
+gziped -> comprimido com <command>gzip</command>
+hack the code -> modificar o c&oacute;digo fonte
+hand -> m&atilde;o, dar|passar|transmitir
+handbook -> &a.ptbr.p.handbook;
+handle -> cuidar|responsabilizar-se por|responsabilide de|alavanca
+hardware -> <foreignphrase>hardware</foreignphrase>|equipamento
+have -> ter|possuir
+header file -> arquivo de cabe&ccedil;alho
+home directory -> diretório <literal>home</literal>
+home page -> p&aacute;gina principal|<foreignphrase>home page</foreignphrase>
+host -> servidor
+indent -> endentar
+indentation -> endenta&ccedil;&atilde;o
+intended audiance -> p&uacute;blico alvo
+internet -> Internet
+internet relay chat -> bate-papo retransmitido via Internet (<acronym>IRC</acronym>)
+internetworking -> rede|<foreignphrase>internetworking</foreignphrase>
+introduction -> introd&ccedil;&atilde;o|apresenta&ccedil;&atilde;o
+java -> Java
+job -> servi&ccedil;o|trabalho
+keep track -> manter informa&ccedil;&atilde;o
+kernel -> <literal>kernel</literal>
+kernel-* -> de n&iacute;vel do <literal>kernel</literal>|no n&iacute;vel de <literal>kernel</literal>|modo do <literal>kernel</literal>
+keyring -> <literal>keyring</literal>
+keyword -> palavra chave
+laptop -> <foreignphrase>laptop</foreignphrase>
+latest -> mais recente
+layer -> camada
+legacy -> legado
+legally state -> representa legalmente
+link -> <foreignphrase>link</foreignphrase>|liga&ccedil;&atilde;o
+loader -> <literal>loader</literal>
+boot loader -> <literal>boot loader</literal>|carregador de <literal>boot</literal>
+load -> carga|demanda|carregar
+log -> <literal>log</literal>|registro
+mail -> e-mail|correio eletr&ocric;nico|endere&ccedil;o de correio eletr&ocric;nico
+mailing list -> lista de discuss&atilde;o
+main source -> c&oacute;digo fonte principal|fonte principal
+maintained -> [cuidado]|[zelado]|[mantido]
+maintainer -> respons&aacute;vel|<literal>maintainer</literal>
+make -> fazer
+man -> p&aacute;gina de manual
+man page -> p&aacute;gina de manual
+manual page -> p&aacute;gina de manual
+many tens of megabytes -> muitas dezenas de megabytes
+master -> prim&aacute;ria|mestre ; HDs sao mestre e escravo, controladoras IDE sao primaria e secondaria
+menu -> <foreignphrase>menu</foreignphrase>
+mirror site -> sit&iacute;o espelho
+miscellaneous stuff -> &iacute;tens variados
+multiprocessing -> multi-processamento
+name -> denomina
+neat -> interessante
+need -> precisar
+net -> rede|rede de pesca
+network -> rede
+networked -> conectado em rede
+new bus -> novo barramento|<literal>new bus</literal>
+newcomer -> novos usu&aacute;rios|novatos|rec&eacute;-chegados
+news -> not&iacute;cias|<foreignphrase>news</foreignphrase>|grupo de not&iacute;cias
+news group -> grupo de not&iacute;cias (<foreignphrase>newsgroup</foreignphrase>
+newsgroup -> grupo de not&iacute;cias (<foreignphrase>newsgroup</foreignphrase>)
+newsgroup -> grupos de not&iacute;cias (<foreignphrase>newsgroup</foreignphrase>)
+nifty -> atraente
+nutshell -> resumidamente|de modo resumido
+officer -> oficial
+online -> on-line
+open source -> c&oacute;digo aberto
+output -> sa&iacute;da|sa&iacute;da (<foreignphrase>output</foreignphrase>)
+overall -> total|completo
+override -> sobrescrever|sobrepor
+package -> pacote
+packaged -> empacotado
+packages collection -> cole&ccedil;&atilde;o de pacotes
+patch -> corre&ccedil;&atilde;o|<foreignphrase>patch</foreignphrase>
+patch releases - vers&otilde;es de corre&ccedil;&atilde;o|<foreignphrase>patch releases</foreignphrase>
+piece -> parte
+pointy-clicky -> apontar-e-clicar
+port -> <literal>port</literal>|convers&atilde;o
+port -> <literal>port</literal>|convers&atilde;o
+ports collection -> cole&ccedil;&atilde;o de <literal>ports</literal>
+pr -> relat&oacute;rio de problema|<foreignphrase>Problem Report</foreignphrase> <literal>pr</literal>
+preface -> pref&aacute;cio
+press -> pressionar
+print -> exibir|imprimir
+printing -> impress&atilde;o
+problem report -> relat&oacute;rio de problema
+procurement of substitute goods -> procurement bens substitu&iacute;veis
+productivity -> produtividade|ferramentas de produtividade (referindo-se a uma qualidade de software)
+provide -> fornecer
+pseudo-collection -> pseudocole&ccedil;&atilde;o
+pull model -> modelo puxar (<foreignphrase>pull</foreignphrase>)
+put together -> unir|juntar
+random -> aleat&oacute;rio
+read only -> leitura apenas (<foreignphrase>read-only</foreignphrase>)|somente para leitura
+receive -> receber
+refuse file -> arquivo de <literal>refuse</literal>
+release -> <literal>release</literal>|vers&atilde;o|lan&ccedil;amento|lan&ccedil;amento (<foreignphrase>release</foreignphrase>)
+release branch -> ramo de lan&ccedil;amentos (<literal>release</literal>)
+resemble - assemelha-se
+revision tag -> etiqueta de revis&atilde;o (<foreignphrase>revision tags</foreignphrase>)
+run -> executar
+running -> [usando]|[executando]|[funcionando]
+save -> gravar
+script -> <literal>script</literal>
+search -> procurar|realizar uma busca
+search the handbook -> realizar uma busca no manual
+securelevel -> <literal>securelevel</literal> (n&iacute;vel de seguran&ccedil;a do sistema)
+securelevel -> <literal>securelevel</literal> (n&iacute;vel de seguran&ccedil;a do sistema); fica em ingles pq eh 1 variavel no sistema, securelevel(8) ou init(8)
+see -> ver|olhar|veja|olhe
+server host -> servidor
+set -> atribuir|ajustar
+set up -> criar|montar
+setup -> configura&ccedil;&atilde;o
+shell -> interpretador de comandos (<foreignphrase>shell</foreignphrase>)|<foreignphrase>shell</foreignphrase>
+since -> visto que|desde
+site -> sit&iacute;o
+slave -> secund&aacute;ria|escravo ; HDs sao mestre e escravo, controladoras IDE sao primaria e secondaria
+smooth -> suave
+smoothly -> suavemente
+snapshot -> <foreignphrase>snapshot</foreignphrase>
+software -> programa|<foreignphrase>software</foreignphrase>
+source -> c&oacute;digo fonte
+source code -> c&oacute;digo fonte
+splash screen -> <literal>splash screen</literal>
+spoofed -> <foreignphrase>spoofed</foreignphrase>
+stall -> estagnar
+standards-compliant -> aderente ao padr&atilde;o|adequado a padr&otilde;es|de acordo com os padr&otilde;es
+started -> iniciado|[inicializado]
+status -> estado
+status files -> arquivos de <literal>status</literal>
+storage -> armazenamento
+stylesheet -> <foreignphrase>stylesheet</foreignphrase>|estilo|folha de rosto
+sub-collection -> subcole&ccedil;&otilde;es
+support -> suporta|cobre|apoiar|suporte
+tag -> etiqueta (<foreignphrase>tags</foreignphrase>)
+tester -> examinador|avaliador|pessoa que testa
+that -> esse, isso
+the bleeding edge ->  ponto crucial|mais recente|vers&atilde;o mais recente
+the cutting edge -> ponto crucial|mais recente|vers&atilde;o mais recente
+these -> estes
+this -> este, isto
+those -> esses
+tokenring -> <literal>tokenring</literal>
+toolkit -> conjunto de ferramentas|caixa de ferramentas
+toolset -> conjunto de ferramentas|caixa de ferramentas
+tort -> processual (pass&iacute;vel de processo)
+touch -> tocar
+trade-off -> compromisso (<foreignphrase>trade-off</foreignphrase>)|troca
+trademark -> marca registrada|marca
+tree -> &aacute;rvore de diret&oacute;rio
+tuning -> ajustando|regulando|afinando|ajuste fino
+typesetting -> tipografia
+uncompress -> descomprimir
+update -> atualizar|atualiza&ccedil;&atilde;o
+use -> utilizar|usar
+user PPP -> <acronym>PPP</acronym> em modo usu&aacute;rio|PPP no modo usu&aacute;rio
+user-* -> de n&iacute;vel do usu&aacute;rio|no n&iacute;vel de usu&aacute;rio|de modo usu&aacute;rio
+user-PPP -> <acronym>PPP</acronym> em modo usu&aacute;rio|PPP no modo usu&aacute;rio
+userland -> n&iacute;vel do usu&aacute;rio|de n&iacute;vel do usu&aacute;rio|no n&iacute;vel de usu&aacute;rio|de n&iacute;vel do usu&aacute;rio
+userland -> {a,de} n&iacute;vel de usu&aacute;rio|fora do n&uacute;cleo do sistema (<foreignphrase>kernel</foreignphrase>)
+verbosity -> verbosidade
+via -> via|atrav&ecirc;s
+web -> teia mundial de computadores|teia mundial de computadores (<acronym>WWW</acronym>)|teia|www
+web site -> s&iacute;tio www
+webmaster -> Respons&aacute;vel pelo conte&uacute;do do S&iacute;tio WWW (<foreignphrase>webmaster</foreignphrase)
+well-known -> bem conhecido
+when prompted -> quando requerido
+www -> teia mundial de computadores|teia mundial de computadores (<acronym>WWW</acronym>)|teia|www
+stdout -> <literal>stdout</literal>
+stdin -> <literal>stdin</literal>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!--
+  The FreeBSD Documentation Project
+  The FreeBSD Brazilian Portuguese Documentation Project
+
+  Original revision: r39544
+
+  $FreeBSD: trunk/docs/pt_BR.ISO8859-1/books/handbook/colophon.xml 200 2012-10-17 01:50:29Z ebrandi@fugspbr.org $
+-->
+
+<colophon id='colophon'>
+  <para>Este livro é o resultado do trabalho combinado de centenas de
+    colaboradores do <quote>Projeto de Documentação do
+    FreeBSD</quote>. O texto é escrito em XML de acordo com o DocBook
+    DTD e é formatado a partir do XML para diversos formatos de
+    apresentação utilizando o <application>Jade</application>, um
+    motor DSSSL de código aberto.  As folhas de estilo do Norm Walsh
+    são utilizadas com uma camada adicional de customização para
+    fornecer as instruções de apresentação para o
+    <application>Jade</application>.  A versão impressa deste
+    documento não seria possível sem a linguagem de composição
+    <application>&tex;</application> do Donald Knuth, sem o
+    <application>LaTeX</application> do Leslie Lamport, ou do pacote
+    de macros <application>JadeTeX</application> do Sebastian
+    Rahtz.</para>
+</colophon>

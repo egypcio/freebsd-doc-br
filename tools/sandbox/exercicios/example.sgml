@@ -1,0 +1,16 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+  <head>         
+	<title>An example HTML file</title>
+   </head>
+
+  <body>        
+    <p>This is a paragraph containing some text.</p>
+
+    <p>This paragraph contains some more text.</p>
+
+    <p align="right">This paragraph might be right-justified.</p>
+  </body>
+</html>
+

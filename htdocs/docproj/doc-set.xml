@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//FreeBSD//DTD XHTML 1.0 Transitional-Based Extension//EN"
+"http://www.FreeBSD.org/XML/doc/share/xml/xhtml10-freebsd.dtd" [
+<!ENTITY title "FreeBSD Documentation Project: Documentation Set">
+]>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+      <title>&title;</title>
+
+      <cvs:keyword xmlns:cvs="http://www.FreeBSD.org/XML/CVS">$FreeBSD: trunk/docs/pt_BR.ISO8859-1/htdocs/docproj/doc-set.xml 164 2012-10-04 20:43:02Z ebrandi@fugspbr.org $</cvs:keyword>
+    </head>
+
+    <body class="navinclude.docs">
+
+    <p>FreeBSD's documentation falls into three basic categories:</p>
+
+    <ol>
+      <li><p><a href="http://www.FreeBSD.org/cgi/man.cgi"><b>The manual pages</b></a></p>
+
+	<p>The Project does not really concern itself with these, since
+	  they are a part of the base system. The exception to this is the
+	  Japanese team, who are translating them. There is no reason other
+	  volunteers could not step in to translate the manual pages to other
+	  languages as well.</p>
+
+	<p>That is not to say that the manual pages are unimportant, far from
+	  it. It is just that they are intimately tied to specific systems of
+	  FreeBSD, and most of the time the best person to write the manual
+	  page is the person that wrote that part of FreeBSD.</p></li>
+
+      <li><p><a href="../docs/books.html"><b>The Books</b></a></p>
+
+	<p>The project has a large amount of documentation that is "book
+	  length", or becoming that way.  These include the FreeBSD FAQ and
+	  the FreeBSD Handbook.</p></li>
+
+      <li><p><a href="../docs/books.html#ARTICLES"><b>The Articles</b></a></p>
+
+	<p>FreeBSD has a wealth of information available in shorter, article
+	  form -- similar to the tutorials or HOWTO documentation of other
+	  projects.</p></li>
+    </ol>
+
+
+      <p></p><a href="docproj.html">FreeBSD Documentation Project Home</a>
+  </body>
+</html>

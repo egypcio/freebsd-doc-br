@@ -1,0 +1,1145 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!--
+  The FreeBSD Documentation Project
+  The FreeBSD Brazilian Portuguese Documentation Project
+
+  Original revision: r39576
+
+  $FreeBSD: trunk/docs/pt_BR.ISO8859-1/books/handbook/introduction/chapter.xml 387 2013-12-30 01:30:30Z egypcio $
+-->
+
+<chapter id="introduction">
+  <chapterinfo>
+    <authorgroup>
+      <author>
+	<firstname>Jim</firstname>
+	<surname>Mock</surname>
+	<contrib>Reestruturado, Reorganizado e Partes Reescritas por </contrib>
+      </author>
+    </authorgroup>
+  </chapterinfo>
+
+  <title>Introdução</title>
+
+  <sect1 id="introduction-synopsis">
+    <title>Sinopse</title>
+
+    <para>Muito obrigado pelo seu interesse no &os;! O capítulo que 
+      aqui se segue, cobre vários aspectos do Projeto &os;: 
+      história, objetivos, modelo de desenvolvimento e outros.</para>
+
+    <para>Depois de ter lido este capítulo, você saberá sobre:</para>
+
+    <itemizedlist>
+      <listitem>
+	<para>Como o &os; se relaciona com outros sistemas operacionais;</para>
+      </listitem>
+
+      <listitem>
+	<para>A história do Projeto &os;;</para>
+      </listitem>
+
+      <listitem>
+	<para>Os objetivos do Projeto &os;;</para>
+      </listitem>
+
+      <listitem>
+	<para>O básico sobre o modelo de desenvolvimento Open Source adotado pelo &os;;</para>
+      </listitem>
+
+      <listitem>
+	<para>E, é claro, de onde vem o nome <quote>&os;</quote>.</para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="nutshell">
+    <title>Bem-vindo ao &os;!</title>
+    <indexterm><primary>4.4BSD-Lite</primary></indexterm>
+
+    <para>O &os; é um sistema operacional baseado no 4.4BSD-Lite e 
+	está disponível para computadores de arquitetura &intel; 
+	(x86 ou &itanium;) AMD64 e &sun; &ultrasparc;. Versões 
+	portadas para outras arquiteturas também estão em 
+	desenvolvimento. Você pode ler um pouco mais sobre este 
+	assunto nas seções sobre a <link linkend="history">história</link> 
+	e sobre as <link linkend="relnotes">versões mais atuais</link> 
+	do &os;. Se despertar em você o interesse em contribuir de 
+	alguma forma com o projeto (programando, doando hardware 
+	ou com alguma doação financeira), consulte o artigo 
+	<ulink url="&url.articles.contributing;/index.html">Contribuindo com o &os;</ulink>.</para>
+
+    <sect2 id="os-overview">
+      <title>O Que o &os; Pode Fazer?</title>
+
+      <para>O &os; apresenta funcionalidades notáveis. Algumas 
+	destas funcionalidades são:</para>
+
+      <itemizedlist>
+	<listitem>
+	  <indexterm><primary>preemptive multitasking</primary></indexterm>
+
+	  <para><emphasis>Multitarefa Preemptiva</emphasis> com ajuste 
+	    dinâmico de prioridade para garantir o compartilhamento 
+	    justo e o mais suave possível entre aplicações ao usuário, 
+	    mesmo em situações de altíssima carga ou processamento.</para>
+	</listitem>
+
+	<listitem>
+	  <indexterm><primary>multi-user facilities</primary></indexterm>
+
+	  <para><emphasis>Ambientes Multiusuário</emphasis> permitem 
+	    que diversos usuários façam uso do &os; simultaneamente 
+	    para executar uma variedade de tarefas. Isso significa 
+	    que se existirem periféricos como uma impressora ou um 
+	    drive de fita magnética corretamente compartilhados para 
+	    todos os usuários no sistema ou na rede e seus recursos 
+	    possam ser individualmente separados (por usuário ou grupo), 
+	    será garantida a limitação do recurso utilizado por cada 
+	    usuário, protejendo-o dos demais.</para>
+	</listitem>
+	<listitem>
+	  <indexterm><primary>TCP/IP networking</primary></indexterm>
+
+	  <para>Robusta implementação da pilha <emphasis>TCP/IP</emphasis> 
+	    com suporte para diversos protocolos padronizados como 
+	    SCTP, DNS, DHCP, NFS, NIS, PPP, SLIP, IPsec e <emphasis>IPv6</emphasis>. 
+	    Isso significa que seu sistema &os; pode interoperar 
+	    tranquilamente com outros sistemas ou funcionar como um 
+	    servidor para prover serviços numa rede corporativa, 
+	    fornecendo serviços vitais como NFS (compartilhamento 
+	    remoto de arquivos) e correio eletrônico ou colocando sua 
+	    organização na Internet por meio de um sítio WWW, um servidor 
+	    FTP ou, ainda, fazendo roteamento de pacotes/dados ou 
+	    servindo como firewall (filtro) para seus serviços.</para>
+	</listitem>
+
+	<listitem>
+	  <indexterm><primary>memory protection</primary></indexterm>
+
+	  <para>A <emphasis>Proteção em Áreas de Memória</emphasis> 
+	    existente no &os; garante que aplicações (ou usuários) 
+	    não possam interfirir diretamente entre si. O mal 
+	    funcionamento de uma aplicação não afeta outra de forma 
+	    alguma.</para>
+	</listitem>
+
+	<listitem>
+	  <para>O &os; é um sistema operacional que foi escrito do 
+	    zero para funcionar em computadores com arquitetura 
+	    <emphasis>32-bit</emphasis> (&intel;) ou <emphasis>64-bit</emphasis> 
+	    (&itanium;, AMD64 e &sun; &ultrasparc;).</para>
+	</listitem>
+
+	<listitem>
+	  <indexterm>
+	    <primary>X Window System</primary>
+	  </indexterm>
+
+	  <para>O <emphasis>Ambiente Gráfico X11</emphasis> (X11R7/&xorg;) 
+	    fornece uma interface gráfica ao usuário a custo do uso 
+	    de uma placa da vídeo e um monitor.</para>
+	</listitem>
+
+	<listitem>
+	<indexterm>
+	  <primary>binary compatibility</primary>
+	  <secondary>Linux</secondary>
+	</indexterm>
+	<indexterm>
+	  <primary>binary compatibility</primary>
+	  <secondary>SCO</secondary>
+	</indexterm>
+	<indexterm>
+	  <primary>binary compatibility</primary>
+	  <secondary>SVR4</secondary>
+	</indexterm>
+	<indexterm>
+	  <primary>binary compatibility</primary>
+	  <secondary>BSD/OS</secondary>
+	</indexterm>
+	<indexterm>
+	  <primary>binary compatibility</primary>
+	  <secondary>NetBSD</secondary>
+	</indexterm>
+
+	  <para><emphasis>Compatibilidade Binária</emphasis> com 
+	    diversos softwares desenvolvidos para sistemas 
+	    &linux;, SCO, SVR4, BSDI e NetBSD.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Milhares de aplicações <emphasis>prontas para uso</emphasis>
+	    são disponibilizadas através da <emphasis>Coleção de Ports</emphasis> 
+	    e do sistema de <emphasis>Pacotes Binários</emphasis>. 
+	    Por quê procurar por uma aplicação na Internet quando você 
+	    pode encontrá-la logo aqui?</para>
+	</listitem>
+
+	<listitem>
+	  <para>Outras milhares de aplicações adicionais e 
+	    <emphasis>fáceis de portar</emphasis> estão disponíveis 
+	    na Internet. O &os; pode compreender e interpretar o 
+	    código fonte de várias aplicações desenvolvidas para 
+	    sistemas de linhagem &unix; e por este motivo muitas 
+	    aplicações necessitam de muito poucas (ou nenhuma) 
+	    alterações para que sejam compiladas.</para>
+	</listitem>
+	<listitem>
+	  <indexterm><primary>virtual memory</primary></indexterm>
+
+	  <para>Design eficiente do sistema para 
+	    <emphasis>Paginação de Memória Virtual</emphasis> e uma 
+	    integração harmonioza entre <quote>Buffer</quote> e 
+	    <quote>Cache de Máquina Virtual</quote> interna 
+	    (<literal>merged vm/buffer cache</literal>) satisfaz o 
+	    apetite voraz de aplicações por mais memória e mantém o 
+	    sistema em operação, garantindo entrega de resposta as 
+	    solicitações feitas pelos usuários.</para>
+	</listitem>
+
+	<listitem>
+	  <indexterm>
+	    <primary>Symmetric Multi-Processing (SMP)</primary>
+	  </indexterm>
+
+	  <para>Um suporte ao <emphasis>Multiprocessamento Simétrico</emphasis> 
+	    (SMP) para máquinas com multiplos processadores (CPU) 
+	    e/ou núcleos de processamento.</para>
+	</listitem>
+
+	<listitem>
+	  <indexterm>
+	    <primary>compilers</primary>
+	    <secondary>C</secondary>
+	  </indexterm>
+	  <indexterm>
+	    <primary>compilers</primary>
+	    <secondary>C++</secondary>
+	  </indexterm>
+
+	  <para>Um conjunto completo de ferramentas para 
+	    desenvolvimento utilizando <emphasis>C</emphasis> e 
+	    <emphasis>C++</emphasis>. Muitas outras linguagens para 
+	    pesquisa ou desenvolvimento também estão disponíveis 
+	    através da Coleção de Ports ou do sistema de Pacotes 
+	    Binários.</para>
+	</listitem>
+
+	<listitem>
+	  <indexterm><primary>source code</primary></indexterm>
+
+	  <para>O <emphasis>Código Fonte</emphasis> de todo o sistema 
+	    &os; está disponível para você. 
+	    Isso significa que você têm grandes chances para 
+	    conquistar o controle absoluto de seu ambiente. Por quê 
+	    estar trancafiado junto com uma solução fechada 
+	    dependendo da misericórdia do proprietário 
+	    enquanto você pode se beneficiar de um sistema 
+	    inteiramente aberto e livre?</para>
+	</listitem>
+
+	<listitem>
+	  <para>Uma extensa <emphasis>Documentação Online</emphasis>.</para>
+	</listitem>
+
+	<listitem>
+	  <para><emphasis>E muito mais!</emphasis></para>
+	</listitem>
+      </itemizedlist>
+
+      <indexterm><primary>4.4BSD-Lite</primary></indexterm>
+      <indexterm>
+	<primary>Computer Systems Research Group (CSRG)</primary>
+      </indexterm>
+      <indexterm><primary>U.C. Berkeley</primary></indexterm>
+      <para>O &os; é baseado no 4.4BSD-Lite criado pelo Grupo de 
+	Pesquisa de Sistemas Computacionais (<literal>Computer 
+	Systems Research Group - CSRG</literal>) na Universidade da 
+	Califórnia de Berkeley e carrega a tradição de um distinto 
+	esquema de desenvolvimento dos sistemas BSD de Berkeley. 
+	Além do belo trabalho realizado pelo CSRG, o Projeto &os; 
+	passou por muitas milhares de horas sofrendo ajustes a fim de 
+	melhorar sua performance e confiabilidade para funcionar em 
+	situações em que se exige muita carga do sistema. Enquanto 
+	diversos gigantes no mundo comercial de sistemas operacionais 
+	para PC estão se esforçando para prover tais funcionalidades, 
+	o &os; lhe oferece elas <emphasis>agora</emphasis>!</para>
+
+      <para>As aplicações nas quais o &os; pode ser encaixado 
+	limitam-se apenas a sua imaginação. Desde uma estação de 
+	trabalho para desenvolvimento de código até um sistema para 
+	automação industrial; de um sistema para controle de 
+	inventário até um sistema remoto de correção de azimute (ângulo) 
+	para uma antena de satélite. Se é possível de ser feito por 
+	um sistema comercial de linhagem &unix;, pode, certamente, 
+	ser feito com &os;! O &os; também se beneficia significativamente 
+	de outras aplicações desenvolvidas por centros de pesquisa e 
+	universidades ao redor do mundo, geralmente a um baixo 
+	(ou nenhum) custo. Aplicações comerciais que surgem aos montes 
+	a cada dia também podem ser executadas no &os;.</para>
+
+      <para>Pelo fato do código fonte do &os; estar disponível, o 
+	sistema pode ser customizado para uma infinidade de 
+	funcionalidades ou projetos especiais até mesmo sem que 
+	fiquemos sabendo de sua existência. De maneira geral, isso 
+	não é possível de ser feito utilizando um outro sistema 
+	operacional licenciado e vendido comercialmente. Aqui estão 
+	alguns dos exemplos de cenários onde as pessoas tem 
+	utilizado o &os; atualmente:</para>
+
+      <itemizedlist>
+	<listitem>
+	  <para><emphasis>Serviços para Internet:</emphasis> com sua 
+		robusta pilha TCP/IP, o &os; é a plataforma ideal 
+		para prover uma variedade de serviços na Internet.</para>
+
+	  <itemizedlist>
+	    <listitem>
+	      <indexterm><primary>FTP servers</primary></indexterm>
+
+	      <para>Servidores FTP (padrão ou com SSL)</para>
+	    </listitem>
+
+	    <listitem>
+	      <indexterm><primary>web servers</primary></indexterm>
+
+	      <para>Servidores WWW (padrão ou com SSL)</para>
+	    </listitem>
+
+	    <listitem>
+	      <para>Roteadores com suporte para IPv4 e IPv6</para>
+	    </listitem>
+
+	    <listitem>
+	      <indexterm><primary>firewall</primary></indexterm>
+
+	      <indexterm><primary>NAT</primary></indexterm>
+
+	      <para>Firewalls e Gateways realizando NAT 
+		(<quote>mascaramento</quote>)</para>
+	    </listitem>
+
+	    <listitem>
+	    <indexterm>
+	      <primary>electronic mail</primary>
+	      <see>email</see>
+	    </indexterm>
+	    <indexterm>
+	      <primary>email</primary>
+	    </indexterm>
+
+	      <para>Servidores de Correio Eletrônico (padrão ou com SSL)</para>
+	    </listitem>
+
+	    <listitem>
+	      <indexterm><primary>USENET</primary></indexterm>
+
+	      <para>Sistemas de quadro de avisos e 
+		notícias da USENET</para>
+	    </listitem>
+
+	    <listitem>
+	      <para>E por aí vai...</para>
+	    </listitem>
+	  </itemizedlist>
+
+	  <para>A medida que sua organização cresce, você pode 
+	    utilizar o &os; partindo de um simples e barato PC com 
+	    processador 386/&intel; e caminhar para uma máquina com 
+	    múltiplos processadores Xeon/&intel; com esquema de 
+	    armazenamento em RAID sem problema algum.</para>
+	</listitem>
+
+	<listitem>
+	  <para><emphasis>Uso Educacional:</emphasis> Você é estudante 
+	    de Ciência da Computação ou alguma área de Engenharia? 
+	    Não existe uma outra maneira que seja melhor para se 
+	    estudar sobre sistemas operacionais, arquitetura de 
+	    computadores ou redes de computadores que não seja 
+	    <quote>botando as mãos na massa</quote> com ajuda do &os; 
+	    e sendo apadrinhado pela incrível experiência que ele 
+	    lhe proporciona. Um bom número de aplicações gratuitas 
+	    também estão disponíveis para trabalhar com CAD, 
+	    operações matemáticas e design gráfico para quem se interesse 
+	    em usar um computador apenas para finalizar um outro 
+	    tipo de trabalho, seja lá qual for!</para>
+	</listitem>
+
+	<listitem>
+	  <para><emphasis>Utilização em Pesquisas:</emphasis> Com o 
+	    código fonte de todo o sistema estando disponível pra você, 
+	    o &os; se torna uma excelente escolha para pesquisas 
+	    relacionadas a sistemas operacionais e outros campos da 
+	    Ciência da Computação. A natureza do licenciamento livre em 
+	    que o &os; se enquadra possibilita à grupos de colaboradores 
+	    remotos iteragir e contribuir/compartilhar idéias sem se 
+	    preocupar com permissões especiais ligadas ao licenciamento, 
+	    termos de resposabilidade ou limitações de software 
+	    podendo, ainda, discuti-las em fórum aberto.</para>
+	</listitem>
+
+	<listitem>
+	  <indexterm><primary>router</primary></indexterm>
+
+	  <indexterm><primary>DNS Server</primary></indexterm>
+
+	  <para><emphasis>Roteamento, Servidor e Serviços de Rede:</emphasis> 
+	    Precisando de um novo roteador? Um servidor para resolução 
+	    de nomes (DNS)? Um firewall para manter acessos/tráfegos 
+	    desnecessários fora de sua rede? O &os; pode, tranquilamente, 
+	    fazer uso daquele seu antigo computador 386 (ou 486), que 
+	    caiu no esquecimento, e transformá-lo num avançado roteador 
+	    com sofisticadas capacidades de filtro de pacotes.</para>
+	</listitem>
+
+	<listitem>
+	<indexterm>
+	  <primary>X Window System</primary>
+	</indexterm>
+	<indexterm>
+	  <primary>X Window System</primary>
+	  <secondary>Accelerated-X</secondary>
+	</indexterm>
+
+	  <para><emphasis>Estação de Trabalho com Ambiente Gráfico:</emphasis> 
+	    É uma excelente escolha ter o &os; operando como sua 
+	    estação de trabalho e uma solução livre para ambiente e 
+	    servidor ou terminal X11 (&xorg;). Diferente de outros 
+	    terminais gráficos num ambiente X11, o &os; permite que 
+	    várias aplicações sejam executadas localmente se 
+	    necessário. Assim, alivia-se a necessidade de executar 
+	    todas elas num único servidor central. Além de todos 
+	    esses benefícios, o &os; ainda pode ser inicializado sem 
+	    que um disco rídigo seja utilizado, fazendo com que a 
+	    administração de um ambiente com diversas estações de trabalho 
+	    seja feita de uma maneira mais fácil e barata!</para>
+	</listitem>
+
+	<listitem>
+	  <indexterm><primary>GNU Compiler Collection</primary></indexterm>
+
+	  <para><emphasis>Desenvolvimento de Software:</emphasis> O 
+	    sistema básico que acompanha o &os; fornece um conjunto 
+	    completo de ferramentas para desenvolvimento, incluindo 
+	    célebres compiladores GNU C/C++ e utilitários para 
+	    depuração de softwares.</para>
+	</listitem>
+      </itemizedlist>
+
+      <para>O &os; é disponibilizado em formato de código fonte e 
+	    binários pré-compilados em CD, DVD ou via FTP. Por favor, 
+	    consulte o <xref linkend="mirrors"/> para mais 
+	    informações de como obter o &os;.</para>
+    </sect2>
+
+    <sect2 id="introduction-nutshell-users">
+      <title>Quem usa &os;?</title>
+
+      <indexterm>
+	<primary>users</primary>
+	<secondary>large sites running &os;</secondary>
+      </indexterm>
+
+      <para>O &os; é a plataforma escolhida para compor dispositivos 
+	e produtos de grandes companias de TI do mundo como, por 
+	exemplo:</para>
+
+      <itemizedlist>
+	<listitem>
+	  <indexterm><primary>Apple</primary></indexterm>
+	  <para><ulink url="http://www.apple.com">Apple</ulink></para>
+	</listitem>
+
+	<listitem>
+	  <indexterm><primary>Cisco</primary></indexterm>
+	  <para><ulink url="http://www.cisco.com">Cisco Systems</ulink></para>
+	</listitem>
+
+	<listitem>
+	  <para><ulink url="http://www.juniper.net">Juniper Networks</ulink></para>
+	</listitem>
+
+	<listitem>
+	  <indexterm><primary>NetApp</primary></indexterm>
+	  <para><ulink url="http://www.netapp.com">NetApp</ulink></para>
+	</listitem>
+      </itemizedlist>
+
+      <para>O &os; também é utilizado para prover serviços em alguns 
+	dos maiores sítios web na Internet. Alguns destes sítios são:</para>
+
+      <itemizedlist>
+	<listitem>
+	  <indexterm><primary>Yahoo!</primary></indexterm>
+	  <para><ulink url="http://www.yahoo.com">Yahoo!</ulink></para>
+	</listitem>
+
+	<listitem>
+	  <indexterm><primary>Yandex</primary></indexterm>
+	  <para><ulink url="http://www.yandex.ru">Yandex</ulink></para>
+	</listitem>
+
+	<listitem>
+	  <indexterm><primary>Apache</primary></indexterm>
+	  <para><ulink url="http://www.apache.org">Apache Foundation</ulink></para>
+	</listitem>
+
+	<listitem>
+	  <indexterm><primary>Rambler</primary></indexterm>
+	  <para><ulink url="http://www.rambler.ru">Rambler</ulink></para>
+	</listitem>
+
+	<listitem>
+	  <indexterm><primary>Sina</primary></indexterm>
+	  <para><ulink url="http://www.sina.com">Sina</ulink></para>
+	</listitem>
+
+	<listitem>
+	  <indexterm><primary>Pair Networks</primary></indexterm>
+
+	  <para><ulink url="http://www.pair.com">Pair Networks</ulink></para>
+	</listitem>
+
+	<listitem>
+	  <indexterm><primary>Sony Japan</primary></indexterm>
+
+	  <para><ulink url="http://www.sony.co.jp">Sony Entertainment</ulink></para>
+	</listitem>
+
+	<listitem>
+	  <indexterm><primary>Netcraft</primary></indexterm>
+
+	  <para><ulink url="http://www.netcraft.com">Netcraft</ulink></para>
+	</listitem>
+
+	<listitem>
+	  <indexterm><primary>NetEase</primary></indexterm>
+
+	  <para><ulink url="http://www.163.com">NetEase</ulink></para>
+	</listitem>
+
+	<listitem>
+	  <indexterm><primary>Weathernews</primary></indexterm>
+
+	  <para><ulink url="http://www.wni.com">Weathernews</ulink></para>
+	</listitem>
+
+	<listitem>
+	  <indexterm><primary>TELEHOUSE America</primary></indexterm>
+
+	  <para><ulink url="http://www.telehouse.com">Telehouse
+	    America</ulink></para>
+	</listitem>
+
+	<listitem>
+	  <indexterm><primary>Experts Exchange</primary></indexterm>
+
+	  <para><ulink url="http://www.experts-exchange.com">Experts
+	    Exchange</ulink></para>
+	</listitem>
+      </itemizedlist>
+
+      <para>E muitos outros!</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="history">
+    <title>Sobre o Projeto &os;</title>
+
+    <para>A seção a seguir fornece um algumas informações básicas 
+	sobre o projeto, incluindo um breve resumo sobre a história 
+	do &os;, seus objetivos e o modelo de desenvolvimento 
+	adotado pelo projeto.</para>
+
+    <sect2 id="intro-history">
+      <sect2info role="firstperson">
+	<authorgroup>
+	  <author>
+	    <firstname>Jordan</firstname>
+	    <surname>Hubbard</surname>
+	    <contrib>Uma Contribuição de </contrib>
+	  </author>
+	</authorgroup>
+      </sect2info>
+
+      <title>A História do &os; em Resumo</title>
+
+      <indexterm><primary>386BSD Patchkit</primary></indexterm>
+      <indexterm><primary>Hubbard, Jordan</primary></indexterm>
+      <indexterm><primary>Williams, Nate</primary></indexterm>
+      <indexterm><primary>Grimes, Rod</primary></indexterm>
+      <indexterm>
+	<primary>FreeBSD Project</primary>
+	<secondary>history</secondary>
+      </indexterm>
+      <para>O Projeto &os; teve seu surgimento no início do ano de 
+	1993, como consequência do desenvolvimento do 
+	<quote>Kit de Correções não Oficial do 386BSD</quote> 
+	feito pelos 3 coordenadores do projeto de correções: 
+	Nate Williams, Rod Grimes e eu (Jordan Hubbard).</para>
+
+      <indexterm><primary>386BSD</primary></indexterm>
+      <para>Nosso objetivo inicial era produzir um 
+	<emphasis>snapshot</emphasis> do 386BSD 
+	que contemplasse a correção de um certo número de problemas 
+	que não puderam ser corrigidos pelo <quote>Kit de Correções</quote>. 
+	Algumas pessoas até podem lembrar do nome inicial do projeto 
+	para criação desta <emphasis>snapshot</emphasis>: 
+	<quote>386BSD 0.5</quote> (ou <quote>386BSD Interim</quote>), 
+	que fazia referência a tal fato.</para>
+
+      <indexterm><primary>Jolitz, Bill</primary></indexterm>
+      <para>O 386BSD foi o sistema operacional de Bill Jolitz e, até 
+	aquele momento, estava a ser severamente negligenciado por 
+	cerca de um ano. Como o <quote>Kit de Correções</quote> 
+	crescia ainda mais com o passar dos dias de forma não muito 
+	confortável, nós decidimos que algo deveria ser feito e resolvemos 
+	auxiliar Bill no desenvolvimento de uma <emphasis>snapshot</emphasis> 
+	interina mais enxuta o suficiente. Esses planos foram, de 
+	maneira rude e repentina, interrompidos quando Bill Jolitz 
+	decidiu se desligar do projeto sem qualquer indicação clara 
+	do que seria feito do projeto.</para>
+
+      <indexterm><primary>Greenman, David</primary></indexterm>
+      <indexterm><primary>Walnut Creek CDROM</primary></indexterm>
+      <para>Não demorou muito tempo para que nós pudessemos perceber 
+	que o objetivo inicial daquele projeto, mesmo sem a ajuda de 
+	Bill, valia a pena. Decidimos adotá-lo e nomeá-lo de <quote>&os;</quote> 
+	(nome sugerido por David Greenman). Nossos objetivos iniciais 
+	foram definidos depois de consultar os usuários do sistema 
+	naquela época e então, uma vez definido que nosso projeto estava 
+	dando seus primeiros passos para, provavelmente, se tornar 
+	realidade, entrei em contato com a <emphasis>Walnut Creek CD-ROM</emphasis> 
+	com interesse em melhorar o esquema de como o &os; seria repassado 
+	aos usuários que não contavam com fácil acesso à Internet 
+	naquele tempo. A <emphasis>Walnut Creek</emphasis> não só 
+	aceitou nos dar suporte na distribuição do &os; em mídia de 
+	CD como também nos conseguiu uma máquina que poderiamos utilizar 
+	para trabalhar no projeto e uma rápida conexão com a Internet. 
+	Sem este apoio e o depósito de fé que nos fora dado quase sem 
+	precedentes vindos da <emphasis>Walnut Creek</emphasis>, 
+	destinados a um projeto completamente desconhecido, seria 
+	quase improvável que o &os; tivesse chegado tão longe quanto 
+	chegou e, tão rápido, ter se tornado o que se tornou nos 
+	dias de hoje.</para>
+
+      <indexterm><primary>4.3BSD-Lite</primary></indexterm>
+      <indexterm><primary>Net/2</primary></indexterm>
+      <indexterm><primary>U.C. Berkeley</primary></indexterm>
+      <indexterm><primary>386BSD</primary></indexterm>
+      <indexterm><primary>Free Software Foundation</primary></indexterm>
+      <para>O primeiro conjunto de CD-ROM (e cópia na Internet) do 
+	&os; foi de sua versão 1.0, lançada em Dezembro de 1993. 
+	Esta verão era baseada no conteúdo de uma fita magnética que 
+	continha o código do 4.3BSD-Lite (<quote>Net/2</quote>) da 
+	Universidade da Califórnia de Berkeley, junto com muitos 
+	componentes oriundos do 386BSD e da 
+	<emphasis>Free Software Foundation</emphasis>. Foi um 
+	sucesso bem razoável, logo seguido pelo lançamento da nova 
+	versão 1.1 do &os;, em Maio de 1994.</para>
+
+      <indexterm><primary>Novell</primary></indexterm>
+      <indexterm><primary>U.C. Berkeley</primary></indexterm>
+      <indexterm><primary>Net/2</primary></indexterm>
+      <indexterm><primary>AT&amp;T</primary></indexterm>
+      <para>Nesse tempo, algumas inesperadas nuvens tempestuosas se 
+	formavam no horizonte enquanto a <emphasis>Novell</emphasis> 
+	e a Universidade de Berkeley enfrentavam disputas legais nos 
+	tribunais para discutir sobre o status do sistema Net/2 
+	utilizado na universidade. A condição estabelecida na concessão 
+	desta batalha foi motivada pelo fato de que em grande parte do 
+	código do Net/2 haviam trechos de código <quote>embutidos</quote> 
+	que eram de propriedade da Novell, que os tinha adiquirido da 
+	<emphasis>AT&amp;T</emphasis> um tempo atrás. O que a 
+	Universidade de Berkeley ganhou em troca foi uma <quote>benção</quote> 
+	da Novell para que pudesse ser lançado o 4.4BSD-Lite sem que 
+	fosse considerada a utilização de códigos embutidos da Novell, 
+	encorajando os usuários do sistema Net/2 a migrarem para um 
+	outro sistema operacional. Isso incluia o &os;, destinado a 
+	não mais ser entregue com códigos oriundos do Net/2 até o fim 
+	de Julho de 1994. Até que fosse cumprido o prazo dos acordos 
+	realizados, ainda foi autorizado o lançamento de uma versão 
+	neste meio tempo, o &os; 1.1.5.1.</para>
+
+      <para>O Projeto &os;, então, concentrou-se na árdua tarefa de 
+	ser praticamente reinventado do zero podendo utilizar apenas 
+	alguns bits de código aproveitados do 4.4BSD-Lite. Esta 
+	versão, rotulada como <quote>Lite</quote>, teve trechos de 
+	código removidos pelo CSRG (por vários motivos legais); códigos, 
+	estes, que deveriam construir o sistema de inicialização para o 
+	&os;. Também existia o fato de que a versão 4.4, portada para 
+	&intel;, estava bem incompleta. Levamos até Novembro de 1994 
+	para completar toda a transição e poder lançar o &os; 2.0 na 
+	Internet e em mídias de CD (que vieram apenas em Dezembro). 
+	Mesmo tendo sido um caminho duro de se percorrer sobre as 
+	pedras, o lançamento desta versão foi um grande sucesso e foi 
+	seguido por uma outra versão ainda mais robusta e fácil de 
+	ser instalada, o &os; 2.0.5 (lançado em Junho de 1995).</para>
+
+      <para>Nós lançamos o &os; 2.1.5 em Agosto de 1996 e esta versão 
+	nos pareceu bem popular entre Provedores de Serviços da 
+	Internet e outras organizações desde a criação do ramo 
+	2.1-STABLE na árvore de desenvolvimento. O &os; 2.1.7.1, lançado 
+	em Fevereiro de 1997, marcou o fim de atualizações e novos 
+	códigos nesse ramo da árvore (RELENG_2_1_0), que sofria apenas 
+	alterações de manutenção e correções ligadas a falhas de 
+	segurança e outras falhas críticas ao sistema.</para>
+
+      <para>O &os; 2.2 foi criado a partir do ramo principal de 
+	desenvolvimento (o <quote>-CURRENT</quote>) em Novembro de 
+	1996 e criou-se a ramificação RELENG_2_2, que teve sua primeira 
+	versão lançada em Abril de 1997 (&os; 2.2.1). Demais versões 
+	foram sendo lançadas no decorrer do verão e primavera do ano 
+	de 1997 e, em Novembro de 1998, apresentamos o &os; 2.2.8 como 
+	sendo a última versão na árvore do ramo RELENG_2_2. O surgimento 
+	oficial do &os; 3.0 foi em Outubro de 1998 e viu-se o fim do 
+	desenvolvimento ativo para versões 2.2.X, do RELENG_2_2.</para>
+
+      <para>A árvore se ramificou novamente em 20 de Janeiro de 1999, 
+	dando origem aos ramos do 4.0-CURRENT e 3.X-STABLE. As versões 
+	lançadas oficialmente no ramo 3.X-STABLE foram feitas em 15 
+	de Fevereiro de 1999 (versão 3.1), 15 de Maio de 1999 (versão 3.2), 
+	16 de Setembro de 1999 (versão 3.3), 20 de Dezembro de 1999 
+	(versão 3.4) e em 24 de Junho do ano 2000 (versão 3.5, logo 
+	seguida pela 3.5.1 que incorporava correções de última hora 
+	ligadas a falhas de segurança do Kerberos). Este foi o fim do 
+	desenvolvimento no ramo 3.X.</para>
+
+      <para>Um outro ramo emergiu na árvore em 13 de Março de 2000, 
+	o 4.X-STABLE. Houveram diversas versões lançadas neste ramo, 
+	deste a 4.0-RELEASE (introduzida em Março de 2000) até a 
+	4.11-RELEASE que foi lançada em Janeiro de 2005.</para>
+
+      <para>A tão aguardada 5.0-RELEASE foi anunciada em 19 de Janeiro 
+	de 2003. Resultado de quase 3 anos de trabalho, esta versão 
+	do &os; deu início ao suporte a multiprocessamento avançado e 
+	<emphasis>threads</emphasis>, além de introduzir suporte 
+	para as plataformas &sun; &ultrasparc; e <literal>ia64</literal> 
+	(&itanium;). Essa versão, então, foi seguida pela versão 5.1 
+	(lançada em Junho de 2003). A última versão da série 5.X que 
+	fazia parte do ramo de desenvolvimento -CURRENT foi a 
+	5.2.1-RELEASE, que surgiu em Fevereiro de 2004.</para>
+
+      <para>O ramo para RELENG_5, criado em Agosto de 2004, deu 
+	seguimento para uma nova versão do &os;, a 5.3-RELEASE. O 
+	lançamento desta nova versão marcou a criação do ramo para 
+	desenvolvimento 5-STABLE. Oriundo deste ramo, apareceu, em 
+	Maio de 2006, o &os; 5.5-RELEASE. A partir deste ponto não 
+	mais seriam incorporadas versões adicionais na árvore do 
+	ramo RELENG_5.</para>
+
+      <para>A árvore sofreria uma modificação novamente em Julho de 
+	2005, para a criação do ramo RELENG_6. O &os; 6.0-RELEASE, a 
+	primeira versão da série 6.X, foi lançado em Novembro de 
+	2005. 3 anos depois, em Novembro de 2008, veio o &os; 
+	6.4-RELEASE e não mais haveriam novas versões ligadas ao ramo 
+	RELENG_6. Este seria o último dos ramos de desenvolvimento 
+	do &os; a dar suporte para computadores de arquitetura 
+	<emphasis>Alpha</emphasis>.</para>
+
+      <para>Um novo ramo então criado, o RELENG_7, surgiu na árvore 
+	de desenvolvimento em Outubro de 2007. A primeira versão 
+	lançada vinda deste ramo foi a 7.0-RELEASE (em Fevereiro de 
+	2008). A última das versões nesta série 7.X foi a 7.4-RELEASE, 
+	surgida em Fevereiro de 2011. Daí em diante, não mais seriam 
+	feitas novas versões no ramo RELENG_7.</para>
+
+      <para>Novamente a árvore sofreu modificações! Agosto de 2009 
+	foi o mês em que veio ao mundo o ramo RELENG_8. O &os; 
+	8.0-RELEASE foi a primeira versão deste ramo e foi lançado 
+	em Novembro de 2009. O &rel2.current;-RELEASE é a última 
+	das versões suportadas nesta série 8.X e foi lançado em 
+	&rel2.current.date;. A partir desta data ainda é possível 
+	que sejam lançadas novas versões no ramo RELENG_8.</para>
+
+      <para>RELENG_9 é um dos mais recentes ramos de desenvolvimento 
+	da árvode e foi criado em Setembro de 2011. A primeira 
+	versão deste ramo a aparecer foi o &rel.current;-RELEASE, 
+	lançado em &rel.current.date;. Ainda é possível 
+	que sejam lançadas novas versões no ramo RELENG_9.</para>
+
+      <para>Atualmente, o ativo desenvolvimento do &os; 
+	está focado no ramo 10.X-CURRENT (<literal>trunk</literal>) e 
+	<emphasis>snapshots</emphasis> das versões ligadas a série 
+	10.X estão disponíveis em CD-ROM e, é claro, através da 
+	Internet. Confira as imagens dessas snapshots em 
+	<ulink url="ftp://ftp.FreeBSD.org/pub/FreeBSD/snapshots">
+	ftp://ftp.FreeBSD.org/pub/FreeBSD/snapshots</ulink>.</para>
+    </sect2>
+
+    <sect2 id="goals">
+      <sect2info>
+	<authorgroup>
+	  <author>
+	    <firstname>Jordan</firstname>
+	    <surname>Hubbard</surname>
+	    <contrib>Uma Contribuição de </contrib>
+	  </author>
+	</authorgroup>
+      </sect2info>
+
+      <title>Objetivos do Projeto &os;</title>
+
+      <indexterm>
+	<primary>FreeBSD Project</primary>
+	<secondary>goals</secondary>
+      </indexterm>
+      <para>Os objetivos do Projeto &os; são prover um software que 
+	possa ser utilizado para diversos propósito e não fazer com 
+	que você se sinta amarrado em relação a suas escolhas. Muitos 
+	de nós que nos empenhamos e investimos significativamente no 
+	código (e no projeto) certamente não nos importamos em receber 
+	algum tipo de incentivo ou doações financeiras, mas não fazemos 
+	questão no recebimento de tais auxílios. Definitivamente não 
+	insistimos nisso. Acreditamos que nossa primeira e principal 
+	<quote>missão</quote> é prover código para tudo e todos, para 
+	qualquer finalidade; assim nosso código pode ser utilizado da 
+	forma mais ampla possível e trazer benefícios ainda mais amplos. 
+	Este é, acredito, um dos objetivos fundamentais do Software Livre 
+	e o motivo que apoiamos com entusiasmo.</para>
+
+      <indexterm>
+	<primary>GNU General Public License (GPL)</primary>
+      </indexterm>
+      <indexterm>
+	<primary>GNU Lesser General Public License (LGPL)</primary>
+      </indexterm>
+      <indexterm><primary>BSD Copyright</primary></indexterm>
+      <para>O código fonte em nossa árvore de desenvolvimento que 
+	está sob licença <literal>GNU General Public License (GPL)</literal> 
+	ou sob licença <literal>Library General Public License (LGPL)</literal> 
+	acompanha uma certa limitação atrelada a este tipo de código. 
+	Pelo menos é permitido um certo tipo de acesso as aplicações, 
+	ao invés de outros tipos habituais de limitação. Devido a 
+	complexidades adicionais que podem envolver o uso comercial 
+	de softwares licenciados sob uma licença GPL que está em posse 
+	do Projeto &os;, preferimos o uso de softwares apresentados e 
+	licenciados sob licença BSD quando é possível se realizar 
+	tal escolha.</para>
+    </sect2>
+
+    <sect2 id="development">
+      <sect2info>
+	<authorgroup>
+	  <author>
+	    <firstname>Satoshi</firstname>
+	    <surname>Asami</surname>
+	    <contrib>Uma Contribuição de </contrib>
+	  </author>
+	</authorgroup>
+      </sect2info>
+
+      <title>O Modelo de Desenvolvimento do &os;</title>
+
+      <indexterm>
+	<primary>FreeBSD Project</primary>
+	<secondary>development model</secondary>
+      </indexterm>
+      <para>O desenvolvimendo do &os; é um processo bem aberto e 
+	flexível, sendo, literalmente, feito por centenas de pessoas 
+	ao redor do mundo como pode ser visualizado na página com a 
+	<ulink url="&url.articles.contributors;/article.html">lista de colaboradores</ulink>. 
+	A infraestrutura de desenvolvimento do &os; permite que 
+	esses desenvolvedores possam contribuir e colaborar através 
+	da Internet. Estamos constantemente em busca de novos 
+	desenvolvedores e idéias. Para os interessados em se 
+	envolver com o projeto, é possível entrar em contato conosco 
+	através da &a.hackers;. A &a.announce; também está disponível 
+	para aqueles que desejam informar outros usuários de &os; 
+	sobre trabalhos realizados na área.</para>
+
+      <para>Alguns pontos interessantes para conhecer sobre o 
+	Projeto &os; e seu processo de desenvolvimento, seja 
+	trabalhando de forma independente ou em estreita 
+	coolaboração:</para>
+
+      <variablelist>
+	<varlistentry>
+	  <term>Repositórios<anchor id="development-cvs-repository"/> CVS e SVN</term>
+	  <listitem>
+	    <indexterm>
+	      <primary>CVS</primary>
+	      <secondary>repository</secondary>
+	    </indexterm>
+
+	    <indexterm>
+	      <primary>Concurrent Versions System</primary>
+	      <see>CVS</see>
+	    </indexterm>
+
+	    <indexterm>
+	      <primary>SVN</primary>
+	      <secondary>repository</secondary>
+	    </indexterm>
+
+	    <indexterm>
+	      <primary>Subversion</primary>
+	      <see>SVN</see>
+	    </indexterm>
+
+	    <para>Durante muito anos a principal árvore de 
+	      desenvolvimento do &os; era mantida num repositório 
+	      <ulink url="http://www.nongnu.org/cvs">CVS</ulink> 
+	      (<literal>Concurrent Versions System</literal>), ferramenta 
+	      de código aberto livremente disponível para controle 
+	      de versionamento que acompanhava o &os;. Em Junho de 
+	      2008 o projeto passou a usar 
+	      <ulink url="http://subversion.tigris.org">SVN</ulink> (Subversion). 
+	      A mudança foi realmente necessária, vistas que algumas 
+	      limitações técnicas do <application>CVS</application> se 
+	      tornaram óbvias no decorrer da rápida expansão e ramificação 
+	      da árvore de desenvolvimento (como já relatado neste 
+	      capítulo). O Projeto de Documentação do &os; e a Coleção 
+	      de Ports também passaram a utilizar 
+	      <application>SVN</application> a partir de Maio de 2012 
+	      e Julho de 2012, respectivamente.</para>
+
+	    <para>Enquanto os diretórios <filename>src/</filename> e 
+	      <filename>ports/</filename> estão a utilizar 
+	      <application>SVN</application>, ferramentas como o 
+	      <application>csup</application> (utilizadas em modo cliente) 
+	      continuam funcionando normalmente &mdash; alterações 
+	      feitas no repositório <application>SVN</application> 
+	      são migradas e replicadas para <application>CVS</application> 
+	      a fim de manter esta compatibilidade. Deferente do que 
+	      ocorre com esses diretórios, o repositório 
+	      <application>SVN</application> que contém os 
+	      arquivos de documentação não é replicado para 
+	      <application>CVS</application>.</para>
+
+	    <para>O <ulink url="http://www.FreeBSD.org/cgi/cvsweb.cgi">
+	      repositório <application>CVS</application> principal</ulink> 
+	      está num servidor localizado na cidade de Santa Clara 
+	      (Califórnia, EUA) e é espelhado para vários outros repositórios 
+	      espalhados pelo mundo. O repositório SVN, que mantém as 
+	      árvores <link linkend="current">-CURRENT</link> e 
+	      <link linkend="stable">-STABLE</link>, também reside num 
+	      servidor próprio e pode ser facilmente replicado para 
+	      diversos outros espelhos. Consulte a seção 
+	      <link linkend="synching">Sincronizando sua Árvore de Códigos Fonte</link> 
+	      para obter mais informações de como você mesmo pode 
+	      realizar um procedimento desses.</para>
+	  </listitem>
+	</varlistentry>
+
+	<varlistentry>
+	  <term>A Lista de <literal>Committers</literal><anchor
+	    id="development-committers"/></term>
+
+	  <listitem>
+	    <indexterm><primary>committers</primary></indexterm>
+
+	    <para>Os colaboradores (<firstterm>committers</firstterm>) 
+	      são pessoas que têm permissão de escriva em diversos e 
+	      diferentes ramos das  árvores do projeto e são autorizadas 
+	      a realizar modificações no código fonte do &os;. O termo 
+	      <quote>committer</quote> é oriundo do comando 
+	      <command>commit</command>, repassado ao 
+	      <application>Subversion</application> para realizar uma 
+	      alteração de conteúdo na árvore. A melhor maneira de se 
+	      enviar uma solicitação para que os colaboradores do 
+	      projeto é com auxílio do comando &man.send-pr.1;. Caso 
+	      haja alguma dificuldade que esteja a lhe impedir de 
+	      utilizar este comando, você também pode entrar em 
+	      contato com eles via e-mail através da &a.committers;.</para>
+	  </listitem>
+	</varlistentry>
+
+	<varlistentry>
+	  <term>O <literal>Core Team</literal> do Projeto &os;<anchor 
+	      id="development-core"/></term>
+
+	  <listitem>
+	    <indexterm><primary>core team</primary></indexterm>
+
+	    <para>Se o Projeto &os; fosse uma empresa, o 
+	      <firstterm>Core Team</firstterm> seria algo equivalente 
+	      ao Conselho Administrativo (Diretoria). Sua principal 
+	      tarefa é manter, como um todo, o projeto <quote>na linha</quote>. 
+	      Convidar desenvolvedores dedicados e responsáveis para 
+	      compor o time de committers é uma das funções 
+	      desempenhadas pelo Core Team, bem como recrutar 
+	      desenvolvedores caso algum outro deixe de desempenhar uma 
+	      determinada função. A cada 2 anos é feita a eleição 
+	      para formar o Core Team, que é formado por um grupo de 
+	      committers que se candidatam para compor este quadro de 
+	      colaboradores. O time atual que faz parte do Core Team 
+	      foi eleito em Julho de 2012.</para>
+
+	    <para>Alguns membros do Core Team se responsabilizam por 
+		áreas específicas no projeto, garantindo que o sistema 
+		possa operar como anunciado aos usuários e à comunidade. 
+		Para ver a lista completa de colaboradores do Projeto 
+		&os;, e suas áreas de responsabilidade, consulte a 
+		<ulink url="&url.articles.contributors;/article.html">
+		Lista de Colaboradores do Projeto</ulink>.</para>
+
+	    <note>
+	      <para>Muitos dos membros do Core Team são voluntários 
+		quando se trata de colaborar com o Projeto &os; e não 
+		são financeiramente beneficiados por exercer funções 
+		aqui já descritas. <quote>Comprometimento</quote> não 
+		deve ser confundido com <quote>garantia de suporte</quote> 
+		vindo destes ou de outros membros do projeto. O 
+		conselho administrativo, analogicamente definido 
+		aqui, pode não ser tão preciso e talvez seja mais 
+		exato dizer que ele é composto por pessoas que dedicam 
+		suas vidas em pról do Projeto &os;!</para>
+	    </note>
+	  </listitem>
+	</varlistentry>
+
+	<varlistentry>
+	  <term>Colaboradores Externos ao Projeto</term>
+
+	  <listitem>
+	    <indexterm><primary>contributors</primary></indexterm>
+
+	    <para>Por último, mas, definitivamente, não menos 
+		importante, o maior grupo de desenvolvedores é 
+		composto por usuários que dão seus próprios 
+		<literal>feedbacks</literal> e criam correções para 
+		falhas do sistema e nos enviam isso quase que 
+		regularmente. A principal maneira de acompanhar e manter 
+		contato com este modelo não centralizado de 
+		desenvolvimento adotado pelo &os; é assinar a &a.hackers;, 
+		onde usuários, colaboradores e voluntários estão 
+		lá discutindo esse assunto. Consulte o 
+		<xref linkend="eresources"/> para obter mais 
+		informações sobre outras listas de discussão 
+		ligadas ao &os;</para>
+
+	    <para>A <citetitle><ulink
+		url="&url.articles.contributors;/article.html">Lista 
+		de Colaboradores do &os;</ulink></citetitle> está em 
+		crescimento constante, então, por quê não fazer parte 
+		dela e contribuir com algo em troca para beneficiar 
+		o &os; hoje?</para>
+
+	    <para>Fornecer código não é a única maneira de colaborar 
+		com o projeto; para uma lista mais completa com as 
+		necessidades que precisam ser preenchidas, por favor 
+		visite o <ulink url="&url.base;/index.html">
+		Sítio Web do Projeto &os;</ulink>.</para>
+	  </listitem>
+	</varlistentry>
+      </variablelist>
+
+      <para>Em resumo, nosso modelo de desenvolvimento é organizado 
+	como <quote>um conjunto de círculos concêntricos</quote>. 
+	Um modelo centralizado é designado para conveniência dos 
+	<emphasis>usuários do &os;</emphasis> que se interessem 
+	numa maneira fácil de localizar uma base de código central, 
+	não para manter contribuidores em potencial fora! Nosso 
+	desejo é de poder sempre apresentar um sistema operacional 
+	estável com o maior <link linkend="ports">conjuto de aplicações</link> 
+	possíveis de serem facilmente instaladas &mdash; este modelo 
+	vem se mostrado muito bom e vem cumprindo todas as 
+	necessidades.</para>
+
+      <para>Tudo que pedimos às pessoas que desejam fazer parte do 
+	grupo de desenvolvedores do &os; é que elas tenham a mesma 
+	dedicação que vemos nas pessoas que atualmente 
+	já contribuem para seu crescente sucesso!</para>
+    </sect2>
+
+    <sect2 id="relnotes">
+      <title>Versões Atuais do &os;</title>
+
+      <indexterm><primary>NetBSD</primary></indexterm>
+      <indexterm><primary>OpenBSD</primary></indexterm>
+      <indexterm><primary>386BSD</primary></indexterm>
+      <indexterm><primary>Free Software Foundation</primary></indexterm>
+      <indexterm><primary>U.C. Berkeley</primary></indexterm>
+      <indexterm>
+	<primary>Computer Systems Research Group (CSRG)</primary>
+      </indexterm>
+      <para>O &os; está disponível de maneira livre. É uma versão 
+	completa do sistema 4.4BSD-Lite lançado para arquiteturas 
+	&intel; &i386;, &i486;, &celeron;, &pentium;, 
+	&pentium; Pro, &pentium; II, &pentium; III, 
+	&pentium; 4 (ou compatível), &xeon; e &sun; &ultrasparc;. 
+	Baseado principalmente no software desenvolvido pelo CSRG 
+	da Universidade de Berkeley, com algumas melhorias vindas do 
+	386BSD, NetBSD, OpenBSD e da Free Software Foundation.</para>
+
+      <para>Desde o lançamento do &os; 2.0, em 1994, o desempenho, 
+	o conjunto de funcionalidades e a estabilidade do &os; 
+	tem melhorado drasticamente. 
+	<!-- XXX is the rest of this paragraph still true ? -->
+	A última grande mudança foi a reformulação no sistema de 
+	gerenciamento de memória virtual, incorporado a um esquema 
+	de cache de buffer, que não apenas aumentou a performance mas 
+	também reduziu o consumo de memória do &os;, fazendo sua 
+	instalação mínima ainda mais aceitável. Outras melhorias 
+	incluem suporte completo para NIS (cliente e servidor), melhor 
+	suporte para transações TCP, discagem PPP sob demanda, suporte 
+	integrado a DHCP, aperfeiçoamento de suporte interno a SCSI, 
+	suporte para ISDN, ATM e FDDI, melhor suporte a adaptadores 
+	Fast e Gigabit Ethernet, melhorias no suporte para as últimas 
+	controladoras Adaptec e muitas centenas de correções de falhas.</para>
+
+      <para>Além da distribuição do sistema base, o &os; oferece uma 
+	coleção com milhares de softwares portados que contém diversas 
+	aplicações comumente procuradas/desejadas pela comunidade. 
+	Até o presente momento desta publicação já são &os.numports;! 
+	A lista destas aplicações portadas vai desde servidores http 
+	(WWW), à jogos, linguagens de programação, editores de texto 
+	e praticamente tudo que se encaixe neste meio. A Coleção de 
+	Ports consome cerca de &ports.size; em espaço em disco, estando 
+	os ports expressos em <quote>deltas</quote> de seus arquivos 
+	de código fonte originais. Isso faz com que seja mais fácil 
+	para nós de atualizar algum port e reduz drásticamente o espaço 
+	em disco que era necessário durante os tempos da versão 1.0 da 
+	Coleção de Ports. Para se compilar um port, você simplesmente 
+	entra no diretório do programa que pretende instalar, digita 
+	<command>make install</command> e deixa o sistema fazer todo 
+	o resto por você. A obtenção de todos os fontes de ports que 
+	você compila é feita dinamicamente através de CD-ROM ou de um 
+	sítio FTP, então tudo que você vai precisar para concluir a 
+	compilação e instalação dos ports que você quiser é de espaço 
+	em disco. Quase todos os ports também são fornecidos em formato 
+	de <quote>pacote</quote> binário pré-compilado, que pode ser 
+	instalado com um simples comando (<command>pkg_add</command>) 
+	pelos que não desejam compilar ports a pasrtir do código fonte. 
+	Mais informações sobre pacotes e ports você pode obter no 
+	<xref linkend="ports"/>.</para>
+
+      <para>Todas as versões mais recentes do &os; fornecem, através 
+	de seu instalador (seja o &man.sysinstall.8; ou o &man.bsdinstall.8;), 
+	a opção de adicionar uma documentação adicional em 
+	<filename class="directory">/usr/local/share/doc/freebsd</filename> 
+	durante o procedimento de configuração inicial do sistema. 
+	Esta documentação também pode ser instalada a qualquer momento 
+	como descrito na <xref linkend="doc-ports-install-package"/>. 
+	É possível que você consulte esta documentação com ajuda de 
+	quaisquer navegadores que interpretem HTML depois que sejam 
+	instalados os pacotes necessários. Para ver a documentação 
+	instalada, localmente, em sua máquina, acesse:</para>
+
+      <variablelist>
+	<varlistentry>
+	  <term>O Handbook do &os;</term>
+
+	  <listitem>
+	    <para><ulink type="html"
+		url="file://localhost/usr/local/share/doc/freebsd/handbook/index.html"><filename>/usr/local/share/doc/freebsd/handbook/index.html</filename></ulink></para>
+	  </listitem>
+	</varlistentry>
+
+	<varlistentry>
+	  <term>&os; FAQ</term>
+
+	  <listitem>
+	    <para><ulink type="html"
+		url="file://localhost/usr/local/share/doc/freebsd/faq/index.html"><filename>/usr/local/share/doc/freebsd/faq/index.html</filename></ulink></para>
+	  </listitem>
+	</varlistentry>
+      </variablelist>
+
+      <para>Você também pode consultar a cópia original (frequentemente 
+	atualizada) em <ulink url="http://www.FreeBSD.org"></ulink>.</para>
+    </sect2>
+  </sect1>
+</chapter>

@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!--
+  The FreeBSD Documentation Project
+  The FreeBSD Brazilian Portuguese Documentation Project
+
+  Original revision: r39544
+
+  $FreeBSD: trunk/docs/pt_BR.ISO8859-1/books/handbook/audit/chapter.xml 386 2013-12-29 14:52:04Z egypcio $
+-->
+
+<!-- Need more documentation on praudit, auditreduce, etc.  Plus more info
+on the triggers from the kernel (log rotation, out of space, etc).
+And the /dev/audit special file if we choose to support that.  Could use
+some coverage of integrating MAC with Event auditing and perhaps discussion
+on how some companies or organizations handle auditing and auditing
+requirements. -->
+
+<chapter id="audit">
+  <chapterinfo>
+    <authorgroup>
+      <author>
+	<firstname>Tom</firstname>
+	<surname>Rhodes</surname>
+	<contrib>Uma Contribuição de </contrib>
+      </author>
+      <author>
+	<firstname>Robert</firstname>
+	<surname>Watson</surname>
+      </author>
+    </authorgroup>
+  </chapterinfo>
+
+  <title>Auditoria de Eventos e Segurança</title>
+
+  <sect1 id="audit-synopsis">
+    <title>Sinopse</title>
+
+    <indexterm><primary>AUDIT</primary></indexterm>
+    <indexterm>
+      <primary>Auditoria de Eventos e Segurança</primary>
+      <see>MAC</see>
+    </indexterm>
+
+    <para>O sistema operacional &os; inclui suporte à ajuste fino nos 
+      eventos de segurança e auditoria. Eventos de auditoria permitem 
+      ajuste fino, confiável e configurável de registro de uma variedade 
+      de eventos do sistema relevantes à segurança, incluindo logins, 
+      alterações de configuração e arquivos, bem como acesso a rede.
+      Estes registros de log podem ser inestimáveis aos sistemas de 
+      monitoramento online, de detecção de intrusão e análises de postmortem.
+      &os; implementa a API e formato de arquivo <acronym>BSM</acronym> 
+      publicados pela &sun; e é interoperável com ambas implementações
+      de auditoria X dos sistemas &solaris; da &sun; e &macos; da &apple;.</para>
+
+    <para>Este capítulo foca na instalação e configuração dos Eventos de Auditoria, explica sobre as suas politicas e fornece exemplos de configuração.</para>
+
+    <para>Após ler este capítulo você irá saber:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>O que é e como a auditoria de eventos funciona.</para>
+      </listitem>
+
+      <listitem>
+	<para>Como configurar Eventos de Auditoria para usuários e processos no &os;.</para>
+      </listitem>
+
+      <listitem>
+	<para>Como revisar os rastros de auditoria utilizando as ferramentas de redução e revisão.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Antes de ler este capítulo você deveria:</para>
+
+    <itemizedlist>
+      <listitem>
+	<para>Entender o básico de &unix; e &os;
+	  (<xref linkend="basics"/>).</para>
+      </listitem>
+
+      <listitem>
+	<para>Estar familiarizado com o básico sobre configuração/compilação (<xref linkend="kernelconfig"/>) de kernel.</para>
+      </listitem>
+
+      <listitem>
+	<para>Ter alguma familiaridade com segurança e o seu funcionamento no &os; (<xref linkend="security"/>).</para>
+      </listitem>
+    </itemizedlist>
+
+    <warning>
+      <para>O serviço de auditoria tem algumas limitações conhecidas
+	  tal qual nem todos os eventos relevantes de segurança podem ser
+	  auditaveis, alguns mecanismos de autenticação como os baseados no
+	  gerenciamento de telas x11 e outros daemons de terceiros não 
+	  configuram propriamente o serviço de auditoria nas seções de 
+	  autenticação dos usuários.</para>
+
+      <para>Os eventos de auditoria e segurança são capazes de gerar logs 
+	  detalhados das atividades do sistema: em um sistema movimentado dados 
+	  referentes ao rastreio de um arquivo podem se tornar muito grandes quando 
+	  configurados com muitos detalhes excedendo gigabytes em uma semana em 
+	  algumas configurações. Administradores devem considerar os requerimentos 
+	  de espaço em disco associados ao alto volume de dados gerados devido ao 
+	  tipo de configuração de auditoria. Por exemplo, é desejável que se dedique
+	  um file system à arvore <filename>/var/audit</filename>, dessa
+	  maneira outros file systems não são afetados caso o file system de 
+	  auditoria fique cheio.</para>
+    </warning>
+
+  </sect1>
+
+  <sect1 id="audit-inline-glossary">
+    <title>Termos-Chave do Capítulo</title>
+
+    <para>Antes de ler este capítulo alguns termos chave relacionados a 
+      auditoria precisam ser explicados:</para>
+
+    <itemizedlist>
+      <listitem>
+	<para><emphasis>evento</emphasis> (<literal>event</literal>): 
+    Um evento auditavel é qualquer evento que possa ser logado 
+    utilizando o subsistema de auditoria. Exemplos relevantes de 
+    eventos de segurança incluem a criação de um arquivo, criar 
+    uma conexão de rede ou o login de um usuário. Eventos podem ser 
+    <quote>atribuíveis</quote>, o que significa poder ser rastreado 
+    a um usuário autenticado ou <quote>não atribuíveis</quote> 
+    significando que não podem. Exemplos de eventos não atribuíveis 
+    são aqueles que ocorrem antes da autenticação no processo de 
+    login, tal qual tentativas inválidas de senha.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis>classe</emphasis> (<literal>class</literal>): 
+    Classes de evento são 
+    conjuntos de nomes de eventos relacionados e são utilizados 
+    nas expressões de seleção.
+    Classes de evento geralmente utilizadas são <quote>file creation</quote>
+    (fc), <quote>exec</quote> (ex) e <quote>login_logout</quote> (lo).</para>
+      </listitem>
+
+      <listitem>
+	<para><emphasis>registro</emphasis> (<literal>record</literal>): Um registro é uma entrada no 
+    no log de auditoria descrevendo um evento de segurança. Registros
+    contém um campo do tipo de evento, informação do assunto (usuário)
+    ocasionando a ação, informação de data e hora, informação de 
+    qualquer objeto ou argumentos e uma condição de sucesso ou falha.</para>
+      </listitem>
+
+      <listitem>
+	<para><emphasis>rastro</emphasis> (<literal>trail</literal>): 
+    Um rastro de auditoria ou 
+    arquivo de log consiste em uma série de registros de auditoria
+    descrevendo eventos de segurança. Normalmente os rastros estão em
+    ordem cronológica respeitando o horário dos eventos completos.
+    Somente processos autorizados são autorizados a realizar 
+    registro nos rastros de auditoria.</para>
+      </listitem>
+
+      <listitem>
+	<para><emphasis>expressões de seleção</emphasis> 
+    (<literal>selection expression</literal>): 
+    Uma expressão de 
+    seleção é uma string contendo uma lista de prefixos e nomes de classes 
+    de evento de auditoria utilizados para combinar eventos.</para>
+      </listitem>
+
+      <listitem>
+	<para><emphasis>pré-seleção</emphasis> (<literal>preselection</literal>): 
+    Processo pelo qual o sistema
+    identifica quais eventos são de interesse do administrador afim de 
+    evitar gerar registros de auditoria descrevendo eventos que não são 
+    de seu interesse. A configuração de pré-seleção utiliza uma série
+    de expressões de seleção para identificar quais classes de eventos 
+    auditar para quais usuários, bem como as configurações globais que
+    se aplicam tanto aos processos autenticados quanto aos não 
+    autenticados.</para>
+      </listitem>
+
+      <listitem>
+	<para><emphasis>redução</emphasis> (<literal>reduction</literal>): 
+    Processo o qual registros dos 
+    rastros de auditoria existentes são selecionados à serem preservados, 
+    impressos ou analisados. Bem como o processo pelo qual registros
+    indesejados de auditoria são removidos dos rastros de auditoria.
+    Utilizando redução os administradores podem implementar politicas 
+    para preservar os dados de auditoria. Por exemplo, rastros detalhados
+    de auditoria poderiam ser mantidos por um mês, porém, após isso os 
+    rastros poderiam ser reduzidos afim de preservar somente as informações 
+    de login para propósito de arquivo .</para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="audit-install">
+    <title>Instalando Suporte de Auditoria</title>
+
+    <para>User space support for Event Auditing is installed as part of the
+      base &os; operating system.  Kernel support for
+      Event Auditing is compiled in by default, but support for this
+      feature must be explicitly compiled into the custom kernel by adding
+      the following line to the kernel configuration file:</para>
+
+    <programlisting>options	AUDIT</programlisting>
+
+    <para>Rebuild and reinstall
+      the kernel via the normal process explained in
+      <xref linkend="kernelconfig"/>.</para>
+
+    <para>Once an audit-enabled kernel is built, installed, and the system
+      has been rebooted, enable the audit daemon by adding the following line
+      to &man.rc.conf.5;:</para>
+
+    <programlisting>auditd_enable="YES"</programlisting>
+
+    <para>O suporte de Auditoria deve ser iniciado pela reinicialização do
+      sistema ou manualmente iniciando o daemon de auditoria:</para>
+
+    <programlisting>/etc/rc.d/auditd start</programlisting>
+  </sect1>
+
+  <sect1 id="audit-config">
+    <title>Configuração de Auditoria</title>
+
+    <para>Todos os arquivos de configuração para auditoria de segurança são
+      encontrados em <filename class="directory">/etc/security</filename>.
+      Os seguintes arquivos precisam estar presentes antes que o daemon de 
+      auditoria seja iniciado:</para>
+
+    <itemizedlist>
+      <listitem>
+	<para><filename>audit_class</filename> - Contem as definições
+	  das classes de auditoria.</para>
+      </listitem>
+
+      <listitem>
+	<para><filename>audit_control</filename> - Controla os aspectos
+	  do subsistema de auditoria, como as classes padrão,
+    quantidade minima de espaço em disco para se deixar no
+    volume de log de auditoria, quantidade maxima do 
+    tamanho dos rastros de auditoria, etc.</para>
+      </listitem>
+
+      <listitem>
+	<para><filename>audit_event</filename> - Nomes textuais e 
+	  descrições dos eventos de auditoria, bem como a lista de
+    qual classe cada evento faz parte.</para>
+      </listitem>
+
+      <listitem>
+	<para><filename>audit_user</filename> - Requerimentos de
+    auditoria especificos de usuÃ¡rio que são combinados com o
+    padrão global no momento de login.</para>
+      </listitem>
+
+      <listitem>
+	<para><filename>audit_warn</filename> - Um shell script
+    customizado utilizado por <application>auditd</application> para
+    gerar mensagens de alerta em situações excepcionais, tais como
+    quando o espaço para armazenar os registros de auditoria estiver baixo
+    ou quando o arquivo de rastros de auditoria for rotacionado.</para>
+      </listitem>
+    </itemizedlist>
+
+    <warning>
+      <para>Os arquivos de configuração de auditoria devem ser editados e 
+  mantidos cuidadosamente, ja que erros de configuração podem resultar no
+  registro impróprio dos eventos.</para>
+    </warning>
+
+    <sect2>
+      <title>Expressões de Seleção de Eventos</title>
+
+      <para>Expressões de Seleção são utilizadas em diversos lugares 
+	na configuração de auditoria para determinar quais eventos 
+	devem serauditados. As expressões contém uma lista de classes 
+	de eventos a serem atendidos, cada um com um prefixo que 
+	indica se os registros correspondentes devem ser aceitos ou 
+	ignoradas e, opcionalmente, indicam se estes registros 
+	consideram operações bem sucedidas ou operações que apresentaram 
+	alguma falha. Expressões de Seleção são avaliadas da esquerda 
+	para a direita. Duas expressões são combinadas anexando-se 
+	uma a outra.</para>
+
+      <para>A seguinte lista contém as classes de evento de auditoria 
+	padrão presentes em <filename>audit_class</filename>:</para>
+
+      <itemizedlist>
+	<listitem>
+	  <para><literal>all</literal> - <emphasis>all</emphasis> - 
+	    Corresponde a todas as classes.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>ad</literal> - <emphasis>administrative</emphasis> - 
+	    Ações administrativas realizadas no sistema como um todo.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>ap</literal> - <emphasis>application</emphasis> -
+	    Application defined action.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>cl</literal> - <emphasis>file close</emphasis> -
+	    Audita chamadas de sistema <literal>(syscalls)</literal> 
+	    da função <function>close</function>.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>ex</literal> - <emphasis>exec</emphasis> - 
+	    Audita execução de programas.  Auditorias de argumentos 
+	    repassados em linha de comando e variaveis de ambiente 
+	    são controladas via &man.audit.control.5; com auxílio 
+	    das políticas de <literal>argv</literal> e <literal>envv</literal>
+	    repassadas para a configuração de <literal>policy</literal>.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>fa</literal> - <emphasis>file attribute access</emphasis> - 
+	    Audita o acesso a atributos de objetos como 
+	    &man.stat.1;, &man.pathconf.2; e eventos similares.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>fc</literal> - <emphasis>file create</emphasis> - 
+	    Audita eventos que resultaram na criação de um arquivo.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>fd</literal> - <emphasis>file delete</emphasis> - 
+	    Audita eventos que resultaram na deleção de um arquivo.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>fm</literal> - <emphasis>file attribute modify</emphasis> - 
+	    Audita eventos onde houve modificação de atributos/permissões de 
+	    arquivos através de &man.chown.8;, &man.chflags.1;, &man.flock.2;,
+	    etc.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>fr</literal> - <emphasis>file read</emphasis> - 
+	    Audita eventos onde houve acesso de abertura a dados/arquivos, leitura 
+	    de arquivos, etc.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>fw</literal> - <emphasis>file write</emphasis> -
+	    Audita eventos onde houve escrita ou modificação de dados/arquivos e etc.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>io</literal> - <emphasis>ioctl</emphasis> - 
+	    Audita uso da chamada de sistema (<literal>syscall</literal>) &man.ioctl.2;.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>ip</literal> - <emphasis>ipc</emphasis> - 
+	    Audita várias formas de Comunicação Inter-Processos, incluindo pipes POSIX
+	    e operações <acronym>IPC</acronym> em System V.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>lo</literal> - <emphasis>login_logout</emphasis> -
+	    Audita eventos onde ocorra uso de &man.login.1; e &man.logout.1; no sistema.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>na</literal> - <emphasis>non attributable</emphasis> -
+	    Audita eventos não atribuíveis.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>no</literal> - <emphasis>invalid class</emphasis> -
+	    Não corresponde a evento de auditoria algum.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>nt</literal> - <emphasis>network</emphasis> -
+	    Audita eventos relacionados a atividades de rede, tais 
+	    como as chamadas de sistema (<literal>syscalls</literal>) 
+	    &man.connect.2; e &man.accept.2;.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>ot</literal> - <emphasis>other</emphasis> -
+	    Audita eventos diversos.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>pc</literal> - <emphasis>process</emphasis> -
+	    Audita operações ligadas a processos, tais como &man.exec.3; a
+	    &man.exit.3;.</para>
+	</listitem>
+
+      </itemizedlist>
+
+      <para>Estes eventos de auditoria podem ser customizados se 
+	você modificar as configurações nos arquivos 
+	<filename>audit_class</filename> e <filename>audit_event</filename>.</para>
+
+      <para>Cada classe de auditoria nesta lista é combinada com um 
+	prefixo indicando onde uma operação (bem ou mal sucedida) 
+	deve ser considerada e se um novo registro é adicionado ou 
+	removido para determinada classe e tipo.</para>
+
+      <itemizedlist>
+	<listitem>
+	  <para><literal>(none)</literal> Audita ambos os casos de 
+	    um evento; bem sucedidos e mal sucedidos.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>+</literal> Audita eventos bem sucedidos.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>-</literal> Audita eventos mal sucedidos.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>^</literal> Não audita evento algum.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>^+</literal> Não audita eventos bem sucedidos.</para>
+	</listitem>
+
+	<listitem>
+	  <para><literal>^-</literal> Não audita eventos mal sucedidos.</para>
+	</listitem>
+
+      </itemizedlist>
+
+      <para>O exemplo a seguir seleciona tanto sucesso como falhas 
+	dos eventos de login/logout, mas apenas eventos bem sucedidos 
+	de execuções de programas:</para>
+
+      <programlisting>lo,+ex</programlisting>
+
+    </sect2>
+
+    <sect2>
+      <title>Arquivos de Configuração</title>
+
+      <para>Na maioria dos casos envolvendo auditoria, administradores 
+	terão de modificar apenas dois arquivos ao configurar o sistema 
+	de auditoria: <filename>audit_control</filename> e 
+	<filename>audit_user</filename>. O primeiro controla todas as 
+	propriedades e políticas de auditoria do sistema, o segundo 
+	pode ser usado para realizar ajustes finos de auditoria por 
+	usuário.</para>
+
+      <sect3 id="audit-auditcontrol">
+        <title>O Arquivo <filename>audit_control</filename></title>
+
+	<para>O arquivo <filename>audit_control</filename> especifica 
+	  uma gama de padrões a serem utilizados pelo sistema de 
+	  auditoria. Caso você se interesse em verificar o conteúdo 
+	  do arquivo, ele deve se semelhante ao seguinte:</para>
+
+	<programlisting>dir:/var/audit
+flags:lo
+minfree:20
+naflags:lo
+policy:cnt
+filesz:0</programlisting>
+
+	<para>A opção <option>dir</option> é utilizada para especificar 
+	  em qual(is) diretório(os) os logs de auditoria serão 
+	  armazenados. Caso mais de um diretório seja especificado, 
+	  eles serão utilizados em ordem e na medida que forem 
+	  sendo preenchidos; de acordo com o uso do particionamento 
+	  onde esteja montado. É comum configurar o sistema de 
+	  auditoria para utilizar uma partição dedicada. Assim, 
+	  previne-se que outras partições sejam afetadas e seus 
+	  sistemas de arquivos não fiquem cheios.</para>
+
+	<para>A opção <option>flags</option> define uma máscara de 
+	  pré-seleção padrão de todo o sistema de eventos. No 
+	  exemplo acima, eventos de login/logout bem e mal sucedidos 
+	  são auditados para todos os usuários.</para>
+
+	<para>A opção <option>minfree</option> define o percentual 
+	  mínimo de espaço livre para o sistema de arquivos onde 
+	  rastros de auditoria serão armazenados. Quando este limiar 
+	  é excedido, um aviso será gerado. O exemplo acima define 
+	  o espaço livre mínimo de vinte por cento.</para>
+
+	<para>A opção <option>naflags</option> especifica classes de 
+	  auditoria a serem auditadas por eventos não 
+	  atribuídos/especificados, tais como o processo de login e 
+	  daemons do sistema.</para>
+
+	<para>A opção <option>policy</option> especifica uma lista 
+	  de flags que controlam vários aspectos do comportamento 
+	  de auditoria. Essas flags são separadas por vírgulas. O 
+	  padrão, <literal>cnt</literal>, indica que o sistema 
+	  deve continuar funcionando apesar de uma falha de 
+	  auditoria (uma configuração altamente recomendada). 
+	  Outra flag comumente utilizada é a <literal>argv</literal>, 
+	  que faz com que argumentos de linha de comando 
+	  passados para a chamada de sistema (<literal>syscall</literal>) 
+	  &man.execve.2; sejam auditados como parte da execução 
+	  do comando.</para>
+
+	<para>A opção <option>filesz</option> especifica o tamanho 
+	  máximo (em bytes) que um arquivo de rastros/logs de 
+	  auditoria pode ter antes que haja um rotacionamento 
+	  automático. O padrão, 0 (zero), desativa a rotação 
+	  automática. Se o tamanho do arquivo solicitado é diferente 
+	  de zero e estiver abaixo da 512k, ele será ignorado e 
+	  uma mensagem de log será gerada.</para>
+      </sect3>
+
+      <sect3 id="audit-audituser">
+	<title>O Arquivo <filename>audit_user</filename></title>
+
+	<para>As configurações neste arquivo permitem ao administrador 
+	  especificar requisitos adicionais de auditoria para usuários 
+	  específicos. Cada linha  configura a auditoria para um 
+	  usuário através de dois campos: o primeiro é o campo 
+	  <literal>alwaysaudit</literal>, que especifica um conjunto 
+	  de eventos que devem sempre ser auditados para o usuário e 
+	  o segundo é o <literal>neveraudit</literal>, que especifica 
+	  um conjunto de eventos que nunca devem ser auditados para 
+	  o usuário.</para>
+
+	<para>O exemplo do arquivo <filename>audit_user</filename> a 
+	  seguir auditaria eventos de login/logout e execução de 
+	  comandos bem sucedidos executados pelo usuário 
+	  <username>root</username> e auditaria criação de arquivos 
+	  e comandos bem sucedidos executados pelo usuário 
+	  <username>www</username>. Se usado junto com o exemplo 
+	  dado para o arquivo <filename>audit_control</filename> 
+	  acima, a entrada <literal>lo</literal> especificada 
+	  para o usuário <username>root</username> seria uma entrada 
+	  redundante e os eventos de login/logout também seriam 
+	  registrados para o usuário <username>www</username>.</para>
+
+	<programlisting>root:lo,+ex:no
+www:fc,+ex:no</programlisting>
+
+      </sect3>
+    </sect2>
+  </sect1>
+
+  <sect1 id="audit-administration">
+    <title>Administrando o Sistema de Auditoria</title>
+
+    <sect2>
+      <title>Consultando Rastros de Auditoria</title>
+
+      <para>Os rastros (<literal>trails</literal>) de auditoria são 
+	armazenados no formato binário BSM, por isso ferramentas 
+	adicionais devem ser utilizadas para modificar ou converter 
+	para um arquivo de texto. O comando &man.praudit.1; pode 
+	converter estes arquivos para um formato de texto plano. O 
+	comando &man.auditreduce.1; pode ser usado para reduzir o 
+	arquivo de rastros para uma futura análise, para arquivamento 
+	(backup), ou para fins impressão. O <command>auditreduce</command> 
+	suporta uma variedade parâmetros, incluindo tipo de evento, 
+	classe de evento, usuário, data e hora do evento, e o 
+	caminho do arquivo ou objeto a ser processado.</para>
+
+      <para>Por exemplo, aqui o <command>praudit</command> irá 
+	descarregar todo o conteúdo em de um rastro/log de auditoria 
+	em texto plano:</para>
+
+      <screen>&prompt.root; <userinput>praudit /var/audit/ARQUIVO</userinput></screen>
+
+      <para>Aqui, <filename><replaceable>ARQUIVO</replaceable></filename> 
+	é o nome do arquivo gerado pelo sistema de auditoria a ser 
+	descarregado.</para>
+
+      <para>Rastros de auditoria consistem em uma série de registros de 
+	auditoria compostos de tokens, que o <command>praudit</command> 
+	exibe de forma sequencial; um por linha. Cada token é de um 
+	tipo específico. O <literal>header</literal> consiste num registro 
+	de cabeçalho da auditoria, o token representado como 
+	<literal>path</literal> indica o caminho de um arquivo ou 
+	comando obtido a partir de uma consulta realizada usando o nome 
+	do arquivo/comando. O exemplo a seguir demonstra um 
+	evento <literal>execve</literal>:</para>
+
+      <programlisting>header,133,10,execve(2),0,Mon Sep 25 15:58:03 2006, + 384 msec
+exec arg,finger,doug
+path,/usr/bin/finger
+attribute,555,root,wheel,90,24918,104944
+subject,robert,root,wheel,root,wheel,38439,38032,42086,128.232.9.100
+return,success,0
+trailer,133</programlisting>
+
+      <para>Essa auditoria representa uma execução bem sucedida 
+	feita na chamada de <literal>execve</literal> realizada pelo 
+	comando <literal>finger doug</literal>. O token de 
+	argumentos contém a linha de comando processada e apresentada pelo 
+	shell ao kernel. O token <literal>path</literal> indica o caminho 
+	para o executável localizado pelo kernel. O token <literal>attribute</literal> 
+	descreve o binário e, em particular, inclui os modos e permissões 
+	do arquivo de um jeito que pode-se saber se foi feita uma 
+	chamada setuid. O token <literal>subject</literal> descreve o 
+	assunto do processo e armazena, em sequência, o ID do usuário 
+	que realizou a auditoria, o ID do usuário efetivo 
+	(que executou o comando) e seu respectivo grupo, o ID do usuário 
+	real e grupo respectivo, ID do processo, ID da seção, ID da 
+	porta e endereço de login. Observe que o ID do usuário de 
+	auditoria e o ID do usuário real ID são diferentes: o usuário 
+	<username>robert</username> mudou para <username>root</username>, 
+	mas foi auditado o usuário original antes da execução do comando. 
+	Finalmente, o token <literal>return</literal> indica a 
+	execução bem sucedida e o token <literal>trailer</literal> 
+	indica fim do registro.</para>
+
+      <para>O <command>praudit</command> também dá suporte à saídas 
+	em formato XML, que podem ser obtidas com o uso do argumento 
+	<option>-x</option>.</para>
+    </sect2>
+
+    <sect2>
+      <title>Reduzindo Rastros de Auditoria</title>
+
+      <para>Partindo do ponto que logs de auditoria podem se tornar 
+	muito grandes, um administrador pode desejar selecionar um 
+	subconjunto de registros para o análise, tais como registros 
+	associados a um usuário específico. Veja um exemplo:</para>
+
+      <screen>&prompt.root; <userinput>auditreduce -u trhodes /var/audit/ARQUIVO | praudit</userinput></screen>
+
+      <para>A execução deste comando irá exibir apenas os registros vinculados ao usuário
+	<username>trhodes</username> que estejam armazenados em 
+	<filename>/var/audit/<replaceable>ARQUIVO</replaceable></filename>.</para>
+    </sect2>
+
+    <sect2>
+      <title>Delegando Direitos de Revisão</title>
+
+      <para>Membros do grupo <groupname>audit</groupname> têm permissão 
+	para ler rastros/arquivos (<literal>trails</literal>) de auditoria 
+	disponíveis em <filename>/var/audit</filename>. Por padrão, este 
+	grupo está vazio. Portanto, inicialmente, apenas o usuário 
+	<username>root</username> terá este tipo de privilégio. Outros usuários 
+	podem ser adicionados ao grupo <groupname>audit</groupname> a fim de 
+	delegar direitos de revisão de auditoria a estes usuários. Como os 
+	privilégios de verificar o conteúdo dos logs de auditoria fornece uma 
+	visão significativa no comportamento dos utilizadores e dos processos 
+	do sistema, é recomendado que a delegação destes privilégios de 
+	auditoria seja realizada com muita cautela.</para>
+    </sect2>
+
+    <sect2>
+      <title>Monitoramento em Tempo Real com Audit Pipes</title>
+
+      <para><literal>Audit Pipes</literal> são <quote>pseudo-devices</quote> 
+	disponíveis na árvore de dispositivos do sistema de arquivos 
+	que permitem que aplicativos aproveitem a transmissão ao vivo 
+	de registros de auditoria. Este é um dos principais interesses 
+	no uso conjunto com sistemas de detecção de intrusão e aplicações 
+	de monitoramento. Entretanto, para o administrador do sistema os 
+	<literal>Audit Pipes</literal> são uma forma conveniente para 
+	permitir o monitoramento ao vivo sem enfrentar problemas com 
+	permissões dos arquivos de auditoria ou rotação de logs, 
+	interrompendo o fluxo de eventos de auditoria. Para acompanhar 
+	a auditoria ao vivo, execute o seguinte comando:</para>
+
+      <screen>&prompt.root; <userinput>praudit /dev/auditpipe</userinput></screen>
+
+      <para>Por padrão, estes <quote>pseudo-devices</quote> são 
+	acessíveis apenas pelo usuário <username>root</username>. Para 
+	torná-los acessíveis aos membros do grupo 
+	<groupname>audit</groupname>, adicione uma regra de 
+	<literal>devfs</literal> em 
+	<filename>/etc/devfs.rules</filename>: </para>
+
+      <programlisting>add path 'auditpipe*' mode 0440 group audit</programlisting>
+
+      <para>Consulte a página de manual &man.devfs.rules.5; para obter 
+	mais informações e detalhes de como configurar regras de 
+	<literal>devfs</literal> em seu sistema.</para>
+
+      <warning>
+        <para>É fácil produzir ciclos de feedbacks de eventos de 
+	  auditoria onde a visualização destes eventos pode gerar novos 
+	  eventos de auditoria. Por exemplo, se toda a atividade de 
+	  rede estiver sendo auditada e o &man.praudit.1; for executado 
+	  a partir de uma seção SSH, então um fluxo contínuo de eventos 
+	  de auditoria será gerado a uma taxa elevada, já que cada 
+	  evento sendo impresso irá gerar outro evento. A fim de evitar 
+	  que isso aconteça, é aconselhável executar o 
+	  <command>praudit</command> em um <literal>Audit Pipe</literal> 
+	  em seções que não gerem novos eventos de auditoria; 
+	  seções com baixo índice de granularidade de auditoria.</para>
+      </warning>
+    </sect2>
+
+    <sect2>
+      <title>Rotacionando Arquivos de Auditoria</title>
+
+     <para>Rastros (<literal>trails</literal>) de auditoria são escritos 
+	apenas pelo kernel, e gerenciados apenas pelo daemon de auditoria, 
+	o <application>auditd</application>. Administradores não devem 
+	tentar usar o &man.newsyslog.conf.5; ou outras ferramentas para 
+	rotacionar logs e rastros de auditoria. Em vez disso, o comando 
+	<command>audit</command> pode ser utilizado como uma ferramenta de 
+	gestão para realizar rotação de logs, além de poder encerrar a 
+	auditoria ou reconfigurar o sistema de auditoria. O comando 
+	exemplificado abaixo, faz com que um novo registro de log seja 
+	criado e sinaliza ao kernel para que o use. O antigo log será 
+	encerrado e renomeado, podendo, assim, ser manipulado pelo 
+	administrador.</para>
+
+      <screen>&prompt.root; <userinput>audit -n</userinput></screen>
+
+      <warning>
+	<para>Se o <application>auditd</application> não estiver em execução 
+	  no momento, este comando irá produzir uma mensagem de erro.</para>
+      </warning>
+
+      <para>Adicionar a seguinte linha ao arquivo
+	<filename>/etc/crontab</filename> forçará a rotação dos arquivos
+	a cada 12 (doze) horas com auxílio do &man.cron.8;:</para>
+
+      <programlisting>0     */12       *       *       *       root    /usr/sbin/audit -n</programlisting>
+
+      <para>As alterações terão efeito assim que você salvar o arquivo.</para>
+
+      <para>Rotação automática do arquivo de auditoria com base no 
+	tamanho do arquivo é possível de se realizar através da opção 
+	<option>filesz</option> em &man.audit.control.5;, descrita 
+	na seção de arquivos de configuração deste capítulo.</para>
+
+    </sect2>
+
+    <sect2>
+      <title>Compactação dos Rastros de Auditoria</title>
+
+      <para>Visto que os arquivos de auditoria podem se tornar muito 
+	grandes, muitas vezes é desejável que estes arquivos e seus 
+	rastros <literal>(trails)</literal> sejam compactados ou 
+	armazenados em um outro local/dispositivo uma vez que já 
+	foram utilizados pelo daemon de auditoria. O script 
+	<filename>audit_warn </filename> pode ser utilizado para 
+	realizar operações personalizadas para uma variedade de 
+	eventos relacionados a auditoria, incluindo a rescisão de 
+	rastros de auditoria quando rotacionados. O seguinte conteúdo 
+	pode, por exemplo, ser adicionado ao <filename>audit_warn</filename> 
+	para compactar rastros de auditoria após uso dos arquivos:</para>
+
+      <programlisting>#
+# Compress audit trail files on close.
+#
+if [ "$1" = closefile ]; then
+        gzip -9 $2
+fi</programlisting>
+
+      <para>Outras atividades podem incluir a cópia dos arquivos para 
+	um servidor centralizado, apagar antigos arquivos de rastros 
+	ou reduzir rastros de auditoria para remover registros 
+	desnecessários. O script será executado apenas quando os arquivos 
+	de rastro de auditoria forem rescindidos, por isso não vai ser 
+	executado em arquivos de rastro que não forem interpretados 
+	até o fim.</para>
+    </sect2>
+  </sect1>
+</chapter>

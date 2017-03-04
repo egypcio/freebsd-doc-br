@@ -1,0 +1,1051 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!--
+  The FreeBSD Documentation Project
+  The FreeBSD Brazilian Portuguese Documentation Project
+
+  Original revision: r39544
+
+  $FreeBSD: trunk/docs/pt_BR.ISO8859-1/books/handbook/l10n/chapter.xml 383 2013-12-28 01:55:49Z egypcio $
+-->
+
+<chapter id="l10n">
+  <chapterinfo>
+    <authorgroup>
+      <author>
+	<firstname>Andrey</firstname>
+	<surname>Chernov</surname>
+	<contrib>Uma Contribuição de </contrib>
+      </author>
+    </authorgroup>
+    <authorgroup>
+      <author>
+	<firstname>Michael C.</firstname>
+	<surname>Wu</surname>
+	<contrib>Reescrito por </contrib>
+      </author>
+      <!-- 30 Nv 2000 -->
+    </authorgroup>
+  </chapterinfo>
+
+  <title>Localização - Utilização e Configuração de I18n/L10n</title>
+
+  <sect1 id="l10n-synopsis">
+    <title>Sinopse</title>
+
+    <para>O projeto &os; é um projeto muito distribuído, com usuários e
+       colaboradores localizados em diferentes partes do mundo. Este 
+       capítulo discute os recursos de internacionalização e localização do &os;
+       que permitem aos usuários que não falam/leem/escrevem Inglês a 
+       realizar seus trabalhos. Existem muitos aspectos da implementação 
+       ligados a i18n, tanto a níveis de sistema quanto a níveis de 
+       aplicação, de modo que serão fornecidas a você outras fontes 
+       mais específicas de documentação.</para>
+
+
+    <para>Após ler este capítulo, você saberá:</para>
+    <itemizedlist>
+      <listitem><para>Como diferentes idiomas e caracteres/formatos 
+      específicos (<literal>Locales</literal>) de diferentes países
+      são codificados nos sistemas operacionais modernos.</para></listitem>
+      <listitem><para>Como configurar os locales para seu 
+      shell.</para></listitem>
+      <listitem><para>Como configurar seu console para idiomas 
+      diferentes do idioma Inglês.</para></listitem>
+      <listitem><para>Como utilizado o X Window System de forma efetiva
+      com outros idiomas.</para></listitem>
+      <listitem><para>Onde achar mais informações sobre como escrever
+      aplicações que trabalhem com i18n.</para></listitem>
+   </itemizedlist>
+
+    <para>Antes de ler este capítulo, você deveria saber:</para>
+
+    <itemizedlist>
+      <listitem><para>Como instalar aplicações de terceiros 
+        no &os; (<xref linkend="ports"/>).</para></listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="l10n-basics">
+    <title>O Básico</title>
+
+    <sect2>
+      <title>O que é I18n/L10n?</title>
+    <indexterm>
+      <primary>internationalization</primary>
+      <see>localization</see>
+    </indexterm>
+    <indexterm><primary>localization</primary></indexterm>
+
+      <para>Desenvolvedores encurtaram o termo em Inglês 
+	<quote>internationalization</quote> para I18n, indicando, 
+	com o número aí presente, a quantidade de caracteres entre 
+	a primeira e a última letra. L10n utiliza o mesmo esquema 
+	de nomenclatura, vindo do termo <quote>localization</quote>. 
+	Juntos, na forma I18n/L10n, estabelecem métodos, protocolos 
+	e aplicativos que permitem aos usuários utilizem idiomas 
+	de sua escolha.</para>
+
+      <para>Aplicações I18n são desenvolvidas com ajuda de kits I18n 
+	e bibliotecas. Eles permitem que os desenvolvedores escrevam 
+	um arquivo simples e possam ter menus e textos traduzidos sendo 
+	exibidos em cada idioma que esteja sendo suportado. É 
+	altamente incentivado que desenvolvedores sigam essa 
+	convenção.</para>
+    </sect2>
+
+    <sect2>
+      <title>Por que eu deveria utilizar I18n/L10n?</title>
+
+      <para>I18n/L10n é utilizado onde quer que você deseje ver, 
+	processar ou digitar dados e caracteres que não estejam 
+	presentes no idioma Inglês.</para>
+    </sect2>
+
+    <sect2>
+      <title>Quais idiomas são suportados por I18n?</title>
+
+      <para>I18n e L10n não são específicos do &os;. 
+	Atualmente você pode escolher e utilizar os principais 
+	idiomas do mundo, incluindo, mas não limitando-se a: 
+	Alemão, Chinês, Coreano, Francês, Japonês, Russo, 
+	Vietnamita e vários outros.</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="using-localization">
+    <title>Utilizando Convenções de Localização</title>
+
+    <!-- XXX: Localization (L10N) != Internationalization (I18N). 
+	 Was this section written with some kind of typo? Here 
+	 I saw references to I18N but not to L10N. Now I've
+	 changed it from i18n to l10n. / egypcio -->
+
+    <para>Mesmo com todo seu esplendor, L10N não é algo específico 
+      utilizado no &os;, mas sim uma convensão. É encorajado que 
+      você ajude o projeto &os; a continuar seguindo esta 
+      convensão.</para>
+
+    <indexterm><primary>locale</primary></indexterm>
+
+    <para>Configurações de localização são baseadas em três termos 
+      principais: Código do Idioma, Código do País e Codificação.
+      Os nomes dos <literal>locales</literal> se formam com base 
+      nesses termos da seguinte forma:</para>
+
+    <programlisting><replaceable>CódigoIdioma</replaceable>_<replaceable>CódigoPaís</replaceable>.<replaceable>Codificação</replaceable></programlisting>
+
+    <sect2>
+      <title>Códigos do Idioma e País</title>
+      <indexterm><primary>language codes</primary></indexterm>
+      <indexterm><primary>country codes</primary></indexterm>
+
+      <para>Para fazer com que um sistema &os;, ou qualquer outro 
+	sistema &unix; que suporte I18n/L10n, compreenda caracteres 
+	específicos de um determinado idioma (ou país), os usuários 
+	precisam descobrir qual código utilizar. Esses códigos 
+	dirão para as aplicações quais variações de caracteres e 
+	codificações devem utilizar. Além disso, navegadores, 
+	servidores de e-mail, servidores web e diversos outros 
+	serviços tomarão decisões baseando-se nesses códigos 
+	(<literal>locales</literal>). Veja alguns exemplos de 
+	códigos de idiomas/países:</para>
+
+      <informaltable frame="none" pgwide="1">
+	<tgroup cols="2">
+	  <thead>
+	    <row>
+	      <entry>Código do Idioma/País</entry>
+	      <entry>Descrição</entry>
+	    </row>
+	  </thead>
+
+	  <tbody>
+	    <row>
+	      <entry>en_US</entry>
+	      <entry>Inglês - Estados Unidos da América</entry>
+	    </row>
+
+	    <row>
+	      <entry>ru_RU</entry>
+	      <entry>Russo - Rússia</entry>
+	    </row>
+
+	    <row>
+	      <entry>zh_TW</entry>
+	      <entry>Chinês (Tradicional) - Taiwan</entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </informaltable>
+
+    </sect2>
+
+    <sect2>
+      <title>Codificação</title>
+      <indexterm><primary>encodings</primary></indexterm>
+      <indexterm><primary>ASCII</primary></indexterm>
+
+      <para>Alguns idiomas utilizam codificações diferentes da 
+	codificação do padrão ASCII; com 8 bits, com caracteres 
+	mais espaçosos (<literal>wide</literal>), ou com número 
+	variado de bytes (<literal>multibyte</literal>). Veja a 
+	página de manual &man.multibyte.3; para obter mais detalhes a 
+	respeito desse assunto. Aplicativos mais antigos não reconhecem 
+	ou confundem esses idiomas, utilizando caracteres de controle 
+	ao invés dos caracteres corretos. Aplicações mais recentes 
+	geralmente não reconhecem os caracteres de 8 bits. Dependendo 
+	da implementação, os usuários podem precisar compilar um aplicativo 
+	para que ele suporte caracteres wide ou multibyte, ou precisarão 
+	configurá-lo corretamente. Para ser capaz de compreender esses 
+	caracteres wide ou multibyte, a 
+	<ulink url="&url.base;/ports/index.html">Coleção de Ports do &os;</ulink> 
+	oferece diversos aplicativos em diferentes idiomas. Consulte a 
+	documentação fornecida para I18n nos respectivos ports.</para>
+
+      <para>Especificamente, o usuário precisa consultar a documentação 
+	fornecida junto com a aplicação para decidir sobre como 
+	configurá-la corretamente ou quais valores corretos deve passar 
+	para o compilador, para scripts de configuração ou, ainda, se 
+	deve alterar algo no <filename>Makefile</filename>.</para>
+
+      <para>Algumas coisas para se ter em mente são:</para>
+
+      <itemizedlist>
+	<listitem>
+	  <para>Ao se utilizar uma linguagem específica, como C, 
+	  define-se o conjunto de caracteres que podem ser utilizados 
+	  (veja &man.multibyte.3;); ISO8859-1, ISO8859-15, 
+	  KOI8-R ou CP437.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Codificações do tipo <literal>wide</literal> ou 
+	  <literal>multibyte</literal>: EUC ou Big5.</para>
+	</listitem>
+      </itemizedlist>
+
+      <para>Você pode checar a lista atual de conjuntos de caracteres nos
+	<ulink
+	url="http://www.iana.org/assignments/character-sets">Registros da IANA</ulink>.</para>
+
+      <note>
+	<para>O &os;, por outro lado, faz uso de convenções compatíveis com X11.</para>
+      </note>
+
+    </sect2>
+
+    <sect2>
+      <title>Aplicações I18n</title>
+
+      <para>Na Coleção de Ports do &os;, aplicações I18n
+	foram nomeadas com o sufixo <literal>-i18n</literal> para
+	fácil identificação. Entretanto, elas nem sempre suportam o
+	idioma desejado.</para>
+    </sect2>
+
+    <sect2 id="setting-locale">
+      <title>Definindo o Locale</title>
+
+      <para>Geralmente é o suficiente exportar o valor da localidade 
+	desejada na variável de ambiente <envar>LANG</envar> na shell 
+	de login. Isto pode ser feito no arquivo 
+	<filename>~/.login_conf</filename> ou no arquivo de 
+	inicialização do shell do usuário (<filename>~/.profile</filename>, 
+	<filename>~/.bashrc</filename>, <filename>~/.cshrc</filename> 
+	ou outro arquivo, dependendo da shell utilizada). Não há 
+	necessidade de definir os subconjuntos de locale, como 
+	<envar>LC_CTYPE</envar>, <envar>LC_CTIME</envar>. Por favor, 
+	consulte a documentação do idioma específico para mais 
+	informações.</para>
+
+      <para>Você deve definir as seguintes variáveis de ambiente 
+	em seus arquivos de configuração:</para>
+
+      <itemizedlist>
+        <indexterm><primary>POSIX</primary></indexterm>
+        <listitem>
+	  <para><envar>LANG</envar> para funções &man.setlocale.3; da 
+	    família &posix;</para>
+	</listitem>
+
+	<listitem>
+	  <indexterm><primary>MIME</primary></indexterm>
+
+	  <para><envar>MM_CHARSET</envar> para conjuntos de caractedes 
+	    das aplicações MIME</para>
+	</listitem>
+      </itemizedlist>
+
+      <para>Isso inclui as configurações de shell do usuário, configurações 
+	específicas de uma aplicação e configurações do ambiente X11.</para>
+
+      <sect3>
+	<title>Definição de Métodos</title>
+        <indexterm><primary>locale</primary></indexterm>
+        <indexterm><primary>login class</primary></indexterm>
+
+	<para>Existem dois métodos para definir localização e ambos são 
+	    descritos logo abaixo. O primeiro (e mais recomendado) é o 
+	    método que faz uso das variáveis de ambiente definidas na 
+	    <link linkend="login-class">classe de login</link>, o 
+	    segundo define as variáveis no 
+	    <link linkend="startup-file">arquivo de inicialização</link> 
+	    do shell de sistema</para>
+
+	<sect4 id="login-class">
+	  <title>Método das Classes de Login</title>
+
+	  <para>Este método permite o uso de variáveis de ambiente 
+	    pelas configurações de localização e conjunto de caracteres 
+	    MIME pelas shells presentes no sistema sem a necessidade 
+	    de se ter um arquivo de inicialização específico com 
+	    configurações para cada uma dessas shells. Um 
+	    <link linkend="usr-setup">setup a nível de usuário</link> 
+	    pode ser feito pelo próprio usuário sem necessiades de 
+	    privilégios de super usuário (root), diferente de um 
+	    <link linkend="adm-setup">setup a nível de administrador</link>.</para>
+
+	  <sect5 id="usr-setup">
+	    <title>Setup a Nível de Usuário</title>
+
+	    <para>Aqui está um pequeno exemplo do conteúdo configurado 
+	    no arquivo <filename>.login_conf</filename>, presente no 
+	    diretório home de um usuário qualquer, que define ambas 
+	    as variáveis para utilizar codificações tipo Latin-1:</para>
+
+	    <programlisting>me:\
+	:charset=ISO-8859-1:\
+	:lang=de_DE.ISO8859-1:</programlisting>
+
+	    <indexterm><primary>Traditional Chinese</primary><secondary>BIG-5 encoding</secondary></indexterm>
+
+	    <para>Aqui está um pequeno exemplo do conteúdo configurado 
+	    no arquivo <filename>.login_conf</filename>, presente no 
+	    diretório home de um usuário qualquer, que define 
+	    variáveis para utilizar codificações tipo BIG-5. Perceba 
+	    que muitas outras variáveis são utilizadas pelo fato de 
+	    que alguns softwares não respeitam os padrões de 
+	    localização corretamente para o uso de idiomas como 
+	    Chinês, Japonês e Coreano.</para>
+
+	    <programlisting># Users who do not wish to use monetary units or time formats
+# of Taiwan can manually change each variable
+me:\
+	:lang=zh_TW.Big5:\
+	:setenv=LC_ALL=zh_TW.Big5:\
+	:setenv=LC_COLLATE=zh_TW.Big5:\
+	:setenv=LC_CTYPE=zh_TW.Big5:\
+	:setenv=LC_MESSAGES=zh_TW.Big5:\
+	:setenv=LC_MONETARY=zh_TW.Big5:\
+	:setenv=LC_NUMERIC=zh_TW.Big5:\
+	:setenv=LC_TIME=zh_TW.Big5:\
+	:charset=big5:\
+	:xmodifiers="@im=gcin": # Define gcin como XIM Input Server</programlisting>
+
+	    <para>Consulte o <link linkend="adm-setup">Setup a Nível de 
+	    Administrador</link> e a página de manual &man.login.conf.5; 
+	    para obter mais detalhes.</para>
+	  </sect5>
+
+	  <sect5 id="adm-setup">
+	    <title>Setup a Nível de Administrador</title>
+
+	    <para>Verifique se as configurações na Classe de Login 
+	      do usuário apresentam definições para o idioma desejado. 
+	      Confirme se, no arquivo <filename>/etc/login.conf</filename>, 
+	      você tem as seguintes configurações:</para>
+
+	    <programlisting><replaceable>nome_da_classe</replaceable>|<replaceable>Descrição do Tipo da Classe</replaceable>:\
+	:charset=<replaceable>definição_de_charset_MIME</replaceable>:\
+	:lang=<replaceable>nome_da_localização</replaceable>:\
+	:tc=default:</programlisting>
+
+	    <para>Então, ainda utilizando um exemplo anterios, para 
+		Latin-1, suas configurações seriam parecidas com estas:</para>
+
+	    <programlisting>alemao|Contas de Usuarios Alemaes:\
+	:charset=ISO-8859-1:\
+	:lang=de_DE.ISO8859-1:\
+	:tc=default:</programlisting>
+
+	    <para>Antes de alterar as Classes de Login dos usuários execute o seguinte comando:</para>
+
+	    <screen>&prompt.root; <userinput>cap_mkdb /etc/login.conf</userinput></screen>
+
+	    <para>Assim você fará as alterações realizadas em
+	      <filename>/etc/login.conf</filename> visiveis para todo o sistema.</para>
+
+	    <bridgehead renderas="sect4">Alterar Classes de Login com &man.vipw.8;</bridgehead>
+
+	    <indexterm>
+        <primary><command>vipw</command></primary>
+      </indexterm>
+	    <para>Utilize o comando <command>vipw</command> para adicionar 
+		novos usuários e fazer com que entradas no 
+		registro de usuários se pareçam com a seguinte 
+		entrada:</para>
+
+	    <programlisting>usuario:senha:1111:11:<replaceable>nome_da_classe</replaceable>:0:0:Nome do Usuário:/home/usuario:/bin/sh</programlisting>
+
+	    <bridgehead renderas="sect4">Alterar Classes de Login com &man.adduser.8;</bridgehead>
+
+	    <indexterm>
+        <primary><command>adduser</command></primary>
+      </indexterm>
+	    <indexterm><primary>login class</primary></indexterm>
+	    <para>Utilize o comando <command>adduser</command> para adicionar 
+		novos usuários e faça o seguinte:</para>
+
+	    <itemizedlist>
+	      <listitem>
+		<para>Defina <literal>defaultclass =
+		  <replaceable>nome_do_idioma</replaceable></literal> no arquivo
+		  <filename>/etc/adduser.conf</filename>.  Tenha em mente que 
+		  você sempre deve definir uma classe <literal>default</literal> 
+		  para todos os usuários neste caso.</para>
+	      </listitem>
+
+	      <listitem>
+		<para>Uma alternativa ao procedimento descrito e esclarecido 
+		  acima é sempre alterar a classe quando lhe for solicitado 
+		  pelo &man.adduser.8; durante a adição de novos usuários.
+		  <screen><prompt>Enter login class: default []: </prompt></screen>.</para>
+	      </listitem>
+
+	      <listitem>
+		<para>Outro procedimento é especificar a Classe de Login 
+		  para cada usuário da seguinte maneira:</para>
+
+		<screen>&prompt.root; <userinput>adduser -class <replaceable>nome_da_classe</replaceable></userinput></screen>
+	      </listitem>
+	    </itemizedlist>
+
+	    <bridgehead renderas="sect4">Alterar Classes de Login com &man.pw.8;</bridgehead>
+	    <indexterm>
+        <primary><command>pw</command></primary>
+      </indexterm>
+	    <para>Caso você utilize o comando &man.pw.8; para 
+		  adicionar novos usuários, execute-o da seguinte 
+		  forma:</para>
+
+	    <screen>&prompt.root; <userinput>pw useradd <replaceable>usuario</replaceable> -L <replaceable>nome_da_classe</replaceable></userinput></screen>
+	  </sect5>
+	</sect4>
+
+	<sect4 id="startup-file">
+	  <title>Método com Arquivo de Inicialização do Shell</title>
+
+	  <note>
+	    <para>Este método não é recomendado porque ele requer uma
+	      configuração diferente para cada shell utilizado. Recomenda-se o
+	      uso do <link linkend="login-class">Método das Classes de Login</link>
+	      ao invés de alterar o arquivo de inicialização do shell.</para>
+	  </note>
+
+	  <indexterm><primary>MIME</primary></indexterm>
+	  <indexterm><primary>locale</primary></indexterm>
+
+	  <para>Para adicionar o nome do locale e o conjunto de caracteres MIME,
+	    basta configurar as variáveis de ambiente em
+	    <filename>/etc/profile</filename> e/ou
+	    <filename>/etc/csh.login</filename>. Nós iremos utilizar
+	    a língua alemã como exemplo a ser seguido.</para>
+
+	  <para>Configurações no arquivo <filename>/etc/profile</filename>:</para>
+
+	  <programlisting><envar>LANG=de_DE.ISO8859-1; export LANG</envar>
+<envar>MM_CHARSET=ISO-8859-1; export MM_CHARSET</envar></programlisting>
+
+	  <para>Configurações no arquivo <filename>/etc/csh.login</filename>:</para>
+
+	  <programlisting><envar>setenv LANG de_DE.ISO8859-1</envar>
+<envar>setenv MM_CHARSET ISO-8859-1</envar></programlisting>
+
+	   <para>De uma maneira alternativa, você pode adicionar as instruções acima em
+	    <filename>/usr/share/skel/dot.profile</filename>
+	    (como utilizamos em <filename>/etc/profile</filename>), ou
+	    <filename>/usr/share/skel/dot.login</filename>
+	    (como utilizamos em <filename>/etc/csh.login</filename>). </para>
+
+	  <para>Para ambientes que façam uso de X11:</para>
+
+	  <para>Configurações no arquivo <filename>$HOME/.xinitrc</filename>:</para>
+
+	  <programlisting><envar>LANG=de_DE.ISO8859-1; export LANG</envar></programlisting>
+
+	  <para>Ou</para>
+
+	  <programlisting><envar>setenv LANG de_DE.ISO8859-1</envar></programlisting>
+
+	  <para>Isso vai depender do shell que você utiliza (veja detalhes acima).</para>
+
+	</sect4>
+      </sect3>
+    </sect2>
+
+    <sect2 id="setting-console">
+      <title>Configurações de Console</title>
+
+	<para>Para cada um dos conjuntos de caracteres em C, defina
+	  as fontes de console corretas em <filename>/etc/rc.conf</filename>
+	  para a língua em questão:</para>
+
+      <programlisting>font8x16=<replaceable>nome_da_fonte</replaceable>
+font8x14=<replaceable>nome_da_fonte</replaceable>
+font8x8=<replaceable>nome_da_fonte</replaceable></programlisting>
+
+      <para>Aqui, <replaceable>nome_da_fonte</replaceable> é obtido 
+	listando-se o conteúdo do diretório
+        <filename>/usr/share/syscons/fonts</filename>. Utiliza-se
+	o nome sem fazer uso do sufixo <filename>.fnt</filename>.</para>
+
+      <indexterm>
+        <primary><application>sysinstall</application></primary>
+      </indexterm>
+      <indexterm><primary>keymap</primary></indexterm>
+      <indexterm><primary>screenmap</primary></indexterm>
+
+      <para>Se necessário, configure o keymap e screenmap através do
+	<command>sysinstall</command>.
+	Uma vez com o <application>sysinstall</application> aberto, 
+	escolha a opção <guimenuitem>Configure</guimenuitem> e, em seguida,
+	a opção <guimenuitem>Console</guimenuitem>.  Se preferir, 
+	você pode adicionar o seguinte conteúdo em 
+	<filename>/etc/rc.conf</filename>:</para>
+
+      <programlisting>scrnmap=<replaceable>nome_do_screenmap</replaceable>
+keymap=<replaceable>nome_do_keymap</replaceable>
+keychange="<replaceable>numero_sequencial_da_fkey</replaceable>"</programlisting>
+
+      <para>Aqui, <replaceable>nome_do_screenmap</replaceable> pode ser obtido 
+	consultando o conteúdo do diretório
+        <filename>/usr/share/syscons/scrnmaps</filename>
+	(sem usar o sufixo <filename>.scm</filename>). Usar um
+	screenmap com uma fonte devidamente mapeada geralmente 
+	é necessário como solução de contorno para fazer a expansão 
+	do bit 8 para o bit 9 numa matriz de caracteres utilizada por 
+	adaptadores VGA em áreas fictícias (<literal>pseudographics area</literal>) 
+	para, por exemplo, mover letras para fora desta área caso a 
+	fonte do screenmap esteja mapeada para fazer uso da coluna 
+	com bit 8.</para>
+
+      <para>Caso você tenha o daemon do <application>moused</application>
+	habilitado em seu arquivo <filename>/etc/rc.conf</filename> com</para>
+
+<programlisting>moused_enable="YES"</programlisting>
+
+      <para>verifique as informações sobre o cursor do mouse no 
+	próximo parágrafo.</para>
+
+      <indexterm>
+        <primary><application>moused</application></primary>
+      </indexterm>
+      <para>Por padrão, o cursor do mouse usado pelo driver so &man.syscons.4; 
+	ocupa o intervalo 0xd0-0xd3 do conjunto de caracteres utilizado.
+	Caso sua língua faça uso deste intervalo, você precisará alterar o 
+	intervalo utilizado para interpretar o cursor do mouse para 
+	fora deste intervalo. Uma solução de contorno utilizada no &os; 
+	para um caso como estes	fará você adicionar a seguinte linha no arquivo 
+	<filename>/etc/rc.conf</filename>:</para>
+
+      <programlisting>mousechar_start=3</programlisting>
+
+      <para>Aqui, <replaceable>nome_do_keymap</replaceable> pode ser obtido
+        no diretório <filename>/usr/share/syscons/keymaps</filename>(novamente,
+	sem utilizar o sufixo. <filename>.kbd</filename>, neste caso). 
+	Se estiver incerto de qual keymap deve utilizar, você pode 
+	usar o &man.kbdmap.1; para testar um keymap sem a necessidade 
+	de um reboot.</para>
+
+	<para>Normalmente o <literal>keychange</literal> é necessário 
+	 para se ter compatibilidade entre teclas de função com o tipo 
+	 de terminal selecionado porque os números de sequência das 
+	 teclas de função não podem ser definidos no mapeamento do 
+	 keymap.</para>
+
+      <para>Certifique-se, também, de configurar o tipo de console 
+	correto em <filename>/etc/ttys</filename> para todas as
+	entradas do tipo <literal>ttyv*</literal>.
+	As configurações correspondentes atuais são:</para>
+
+      <informaltable frame="none" pgwide="1">
+	<tgroup cols="2">
+	  <thead>
+	    <row>
+	      <entry>Conjunto de Caracteres</entry>
+	      <entry>Tipo do Console</entry>
+	    </row>
+	  </thead>
+
+	  <tbody>
+	    <row>
+	      <entry>ISO8859-1 ou ISO8859-15</entry>
+	      <entry><literal>cons25l1</literal></entry>
+	    </row>
+
+	    <row>
+	      <entry>ISO8859-2</entry>
+	      <entry><literal>cons25l2</literal></entry>
+	    </row>
+
+	    <row>
+	      <entry>ISO8859-7</entry>
+	      <entry><literal>cons25l7</literal></entry>
+	    </row>
+
+	    <row>
+	      <entry>KOI8-R</entry>
+	      <entry><literal>cons25r</literal></entry>
+	    </row>
+
+	    <row>
+	      <entry>KOI8-U</entry>
+	      <entry><literal>cons25u</literal></entry>
+	    </row>
+
+	    <row>
+	      <entry>CP437 (VGA default)</entry>
+	      <entry><literal>cons25</literal></entry>
+	    </row>
+
+	    <row>
+	      <entry>US-ASCII</entry>
+	      <entry><literal>cons25w</literal></entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </informaltable>
+
+      <para>Para idiomas com suporte a caracteres estendidos ou 
+	multibyte, use um dos ports para &os; contidos no diretório 
+	<filename>/usr/ports/<replaceable>seu_idioma</replaceable></filename> 
+	que seja o correto para você. Alguns ports aparecem como 
+	console, mas o &os; os vê como um terminal vtty serial. Deste 
+	modo, você deve reservar um número suficiente de terminais 
+	vtty tanto para X11 quanto para consoles pseudo-seriais. 
+	Aqui está uma lista parcial de aplicações para o uso de 
+	outros idiomas via console:</para>
+
+      <informaltable frame="none" pgwide="1">
+	<tgroup cols="2">
+	  <thead>
+	    <row>
+	      <entry>Idioma</entry>
+	      <entry>Localização</entry>
+	    </row>
+	  </thead>
+
+	  <tbody>
+	    <row>
+	      <entry>Chinês Tradicional (BIG-5)</entry>
+	      <entry><filename role="package">chinese/big5con</filename></entry>
+	    </row>
+
+	    <row>
+	      <entry>Japonês</entry>
+	      <entry><filename role="package">japanese/kon2-16dot</filename> or
+	        <filename role="package">japanese/mule-freewnn</filename></entry>
+	    </row>
+
+	    <row>
+	      <entry>Coreano</entry>
+	      <entry><filename role="package">korean/han</filename></entry>
+	    </row>
+	  </tbody>
+	</tgroup>
+      </informaltable>
+    </sect2>
+
+    <sect2>
+      <title>Configuração de Ambiente X11</title>
+
+      <para>Apesar do &xorg; não ser uma parte diretamente ligada ao 
+	projeto &os;, aqui estão algumas informações para usuários 
+	do &os; ligadas ao &xorg;. Para mais detalhes, por favor, 
+	recorram ao <ulink url="http://www.x.org">Sítio Web do 
+	Projeto &xorg;</ulink> ou a uma documentação auxiliar 
+	provida pelo ambiente/servidor X11 que você esteja a utilizar.</para>
+
+      <para>No arquivo <filename>~/.Xresources</filename> você pode, 
+	de um jeito adicional, customizar configurações específicas 
+	ligadas a internacionalização (<literal>I18n</literal>) 
+	como fontes, menus e etc.</para>
+
+      <sect3>
+	<title>Exibição de Fontes</title>
+	<indexterm><primary>X11 True Type font server</primary></indexterm>
+	<para>Instale o servidor <application>&xorg;</application>
+	  (<filename role="package">x11-servers/xorg-server</filename>),
+	  e então instale as fontes &truetype;. Configurar a localização 
+	  correta fará com que você veja menus e diversas outras 
+	  informações sendo exibidas em seu idioma.</para>
+      </sect3>
+
+      <sect3>
+	<title>Caracteres de Entrada para Ambiente X11</title>
+	<indexterm><primary>X11 Input Method (XIM)</primary></indexterm>
+	<para>O protocolo do método de entrada para X11 
+	  (<literal>X11 Input Method</literal>) é um nvo padrão 
+	  adotado por todos os clientes X11. Todas as aplicações 
+	  devem ser escritas de modo que o cliente do 
+	  <literal>X11 Input Method</literal> (XIM) seja utilizado 
+	  para realizar entrada de caracteres num ambiente X11 com 
+	  ajuda do servidor de entradas XIM. Existem vários 
+	  servidores XIM disponíveis para vários idiomas.</para>
+      </sect3>
+    </sect2>
+
+    <sect2>
+      <title>Configuração de Impressoras</title>
+
+      <para>Alguns conjuntos de caracteres em C são normalmente 
+	programados em hardwares de impressoras. Conjuntos que 
+	usem caracteres estendidos ou multibyte necessitam de 
+	configurações especiais e nós recomendamos o uso do 
+	<application>apsfilter</application> para tal finalidade. 
+	Você talvez precise também converter algum documento para 
+	formato &postscript; ou PDF utilizando ferramentas de 
+	conversão mais específicas que esta sugerida por nós.</para>
+    </sect2>
+
+    <sect2>
+      <title>Kernel e Sistemas de Arquivos</title>
+
+      <para>O sistema de arquivos do &os;, o Fast Filesystem (FFS), 
+	pode ser usado com diferentes conjuntos de caracteres mas 
+	não existe nenhum nome de conjunto de caracteres salvo no 
+	sistema de arquivos; isso significa que que ele não sabe 
+	sobre ordem a ser seguida para encoding num arquivo 
+	(consulte detalhes na página de manual do &man.multibyte.3;). 
+	Oficialmente o FFS não suporta conjuntos de caracteres 
+	estendidos ou multibyte ainda. Entretanto alguns dos conjuntos 
+	de caracteres estendidos/multibyte fornecem 
+	<literal>patches</literal> para habilitar esta funcionalidade 
+	no FFS. Estes <literal>patches</literal> são apenas 
+	soluções de contorno temporárias e não portadas ou algum 
+	tipo de hack que decidimos não adicionar na árvore do código 
+	fonte do &os;. Consulte os sítios web relacionados as 
+	respectivas funcionalidades e <literal>patches</literal> que 
+	sejam de seu interesse para obter maiores informações.</para>
+
+      <indexterm><primary>DOS</primary></indexterm>
+      <indexterm><primary>Unicode</primary></indexterm>
+      <para>O sistema de arquivos &ms-dos; no &os; oferece a 
+	possibilidade de realizar converções entre formatos 
+	&ms-dos;, Unicode e conjuntos de caracteres utilizados pelo 
+	sistema de arquivos do &os;. Consulte a página de 
+	manual do &man.mount.msdosfs.8; para obter detalhes.</para>
+    </sect2>
+  </sect1>
+
+  <sect1 id="l10n-compiling">
+    <title>Compilando Programas com I18n</title>
+
+    <para>Muitos ports do &os; foram desenvolvidos com suporte a I18n. 
+      Alguns destes ports apresentam o sufixo -i18n em seu nome. 
+      Estes ports, em específico, e alguns outros, já apresentam 
+      suporte embutido para I18N e não necessitam de consideração 
+      especial.</para>
+
+    <indexterm>
+      <primary><application>MySQL</application></primary>
+    </indexterm>
+    <para>Entretanto, algumas aplicações, como é o caso do 
+      <application>MySQL</application>, necessitam que seu 
+      <filename>Makefile</filename> seja configurado com 
+      um charset específico. Isto é feito, geralmente, no 
+      próprio <filename>Makefile</filename> ou passando-se 
+      valores/parâmetros ao script de 
+      <application>configure</application>.</para>
+  </sect1>
+
+  <sect1 id="lang-setup">
+    <title>&os; e Idiomas Específicos</title>
+
+    <sect2 id="ru-localize">
+      <sect2info>
+	<authorgroup>
+	  <author>
+	    <firstname>Andrey</firstname>
+	    <surname>Chernov</surname>
+	    <contrib>Uma Contribuição de </contrib>
+	  </author>
+	</authorgroup>
+      </sect2info>
+      <title>Localização para Russo (KOI8-R)</title>
+      <indexterm>
+	<primary>localization</primary>
+	<secondary>Russian</secondary>
+      </indexterm>
+
+      <para>Para obter mais informações sobre a codificação 
+	<literal>(encoding)</literal> KOI8-R, consulte 
+	<ulink url="http://koi8.pp.ru">Referências de KOI8-R 
+	(Conjuntos de Caracteres Russos)</ulink>.</para>
+
+      <sect3>
+	<title>Configuração de Locale</title>
+
+	<para>Adicione as linhas abaixo no arquivo
+	  <filename>~/.login_conf</filename>:</para>
+
+	<programlisting>me:Minha Conta Russa:\
+	:charset=KOI8-R:\
+	:lang=ru_RU.KOI8-R:</programlisting>
+
+	<para>Consulte informações anteriores, disponíveis neste 
+	capítulo, para outros exemplos de 
+	<link linkend="setting-locale">Configuração de Locale</link>.</para>
+      </sect3>
+
+      <sect3>
+	<title>Configurações de Console</title>
+
+	<itemizedlist>
+	  <listitem>
+	    <para>Adicione a seguinte linha no arquivo 
+	      <filename>/etc/rc.conf</filename>:</para>
+
+	    <programlisting>mousechar_start=3</programlisting>
+	  </listitem>
+
+	  <listitem>
+	    <para>Complementando, utilize as seguintes 
+	configurações em <filename>/etc/rc.conf</filename>:</para>
+
+	    <programlisting>keymap="ru.koi8-r"
+scrnmap="koi8-r2cp866"
+font8x16="cp866b-8x16"
+font8x14="cp866-8x14"
+font8x8="cp866-8x8"</programlisting>
+
+	  </listitem>
+
+	  <listitem>
+	    <para>Para cada uma das entradas <literal>ttyv*</literal>
+	      presentes em <filename>/etc/ttys</filename>, utilize 
+	      <literal>cons25r</literal> como tipo de terminal.</para>
+	  </listitem>
+	</itemizedlist>
+
+	<para>Consulte informações anteriores, disponíveis neste 
+	capítulo, para outros exemplos de 
+	<link linkend="setting-console">Configuração de Console</link>.</para>
+
+      </sect3>
+
+      <sect3>
+	<title>Configuração de Impressora</title>
+	<indexterm><primary>printers</primary></indexterm>
+	<para>Uma vez que muitos dos hardwares presentes em 
+	  impressoras com suporte a caracteres do idioma Russo fazem 
+	  uso de uma codificação conhecida como CP866, faz-se 
+	  necessário o uso de filtros específicos/especiais para 
+	  converter KOI8-R para CP866. Por padrão, um filtro 
+	  destes é instalado em 
+	  <filename>/usr/libexec/lpr/ru/koi2alt</filename>. 
+	  Uma entrada em <filename>/etc/printcap</filename> para se 
+	  utilizar uma impressora russa deve ser semelhante a:</para>
+
+	<programlisting>lp|Minha Impressora Russa:\
+	:sh:of=/usr/libexec/lpr/ru/koi2alt:\
+	:lp=/dev/lpt0:sd=/var/spool/output/lpd:lf=/var/log/lpd-errs:</programlisting>
+
+	<para>Para informações mais detalhadas, consulte a página de 
+	  manual &man.printcap.5;.</para>
+      </sect3>
+
+      <sect3>
+	<title>Sistema de Arquivos &ms-dos; e Arquivos em Russo</title>
+
+	<para>A seguinte entrada utilizada, como exemplo, na 
+	  configuração do &man.fstab.5; habilita o suporte para que 
+	  arquivos em russo possam ser interpretados por sistemas 
+	  de arquivo &ms-dos;:</para>
+
+	<programlisting>/dev/ad0s2      /mnt/ms-dos/D  msdos   rw,-Wkoi2dos,-Lru_RU.KOI8-R 0 0</programlisting>
+
+	<para>A opção <option>-L</option> seleciona o nome do locale 
+	  a ser utilizado e a opção <option>-W</option> habilita o 
+	  uso da tabela de conversões do &ms-dos;.  Para utilizar a 
+	  opção <option>-W</option>, certifique-se de que a montagem 
+	  da partição que contenha a árvore de diretórios 
+	  <filename>/usr</filename> seja feita antes do ponto 
+	  de montagem que venha a utilizar o sistema de arquivo 
+	  &ms-dos; com suporte aos caracteres russos. A tabela de 
+	  conversões utilizada pelo &os; está armazenada, por padrão, em 
+	  <filename>/usr/libdata/msdosfs</filename>. Para mais 
+	  informações, consulte a página de manual 
+	  &man.mount.msdosfs.8;.</para>
+      </sect3>
+
+      <sect3>
+	<title>Configuração de Ambiente X11 (&xorg;)</title>
+
+	<orderedlist>
+	  <listitem>
+	    <para>Antes de alterar configurações ligadas ao Ambiente 
+		X11 (<application>&xorg;</application>), siga passos descritos anteriormente 
+		cobrindo a <link linkend="setting-locale">Configuração de Locale</link>.</para>
+	  </listitem>
+
+	  <listitem>
+	    <para>Caso você esteja a utilizar <application>&xorg;</application>,
+	    instale o pacote referente a 
+	    <filename role="package">x11-fonts/xorg-fonts-cyrillic</filename>.</para>
+
+	    <para>Verifique a seção <literal>"Files"</literal>
+	      em <filename>/etc/X11/xorg.conf</filename>.
+	      Adicione a seguinte linha <emphasis>ANTES</emphasis> 
+	      de quaisquer outras linhas que contenham entradas 
+	      do tipo <literal>FontPath</literal>:</para>
+
+	    <programlisting>FontPath   "/usr/local/lib/X11/fonts/cyrillic"</programlisting>
+
+	    <note>
+	      <para>Consulte a Coleção de Ports para obter mais 
+		fontes com caracteres em cirílico.</para></note>
+	  </listitem>
+
+	  <listitem>
+	    <para>Para habilitar e utilizar um teclado russo, adicione as seguintes entradas na seção
+	      <literal>"Keyboard"</literal> do arquivo
+	      <filename>/etc/X11/xorg.conf</filename>:</para>
+
+	    <programlisting>Option "XkbLayout"   "us,ru"
+Option "XkbOptions"  "grp:toggle"</programlisting>
+
+	    <para>Certifique-se, também, que a opção 
+	      <literal>XkbDisable</literal> deve estar desativada 
+	      (comentada) nesta seção.</para>
+
+	    <para>O uso de <literal>grp:toggle</literal> especifica
+	      que pode-se alterar a codificação entre Russa e Latina 
+	      <literal>(RUS/LAT)</literal> com ajuda da tecla 
+	      <keycap>Alt Gr</keycap>. Caso seja utilizado 
+	      <literal>grp:ctrl_shift_toggle</literal>, esta alteração 
+	      será feita com o uso das teclas 
+	      <keycombo action="simul"><keycap>Ctrl</keycap><keycap>Shift</keycap></keycombo> 
+	      (simultaneamente precionadas). 
+	      <literal>grp:caps_toggle</literal> utilizará a tecla 
+	      <keycap>CapsLock</keycap> para realizar tal alteração.
+	      Sendo feita a configuração utilizando 
+	      <literal>grp:caps_toggle</literal>, a função padrão da 
+	      <keycap>CapsLock</keycap> ainda estará disponível se for 
+	      utilizada a combinação 
+	      <keycombo action="simul"><keycap>Shift</keycap><keycap>CapsLock</keycap></keycombo> 
+	      (apenas para modo Latino). 
+	      Por motivos desconhecidos, <literal>grp:caps_toggle</literal> 
+	      não funciona no <application>&xorg;</application>.</para>
+
+	    <para>Se seu teclado têm as <quote>teclas do &windows;</quote> e 
+	      você acaba percebendo que alguns caracteres estão sendo 
+	      mapeados de forma incorreta no modo Russo, adicione a 
+	      seguinte linha de configuração em 
+	      <filename>/etc/X11/xorg.conf</filename>:</para>
+
+	<programlisting>Option "XkbVariant" ",winkeys"</programlisting>
+
+	    <note>
+	      <para>Um teclado russo pode não funcionar com aplicações 
+		não preparadas/desenvolvidas para trabalhar com 
+		localização russa.</para>
+	    </note>
+	  </listitem>
+	</orderedlist>
+	<note>
+	  <para>Aplicações com um suporte mínimo de localização (l10n) 
+	    e internacionalização (i18n) devem realizar uma chamada 
+	    a função <function>XtSetLanguageProc (NULL, NULL, NULL);</function> 
+	    logo no início da aplicação.</para>
+
+	  <para>Consulte <ulink 
+	    url="http://koi8.pp.ru/xwin.html">KOI8-R for X Window</ulink> 
+	    para obter outras instruções e informações sobre o uso 
+	    de aplicações para um Ambiente X11 que usem codificação 
+	    KOI8-R.</para>
+	</note>
+      </sect3>
+    </sect2>
+
+    <sect2>
+      <title>Localização para Chinês Tradicional de Taiwan</title>
+      <indexterm>
+	<primary>localization</primary>
+	<secondary>Traditional Chinese</secondary>
+      </indexterm>
+      <para>O Projeto &os;-Taiwan hospeda um tutorial 
+	(<ulink url="http://netlab.cse.yzu.edu.tw/~statue/freebsd/zh-tut"></ulink>) 
+	ensinando como utilizar o &os; em conjunto com vários ports 
+	desenvolvidos para trabalhar com o idioma chinês. O editor 
+	atual do material entitulado <literal>&os; Chinese HOWTO</literal> é
+        Shen Chuan-Hsing <email>statue@freebsd.sinica.edu.tw</email>.
+      </para>
+
+      <para>Chuan-Hsing Shen <email>statue@freebsd.sinica.edu.tw</email> 
+	criou a Coleção Chinesa do &os; 
+	<literal>(Chinese FreeBSD Collection - CFC)</literal> 
+	<ulink url="http://netlab.cse.yzu.edu.tw/~statue/cfc"></ulink> 
+	com ajuda do tutorial mantido pelo Projeto &os;-Taiwan 
+	<literal>(zh-l10n-tut)</literal>.  Os pacotes e scripts da CFC
+	são disponibilizados em 
+	<ulink url="ftp://freebsd.csie.nctu.edu.tw/pub/taiwan/CFC"></ulink>.</para>
+    </sect2>
+
+    <sect2>
+      <title>Localização para Alemão (e Outros Idiomas com Codificação ISO-8859-1)</title>
+      <indexterm>
+	<primary>localization</primary>
+	<secondary>German</secondary>
+      </indexterm>
+
+      <para>Slaven Rezic <email>eserte@cs.tu-berlin.de</email> 
+	escreveu um tutorial sobre o uso de trema <literal>(umlaut)</literal> 
+	em máquinas que estejam a operar um sistema &os;. Este tutorial 
+	está disponível em 
+	<ulink url="http://user.cs.tu-berlin.de/~eserte/FreeBSD/doc/umlaute/umlaute.html"></ulink> 
+	e foi escrito em alemão.</para>
+    </sect2>
+
+    <sect2>
+      <title>Localização para Grego</title>
+
+      <indexterm>
+	<primary>localization</primary>
+	<secondary>Greek</secondary>
+      </indexterm>
+      <para>Nikos Kokkalis <email>nickkokkalis@gmail.com</email> 
+	escreveu um artigo completo para se trabalhar com &os; 
+	utilizando o idioma grego. Este material está disponível em <ulink
+	  url="&url.doc.base;/el_GR.ISO8859-7/articles/greek-language-support/index.html">http://www.freebsd.org/doc/el_GR.ISO8859-7/articles/greek-language-support/index.html</ulink>.
+	Considere, por favor, que este artigo está disponível <emphasis>APENAS</emphasis> em grego.</para>
+    </sect2>
+
+    <sect2>
+      <title>Localização para Japonês e Coreano</title>
+      <indexterm>
+	<primary>localization</primary>
+	<secondary>Japanese</secondary>
+      </indexterm>
+      <indexterm>
+	<primary>localization</primary>
+	<secondary>Korean</secondary>
+      </indexterm>
+      <para>Para japonês, consulte
+      	<ulink url="http://www.jp.FreeBSD.org"></ulink>.
+	Para coreano, consulte
+	<ulink url="http://www.kr.FreeBSD.org"></ulink>.</para>
+    </sect2>
+
+    <sect2>
+      <title>Documentação do &os; em Outros Idiomas</title>
+
+      <para>Algums colaboradores so projeto &os; traduzem várias das 
+	documentações para outros idiomas. Essas traduções estão 
+	disponíveis em páginas específicas no <ulink 
+	url="&url.base;/index.html">Sítio Web Oficial da Documentação 
+	do Projeto &os;</ulink> ou em 
+	<filename>/usr/share/doc</filename>.</para>
+    </sect2>
+  </sect1>
+</chapter>

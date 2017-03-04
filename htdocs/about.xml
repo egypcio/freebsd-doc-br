@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//FreeBSD//DTD XHTML 1.0 Transitional-Based Extension//EN"
+"http://www.FreeBSD.org/XML/doc/share/xml/xhtml10-freebsd.dtd" [
+<!ENTITY title "Sobre o &os;">
+]>
+
+<!--
+    The FreeBSD Documentation Project
+    The FreeBSD Brazilian Portuguese Documentation Project
+
+    Original revision:  r39632
+
+    $FreeBSD: trunk/docs/pt_BR.ISO8859-1/htdocs/about.xml 217 2012-10-20 03:32:07Z ebrandi@fugspbr.org $
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>&title;</title>
+
+    <cvs:keyword xmlns:cvs="http://www.FreeBSD.org/XML/CVS">$FreeBSD: trunk/docs/pt_BR.ISO8859-1/htdocs/about.xml 217 2012-10-20 03:32:07Z ebrandi@fugspbr.org $</cvs:keyword>
+  </head>
+
+  <body class="navinclude.about">
+
+    <h2>O que é o &os;?</h2>
+
+    <p>O FreeBSD é um sistema operacional avançado para equipamentos
+      x86 compatível (incluindo  Pentium&reg; e Athlon&trade;), amd64
+      compatível (incluindo Opteron&trade;, Athlon&trade;64, e EM64T),
+      ARM, IA-64, PowerPC, PC-98 e arquiteturas UltraSPARC&reg;. Ele é
+      derivado do BSD, a versão do  &unix; desenvolvida na
+      Universidade da Califórnia, em Berkeley. Ele é desenvolvido e
+      mantido por <a
+      href="&base;/doc/en_US.ISO8859-1/articles/contributors/staff-committers.html">uma
+      grande equipe de indivíduos</a>. <a
+      href="&base;/platforms/index.html">Plataformas</a> adicionais
+      encontram-se nos mais váriados estágios de desenvolvimento.</p>
+      
+    <h2>Características de vanguarda</h2>
+
+    <p>O FreeBSD disponibiliza <a
+      href="&base;/features.html">funcionalidades</a> avançadas de
+      rede, performance, segurança e compatibilidade, que atualmente
+      ainda não encontramos em outros sistemas operacionais, até mesmo
+      em alguns dos melhores sistemas comerciais.</p>
+
+    <h2>Poderosas soluções para Internet</h2>
+
+    <p>FreeBSD é ideal para se montar um servidor <a
+      href="&base;/internet.html">Internet ou Intranet</a> servidor.
+      Ele oferece serviços de rede robustos sob as cargas mais pesadas
+      e utiliza a memória do servidor de forma eficiente, mantendo
+      bons tempos de resposta para milhares de processos
+      simultâneos.</p>
+    
+    <h2>Plataforma Embarcada Avançada</h2>
+
+    <p>O FreeBSD traz as avançadas funcionalidades de rede do sistema
+      operacional para appliances e plataformas embarcadas, dos
+      modernos appliances baseados na arquitetura Intel até os
+      appliances baseados nas plataformas de hardware ARM, PowerPC, e
+      em breve MIPS. De appliances de e-mail e web até roteadores,
+      servidores de tempo, pontos de acesso de redes sem fio,
+      fornecedores de todo o mundo confiam no ambiente integrado de
+      compilação e de compilação cruzada do FreeBSD, bem como nas suas
+      funcionalidades avançadas para ser a base dos seus produtos
+      embarcados.  E a licença Berkeley de código aberto permite
+      que eles decidam quantas e quais das modificações realizadas
+      serão contribuidas de volta para o projeto.</p>
+
+    <h2>Execute um grande número de aplicações</h2>
+
+    <p>Com mais de 20.000 <a
+      href="&base;/applications.html">aplicativos</a> e bibliotecas
+      portadas, o FreeBSD suporta aplicativos para desktops, 
+      servidores, appliances e ambientes embarcados.</p>
+    
+    <h2>Fácil de Instalar</h2>
+
+    <p>O FreeBSD pode ser instalado a partir de uma grande variedade
+    de mídias, incluindo CD-ROMs, DVDs, ou diretamente pela rede
+    utilizando FTP ou NFS.  Tudo que você precisa são <a
+    href="&base;/doc/pt_BR.ISO8859-1/books/handbook/install.html">estas
+    instruções</a>.</p>
+    
+    <h2>O FreeBSD é <i>gratuito</i></h2>
+
+    <a href="&enbase;/copyright/daemon.html"><img src="&enbase;/gifs/dae_up3.gif" alt="The BSD Daemon" height="81" width="72" align="right" border="0"/></a>
+
+    <p>Embora você possa esperar que um sistema operacional com estas
+      características tenha um preço elevado, o FreeBSD está
+      disponível de forma <a
+      href="&base;/copyright/index.html">gratuita</a> e é distribuido
+      acompanhado do seu código fonte completo. Se você desejar
+      comprar ou baixar uma cópia para experimentar, <a
+      href="&base;/doc/pt_BR.ISO8859-1/books/handbook/mirrors.html">consulte
+      este link para maiores informações</a>.</p>
+
+    <h2>Contribuindo com o FreeBSD</h2>
+
+    <p>É fácil contribuir para o FreeBSD. Tudo o que você precisa 
+      fazer é encontrar uma parte do FreeBSD que você acha que pode 
+      ser melhorada e realizar as mudanças (cuidadosa e corretamente)
+      e enviá-las de volta para o projeto por meio de um relatório de
+      problema ou de um committer, caso você conheça um.  Sua
+      contribuição pode ser qualquer coisa, indo de documentação e
+      arte até código fonte.  Veja o artigo <a
+      href="&base;/doc/pt_BR.ISO8859-1/articles/contributing/index.html">Contribuindo
+      para o FreeBSD</a> para obter maiores informações.</p>
+    
+    <p>Se você não é um programador, existem outras maneiras de
+      contribuir com o FreeBSD. A <a
+      href="http://www.FreeBSDFoundation.org">FreeBSD Foundation</a> é
+      uma entidade sem fins lucrativos e se você é um cidadão
+      americano as contribuições financeiras para ela são totalmente 
+      dedutíveis do imposto de renda.  Para maiores informações 
+      contate <a
+      href="mailto:board&#64;FreeBSDFoundation.org">board&#64;FreeBSDFoundation.org</a>
+      ou escreva para: <br /> <br />
+      The FreeBSD Foundation<br />
+      P.O. Box 20247, Boulder, CO<br /> 
+      80308, USA</p>
+
+  </body>
+</html>

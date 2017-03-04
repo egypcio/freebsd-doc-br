@@ -1,0 +1,1300 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!--
+  The FreeBSD Documentation Project
+  The FreeBSD Brazilian Portuguese Documentation Project
+
+  Original revision: r39595
+
+  $FreeBSD: trunk/docs/pt_BR.ISO8859-1/books/handbook/virtualization/chapter.xml 386 2013-12-29 14:52:04Z egypcio $
+-->
+
+<chapter id="virtualization">
+  <chapterinfo>
+    <authorgroup>
+      <author>
+	<firstname>Murray</firstname>
+	<surname>Stokely</surname>
+	<contrib>Uma Contribuição de </contrib>
+      </author>
+    </authorgroup>
+    <!-- Mar 2007 -->
+  </chapterinfo>
+
+  <title>Virtualização</title>
+
+  <sect1 id="virtualization-synopsis">
+    <title>Sinopse</title>
+
+    <para>Softwares de virtualização permitem que vários sistemas 
+      operacionais sejam executados ao mesmo tempo em um mesmo 
+      computador. Este tipo de software costuma possuir um sistema 
+      operacional hospedeiro (<literal>host</literal>), que executa 
+      o software de virtualização, e diversos sistemas operacionais 
+      convidados (<literal>guests</literal>).</para>
+
+    <para>Após ler este capítulo, você saberá:</para>
+
+    <itemizedlist>
+      <listitem>
+	<para>A diferença entre o sistema operacional hospedeiro e
+          um sistema operacional convidado.</para>
+      </listitem>
+
+      <listitem>
+	<para>Como instalar o &os; num computador com &apple; 
+	  &macintosh; que tenha um processador &intel;.</para>
+      </listitem>
+
+<!--
+  Note:  There is no working/end-user ready Xen support for FreeBSD as of 07-2010.
+         Hide all information regarding Xen under FreeBSD.
+
+      <listitem>
+	<para>Como instalar &os; no Linux com
+	  <application>&xen;</application>.</para>
+      </listitem>
+-->
+      <listitem>
+	<para>Como instalar o &os; no &microsoft.windows; com ajuda 
+	  do <application>Virtual PC</application>.</para>
+      </listitem>
+
+      <listitem>
+	<para>Como ajustar um sistema &os; para obter melhor 
+	  performance com softwares de virtualização.</para>
+      </listitem>
+
+    </itemizedlist>
+
+    <para>Antes de ler este capítulo, voce deve estar familiarizado com:</para>
+
+    <itemizedlist>
+      <listitem>
+	<para>Conhecer o básico sobre &unix; e &os; (<xref
+	    linkend="basics"/>).</para>
+      </listitem>
+
+      <listitem>
+	<para>Saber instalar o &os; (<xref
+	    linkend="install"/>).</para>
+      </listitem>
+
+      <listitem>
+	<para>Saber configurar uma conexão de rede (<xref
+	    linkend="advanced-networking"/>).</para>
+      </listitem>
+
+      <listitem>
+	<para>Saber instalar softwares adicionais de
+	  terceiros (<xref linkend="ports"/>).</para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="virtualization-guest">
+    <title>&os; como SO Convidado</title>
+
+    <sect2 id="virtualization-guest-parallels">
+      <title>Parallels no &macos;</title>
+
+      <para><application>Parallels Desktop</application> para &mac; é
+	um software comercial disponível para computadores &intel;
+	&apple; &mac; rodando &macos; 10.4.6 ou superior.
+	O &os; possui suporte total como sistema operacional convidado. Após
+	<application>Parallels</application> ser instalado no
+	&macos; X, o usuário precisa configurar uma máquina virtual e depois 
+	instalar o sistema operacional convidado que desejar.</para>
+
+      <sect3 id="virtualization-guest-parallels-install">
+	<title>Instalando o &os; no Parallels/&macos; X</title>
+
+	<para>O primeiro passo para instalar &os; no &macos;
+	  X/<application>Parallels</application> é criar uma nova
+	  máquina virtual para a instalação do &os;.  Selecione
+	  <guimenuitem>&os;</guimenuitem> como <guimenu>Guest OS
+	    Type (Tipo do SO Convidado)</guimenu> quando solicitado:</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/parallels-freebsd1"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>E escolha uma quantidade razoável de disco e memória
+	  dependendo de seus planos para esta instância virtual do &os;.
+	  4GB de espaço em disco e 512MB de memória RAM funcionam bem para 
+	  utilizar o &os; sob o <application>Parallels</application>:</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/parallels-freebsd2"/>
+	  </imageobject>
+	</mediaobject>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/parallels-freebsd3"/>
+	  </imageobject>
+	</mediaobject>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/parallels-freebsd4"/>
+	  </imageobject>
+	</mediaobject>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/parallels-freebsd5"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Escolha o tipo de rede e a interface de rede:</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/parallels-freebsd6"/>
+	  </imageobject>
+	</mediaobject>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/parallels-freebsd7"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Salve e finalize a configuracão:</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/parallels-freebsd8"/>
+	  </imageobject>
+	</mediaobject>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/parallels-freebsd9"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Após crar sua máquina virtual para o &os;, você
+	  precisará instalar o &os; nela.  A melhor forma de fazer isto é com 
+	  o CDROM oficial do &os; ou com uma imagem ISO baixada de um
+	  site FTP oficial. Quando você tiver com a imagem ISO apropriada
+	  no sistema de arquivos local de seu &mac; ou com o CDROM no drive de CD de
+          seu &mac;, clique no ícone de disco no canto inferior à direita
+	  da janela do &os; <application>Parallels</application>.  Isto
+	  abrirá uma janela que permitirá que você associe o 
+	  drive de CDROM à sua máquina virtual com uma imagem ISO no disco
+	  ou com o CD de seu drive de CDROM.</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/parallels-freebsd11"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Após efetuar a associação com a origem do CDROM,
+	  reinicie a máquina virtual do &os; clicando no ícone reboot (Reiniciar).
+	  <application>O Parallels</application> irá reiniciar com uma BIOS
+	  especial que irá verificar se você tem um CDROM, como uma BIOS normal faria.</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/parallels-freebsd10"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Neste caso irá encontrar uma mídia de instalação do &os;
+	  e iniciar uma instalação básica com o <application>sysinstall</application>
+	  conforme descrito em <xref linkend="install"/>.  Você poderá então instalar, 
+          mas não tente configurar a interface gráfica X11 neste momento.</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/parallels-freebsd12"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Quando você terminar a instalação, reinicie sua máquina
+          virtual com seu &os; recém instalado.</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/parallels-freebsd13"/>
+	  </imageobject>
+	</mediaobject>
+      </sect3>
+
+      <sect3 id="virtualization-guest-parallels-configure">
+	<title>Configurando o &os; no &macos; X/Parallels</title>
+
+	<para>Após o &os; ser instalado com sucesso no &macos;
+	  X com o <application>Parallels</application>, há algumas
+          configurações que podem ser feitas para otimizar o sistema
+          para um melhor funcionamento no modo virtualizado.</para>
+
+	<procedure>
+	  <step>
+	    <title>Configurar as variáveis do Boot Loader</title>
+
+	    <para>O passo mais importante é reduzir a variável
+	      <option>kern.hz</option> para  reduzir a utilização de CPU
+	      do &os; sob o ambiente do <application>Parallels
+	      </application>.  Para isto, adicione a seguinte linha no arquivo
+	      <filename>/boot/loader.conf</filename>:</para>
+
+	    <programlisting>kern.hz=100</programlisting>
+
+	    <para>Sem este ajuste, um SO &os; convidado rodando no 
+	      <application>Parallels</application> irá utilizar em torno 
+              de 15% de CPU de um &imac; com um processador.
+	      Após esta alteração o uso será de aproximadamente 5%.</para>
+	  </step>
+
+	  <step>
+	    <title>Criar um Novo Arquivo de Kernel</title>
+	    <para>Você pode remover todos os drivers de SCSI e de 
+              dispositivos FireWire e USB. O <application>Parallels</application>
+	      fornece um adaptador de rede virtual utilizado pelo driver
+	      &man.ed.4; driver, portanto todos os outros dispositivos de rede, 
+              exceto o &man.ed.4; e o &man.miibus.4;, podem ser removidos do kernel.</para>
+	  </step>
+
+	  <step>
+	    <title>Configurar a Rede</title>
+
+	    <para>Uma configuração de rede simples utiliza DHCP
+              para conectar sua máquina virtual na mesma rede local
+	      de seu &mac;. Para isso, adicionel
+	      <literal>ifconfig_ed0="DHCP"</literal> no
+	      <filename>/etc/rc.conf</filename>. Confirurações de rede
+              mais avançadas estão descritas no 
+	      <xref linkend="advanced-networking"/>.</para>
+	  </step>
+	</procedure>
+      </sect3>
+    </sect2>
+<!--
+Deactive/hide this section as the instructions in there do NOT work anymore:
+- FreeBSD 7.0 has reached its EOL a long time ago.
+- The needed files from www.fsmware.com are not available anymore, as the
+  server is dead.  So it is impossible to follow the instructions in here.
+
+jkois@FreeBSD.org, 2010-06-18
+
+    <sect2 id="virtualization-guest-xen">
+      <sect2info>
+	<authorgroup>
+	  <author>
+	    <firstname>Fukang</firstname>
+	    <surname>Chen (Loader)</surname>
+	    <contrib>Contributed by </contrib>
+	  </author>
+	</authorgroup>
+      </sect2info>
+
+      <title>&os; with &xen; on Linux</title>
+
+	<para>The <application>&xen;</application> hypervisor is an
+	  open source paravirtualization product which is now
+	  supported by the commercial XenSource company.  Guest
+	  operating systems are known as domU domains, and the host
+	  operating system is known as dom0.  The first step in
+	  running a virtual &os; instance under Linux is to install
+	  <application>&xen;</application> for Linux dom0.  The host
+	  operating system will be a Slackware Linux
+	  distribution.</para>
+
+	<sect3 id="xen-slackware-dom0">
+	  <title>Setup &xen; 3 on Linux dom0</title>
+
+	  <procedure>
+	    <step>
+	      <title>Download &xen; 3.0 from XenSource</title>
+
+	      <para>Download <ulink
+		  url="http://bits.xensource.com/oss-xen/release/3.0.4-1/src.tgz/xen-3.0.4_1-src.tgz">xen-3.0.4_1-src.tgz</ulink>
+		from <ulink
+		url="http://www.xensource.com/"></ulink>.</para>
+	    </step>
+
+	    <step>
+	      <title>Unpack the tarball</title>
+
+              <screen>&prompt.root; <userinput>cd xen-3.0.4_1-src</userinput>
+&prompt.root; <userinput>KERNELS="linux-2.6-xen0 linux-2.6-xenU" make world</userinput>
+&prompt.root; <userinput>make install</userinput></screen>
+
+	      <note>
+		<para>To re-compile the kernel for dom0:</para>
+
+		<screen>&prompt.root; <userinput>cd xen-3.0.4_1-src/linux-2.6.16.33-xen0</userinput>
+&prompt.root; <userinput>make menuconfig</userinput>
+&prompt.root; <userinput>make</userinput>
+&prompt.root; <userinput>make install</userinput></screen>
+
+		<para>Older version of
+		  <application>&xen;</application> may need to specify
+		  <command>make ARCH=xen menuconfig</command></para>
+	      </note>
+	    </step>
+
+	    <step>
+	      <title>Add a menu entry into Grub menu.lst</title>
+
+	      <para>Edit <filename>/boot/grub/menu.lst</filename> and
+		add the following lines:</para>
+
+	      <programlisting>title Xen-3.0.4
+root (hd0,0)
+kernel /boot/xen-3.0.4-1.gz dom0_mem=262144
+module /boot/vmlinuz-2.6.16.33-xen0 root=/dev/hda1 ro</programlisting>
+	    </step>
+
+	    <step>
+	      <title>Reboot your computer into &xen;</title>
+
+	      <para>First, edit
+		<filename>/etc/xen/xend-config.sxp</filename>, and add
+		the following line:</para>
+
+	      <programlisting>(network-script 'network-bridge netdev=eth0')</programlisting>
+
+	      <para>Then, we can launch
+		<application>&xen;</application>:</para>
+
+	      <screen>&prompt.root; <userinput>/etc/init.d/xend start</userinput>
+&prompt.root; <userinput>/etc/init.d/xendomains start</userinput></screen>
+
+	      <para>Our dom0 is running:</para>
+
+	      <screen>&prompt.root; <userinput>xm list</userinput>
+Name                                      ID   Mem VCPUs      State   Time(s)
+Domain-0                                   0   256     1     r&ndash;&ndash;&ndash;&ndash;&ndash;  54452.9</screen>
+	    </step>
+	  </procedure>
+	</sect3>
+
+	<sect3>
+	  <title>&os; 7-CURRENT domU</title>
+
+	  <para>Download the &os; domU kernel for
+	    <application>&xen; 3.0</application> and disk image from
+	    <ulink
+	      url="http://www.fsmware.com/">http://www.fsmware.com/</ulink></para>
+
+	  <itemizedlist>
+	    <listitem>
+	      <para><ulink
+		  url="http://www.fsmware.com/xenofreebsd/7.0/download/kernel-current">kernel-current</ulink></para>
+	    </listitem>
+
+	    <listitem>
+	      <para><ulink
+		  url="http://www.fsmware.com/xenofreebsd/7.0/download/mdroot-7.0.bz2">mdroot-7.0.bz2</ulink></para>
+	    </listitem>
+
+	    <listitem>
+	      <para><ulink
+		  url="http://www.fsmware.com/xenofreebsd/7.0/download/config/xmexample1.bsd">xmexample1.bsd</ulink></para>
+	    </listitem>
+	  </itemizedlist>
+
+	  <para>Put the configuration file
+	    <filename>xmexample1.bsd</filename> into
+	    <filename>/etc/xen/</filename> and modify the related
+	    entries about where the kernel and the disk image are
+	    stored. It should look like the following:</para>
+
+	  <programlisting>kernel = "/opt/kernel-current"
+memory = 256
+name = "freebsd"
+vif = [ '' ]
+disk = [ 'file:/opt/mdroot-7.0,hda1,w' ]
+#on_crash    = 'preserve'
+extra = "boot_verbose"
+extra += ",boot_single"
+extra += ",kern.hz=100"
+extra += ",vfs.root.mountfrom=ufs:/dev/xbd769a"</programlisting>
+
+	  <para>The <filename>mdroot-7.0.bz2</filename> file should
+	    be uncompressed.</para>
+
+	  <para>Next, the __xen_guest section in
+	    <filename>kernel-current</filename> needs to be altered to
+	    add the VIRT_BASE that
+	    <application>&xen; 3.0.3</application> requires:</para>
+
+	  <screen>&prompt.root; <userinput>objcopy kernel-current -R __xen_guest</userinput>
+&prompt.root; <userinput>perl -e 'print "LOADER=generic,GUEST_OS=freebsd,GUEST_VER=7.0,XEN_VER=xen-3.0,BSD_SYMTAB,VIRT_BASE=0xC0000000\x00"' &gt; tmp</userinput>
+&prompt.root; <userinput>objcopy kernel-current &ndash;&ndash;add-section __xen_guest=tmp</userinput></screen>
+
+	  <screen>&prompt.root; <userinput>objdump -j __xen_guest -s kernel-current</userinput>
+
+kernel-current:     file format elf32-i386
+
+Contents of section __xen_guest:
+ 0000 4c4f4144 45523d67 656e6572 69632c47  LOADER=generic,G
+ 0010 55455354 5f4f533d 66726565 6273642c  UEST_OS=freebsd,
+ 0020 47554553 545f5645 523d372e 302c5845  GUEST_VER=7.0,XE
+ 0030 4e5f5645 523d7865 6e2d332e 302c4253  N_VER=xen-3.0,BS
+ 0040 445f5359 4d544142 2c564952 545f4241  D_SYMTAB,VIRT_BA
+ 0050 53453d30 78433030 30303030 3000      SE=0xC0000000. </screen>
+
+	  <para>We are, now, ready to create and launch our
+	    domU:</para>
+
+	  <screen>&prompt.root; <userinput>xm create /etc/xen/xmexample1.bsd -c</userinput>
+Using config file "/etc/xen/xmexample1.bsd".
+Started domain freebsd
+WARNING: loader(8) metadata is missing!
+Copyright (c) 1992-2006 The FreeBSD Project.
+Copyright (c) 1979, 1980, 1983, 1986, 1988, 1989, 1991, 1992, 1993, 1994
+The Regents of the University of California. All rights reserved.
+FreeBSD 7.0-CURRENT #113: Wed Jan  4 06:25:43 UTC 2006
+    kmacy@freebsd7.gateway.2wire.net:/usr/home/kmacy/p4/freebsd7_xen3/src/sys/i386-xen/compile/XENCONF
+WARNING: DIAGNOSTIC option enabled, expect reduced performance.
+Xen reported: 1796.927 MHz processor.
+Timecounter "ixen" frequency 1796927000 Hz quality 0
+CPU: Intel(R) Pentium(R) 4 CPU 1.80GHz (1796.93-MHz 686-class CPU)
+  Origin = "GenuineIntel"  Id = 0xf29  Stepping = 9
+  Features=0xbfebfbff&lt;FPU,VME,DE,PSE,TSC,MSR,PAE,MCE,CX8,APIC,SEP,MTRR,PGE,MCA,CMOV,PAT,PSE36,CLFLUSH,
+  DTS,ACPI,MMX,FXSR,SSE,SSE2,SS,HTT,TM,PBE&gt;
+  Features2=0x4400&lt;CNTX-ID,&lt;b14&gt;&gt;
+real memory  = 265244672 (252 MB)
+avail memory = 255963136 (244 MB)
+xc0: &lt;Xen Console&gt; on motherboard
+cpu0 on motherboard
+Timecounters tick every 10.000 msec
+[XEN] Initialising virtual ethernet driver.
+xn0: Ethernet address: 00:16:3e:6b:de:3a
+[XEN]
+Trying to mount root from ufs:/dev/xbd769a
+WARNING: / was not properly dismounted
+Loading configuration files.
+No suitable dump device was found.
+Entropy harvesting: interrupts ethernet point_to_point kickstart.
+Starting file system checks:
+/dev/xbd769a: 18859 files, 140370 used, 113473 free (10769 frags, 12838 blocks, 4.2% fragmentation)
+Setting hostname: demo.freebsd.org.
+lo0: flags=8049&lt;UP,LOOPBACK,RUNNING,MULTICAST&gt; mtu 16384
+	  inet6 ::1 prefixlen 128
+	  inet6 fe80::1%lo0 prefixlen 64 scopeid 0x2
+	  inet 127.0.0.1 netmask 0xff000000
+Additional routing options:.
+Mounting NFS file systems:.
+Starting syslogd.
+/etc/rc: WARNING: Dump device does not exist.  Savecore not run.
+ELF ldconfig path: /lib /usr/lib /usr/lib/compat /usr/X11R6/lib /usr/local/lib
+a.out ldconfig path: /usr/lib/aout /usr/lib/compat/aout /usr/X11R6/lib/aout
+Starting usbd.
+usb: Kernel module not available: No such file or directory
+Starting local daemons:.
+Updating motd.
+Starting sshd.
+Initial i386 initialization:.
+Additional ABI support: linux.
+Starting cron.
+Local package initialization:.
+Additional TCP options:.
+Starting background file system checks in 60 seconds.
+
+Sun Apr  1 02:11:43 UTC 2007
+
+FreeBSD/i386 (demo.freebsd.org) (xc0)
+
+login: </screen>
+
+	  <para>The domU should run the &os;&nbsp;7.0-CURRENT
+	    kernel:</para>
+
+	  <screen>&prompt.root; <userinput>uname -a</userinput>
+FreeBSD demo.freebsd.org 7.0-CURRENT FreeBSD 7.0-CURRENT #113: Wed Jan  4 06:25:43 UTC 2006
+kmacy@freebsd7.gateway.2wire.net:/usr/home/kmacy/p4/freebsd7_xen3/src/sys/i386-xen/compile/XENCONF  i386</screen>
+
+	  <para>The network can now be configured on the domU.  The
+	    &os; domU will use a specific interface called
+	    <devicename>xn0</devicename>:</para>
+
+	  <screen>&prompt.root; <userinput>ifconfig xn0 10.10.10.200 netmask 255.0.0.0</userinput>
+&prompt.root; <userinput>ifconfig</userinput>
+xn0: flags=843&lt;UP,BROADCAST,RUNNING,SIMPLEX&gt; mtu 1500
+    inet 10.10.10.200 netmask 0xff000000 broadcast 10.255.255.255
+    ether 00:16:3e:6b:de:3a
+lo0: flags=8049&lt;UP,LOOPBACK,RUNNING,MULTICAST&gt; mtu 16384
+      inet6 ::1 prefixlen 128
+      inet6 fe80::1%lo0 prefixlen 64 scopeid 0x2
+      inet 127.0.0.1 netmask 0xff000000 </screen>
+
+	  <para>On dom0 Slackware, some
+	    <application>&xen;</application> dependant network
+	    interfaces should show up:</para>
+
+	  <screen>&prompt.root; <userinput>ifconfig</userinput>
+eth0      Link encap:Ethernet  HWaddr 00:07:E9:A0:02:C2
+	  inet addr:10.10.10.130  Bcast:0.0.0.0  Mask:255.0.0.0
+	  UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+	  RX packets:815 errors:0 dropped:0 overruns:0 frame:0
+	  TX packets:1400 errors:0 dropped:0 overruns:0 carrier:0
+	  collisions:0 txqueuelen:0
+	  RX bytes:204857 (200.0 KiB)  TX bytes:129915 (126.8 KiB)
+
+lo        Link encap:Local Loopback
+	  inet addr:127.0.0.1  Mask:255.0.0.0
+	  UP LOOPBACK RUNNING  MTU:16436  Metric:1
+	  RX packets:99 errors:0 dropped:0 overruns:0 frame:0
+	  TX packets:99 errors:0 dropped:0 overruns:0 carrier:0
+	  collisions:0 txqueuelen:0
+	  RX bytes:9744 (9.5 KiB)  TX bytes:9744 (9.5 KiB)
+
+peth0     Link encap:Ethernet  HWaddr FE:FF:FF:FF:FF:FF
+	  UP BROADCAST RUNNING NOARP  MTU:1500  Metric:1
+	  RX packets:1853349 errors:0 dropped:0 overruns:0 frame:0
+	  TX packets:952923 errors:0 dropped:0 overruns:0 carrier:0
+	  collisions:0 txqueuelen:1000
+	  RX bytes:2432115831 (2.2 GiB)  TX bytes:86528526 (82.5 MiB)
+	  Base address:0xc000 Memory:ef020000-ef040000
+
+vif0.1    Link encap:Ethernet  HWaddr FE:FF:FF:FF:FF:FF
+	  UP BROADCAST RUNNING NOARP  MTU:1500  Metric:1
+	  RX packets:1400 errors:0 dropped:0 overruns:0 frame:0
+	  TX packets:815 errors:0 dropped:0 overruns:0 carrier:0
+	  collisions:0 txqueuelen:0
+	  RX bytes:129915 (126.8 KiB)  TX bytes:204857 (200.0 KiB)
+
+vif1.0    Link encap:Ethernet  HWaddr FE:FF:FF:FF:FF:FF
+	  UP BROADCAST RUNNING NOARP  MTU:1500  Metric:1
+	  RX packets:3 errors:0 dropped:0 overruns:0 frame:0
+	  TX packets:2 errors:0 dropped:157 overruns:0 carrier:0
+	  collisions:0 txqueuelen:1
+	  RX bytes:140 (140.0 b)  TX bytes:158 (158.0 b)
+
+xenbr1    Link encap:Ethernet  HWaddr FE:FF:FF:FF:FF:FF
+	  UP BROADCAST RUNNING NOARP  MTU:1500  Metric:1
+	  RX packets:4 errors:0 dropped:0 overruns:0 frame:0
+	  TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+	  collisions:0 txqueuelen:0
+	  RX bytes:112 (112.0 b)  TX bytes:0 (0.0 b)</screen>
+
+      <screen>&prompt.root; <userinput>brctl show</userinput>
+bridge name     bridge id           STP enabled         interfaces
+xenbr1          8000.feffffffffff   no                  vif0.1
+                                                        peth0
+                                                        vif1.0</screen>
+	</sect3>
+      </sect2>
+-->
+    <sect2 id="virtualization-guest-virtualpc">
+      <title>Virtual PC para &windows;</title>
+
+      <para><application>Virtual PC</application> para &windows; é um 
+	produto da &microsoft; disponibilizado gratuitamente para download.
+	Consulte <ulink
+	  url="http://www.microsoft.com/windows/downloads/virtualpc/sysreq.mspx">
+	requisitos de sistema</ulink>.  Após instalar o <application> Virtual PC
+	</application> no &microsoft.windows;,
+	o usuário deverá configurar uma máquina virtual e então instalar o 
+	sistema operacional convidade que desejar.</para>
+
+      <sect3 id="virtualization-guest-virtualpc-install">
+	<title>Instalando o &os; no Virtual
+	  PC/&microsoft.windows;</title>
+
+	<para>O primeiro passo para instalar o &os; no 
+	  &microsoft.windows; <application>Virtual PC
+	  </application> é criar uma nova
+	  máquina virtual para a instalação do &os;.  Selecione
+	  <guimenuitem>Create a virtual machine (Criar uma máquna virtual)</guimenuitem> 
+	    quando solicitado:</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/virtualpc-freebsd1"/>
+	  </imageobject>
+	</mediaobject>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/virtualpc-freebsd2"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>E selecione <guimenuitem>Other (Outros)</guimenuitem> para
+	  <guimenuitem>Operating system</guimenuitem> quando
+	  solicitado:</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/virtualpc-freebsd3"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>E escolha uma quantidade razoável de disco e memória
+	  dependendo de seus planos para esta instância virtual do &os;.
+	  4GB de espaço em disco e 512MB de memória RAM funcionam bem para 
+	  utilizar o &os; sob o <application>Virtual PC</application>:</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/virtualpc-freebsd4"/>
+	  </imageobject>
+	</mediaobject>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/virtualpc-freebsd5"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Salve e finalize a configuração:</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/virtualpc-freebsd6"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Selecione a máquina virtual &os; e clique em
+	  <guimenu>Settings (Ajustes)</guimenu>, depois escolha o tipo de rede
+	  e a interface de rede:</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/virtualpc-freebsd7"/>
+	  </imageobject>
+	</mediaobject>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/virtualpc-freebsd8"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Após criar sua máquina virtual para o &os;, você
+	  precisará instalar o &os; nela.  A melhor forma de fazer isto é com 
+	  o CDROM oficial do &os; ou com uma imagem ISO baixada de um
+	  site FTP oficial. Quando você tiver com a imagem ISO apropriada
+	  no sistema de arquivos local de seu &windows; ou com o CDROM no drive de CD de
+          seu &windows;, dê um duplo clique na sua máquina virtual para o &os;
+	  para iniciá-la. Depois, clique <guimenu>CD</guimenu> e escolha
+	  <guimenu>Capture ISO Image...</guimenu> na janela do 
+	  <application>Virtual PC</application>. Isto
+	  abrirá uma janela que permitirá que você associe o 
+	  drive de CDROM à sua máquina virtual com uma imagem ISO no disco
+	  ou com o CD de seu drive de CDROM.</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/virtualpc-freebsd9"/>
+	  </imageobject>
+	</mediaobject>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/virtualpc-freebsd10"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Após efetuar a associação com a origem do CDROM,
+	  reinicie a máquina virtual do &os; clicando em 
+	  <guimenu>Action</guimenu> e depois <guimenu>Reset</guimenu>.
+	  O <application>Virtual PC</application> irá reiniciar com uma BIOS
+	  especial que irá verificar se você tem um CDROM, como uma BIOS normal faria.</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/virtualpc-freebsd11"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Neste caso irá encontrar uma mídia de instalação do &os;
+	  e iniciar uma instalação básica com o <application>sysinstall</application>
+	  conforme descrito em <xref linkend="install"/>. Você poderá então instalar, 
+          mas não tente configurar a interface gráfica X11 neste momento.</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/virtualpc-freebsd12"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Quando você terminar a instalação, lembre de ejetar o CDROM
+          ou liberar a imagem ISO. Depos, reinicie sua máquina
+          virtual com seu &os; recém instalado.</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/virtualpc-freebsd13"/>
+	  </imageobject>
+	</mediaobject>
+      </sect3>
+
+      <sect3 id="virtualization-guest-virtualpc-configure">
+	<title>Configurando o &os; no &microsoft.windows;/Virtual
+	  PC</title>
+
+	<para>Após o &os; ser instalado com sucesso no &microsoft.windows;
+	  com o <application>Virtual PC</application>, há algumas
+          configurações que podem ser feitas para otimizar o sistema
+          para um melhor funcionanento no modo virtualizado.</para>
+
+	<procedure>
+	  <step>
+	    <title>Configurar as variáveis do Boot Loader</title>
+
+	    <para>O passo mais importante é reduzir a variável
+	      <option>kern.hz</option> para  reduzir a utilização de CPU
+	      do &os; sob o ambiente do <application>Virtual PC
+	      </application>.  Para isto, adicione a seguinte linha no arquivo
+	      <filename>/boot/loader.conf</filename>:</para>
+
+	      <programlisting>kern.hz=100</programlisting>
+
+	    <para>Sem este ajuste, um SO &os; convidado rodando no 
+	      <application>Virtual PC</application> irá utilizar em torno 
+              de 40% de CPU de um computador com um processador.
+	      Após esta alteração o uso será de aproximadamente 3%.</para>
+	  </step>
+
+	  <step>
+	    <title>Criar um Novo Arquivo de Kernel</title>
+
+	    <para>Você pode remover todos os drivers de SCSI e de 
+              dispositivos FireWire e USB. O <application>Virtual PC</application>
+	      fornece um adaptador de rede virtual utilizado pelo driver
+	      &man.de.4; driver, portanto todos os outros dispositivos de rede, 
+              exceto o &man.de.4; e o &man.miibus.4;, podem ser removidos do kernel.</para>
+	  </step>
+
+	  <step>
+	    <title>Configurar a Rede</title>
+
+	    <para>Uma configuração de rede simples utiliza DHCP
+              para conectar sua máquina virtual na mesma rede local
+	      de seu &microsoft.windows;. Para isso, adicionel
+	      <literal>ifconfig_de0="DHCP"</literal> no
+	      <filename>/etc/rc.conf</filename>.  Confirurações de rede
+              mais avançadas estão descritas no 
+	      <xref linkend="advanced-networking"/>.</para>
+	  </step>
+	</procedure>
+      </sect3>
+    </sect2>
+
+    <sect2 id="virtualization-guest-vmware">
+      <title>VMware no &macos;</title>
+
+      <para><application>VMware Fusion</application> para &mac; é um
+        software comercial diponível para computadores &apple; &mac;
+        &intel; rodando o &macos; 10.4.9 ou superior.
+	O &os; possui suporte total como sistema operacional convidado. Após
+	<application>VMWare Fusion</application> ser instalado no
+	&macos; X, o usuário precisa configurar uma máquina virtual e depois 
+	instalar o sistema operacional convidado que desejar.</para>
+
+      <sect3 id="virtualization-guest-vmware-install">
+	<title>Installing &os; on VMware/&macos; X</title>
+
+	<para>O primeiro passo é iniciar o VMWare Fusion, que irá carregar
+          a Biblioteca de Máquina Virtual. Depois clique em "New" para cirar
+          a VM:</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/vmware-freebsd01"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Isto irá carregar o Assistente para Nova Máquina virtual
+         para ajudá-lo a criar a VM. Clique Continue para prosseguir:</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/vmware-freebsd02"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Selecione <guimenuitem>Other (Outros)</guimenuitem> como 
+	  <guimenuitem>Operating System</guimenuitem> e a versão
+	  <guimenuitem>&os;</guimenuitem> ou
+	  <guimenuitem>&os; 64-bit</guimenuitem>, se você quiser suporte a 64-bit, 
+          quando solicitado:</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/vmware-freebsd03"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Escolha o nome da imagem e o diretório onde você 
+          quer salvar sua VM:</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/vmware-freebsd04"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Escolha o tamanho do Disco Virtual da VM:</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/vmware-freebsd05"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Escolha o método de instalação da VM, que poderá ser uma
+          imagem ISO ou a partir de um CD:</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/vmware-freebsd06"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Após clicar em Finish (Finalizar), a VM irá reiniciar:</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/vmware-freebsd07"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Instale o  &os; como desejar, ou seguindo as instruções
+	  em <xref linkend="install"/>:</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/vmware-freebsd08"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Após completar a instalação você poderá alterar as
+          configurações da VM, como utilização da Memória:</para>
+
+	<note>
+	  <para>Os ajustes de Harwdare do Sistema da VM não podem
+            ser modificados enquanto a VM estiver rodadndo.</para>
+	</note>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/vmware-freebsd09"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>O número de CPUs que a VM terá acesso a:</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/vmware-freebsd10"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>O status do drive de CD-Rom. Você poderá desconectar 
+          o CD-Rom/ISO da VM se você não for mais usá-lo.</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/vmware-freebsd11"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>A última alteração a ser feita é como a VM irá conectar-se na rede.
+          Se você quiser habilitar conexões à VM a partir de outros equipamentos
+          além do Hospedeiro, escolha <guimenuitem>Connect directly 
+          to the physical network (Bridged)</guimenuitem>.  Senão, recomenta-se
+          <guimenuitem>Share the host's internet connection (NAT)</guimenuitem>,
+	  para a VM poder acessar a Internet sem permitir que a rede
+          acesse a VM.</para>
+
+	<mediaobject>
+	  <imageobject>
+	    <imagedata fileref="virtualization/vmware-freebsd12"/>
+	  </imageobject>
+	</mediaobject>
+
+	<para>Após terminar de modificar as configurações, reinicie a 
+          máquina virtual com o &os; instalado.</para>
+      </sect3>
+
+      <sect3 id="virtualization-guest-vmware-configure">
+	<title>Configurar o &os; no &macos; X/VMware</title>
+
+	<para>Após o &os; ser instalado com sucesso no &macos;
+	  X com o <application>VMWare</application>, há algumas
+          configurações que podem ser feitas para otimizar o sistema
+          para um melhor funcionamento no modo virtualizado.</para>
+
+	<procedure>
+	  <step>
+	    <title>Configurar as varíaveis do Boot Loader</title>
+
+	    <para>O passo mais importante é reduzir a variável
+	      <option>kern.hz</option> para  reduzir a utilização de CPU
+	      do &os; sob o ambiente do <application>VMWare
+	      </application>.  Para isto, adicione a seguinte linha no arquivo
+	      <filename>/boot/loader.conf</filename>:</para>
+
+	    <programlisting>kern.hz=100</programlisting>
+
+	    <para>Sem este ajuste, um SO &os; convidado rodando no 
+	      <application>VMWare</application> irá utilizar em torno 
+              de 15% de CPU de um &imac; com um processador.
+	      Após esta alteração o uso será de aproximadamente 5%.</para>
+	  </step>
+
+	  <step>
+	    <title>Criar um Novo Arquivo de Kernel</title>
+	    <para>Você pode remover todos os dispositivos FireWire e USB. 
+              O <application>VMWare</application>
+	      fornece um adaptador de rede virtual utilizado pelo driver
+	      &man.em.4; driver, portanto todos os outros dispositivos de rede, 
+              exceto o &man.em.4; e o &man.miibus.4;, podem ser removidos do kernel.</para>
+
+	  </step>
+
+	  <step>
+	    <title>Configurar a Rede</title>
+
+	    <para>Uma configuração de rede simples utiliza DHCP
+              para conectar sua máquina virtual na mesma rede local
+	      de seu &mac;. Para isso, adicione 
+	      <literal>ifconfig_em0="DHCP"</literal> em 
+	      <filename>/etc/rc.conf</filename>.  Confirurações de rede
+              mais avançadas estão descritas no 
+	      <xref linkend="advanced-networking"/>.</para>
+
+	  </step>
+	</procedure>
+      </sect3>
+    </sect2>
+
+    <sect2 id="virtualization-guest-virtualbox-guest-additions">
+      <title>Aplicativos Adicionais para SO Convidados do &virtualbox; no &os;</title>
+
+      <para>O pacote adicional para sistemas convidados no 
+	<application>&virtualbox;</application> fornecem as 
+	sequintes funcionalidades:</para>
+
+      <itemizedlist>
+	<listitem>
+	  <para>Compartilhamento da área de cópia;</para>
+	</listitem>
+
+	<listitem>
+	  <para>Integração com ponteiro do mouse;</para>
+	</listitem>
+
+	<listitem>
+	  <para>Sincronia do relógio no sistema operacional;</para>
+	</listitem>
+
+	<listitem>
+	  <para>Ajusta de resolução de vídeo e janelas;</para>
+	</listitem>
+
+	<listitem>
+	  <para>Modo sem bordas (<literal>seamless</literal>), para 
+	  tela cheia.</para>
+	</listitem>
+      </itemizedlist>
+
+      <note>
+	<para>Os comandos a seguir devem ser executados no sistema &os; convidado.</para>
+      </note>
+
+      <para>Primeiro, instale o pacote (ou port) <filename
+	  role="package">emulators/virtualbox-ose-additions</filename>
+	no sistema &os; convidado. Este comando pode ser usado para instalar o port:</para>
+
+      <screen>&prompt.root; <userinput>cd /usr/ports/emulators/virtualbox-ose-additions && make install clean</userinput></screen>
+
+      <para>Adicione as seguinte linhas no arquivo 
+	<filename>/etc/rc.conf</filename>:</para>
+
+      <programlisting>vboxguest_enable="YES"
+vboxservice_enable="YES"</programlisting>
+
+      <para>Caso você pretenda utilizar o &man.ntpd.8; ou &man.ntpdate.8;, desabilite a sincronia de relógio utilizada pelo &virtualbox;. Para tal, utilize uma linha adicional em <filename>/etc/rc.conf</filename>:</para>
+
+      <programlisting>vboxservice_flags="--disable-timesync"</programlisting>
+
+      <para>O driver <literal>vboxvideo_drv</literal> deve ser 
+	reconhecido pela execução do comando 
+	<command>Xorg -configure</command>.  Caso isso não ocorra, 
+	altere o conteúdo do arquivo <filename>xorg.conf</filename> 
+	para que o <application>&virtualbox;</application> 
+	reconheça a placa de vídeo:</para>
+
+      <programlisting>Section "Device"
+	### Available Driver options are:-
+	### Values: &lt;i&gt;: integer, &lt;f&gt;: float, &lt;bool&gt;: "True"/"False",
+	### &lt;string&gt;: "String", &lt;freq&gt;: "&lt;f&gt; Hz/kHz/MHz"
+	### [arg]: arg optional
+	Identifier "Card0"
+	Driver "vboxvideo"
+	VendorName "InnoTek Systemberatung GmbH"
+	BoardName "VirtualBox Graphics Adapter"
+	BusID "PCI:0:2:0"
+EndSection</programlisting>
+
+      <para>Para fazer uso do driver <literal>vboxmouse_drv</literal>, 
+	ajuste a seção que configura o mouse no arquivo 
+	<filename>xorg.conf</filename>:</para>
+
+      <programlisting>Section "InputDevice"
+	Identifier "Mouse0"
+	Driver "vboxmouse"
+EndSection</programlisting>
+
+      <para>Usuários do <acronym>HAL</acronym> deverão criar um arquivo em 
+	<filename>/usr/local/etc/hal/fdi/policy/90-vboxguest.fdi</filename>,
+	ou copiar um modelo de 
+	<filename>/usr/local/share/hal/fdi/policy/10osvendor/90-vboxguest.fdi</filename>. 
+	O conteúdo deve ser semelhante a este:</para>
+
+      <programlisting>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!--
+# Sun VirtualBox
+# Hal driver description for the vboxmouse driver
+# $Id: chapter.sgml,v 1.33 2012-03-17 04:53:52 eadler Exp $
+
+	Copyright (C) 2008-2009 Sun Microsystems, Inc.
+
+	This file is part of VirtualBox Open Source Edition (OSE, as
+	available from http://www.virtualbox.org. This file is free software;
+	you can redistribute it and/or modify it under the terms of the GNU
+	General Public License (GPL) as published by the Free Software
+	Foundation, in version 2 as it comes in the "COPYING" file of the
+	VirtualBox OSE distribution. VirtualBox OSE is distributed in the
+	hope that it will be useful, but WITHOUT ANY WARRANTY of any kind.
+
+	Please contact Sun Microsystems, Inc., 4150 Network Circle, Santa
+	Clara, CA 95054 USA or visit http://www.sun.com if you need
+	additional information or have any questions.
+--&gt;
+&lt;deviceinfo version="0.2"&gt;
+  &lt;device&gt;
+    &lt;match key="info.subsystem" string="pci"&gt;
+      &lt;match key="info.product" string="VirtualBox guest Service"&gt;
+        &lt;append key="info.capabilities" type="strlist"&gt;input&lt;/append&gt;
+	&lt;append key="info.capabilities" type="strlist"&gt;input.mouse&lt;/append&gt;
+        &lt;merge key="input.x11_driver" type="string"&gt;vboxmouse&lt;/merge&gt;
+	&lt;merge key="input.device" type="string"&gt;/dev/vboxguest&lt;/merge&gt;
+      &lt;/match&gt;
+    &lt;/match&gt;
+  &lt;/device&gt;
+&lt;/deviceinfo&gt;</programlisting>
+    </sect2>
+  </sect1>
+
+  <sect1 id="virtualization-host">
+    <title>&os; como SO Hospedeiro</title>
+
+    <para>Durante muitos anos, o &os; não era oficialmente suportado 
+      como sendo um SO hospedeiro por diversas soluções de 
+      virtualização. Algumas pessoas vinham utilizando versões 
+      antigas e obsoletas do <application>VMware</application> 
+      (como é o caso de <filename role="package">emulators/vmware3</filename>), 
+      que fazem uso da compatibilidade binária com &linux;. 
+      Pouco tempo depois do &os; 7.2 ter sido lançado, o 
+      <application>&virtualbox;</application>, da &sun;, já estava 
+      disponível na Coleção de Ports e fornecia suporte para que o 
+      &os; fosse utilizado como um SO hospedeiro.</para>
+
+    <para>O <application>&virtualbox;</application> é ativamente 
+      desenvolvido, é uma solução bem completa para virtualização e 
+      está disponível para a maioria dos sistemas operacionais 
+      conhecidos, como &windows;, &macos;, &os; e sistemas operacionais 
+      baseados em &linux;. Ele é capaz de executar igualmente SO 
+      convidados baseados em &windows; ou de linhagem &unix;. O 
+      <application>&virtualbox;</application> é licenciado como um 
+      software Open Source, mas com algumas restrições em seus 
+      componentes e extensões (distribuídos separadamente e com código 
+      fonte não liberado). Alguns destes componentes incluem suporte 
+      para dispositivos USB 2.0. Para obter mais informações, visite 
+      a página de <quote>Downloads</quote> disponibilizada no wiki 
+      do <application>&virtualbox;</application> em <ulink 
+      url="http://www.virtualbox.org/wiki/Downloads"></ulink>. 
+      Atualmente estas extensões não são disponibilizadas para &os;.</para>
+
+    <sect2 id="virtualization-virtualbox-install">
+      <title>Instalando o &virtualbox;</title>
+
+      <para>O <application>&virtualbox;</application> está disponível 
+	na forma de um port para &os; em 
+	<filename role="package">emulators/virtualbox-ose</filename>. 
+	Considerando que existe um desenvolvimento ativo ligado ao 
+	&virtualbox;, verifique se sua árvore da Coleção de Ports 
+	encontra-se atualizada antes de proceder com a instalação. 
+	Para instalá-lo, utilize os seguintes comandos:</para>
+
+      <screen>&prompt.root; <userinput>cd /usr/ports/emulators/virtualbox-ose</userinput>
+&prompt.root; <userinput>make install clean</userinput></screen>
+
+      <para>Uma opção interessante e bem usual disponível para ser 
+	habilitada é a opção de <literal>GuestAdditions</literal>. 
+	Ela provê funcionalidades interessantes como, por exemplo, a 
+	integração de ponteiros de mouse entre o SO hospedeiro e o 
+	convidado (sem que uma tecla adicional precise ser precionada 
+	para fazer a troca dos ponteiros de mouse entre os dois sistemas). 
+	Também fornece uma melhor renderização de vídeo (em especial, 
+	para SO convidados &windows;). Finalizada a instalação do 
+	&virtualbox;, acessando seu menu configurações 
+	<guimenu>Devices</guimenu> será possível ter acesso a as 
+	funcionalidades providas pela opção 
+	<literal>GuestAdditions</literal>.</para>
+
+      <para>Algumas poucoas alterações de configuração são 
+	necessárias antes do <application>&virtualbox;</application> 
+	ser executado pela primeira vez. O port instalará um módulo 
+	para o kernel em <filename class="directory">/boot/modules</filename> 
+	e este módulo deve ser carregado:</para>
+
+      <screen>&prompt.root; <userinput>kldload vboxdrv</userinput></screen>
+
+      <para>Para ter certeza de que este módulo sempre será carregado 
+	após reiniciar seu sistema, adicione a seguinte linha no 
+	arquivo <filename>/boot/loader.conf</filename>:</para>
+
+      <programlisting>vboxdrv_load="YES"</programlisting>
+
+      <para>Para usar o módulo que possibilita a criação de interfaces 
+	de rede em modo bridge ou host-only, adicione a seguinte 
+	linha no arquivo <filename>/etc/rc.conf</filename> e reinicie 
+	seu computador:</para>
+
+      <programlisting>vboxnet_enable="YES"</programlisting>
+
+      <para>O grupo <groupname>vboxusers</groupname> é criado durante 
+	o processo de instalação do <application>&virtualbox;</application>. 
+	Todos os usuários necessitem ter acesso ao 
+	<application>&virtualbox;</application> deverão ser 
+	adicionados a este grupo. O comando <command>pw</command> 
+	pode ser utilizado para realizar este procedimento.</para>
+
+      <screen>&prompt.root; <userinput>pw groupmod vboxusers -m <replaceable>yourusername</replaceable></userinput></screen>
+
+      <para>As permissões padrão para 
+	<filename class="devicefile">/dev/vboxnetctl</filename> são 
+	restritivas e precisam ser alteradas caso você queira 
+	utilizar interfaces de rede em modo bridge.</para>
+
+      <para>Para fazer um teste temporário:</para>
+
+      <screen>&prompt.root; <userinput>chown root:vboxusers /dev/vboxnetctl</userinput>
+&prompt.root; <userinput>chmod 0660 /dev/vboxnetctl</userinput></screen>
+
+      <para>Para fazer uma alteração permanente, adicione as 
+	seguintes linhas ao arquivo <filename>/etc/devfs.conf</filename>:</para>
+
+      <programlisting>own     vboxnetctl root:vboxusers
+perm    vboxnetctl 0660</programlisting>
+
+      <para>Para executar o <application>&virtualbox;</application>, 
+	selecione o item no menu de seu ambiente desktop que diz 
+	<guimenuitem>Sun VirtualBox</guimenuitem> ou digite o 
+	seguinte comando num terminal:</para>
+
+      <screen>&prompt.user; <userinput>VirtualBox</userinput></screen>
+
+      <para>Para mais informações sobre configuração e uso do 
+	<application>&virtualbox;</application>, por favor, visite
+	o sítio oficial em 
+	<ulink url="http://www.virtualbox.org"></ulink>. Como o port 
+	disponível para &os; é muito recente, ele encontra-se em 
+	constante desenvolvimento e sofre diversas alterações. Para 
+	as últimas informações e solução de problemas, visite o 
+	Wiki do &os; em <ulink 
+	url="http://wiki.FreeBSD.org/VirtualBox"></ulink>.</para>
+    </sect2>
+
+    <sect2 id="virtualization-virtualbox-usb-support">
+      <title>O Suporte a USB no &virtualbox;</title>
+
+      <note>
+	<para>Estes procedimentos requerem a utilização do 
+	  &virtualbox; 4.0.0 ou de uma versão mais recente.</para>
+      </note>
+
+      <para>Para que possam executar operações de leitura e escrita 
+	em dispositivos USB, os usuários precisam ser membros do 
+	grupo <groupname>operator</groupname>:</para>
+
+      <screen>&prompt.root; <userinput>pw groupmod operator -m <replaceable>jerry</replaceable></userinput></screen>
+
+      <para>Em seguida, as seguintes entradas precisam ser 
+	adicionadas ao arquivo 
+	<filename>/etc/devfs.rules</filename> (crie o arquivo, 
+	caso ele ainda não exista):</para>
+
+      <programlisting>[system=10]
+add path 'usb/*' mode 0660 group operator</programlisting>
+
+      <para>Para que as novas regras possam ser carregadas e 
+	enterpretadas, adicione a seguinte linha ao arquivo 
+	<filename>/etc/rc.conf</filename>:</para>
+
+      <programlisting>devfs_system_ruleset="system"</programlisting>
+
+      <para>Por fim, reinicie o serviço do devfs:</para>
+
+      <screen>&prompt.root; <userinput>/etc/rc.d/devfs restart</userinput></screen>
+
+      <para>Agora o sistema convidado por fazer uso de dispositivos 
+	USB. Esses dispositivos já devem ser vistos e acessíveis nas 
+	preferências do &virtualbox;.</para>
+    </sect2>
+
+    <sect2 id="virtualization-virtualbox-host-dvd-cd-access">
+      <title>Acesso do &virtualbox; ao Drive de CD/DVD</title>
+
+      <para>O módulo <command>atapicam</command> precisa ser 
+	carregado no kernel. Para que ele sempre seja carregado, 
+	adicione a seguinte entrada no arquivo 
+	<filename>/boot/loader.conf</filename>:</para>
+
+      <programlisting>atapicam_load="YES"</programlisting>
+
+      <para>É necessário que o <acronym>HAL</acronym> esteja em 
+	execução no sistema para que o <application>&virtualbox;</application> 
+	possa garantir a funcionalidade de acesso ao drive de CD/DVD. 
+	Habilite-o em <filename>/etc/rc.conf</filename> e inicie seu 
+	serviço (caso ele já não esteja em execução):</para>
+
+      <programlisting>hald_enable="YES"</programlisting>
+
+      <screen>&prompt.root; <userinput>/usr/local/etc/rc.d/hald start</userinput></screen>
+
+      <para>Para que os usuários possam ter acesso pleno a esta 
+	funcionalidade do <application>&virtualbox;</application> de 
+	acesso ao drive de CD/DVD, eles precisam ter acesso a alguns 
+	dos seguintes dispositivos: 
+	<filename class="devicefile">/dev/xpt0</filename>, 
+	<filename class="devicefile">/dev/cd<replaceable>N</replaceable></filename> 
+	e <filename class="devicefile">/dev/pass<replaceable>N</replaceable></filename>. 
+	Adicione as seguintes linhas em 
+	<filename>/etc/devfs.conf</filename> para permitir esses 
+	acessos:</para>
+
+      <programlisting>perm cd0 0600
+perm xpt0 0660
+perm pass0 0660</programlisting>
+    </sect2>
+
+<!--
+  Note:  There is no working/end-user ready Xen support for FreeBSD as of 07-2010.
+         Hide all information regarding Xen under FreeBSD.
+
+    <sect2 id="virtualization-other">
+      <title>Other Virtualization Options</title>
+
+      <para>There is ongoing work in getting
+	<application>&xen;</application>
+	to work as a host environment on &os;.</para>
+    </sect2>
+-->
+  </sect1>
+</chapter>

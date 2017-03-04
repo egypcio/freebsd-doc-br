@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//FreeBSD//DTD XHTML 1.0 Transitional-Based Extension//EN"
+"http://www.FreeBSD.org/XML/doc/share/xml/xhtml10-freebsd.dtd" [
+<!ENTITY title "IRC">
+]>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <title>&title;</title>
+
+      <cvs:keyword xmlns:cvs="http://www.FreeBSD.org/XML/CVS">$FreeBSD: trunk/docs/pt_BR.ISO8859-1/htdocs/community/irc.xml 164 2012-10-04 20:43:02Z ebrandi@fugspbr.org $</cvs:keyword>
+    </head>
+
+    <body class="navinclude.community">
+
+	<p>While #freebsd channels exist on various IRC networks, the FreeBSD
+		project does not control them or endorse IRC as a support medium.
+	 	You may be ignored, insulted, or kicked out if you ask questions on
+		any channel in IRC, though you may have slightly better luck
+		in channels named #freebsdhelp where such exist.  A list of known
+		&os; related IRC channels is available in the &os; <a
+		  href="http://wiki.freebsd.org/IrcChannels">wiki</a>.  If you
+	  	want to try these or any other channels on IRC, it is nonetheless
+	        at your own risk and any complaints about conduct on those channels
+		should not be directed to the FreeBSD project.  See also
+		<a href="&base;/doc/en_US.ISO8859-1/books/faq/support.html#IRC">the FAQ entry</a> for
+	more information.</p>
+
+
+</body>
+</html>

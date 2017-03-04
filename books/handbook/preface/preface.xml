@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!--
+  The FreeBSD Documentation Project
+  The FreeBSD Brazilian Portuguese Documentation Project
+
+  Original revision: r39544
+
+  $FreeBSD: trunk/docs/pt_BR.ISO8859-1/books/handbook/preface/preface.xml 386 2013-12-29 14:52:04Z egypcio $
+-->
+
+<preface id="book-preface">
+  <title>Prefácio</title>
+
+  <bridgehead id="preface-audience" renderas="sect1">Público-Alvo</bridgehead>
+
+  <para>Você, que acaba de conhecer o &os;, vai descobrir que a 
+    primeira parte deste livro guia o usuário recém-chegado através 
+    do processo de instalação do &os; e introduz delicadamente os 
+    conceitos e convenções que sustentam um sistema &unix;.
+    Acompanhar esta seção requer um pouco mais do que o desejo 
+    para explorar e a capacidade de considerar novos conceitos da 
+    forma que eles são introduzidos.</para>
+
+  <para>Depois de ter chegado até aqui, a segunda (e maior)
+    seção deste Handbook é uma referência abrangente a todos os tipos
+    de temas de interesse para administradores de um sistema 
+    operacional &os;. Alguns dos capítulos podem lhe recomendar que 
+    você faça uma leitura prévia de conteúdos sugeridos e isto 
+    estará disposto numa sinopse, no início de cada capítulo.</para>
+
+  <para>Para uma lista contendo fontes de informação adicionais, por 
+    favor consulte <xref linkend="bibliography"/>.</para>
+
+  <bridgehead id="preface-changes-from3" renderas="sect1">Alterações da Terceira Edição</bridgehead>
+
+  <para>Esta versão online deste Handbook representa o esforço 
+    cumulativo de muitas centenas de colaboradores ao longo dos últimos 
+    10 anos. A seguir estão algumas das mudanças mais 
+    significativas desde os dois volumes da terceira edição que foi 
+    publicada em 2004:</para>
+
+  <itemizedlist>
+      <listitem>
+	<para><xref linkend="dtrace"/>, &dtrace;, incorporado ao 
+	  Handbook contendo informações sobre a poderosa ferramenta 
+	  de análise de performance &dtrace;.</para>
+      </listitem>
+
+      <listitem>
+	<para><xref linkend="filesystems"/>, Suporte a Sistemas de Arquivo, 
+	  adicionado conteúdo sobre sistemas de arquivo não-nativos do 
+	  &os;, tais como o ZFS, da &sun;.</para>
+      </listitem>
+
+      <listitem>
+	<para><xref linkend="audit"/>, Auditoria de Eventos e Segurança, 
+	  elaborado para cobrir novos recursos de auditoria 
+	  disponíveis no &os; e explicar seu uso.</para>
+      </listitem>
+
+      <listitem>
+        <para><xref linkend="virtualization"/>, Virtualização, 
+          adicionado para cobrir procedimentos de instalação do &os; 
+	  em conjunto com softwares de virtualização.</para>
+      </listitem>
+
+      <listitem>
+	<para><xref linkend="bsdinstall"/>, Instalando 
+	  &os; 9.<replaceable>x</replaceable> e Versões Recentes, 
+	  atualizado para cobrir passos de instalação do &os; 
+	  com seu novo utilitário de instalação, o 
+	  <application>bsdinstall</application>.</para>
+      </listitem>
+  </itemizedlist>
+
+  <bridgehead id="preface-changes-from2" renderas="sect1">Alterações da Segunda Edição (2004)</bridgehead>
+
+  <para>A terceira edição foi resultado de um esforço cumulativo de 
+    mais de dois anos de trabalho realizado pelos dedicados membros 
+    do Projeto de Documentação do &os;. A versão impressa precisou 
+    ser impressa em dois volumes, dado o aumento de conteúdo que seria 
+    publicado. Estas são as principais alterações que a terceira 
+    edição sofreu em relação a segunda:</para>
+
+  <itemizedlist>
+      <listitem>
+	<para><xref linkend="config-tuning"/>, Configuração e Tuning,
+	  sofreu atualização e expansão de conteúdo com novas 
+	  informações relacionadas ao gerenciamento de recursos e 
+	  alimentação (elétrica) via ACPI, ao <command>cron</command> 
+	  e outras informações relacionadas a opções de tuning para 
+	  o kernel.</para>
+      </listitem>
+
+      <listitem>
+	<para><xref linkend="security"/>, Segurança, adicionou novos 
+	  conteúdos sobre Redes Virtuais Privadas (VPN), Listas de 
+	  Controle de Acesso (ACL) em sistemas de arquivos e sobre 
+	  acompanhamento dos avisos sobre segurança.</para>
+      </listitem>
+
+      <listitem>
+	<para><xref linkend="mac"/>, Controle de Acesso Mandatório (MAC), 
+	  novo capítulo adicionado nesta edição. Explica o que é o 
+	  MAC e como este mecanismo pode ser utilizado para prover 
+	  segurança a um sistema operacional &os;.</para>
+      </listitem>
+
+      <listitem>
+	<para><xref linkend="disks"/>, Armazenamento,
+	  apresenta, nesta edição, novas informações sobre dispositivos 
+	  de armazenamento USB, snapshots de sistemas de arquivos, 
+	  cotas em sistemas de arquivos, partições encriptadas e 
+	  sistemas de arquivo de rede.</para>
+      </listitem>
+
+      <listitem>
+	<para><xref linkend="vinum-vinum"/>, Vinum, outro novo 
+	  capítulo nesta edição. Ele descreve como se usa o Vinum, 
+	  um gerenciador de volumes lógicos que provê discos lógicos 
+	  independentes de um dispositivo além de RAID 0, 1 e 5 
+	  baseados em software.</para>
+      </listitem>
+
+      <listitem>
+	<para>Uma seção para solução de problemas foi adicionada ao capítulo <xref
+	  linkend="ppp-and-slip"/>, PPP e SLIP.</para>
+      </listitem>
+
+      <listitem>
+	<para><xref linkend="mail"/>, Correio Eletrônico, contém, 
+	  nesta edição, informações para uso de agentes de transporte 
+	  alternativos, autenticação SMTP, UUCP, 
+	  <application>fetchmail</application>, <application>procmail</application> 
+	  e outros tópicos pouco mais avançados.</para>
+      </listitem>
+
+      <listitem>
+	<para><xref linkend="network-servers"/>, Servidores e Serviços de Rede, 
+	  foi reformulado nesta edição. Este capítulo cobre o setup de 
+	  um servidor <application>Apache</application>, de um servidor 
+	  <application>ftpd</application>, serviço para compartilhamento 
+	  de arquivos com clientes &microsoft; &windows; usando 
+	  <application>Samba</application>. Tópicos mais
+	  avançados foram movidos de capítulo a fim de prover melhor 
+	  apresentação deste tópico.</para>
+      </listitem>
+
+      <listitem>
+	<para><xref linkend="advanced-networking"/>, Tópicos Avançados de Rede, 
+	  foi expandido com novas informações sobre o uso de 
+	  dispositivos &bluetooth; com &os;, a criação de redes 
+	  wireless e redes ATM.</para>
+      </listitem>
+
+      <listitem>
+	<para>Um glossário foi criado para proporcionar a localização 
+	  central para as definições e termos técnicos utilizados ao 
+	  longo deste Handbook.</para>
+      </listitem>
+
+      <listitem>
+	<para>Uma série de melhorias estéticas foram feitas em 
+           tabelas e figuras ao longo do do Handbook.</para>
+      </listitem>
+    </itemizedlist>
+
+  <bridgehead id="preface-changes" renderas="sect1">Alterações da Primeira Edição (2001)</bridgehead>
+
+    <para>A segunda edição foi o culminar de mais de dois anos de
+       trabalho dos membros do dedicado Projeto de Documentação do 
+       &os;. Aqui encontravam-se as principais mudanças nesta
+       edição:</para>
+
+<!-- Talk a little about justification and other stylesheet changes? -->
+
+    <itemizedlist>
+      <listitem>
+	<para>Um novo índice foi adicionado.</para>
+      </listitem>
+      <listitem>
+	<para>Todos as representações em ASCII foram substituídas por diagramas gráficos.</para>
+      </listitem>
+      <listitem>
+	<para>Uma sinopse padrão foi adicionada a cada capítulo para 
+	introduzir um rápido resumo sobre a informação que capítulo 
+	contém, além de informar ao leitor sobre conhecimentos básicos 
+	que ele deve ter para continuar com a leitura.</para>
+      </listitem>
+      <listitem>
+	<para>O conteúdo foi reorganizado de uma maneira lógica em três partes: 
+	<quote>Conceitos Básicos</quote>, 
+	<quote>Administração do Sistema</quote>, 
+	e <quote>Apêndices</quote>.</para>
+      </listitem>
+      <listitem>
+	<para><xref linkend="install"/> (<quote>Instalando o &os;</quote>) 
+	foi completamenteo reescrito e foram adicionadas screenshots 
+	para auxiliar novos usuários no processo de instalação. 
+	Assim ficou muito mais fácil de acompanhar os textos e as 
+	instruções necessárias para instalação.</para>
+      </listitem>
+      <listitem>
+	<para><xref linkend="basics"/> (<quote>Conceitos Básicos do &unix;</quote>) 
+	com conteúdo expandido e novas informações sobre processos, 
+	daemons e sinalização.</para>
+      </listitem>
+      <listitem>
+	<para><xref linkend="ports"/> (<quote>Instalação de Softwares: 
+	Pacotes e Ports</quote>) conta com um conteúdo adicional 
+	que cobre a instalação e o gerenciamento de pacotes binários.</para>
+      </listitem>
+      <listitem>
+	<para><xref linkend="x11"/> (<quote>O Ambiente X11</quote>) 
+	foi completamente reescrito com uma ênfase em uso de modernas 
+	tecnologias para ambiente desktop como 
+	<application>KDE</application> e <application>GNOME</application> 
+	em &xfree86; 4.X.</para>
+      </listitem>
+      <listitem>
+	<para><xref linkend="boot"/> (<quote>O Processo de Inicialização do &os;</quote>) 
+	foi expandido.</para>
+      </listitem>
+      <listitem>
+        <para><xref linkend="disks"/> (<quote>Armazenamento</quote>) 
+	foi escrito a partir do que costumava ser dois capítulos 
+	separados: <quote>Discos</quote> e <quote>Backups</quote>. 
+	Sentimos que os temas seriam mais fáceis de compreender 
+	quando apresentados num único capítulo. Também foi acrescentada 
+	uma seção sobre RAID (por hardware e por software).</para>
+      </listitem>
+      <listitem>
+	<para><xref linkend="serialcomms"/> (<quote>Comunicações Serial</quote>) 
+	foi completamente reorganizado e atualizado para funcionar 
+	com &os; das séries 4.X e 5.X.</para>
+      </listitem>
+      <listitem>
+	<para><xref linkend="ppp-and-slip"/> (<quote>PPP e SLIP</quote>) 
+	foi substancialmente atualizado.</para>
+      </listitem>
+      <listitem>
+	<para>Várias novas seções foram adicionadas ao <xref linkend="advanced-networking"/>
+	(<quote>Tópicos Avançados de Rede</quote>).</para>
+      </listitem>
+      <listitem>
+	<para><xref linkend="mail"/> (<quote>Correio Eletrônico</quote>) 
+	sofreu adição de conteúdo e novas informações sobre a 
+	configuração do <application>sendmail</application>.</para>
+      </listitem>
+      <listitem>
+	<para><xref linkend="linuxemu"/> (<quote>Compatibilidade com &linux;</quote>) 
+	abriga novas informações sobre instalação de sistemas 
+	<application>&oracle;</application> e 
+	<application>&sap.r3;</application>.</para>
+      </listitem>
+      <listitem>
+	<para>Os seguintes tópicos foram convertidos nesta 
+	segunda edição:</para>
+	<itemizedlist>
+	  <listitem>
+	    <para>Configuração e Tuning (<xref linkend="config-tuning"/>).</para>
+	  </listitem>
+	  <listitem>
+           <para>Multimídia (<xref linkend="multimedia"/>)</para>
+	  </listitem>
+	</itemizedlist>
+      </listitem>
+    </itemizedlist>
+
+  <bridgehead id="preface-overview" renderas="sect1">Organização do Handbook</bridgehead>
+
+  <para>Este Handbook é dividido em cinco seções logicamente distintas. 
+    A primeira seção, <emphasis>Conceitos Básicos</emphasis>, cobre 
+    a instalação e o uso básico do &os;. É esperado que o leitor 
+    acompanhe os capítulos na ordem, ocasionamente pulando capítulos 
+    de tópicos que ele já possa estar familiarizado. Na segunda seção, 
+    <emphasis>Tarefas Comuns</emphasis>, cobrimos funcionalidades corriqueiras 
+    onde o &os; é utilizado. Os capítulos desta seção não precisam 
+    ser, obrigatoriamente, lidos em ordem. Cada um destes capítulos 
+    contém uma sinopse que descreve seu conteúdo e quais conhecimentos 
+    necessários são esperados por parte do leitor. Assim o leitor pode 
+    saber o assunto de cada capítulo e pode se preparar para acompanhar 
+    os capítulos de seu interesse. A terceira seção, 
+    <emphasis>Administração do Sistema</emphasis>, cobre tópicos 
+    relacionados a administração. A quarta seção, 
+    <emphasis>Comunicação de Rede</emphasis>, aborda tópicos ligados a 
+    servidores e serviços de rede. Por último, na quinta seção, são 
+    apresentados o apêndice e o tópico contendo informações de 
+    referência utilizadas na elaboração deste Handbook.</para>
+
+  <variablelist>
+
+<!-- Part I - Introduction -->
+
+    <varlistentry>
+      <term><emphasis><xref linkend="introduction"/>, Introdução</emphasis></term>
+      <listitem>
+	<para>Introduz o &os; ao novo usuário. Descreve a história do 
+	  Projeto &os;, seus objetivos e modelo de desenvolvimento.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="install"/>, Instalando o 
+	&os; 8.<replaceable>X</replaceable> e Versões Anteriores</emphasis></term>
+      <listitem>
+	<para>Guia o usuário através de todo o processo de instalação 
+	  do &os; 8.<replaceable>X</replaceable> e suas versões 
+	  anteriores que utilizem o <application>sysinstall</application>. 
+	  Alguns tópicos avançados que cobrem o processo de 
+	  instalação via console serial também são abordados.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="bsdinstall"/>, Instalando o &os; 
+	9.<replaceable>X</replaceable> e Versões Atuais</emphasis></term>
+      <listitem>
+	<para>Guia o usuário através de todo o processo de instalação 
+	  do &os; 9.<replaceable>X</replaceable> e suas versões 
+	  mais recentes que utilizem o <application>bsdinstall</application>.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="basics"/>, Conceitos Básicos do &unix;</emphasis></term>
+      <listitem>
+	<para>Aborda a utilização de comandos básicos e funcionalidades 
+	  do sistema operacional &os;. Caso você já esteja familiarizado 
+	  com sistemas baseados em &linux; ou algum outro de linhagem 
+	  &unix; então, provavelmente, você não precise ler este 
+	  capítulo.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="ports"/>, Instalação de Softwares: Pacotes e Ports</emphasis></term>
+      <listitem>
+	<para>Cobre a instalação de softwares de terceiros, seja 
+	  utilizando a inovadora <quote>Coleção de Ports</quote> 
+	  do &os; ou pacotes binários.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="x11"/>, O Ambiente X11</emphasis></term>
+      <listitem>
+	<para>Descreve o Ambiente X11 (&xorg;) e, em particular, como 
+	  ele pode ser utilizado no &os;. Também descreve os ambientes 
+	  de desktop comumente mais utilizados, como 
+	  <application>KDE</application> e <application>GNOME</application>.</para>
+      </listitem>
+    </varlistentry>
+
+<!-- Part II Common Tasks -->
+
+    <varlistentry>
+      <term><emphasis><xref linkend="desktop"/>, Aplicativos para Desktop</emphasis></term>
+      <listitem>
+        <para>Lista alguns dos aplicativos para uso num ambiente 
+	  desktop (navegadores web, utilitários para ganho de 
+	  produtividade, etc.) e descreve como instalar esses 
+	  aplicativos no &os;.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="multimedia"/>, Multimídia</emphasis></term>
+      <listitem>
+      <para>Mostra como configurar suporte de áudio e vídeo no 
+	  sistema &os;. Também lista e descreve alguns aplicativos.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="kernelconfig"/>, Configurando o Kernel</emphasis></term>
+      <listitem>
+	<para>Explica o porquê pode ser necessário configurar um novo 
+	  kernel e provê informações detalhadas para configuração, 
+	  compilação e instalação de um kernel personalizado.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="printing"/>, Impressão</emphasis></term>
+      <listitem>
+	<para>Descreve o gerenciamento de impressoras no &os;, 
+	  incluindo informações sobre páginas de 
+	  <literal>banner</literal>, contas de impressão e um 
+	  setup inicial.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="linuxemu"/>, Compatibilidade com &linux;</emphasis></term>
+      <listitem>
+	<para>Descreve a compatibilidade do &os; com 
+	  aspéctos/funcionalidades de um sistema &linux;. Também 
+	  fornece intruções e informações detalhadas de aplicativos 
+	  populares utilizados em &linux;, tais como sistemas 
+	  <application>&oracle;</application> e 
+	  <application>&mathematica;</application>.</para>
+      </listitem>
+    </varlistentry>
+
+<!-- Part III - System Administration -->
+
+    <varlistentry>
+      <term><emphasis><xref linkend="config-tuning"/>, Configuração e Tuning</emphasis></term>
+      <listitem>
+	<para>Descreve parâmetros disponíveis aos administradores de 
+	  sistemas &os; para que eles possam realizar ajustes 
+	  (<literal>tuning</literal>) a fim de conseguir melhor 
+	  performance. Também descreve vários arquivos de 
+	  configuração usados pelo &os; e diz onde encontrá-los.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="boot"/>, O Processo de Inicialização do &os;</emphasis></term>
+      <listitem>
+	<para>Descreve todo o processo de inicialização do &os; e 
+	  explica como controlar este processo com opções de 
+	  configuração disponíveis.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="users"/>, Gerenciamento Básico de Contas e Usuários</emphasis></term>
+      <listitem>
+	<para>Introduz e descreve a criação e manipulação de contas 
+	  de usuários. Também discute recursos disponíveis para impor 
+	  limitações aos usuários e outras tarefas de gerenciamento 
+	  de contas.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="security"/>, Segurança</emphasis></term>
+      <listitem>
+	<para>Apresenta e descreve diferentes ferramentas disponíveis 
+	  para manter seu &os; seguro; Kerberos, IPsec e OpenSSH 
+	  são alguns exemplos dessas ferramentas.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="jails"/>, Jails</emphasis></term>
+      <listitem>
+	<para>Descreve o framework de jails utilizado pelo &os; e 
+	  suas melhorias e benefícios em relação ao tradicional 
+	  ambiente em chroot.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="mac"/>, Controle de Acesso Mandatório</emphasis></term>
+      <listitem>
+	<para>Explica o que é o Controle de Acesso Mandatório 
+	  (<literal>Mandatory Access Control - MAC</literal>) e como 
+	  este mecanismo pode ser utilizado para prover segurança 
+	  a um sistema &os;.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="audit"/>, Auditoria de Eventos e Segurança</emphasis></term>
+      <listitem>
+	<para>Mostra o que são eventos para auditoria no &os;, como 
+	  eles podem ser instalados, configurados e como rastros 
+	  (<literal>trails</literal>) podem ser inspecionados e 
+	  monitorados.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><emphasis><xref linkend="disks"/>, Armazenamento</emphasis></term>
+      <listitem>
+	<para>Descreve como gerenciar mídias de armazenamento e 
+	  sistemas de arquivo com &os;. Isso inclui discos físicos, 
+	  RAID, mídias de fita magnética ou ópticas, discos de 
+	  memória flash e sistemas de arquivo de rede (NFS).</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="GEOM-synopsis"/>, GEOM</emphasis></term>
+      <listitem>
+	<para>Mostra o que é o framework GEOM e como ele pode ser 
+	  configurado para fornecer diversos níveis de RAID num 
+	  sistema &os;.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="filesystems"/>, Suporte a Sistemas de Arquivo</emphasis></term>
+      <listitem>
+	<para>Explora o suporte a sistemas de arquivo que não sejam 
+	  nativos do &os; como, por exemplo, o ZFS da &sun;.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="vinum-vinum"/>, Vinum</emphasis></term>
+      <listitem>
+	<para>Descreve como se utilizar o Vinum, um gerenciador de 
+	  volumes que provê discos lógicos independentes de dispositivo 
+	  e suporte para RAID 0, 1 e 5 via software.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="virtualization"/>, Virtualização</emphasis></term>
+      <listitem>
+	<para>Descreve o que sistemas de virtualização oferecem e 
+	  como eles podem ser usados com &os;.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="l10n"/>, Localização - I18n/L10n</emphasis></term>
+      <listitem>
+	<para>Descreve como utilizar o &os; em um outro idioma que 
+	  não o Inglês. O capítulo cobre o uso de um outro idioma 
+	  no sistema operacional em si e em aplicações que possam 
+	  ser instaladas com este tipo de suporte.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="updating-upgrading"/>, Processo de Atualização do &os;</emphasis></term>
+      <listitem>
+	<para>Explica a diferença entre &os;-CURRENT, &os;-STABLE e 
+	  uma versão -RELEASE do &os;. Mostra como os usuários podem 
+	  ser beneficiados com o acompanhamento do desenvolvimento 
+	  do sistema e descreve esse processo. Cobre pontos que 
+	  podem ser seguidos pelos usuários a fim de obter as últimas 
+	  atualizações de segurança e atualizar seus sistemas.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="dtrace"/>, &dtrace;</emphasis></term>
+      <listitem>
+	<para>Descreve como configurar e usar esta ferramenta da 
+	  &sun; no &os;. &dtrace; pode ajudar a localizar problemas 
+	  de performance fornecendo funcionalidades de análise 
+	  em tempo real do sistema.</para>
+      </listitem>
+    </varlistentry>
+
+<!-- Part IV - Network Communications -->
+
+    <varlistentry>
+      <term><emphasis><xref linkend="serialcomms"/>, Comunicações Serial</emphasis></term>
+      <listitem>
+	<para>Explica como conectar terminais e modems em seu 
+	  sistema &os;, seja para conexões/discagens de entrada 
+	  ou saída.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="ppp-and-slip"/>, PPP e SLIP</emphasis></term>
+      <listitem>
+	<para>Mostra e descreve como utilizar PPP, SLIP ou PPPoE 
+	  para se conectar a sistemas remotos através do &os;.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="mail"/>, Correio Eletrônico</emphasis></term>
+      <listitem>
+	<para>Explica os diferentes componentes que fazem parte de 
+	  um servidor de e-mail e guia o usuário através de tópicos 
+	  básicos para configuração de um dos mais populares 
+	  softwares para prover este serviço, o <application>sendmail</application>.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="network-servers"/>, Servidores e Serviços de Rede</emphasis></term>
+      <listitem>
+	<para>Provê informações detalhadas e exemplos de arquivos de 
+	  configuração para transformar seu &os; num Servidor de 
+	  Arquivos (NFS), Servidor de Resolução de Nomes (DNS) ou 
+	  num Servidor de Tempo/Hora (NTP). Outros exemplos de 
+	  serviços e servidores também são abordados neste capítulo.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="firewalls"/>, Firewalls</emphasis></term>
+      <listitem>
+        <para>Explica a filosofia por trás de firewalls baseados em 
+	  software e provê informações detalhadas sobre as 
+	  diferentes soluções de firewall disponíveis no &os;.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="advanced-networking"/>, Tópicos Avançados de Rede</emphasis></term>
+      <listitem>
+	<para>Descreve diversos tópicos de rede, incluindo o 
+	  compartilhamento de conxão com a Internet com outros 
+	  computadores conectados numa LAN. Muitos outros tópicos 
+	  abordando roteamento avançado, redes sem fio, ATM, 
+	  &bluetooth; e IPv6 também são abordados.</para>
+      </listitem>
+    </varlistentry>
+
+<!-- Part V - Appendices -->
+
+    <varlistentry>
+      <term><emphasis><xref linkend="mirrors"/>, Obtendo o &os; </emphasis></term>
+      <listitem>
+	<para>Lista diferentes maneiras de se obter o &os;, seja em 
+	  mídia óptica (CD ou DVD) ou através da Internet num dos 
+	  diversos servidores espelho espalhados pelo mundo que lhe 
+	  proporcionam a possibilidade de obter e instalar o &os;.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="bibliography"/>, Biliografia </emphasis></term>
+      <listitem>
+	<para>Este Handbook aborda vários assuntos que podem deixar o 
+	  leitor sedento por mais conhecimento. A bibliografia aqui 
+	  disponível cita excelentes livros que são e que serviram 
+	  de referência para este Handbook.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="eresources"/>, Recursos na Internet</emphasis></term>
+      <listitem>
+	<para>Cita diversos fóruns disponíveis para que usuários do 
+	  &os; possam enviar suas dúvidas e se engajar em discussões 
+	  técnicas ou conversar sobre &os;.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><emphasis><xref linkend="pgpkeys"/>, PGP Keys</emphasis></term>
+      <listitem>
+	<para>Lista as assinaturas PGP de diversos desenvolvedores 
+	  do &os; e assinaturas utilizadas por equipes do 
+	  Projeto &os;.</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+
+  <bridgehead id="preface-conv" renderas="sect1">Convenções Utilizadas no Handbook</bridgehead>
+
+    <para>A fim de prover consistência para uma fácil leitura e 
+	  compreensão, diversas convenções foram adotadas por este 
+	  Handbook.</para>
+
+  <bridgehead id="preface-conv-typographic" renderas="sect2">Convenções Tipográficas</bridgehead>
+
+  <variablelist>
+    <varlistentry>
+      <term><emphasis>Itálico</emphasis></term>
+      <listitem>
+	<para>Uma fonte em modo <emphasis>itálico</emphasis> é usada 
+	  para fazer mensão a: nomes de arquivos, endereços URL, 
+	  termos técnicos que estejam sendo utilizados pela primeira 
+	  vez. Também é utilizada a fonte em 
+	  <emphasis>itálico</emphasis> para fazer ênfase à alguns 
+	  trechos do texto.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><literal>Fonte Monoespaçada</literal></term>
+      <listitem>
+	  <para>Uma fonte <literal>monoespaçada</literal> é usada 
+	  para mensagens de erro, comandos, variáveis de ambiente, 
+	  nomes de ports, hostnames, nomes de usuários ou grupos, 
+	  nomes de dispositivos e fragmentos de código.</para>
+      </listitem>
+    </varlistentry>
+    <varlistentry>
+      <term><application>Negrito</application></term>
+      <listitem>
+	<para>O <application>negrito</application> é utilizado para 
+	  destacar comandos, aplicativos/softwares e teclas.</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+
+<!-- Var list -->
+  <bridgehead id="preface-conv-commands"
+  renderas="sect2">Entradas do Usuário</bridgehead>
+
+  <para>Teclas são exibidas em <keycap>negrito</keycap> para que 
+	estejam em destaque do restante do texto. Combinações de 
+	teclas que devem ser precionadas simultaneamente são 
+	exibidas com o caractere <literal>+</literal> entre elas, 
+	da seguinte forma:</para>
+
+  <para>
+    <keycombo action="simul">
+      <keycap>Ctrl</keycap>
+      <keycap>Alt</keycap>
+      <keycap>Del</keycap>
+    </keycombo>
+  </para>
+
+  <para>Isso significa que o usuário deve precionar as teclas 
+    <keycap>Ctrl</keycap>, <keycap>Alt</keycap> e 
+    <keycap>Del</keycap> ao mesmo tempo.</para>
+
+  <para>Teclas que devem ser precionadas numa determinada sequencia 
+    estarão separadas por vírgula, como neste exemplo:</para>
+
+  <para>
+    <keycombo action="simul">
+      <keycap>Ctrl</keycap>
+      <keycap>X</keycap>
+    </keycombo>,
+    <keycombo action="simul">
+      <keycap>Ctrl</keycap>
+      <keycap>S</keycap>
+    </keycombo>
+  </para>
+
+  <para>Indica-se, aqui, que o usuário deve precionar as teclas 
+    <keycap>Ctrl</keycap> e <keycap>X</keycap> simultaneamente e logo 
+    depois disso ele deve precionar as teclas 
+    <keycap>Ctrl</keycap> e <keycap>S</keycap> 
+    também de maneira simultânea.</para>
+
+<!-- How to type in key stokes, etc.. -->
+  <bridgehead id="preface-conv-examples"
+  renderas="sect2">Exemplos</bridgehead>
+
+  <para>Exemplos de comandos que comecem com 
+    <devicename>E:\&gt;</devicename> indicam a execução de um comando 
+    em um ambiente &ms-dos;. Salvo disposição em contrário, estes 
+    comandos podem ser executados a partir de um 
+    <quote>Prompt de Comando</quote> num sistema operacional 
+    &microsoft.windows;.</para>
+
+  <screen><prompt>E:\&gt;</prompt> <userinput>tools\fdimage floppies\kern.flp A:</userinput></screen>
+
+  <para>Exemplos de comandos que comecem com &prompt.root; indicam 
+    a execução de um comando que deve ser realizado pelo super usuário 
+    <username>root</username> no &os;. Você pode efetuar login no 
+    sistema diretamente como <username>root</username> ou você pode 
+    efetuar login com um outro usuário sem privilégios e utilizar o 
+    &man.su.1; para obter privilégios de super usuário.</para>
+
+  <screen>&prompt.root; <userinput>dd if=kern.flp of=/dev/fd0</userinput></screen>
+
+  <para>Exemplos de comandos que comecem com &prompt.user; indicam 
+    a execução de um comando que pode ser realizado por um usuário 
+    qualquer. Salvo disposição em contrário, procedimentos realizados 
+    em sintaxe C-Shell são executados para definir valores de 
+    variáveis de ambiente ou executar outros comandos.</para>
+
+  <screen>&prompt.user; <userinput>top</userinput></screen>
+
+  <bridgehead id="preface-acknowledgements"
+  renderas="sect1">Agradecimentos</bridgehead>
+
+  <para>O Handbook que você lê agora é o resultado dos esforços de 
+    muitas centenas de pessoas ao redor do mundo. Se foram enviadas 
+    correções referentes a erros de digitação ou capítulos inteiros, 
+    todas as contribuições foram muito úteis.</para>
+
+  <para>Várias empresas também apoiam o desenvolvimento deste documento 
+    pagando autores para trabalhar com ele em tempo integral, 
+    financiando sua publicação, etc. Em particular, a BSDi 
+    (posteriormente adquirida pela 
+    <ulink url="http://www.windriver.com">Wind River Systems</ulink>) 
+    pagava membros do Projeto de Documentação do &os; para trabalhar 
+    com este Handbook em tempo integral a fim de melhorar a qualidade do 
+    documento para realizar a publicação da primeira edição impressa, 
+    em Março de 2000 (ISBN 1-57176-241-8). A Wind River Systems, 
+    então, pagou diversos autores adicionais para fazer uma
+    série de melhorias na infra-estrutura de impressão e para 
+    adicionar capítulos adicionais. Este trabalho culminou com a
+    publicação da segunda edição impressa, em Novembro de 2001 
+    (ISBN 1-57176-303-1). Em 2003-2004, a <ulink
+    url="http://www.freebsdmall.com">&os; Mall, Inc.</ulink>, pagou
+    vários colaboradores para melhorar o Handbook, preparando-o para
+    sua terceira edição impressa.</para>
+</preface>

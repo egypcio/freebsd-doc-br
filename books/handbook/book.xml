@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//FreeBSD//DTD DocBook XML V4.2-Based Extension//EN"
+	"../../../share/xml/freebsd42.dtd" [
+<!ENTITY % entities PUBLIC "-//FreeBSD//ENTITIES DocBook FreeBSD Entity Set//PT" "../../share/xml/entities.ent">
+%entities;
+
+<!--
+  The FreeBSD Documentation Project
+  The FreeBSD Brazilian Portuguese Documentation Project
+
+  Original revision: r39544
+
+  $FreeBSD: trunk/docs/pt_BR.ISO8859-1/books/handbook/book.xml 386 2013-12-29 14:52:04Z egypcio $
+-->
+
+<!ENTITY % chapters SYSTEM "chapters.ent">
+%chapters;
+<!ENTITY % txtfiles SYSTEM "txtfiles.ent">
+%txtfiles;
+]>
+
+<book lang='pt_br'>
+  <bookinfo>
+    <title>FreeBSD Handbook</title>
+
+    <corpauthor>The FreeBSD Documentation Project</corpauthor>
+
+    <pubdate>Fevereiro de 1999</pubdate>
+
+    <releaseinfo>$FreeBSD: trunk/docs/pt_BR.ISO8859-1/books/handbook/book.xml 386 2013-12-29 14:52:04Z egypcio $</releaseinfo>
+
+    <copyright>
+      <year>1995</year>
+      <year>1996</year>
+      <year>1997</year>
+      <year>1998</year>
+      <year>1999</year>
+      <year>2000</year>
+      <year>2001</year>
+      <year>2002</year>
+      <year>2003</year>
+      <year>2004</year>
+      <year>2005</year>
+      <year>2006</year>
+      <year>2007</year>
+      <year>2008</year>
+      <year>2009</year>
+      <year>2010</year>
+      <year>2011</year>
+      <year>2012</year>
+      <holder>The FreeBSD Documentation Project</holder>
+    </copyright>
+
+    &legalnotice;
+
+    <legalnotice id="trademarks" role="trademarks">
+      &tm-attrib.freebsd;
+      &tm-attrib.3com;
+      &tm-attrib.3ware;
+      &tm-attrib.arm;
+      &tm-attrib.adaptec;
+      &tm-attrib.adobe;
+      &tm-attrib.apple;
+      &tm-attrib.corel;
+      &tm-attrib.creative;
+      &tm-attrib.cvsup;
+      &tm-attrib.heidelberger;
+      &tm-attrib.ibm;
+      &tm-attrib.ieee;
+      &tm-attrib.intel;
+      &tm-attrib.intuit;
+      &tm-attrib.linux;
+      &tm-attrib.lsilogic;
+      &tm-attrib.m-systems;
+      &tm-attrib.macromedia;
+      &tm-attrib.microsoft;
+      &tm-attrib.netscape;
+      &tm-attrib.nexthop;
+      &tm-attrib.opengroup;
+      &tm-attrib.oracle;
+      &tm-attrib.powerquest;
+      &tm-attrib.realnetworks;
+      &tm-attrib.redhat;
+      &tm-attrib.sap;
+      &tm-attrib.sun;
+      &tm-attrib.symantec;
+      &tm-attrib.themathworks;
+      &tm-attrib.thomson;
+      &tm-attrib.usrobotics;
+      &tm-attrib.vmware;
+      &tm-attrib.waterloomaple;
+      &tm-attrib.wolframresearch;
+      &tm-attrib.xfree86;
+      &tm-attrib.xiph;
+      &tm-attrib.general;
+    </legalnotice>
+
+    <abstract>
+      <para>
+	Seja bem vindo ao &os;!  Este handbook cobre a instalação e o
+	uso no dia a dia do <emphasis>&os;
+	&rel2.current;-RELEASE</emphasis> e do <emphasis>&os;
+	&rel.current;-RELEASE</emphasis>.  Este
+	manual é um <emphasis>trabalho em andamento</emphasis> e é o
+	resultado do trabalho de muitas pessoas.  Como tal, algumas
+	seções podem estar desatualizadas e necessitando de
+	atualização.  Se você estiver interessado em colaborar com
+	este projeto, envie um email para a &a.doc;.  A última versão
+	deste documento sempre poderá ser encontrada no <ulink
+	url="http://www.FreeBSD.org/">Web site do &os;</ulink> (as
+	versões anteriores desde handbook podem ser obtidas a partir 
+	do endereço 
+	<ulink url="http://docs.FreeBSD.org/doc/"></ulink>).
+	Este documento também pode ser obtido em várias outras opções
+	de formatos e compressões de arquivo no <ulink
+	url="ftp://ftp.FreeBSD.org/pub/FreeBSD/doc/">Servidor de
+	FTP do &os;</ulink> ou em um dos numerosos <link
+	linkend="mirrors-ftp">sites espelho</link>.  Se você preferir
+	ter uma cópia impressa deste handbook, você pode comprar uma 
+	na <ulink url="http://www.freebsdmall.com/">FreeBSD 
+	Mall</ulink>.  Você também pode querer <ulink
+	url="&url.base;/search/index.html">realizar uma busca</ulink>
+	no conteúdo no Handbook.</para>
+    </abstract>
+  </bookinfo>
+
+  &chap.preface;
+
+  <part id="getting-started">
+    <title>Primeiros Passos</title>
+
+    <partintro>
+      <para>Esta parte do Handbook do &os; é destinada aos usuários e
+	administradores que são novatos no sistema.  Estes
+	capítulos irão:</para>
+
+      <itemizedlist>
+	<listitem>
+	  <para>Apresentá-lo ao FreeBSD.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Guiá-lo através do processo de instalação.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Ensiná-lo os fundamentos e principios básicos do
+	    &unix;.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Mostrá-lo como instalar as inúmeras aplicações
+	    de terceiros disponíveis para o FreeBSD.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Apresentá-lo ao X11 (&xorg;), o sistema de janelas do &unix;, e 
+	    lhe ensinar como configurar o seu ambiente de trabalho 
+	    para torná-lo mais produtivo.</para>
+	</listitem>
+      </itemizedlist>
+
+      <para>Nós tentamos reduzir ao máximo o número de referências no
+	texto à temas que serão abordados nas seções seguintes, para
+	que você possa ler esta seção do Handbook do começo ao fim,
+	sem ter que ficar interrompendo sua leitura para consultar
+	outras seções.</para>
+    </partintro>
+
+    &chap.introduction;
+    &chap.install;
+    &chap.bsdinstall;
+    &chap.basics;
+    &chap.ports;
+    &chap.x11;
+  </part>
+
+  <part id="common-tasks">
+    <title>Tarefas Comuns</title>
+
+    <partintro>
+      <para>Agora que o básico já foi abordado, esta parte do Handbook
+	irá discutir algumas das funcionalidades mais utilizadas do
+	&os;.  Estes capítulos irão:</para>
+
+      <itemizedlist>
+	<listitem>
+	  <para>Apresentá-lo à aplicativos de desktop populares e
+	    úteis: navegadores, ferramentas de produtividade,
+	    visualizadores de documentos, etc.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Apresentá-lo às diversas ferramentas multimídia
+	    disponíveis para o FreeBSD.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Explicar o processo de compilação de um kernel
+	    customizado para o &os;, para que possa habilitar 
+	    funcionalidades extras no seu sistema.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Descrever o sistema de impressão em detalhes, tanto
+	    para configurações nas quais as impressoras são 
+	    conectadas diretamente a um desktop quanto para aquelas 
+	    nas quais as impressoras são conectadas através da 
+	    rede.</para>
+	</listitem>
+
+	<listitem>
+	  <para>Mostrar como executar aplicativos nativos do 
+	    Linux no seu sistema &os;</para>
+	</listitem>
+      </itemizedlist>
+
+      <para>Alguns destes capítulos requerem que você tenha realizado
+	alguma leitura prévia, quando aplicável esta recomendação 
+	será mencionada na sinopse existente no início de cada 
+	capítulo.</para>
+    </partintro>
+
+    &chap.desktop;
+    &chap.multimedia;
+    &chap.kernelconfig;
+    &chap.printing;
+    &chap.linuxemu;
+  </part>
+
+  <part id="system-administration">
+    <title>Administração do Sistema</title>
+
+    <partintro>
+      <para>Os capítulos restantes do Handbook cobrem todos os
+	aspectos da administração de um sistema &os;.  Cada capítulo
+	inicia descrevendo o que você irá aprender como resultado da
+	sua leitura, e também detalha qual o conhecimento prévio que 
+	se espera que você tenha antes de iniciar a leitura do
+	material.</para>
+
+      <para>Estes capítulos foram concebidos para serem lidos quando
+	você precisar das informações sobre os seus temas.  Você não 
+	tem que lê-los em nenhuma ordem em particular, e nem precisa
+	ler todos para que possa começar a usar o &os;.</para>
+    </partintro>
+
+    &chap.config;
+    &chap.boot;
+    &chap.users;
+    &chap.security;
+    &chap.jails;
+    &chap.mac;
+    &chap.audit;
+    &chap.disks;
+    &chap.geom;
+    &chap.filesystems;
+    &chap.vinum;
+    &chap.virtualization;
+    &chap.l10n;
+    &chap.cutting-edge;
+    &chap.dtrace;
+  </part>
+
+  <part id="network-communication">
+    <title>Comunicação de Rede</title>
+
+    <partintro>
+      <para>O &os; é um dos sistemas operacionais mais utilizados em 
+	servidores de rede de alto desempenho.  Os capítulos desta
+	parte irão cobrir:</para>
+      
+      <itemizedlist>
+	<listitem>
+	  <para>Comunicações Serial</para>
+	</listitem>
+
+	<listitem>
+	  <para>PPP e PPPoE</para>
+	</listitem>
+
+	<listitem>
+	  <para>Correio Eletrônico</para>
+	</listitem>
+
+	<listitem>
+	  <para>Servidores e Serviços de Rede</para>
+	</listitem>
+
+	<listitem>
+	  <para>Firewalls</para>
+	</listitem>
+
+	<listitem>
+	  <para>Tópicos Avançados de Rede</para>
+	</listitem>
+      </itemizedlist>
+
+      <para>Estes capítulos foram concebidos para serem lidos quando 
+	você precisar das informações sobre os seus temas.  Você não 
+	tem que lê-los em nenhuma ordem em particular, e nem precisa 
+	ler todos para que possa começar a usar o &os; em um ambiente
+	de rede.</para>
+    </partintro>
+
+    &chap.serialcomms;
+    &chap.ppp-and-slip;
+    &chap.mail;
+    &chap.network-servers;
+    &chap.firewalls;
+    &chap.advanced-networking;
+
+  </part>
+
+  <part id="appendices">
+    <title>Apêndices</title>
+
+    &chap.mirrors;
+    &chap.bibliography;
+    &chap.eresources;
+    &chap.pgpkeys;
+  </part>
+  &freebsd-glossary;
+  &chap.index;
+  &chap.colophon;
+</book>

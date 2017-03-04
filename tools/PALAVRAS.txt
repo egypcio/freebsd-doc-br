@@ -1,0 +1,16 @@
+# Lista das palavras que normalmente os tradutores esquecem de colocar acento,
+# pela qual o revisor deve estar atento.
+ideia
+usuario
+usuarios
+dominio
+voce
+ultimo
+dinamico
+dinamica
+servico
+especifico
+nao
+maquina
+binario
+atraves

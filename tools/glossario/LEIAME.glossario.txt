@@ -1,0 +1,73 @@
+	Algumas traducoes sao estranhas mas devemos tentar seguir
+a norma oficial do portugues brasileiro. Afinal de contas, quem
+irah ler a versao em portugues provavelmente estarah acostumado com
+estes termos traduzidos. Quem acha muito estranho (prefere eles em
+ingles) provavelmente irah ler a versao em ingles de qualquer
+maneira.
+
+	 Por exemplo, a traducao escolhida pelos especialistas em
+teoria da informacao para site eh s&iacute;tio. HORRIVEL mas eh o
+correto.  Entao, vamos tentar usar ela.
+
+	A regra de uso do glossario eh simples, | significa ou.
+A|B, A ou B. Em duvida qt a qual palavra escolher dentre opcoes de
+traducao, prefira as palavras mais a esquerda. A -> B|C. Prefira B
+se estiver em duvida.
+
+
+-------------------------------
+
+	Algumas sugestoes quanto a revisao de documentos
+
+* verificar se todos os artigos antes de FreeBSD sao necessarios
+
+Bem vindo &agrave;s Perguntas mais freq&uuml;entes da s&eacute;rie
+2.X at&eacute; a 4.X para o FreeBSD!
+
+ou
+
+Bem vindo &agrave;s Perguntas mais freq&uuml;entes da s&eacute;rie
+2.X at&eacute; a 4.X para FreeBSD!
+
+ou, mais simples ainda (simples sempre eh melhor)
+
+Bem vindo &agrave;s Perguntas Mais Freq&uuml;entes para as
+vers&otilde;es 2.X &aacute; 4.X do FreeBSD!
+
+* depois de separador frasal: ponto (.) ou ponto-e-virgula (;), dar
+2 espacos, nao soh 1. Eh 1 regra do fdp (FreeBSD Documentation Project) por causa de regras do
+emacs. Todos os sgml tem de seguir esta regra de espaco ou nao serao
+aceitos no CVS do FreeBSD.
+
+Fim de transmissao;  ou, nao.  Quem sabe.
+
+* nao usar artigo para palavras estrangeiras. FAQ eh ingles, logo
+nao eh masculino nem feminino
+
+* palavras q nao conseguimos traduzir, devem vir entre
+<foreignphrase></foreignphrase>. FAQ eh complicado pq eh um acronimo,
+como fazer? Bem, quando eh termo consagrado em qq lingua, i.e., FAQ
+significa a mesma coisa em qq lingua, colocaremos entre
+<literal></literal>.  Literal tb eh usado para termos consagrados
+no projeto, por exemplo, qd port significar 1 port do sistema de
+ports, <literal>port</literal>
+
+* UN*X-like -> nao eh tipo unix, esta eh 1 denominacao oficial de qq
+sistema q nao pagou pra passar na certificacao unix (e nao paga
+direitos autorais), ou seja, eh UN*X-parecido ou UN*X-tipo. Vamos
+deixar isto em ingles como <foreignphrase>UN*X-like</foreignphrase>
+
+* port -> <literal>port</literal> se for 1 port do sistema de ports
+do FreeBSD. traduz como 'convers&atilde;o' se referir-se a 1 versao para
+1 outra plataforma. Cuidado, porte em portugues quer dizer porte de arma,
+ou transportar algo mesmo.
+
+--------------------------------------------
+	TABELA ACENTUACAO SGML
+
+agudo -> &Aacute;
+cedilha -> &Ccedil;
+circunflexo -> &Acirc;
+crase -> &Agrave;
+til -> &Atilde;
+trema -> &Uuml;

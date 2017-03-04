@@ -1,0 +1,266 @@
+<!-- Copyright (c) 1998, 1999 Nik Clayton, All rights reserved.
+
+     Redistribution and use in source (SGML DocBook) and 'compiled' forms
+     (SGML HTML, PDF, PostScript, RTF and so forth) with or without
+     modification, are permitted provided that the following conditions
+     are met:
+
+      1. Redistributions of source code (SGML DocBook) must retain the above
+         copyright notice, this list of conditions and the following
+         disclaimer as the first lines of this file unmodified.
+
+      2. Redistributions in compiled form (transformed to other DTDs,
+         converted to PDF, PostScript, RTF and other formats) must reproduce
+         the above copyright notice, this list of conditions and the
+         following disclaimer in the documentation and/or other materials
+         provided with the distribution.
+
+     THIS DOCUMENTATION IS PROVIDED BY NIK CLAYTON "AS IS" AND ANY EXPRESS OR
+     IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+     OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+     DISCLAIMED. IN NO EVENT SHALL NIK CLAYTON BE LIABLE FOR ANY DIRECT,
+     INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+     (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+     SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+     HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+     STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+     ANY WAY OUT OF THE USE OF THIS DOCUMENTATION, EVEN IF ADVISED OF THE
+     POSSIBILITY OF SUCH DAMAGE.
+
+     The FreeBSD Documentation Project
+     The FreeBSD Brazilian Portuguese Documentation Project
+
+     $FreeBSD: trunk/docs/pt_BR.ISO8859-1/books/fdp-primer/the-website/chapter.xml 165 2012-10-04 21:26:02Z ebrandi@fugspbr.org $
+
+     Original revision: r38870
+
+-->
+
+<chapter id="the-website">
+  <title>O Website</title>
+  
+  <sect1 id="the-website-prep">
+    <title>Preparação</title>
+    
+    <para>Utilize um disco que tenha espaço livre suficiente. 
+      Você irá precisar de 200&nbsp;MB a 500&nbsp;MB, 
+      dependendo do método que escolher.  Este espaço 
+      irá abrigar as ferramentas SGML, um subconjunto da 
+      árvore <application>svn</application>, os arquivos 
+      temporários de trabalho e as páginas web 
+      instaladas.</para>
+ 
+    <note>
+      <para>Certifique-se que seus ports de 
+	documentação estão atualizados!  Quando 
+	na dúvida, remova os ports antigos usando o comando 
+	&man.pkg.delete.1; antes de instalar o port.  Por exemplo, 
+	nós atualmente dependemos do jade-1.2, e se você
+	tem instalado o jade-1.1, por favor execute:</para>
+
+      <screen>&prompt.root; <userinput><command>pkg_delete jade-1.1</command></userinput></screen>
+    </note>
+
+    <sect2 id="the-website-svn">
+      <title>Usando o <command>svn</command></title>
+
+      <para>O <command>svn</command> é necessário para
+	se obter (<quote><literal>check out</literal></quote>) os 
+	arquivos do <literal>doc/</literal> a partir do
+	repositório Subversion.  O <command>svn</command> pode 
+	ser instalado com o &man.pkg.add.1; ou a partir da
+	coleção de Ports do &os;, executando:</para>
+
+      <screen>&prompt.root; <userinput><command>cd /usr/ports/devel/subversion</command></userinput>
+&prompt.root; <userinput><command>make</command> <maketarget>install clean</maketarget></userinput></screen>
+
+      <para>Para obter os arquivos com o código fonte completo do 
+	web site do &os;, execute:</para>
+
+      <screen>&prompt.root; <userinput><command>svn checkout svn://svn.FreeBSD.org/doc/head/ <replaceable>/usr/build</replaceable></command></userinput></screen>
+
+      <tip>
+	<para>Se o comando <command>svn</command> não estiver sendo
+	  executado pelo usuário <username>root</username>, 
+	  certifique-se de que o diretório <filename
+	  class="directory">/usr/build</filename> possui as
+	  permissões adequadas ao usuário utilizado.  Se
+	  não for possível alterar as permissões,
+	  utilize um diretório diferente para armazenar os 
+	  arquivos do web site.</para>
+      </tip>
+
+      <para>Quando o <command>svn</command> terminar, a versão 
+	atual do website do &os; estará disponível em
+	<filename class="directory">/usr/build</filename>.  Se vocé
+	utilizou um diretório alvo diferente, substitua o 
+	<filename class="directory">/usr/build</filename> 
+	apropriadamente ao longo do restante deste documento.</para>
+
+      <para>É isso!  Agora você pode proceder com a 
+	<link linkend="the-website-build"> geração do 
+	web site</link>.</para>
+      </sect2>
+  </sect1>
+  
+  <sect1 id="the-website-build">
+    <title>Construa as páginas web do início</title>
+    
+	<para>Depois de ter completado os passos necessários
+	  para obter os arquivos com o código fonte do website, 
+	  você estará pronto para iniciar a 
+	  compilação do web site.  No nosso 
+	  exemplo, o diretório de compilação 
+	  é <filename 
+	  class="directory"><replaceable>/usr/build</replaceable>
+	  </filename> e todos os arquivos necessários 
+	  já estão disponíveis no mesmo.</para>
+
+	<procedure>
+	  <step>
+	    <para>Vá para o diretório de 
+	      compilação:</para>
+
+<screen>&prompt.root; <userinput><command>cd</command> <replaceable>/usr/build</replaceable></userinput></screen>
+	</step>
+      
+	  <step>
+	    <para>A compilação do web site 
+	      deve ser iniciada de dentro do diretório <filename 
+	      class="directory">en_US.ISO8859-1/htdocs</filename> 
+	      executando o comando &man.make.1; <maketarget>all
+	      </maketarget>, para criar as páginas web:</para>
+
+<screen>&prompt.root; <userinput><command>cd</command> en_US.ISO8859-1/htdocs </userinput>
+&prompt.root; <userinput><command>make</command> <maketarget>all</maketarget></userinput></screen>
+		</step>
+  </procedure>
+ </sect1>
+  
+  <sect1 id="the-website-install">
+    <title>Instalando as web pages em seu Web Server</title>
+    
+    <procedure>
+      <step>
+	<para>Se você tiver saído do 
+	  diretório <filename
+	  class="directory">en_US.ISO8859-1/htdocs</filename>, volte 
+	  para dele.</para>
+
+<screen>&prompt.root; <userinput><command>cd</command> <replaceable>/usr/build/en_US.ISO8859-1/htdocs</replaceable></userinput></screen>
+      </step>
+
+      <step>
+	<para>Execute o comando &man.make.1; <maketarget>install
+	  </maketarget>, definindo a variável <makevar>DESTDIR
+	  </makevar> para o nome do diretório no qual deseja 
+	  instalar os arquivos.  Eles serão instalados no 
+	  <filename class="directory">$DESTDIR/data</filename> o qual
+	  deve estar configurado para ser o diretório raiz do 
+	  seu servidor web.</para>
+			
+<screen>&prompt.root; <userinput><command>env</command> <makevar>DESTDIR</makevar>=<replaceable>/usr/local/www</replaceable> <command>make</command> <maketarget>install</maketarget></userinput></screen>
+      </step>
+
+      <step>
+	<para>Se você já instalou previamente 
+	  as páginas web dentro deste mesmo diretório o 
+	  processo de instalação não irá 
+	  remover nenhuma página web antiga ou desatualizada. 
+	  Por exemplo, se você compilar e instalar uma nova 
+	  cópia do web site todos os dias, o comando 
+	  abaixo irá procurar e remover todos os arquivos que 
+	  não tenham sido alterados nos últimos 
+	  três dias.</para>
+
+<screen>&prompt.root; <userinput><command>find</command> <replaceable>/usr/local/www</replaceable> <option>-ctime</option> 3 <option>-print0</option> | <command>xargs</command> <option>-0</option> <command>rm</command></userinput></screen>
+      </step>
+    </procedure>
+  </sect1>
+  
+  <sect1 id="the-website-env">
+    <title>Variáveis de ambiente</title>
+    
+    <variablelist>
+      <varlistentry>
+	<term><makevar>ENGLISH_ONLY</makevar></term>
+	
+	<listitem>
+	  <para>Se esta variável estiver definida e não 
+	    for vazia, apenas a documentação em Inglês
+	    será compilada e instalada.  Todas as
+	    traduções serão ignoradas. 
+	    Por exemplo:</para>
+	  
+<screen>&prompt.root; <userinput><command>make</command> <makevar>ENGLISH_ONLY=YES</makevar> <maketarget>all</maketarget> <maketarget>install</maketarget></userinput></screen>
+
+	  <para>Se você quiser desabilitar a variável
+	    <makevar>ENGLISH_ONLY</makevar> e compilar todas as 
+	    páginas, incluindo traduções, basta 
+	    definir a variável <makevar>ENGLISH_ONLY</makevar>
+	    para um valor vazio:</para>
+	
+<screen>&prompt.root; <userinput><command>make</command> <makevar>ENGLISH_ONLY=""</makevar> <maketarget>all</maketarget> <maketarget>install</maketarget> <maketarget>clean</maketarget></userinput></screen>
+  
+	</listitem>
+      </varlistentry>
+      
+      <varlistentry>
+	<term><makevar>WEB_ONLY</makevar></term>
+	
+	<listitem>
+	  <para>Se esta variável estiver definida e não 
+	    for vazia, apenas as páginas HTML do diretório 
+	    <filename class="directory">en_US.ISO8859-1/htdocs</filename>
+	    serão compiladas e instaladas.  Todos os demais 
+	    documentos do diretório <filename 
+	    class="directory">en_US.ISO8859-1</filename> (Handbook, FAQ, 
+	    Tutorais, etc) serão ignorados.  Por exemplo:</para>
+
+		<screen>&prompt.root; <userinput><command>make</command> <makevar>WEB_ONLY=YES</makevar> <maketarget>all</maketarget> <maketarget>install</maketarget></userinput></screen>	
+  
+	</listitem>
+      </varlistentry>
+
+      <varlistentry>
+      	<term><makevar>WEB_LANG</makevar></term>
+
+	<listitem>
+	  <para>Se esta variável estiver definida, apenas as 
+	    páginas web no idioma especificado por ela
+	    serão compiladas e instaladas dentro do 
+	    diretório <filename class="directory">
+	    <replaceable>/usr/build</replaceable></filename>.  
+	    Todos os demais idiomas serão ignorados.  Por 
+	    exemplo:</para>
+
+<screen>&prompt.root; <userinput>make WEB_LANG="el_GR.ISO8859-7 es_ES.ISO8859-1 hu_HU.ISO8859-2 nl_NL.ISO8859-1" all install</userinput></screen>
+  	</listitem>
+      </varlistentry>
+	
+      <varlistentry>
+	<term><makevar>NOPORTSCVS</makevar></term>
+	
+	<listitem>
+	  <para>Se esta variável estiver definida, o processo de
+	    compilação não fará o check 
+	    out dos arquivos do ports do repositório cvs.  
+	    Ao invés disso, ele irá copiar os arquivos 
+	    a partir do <filename class="directory">/usr/ports
+	    </filename> (ou do local definido na variável 
+	    <envar>PORTSBASE</envar>).</para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+    
+    <para><makevar>WEB_ONLY</makevar>, <makevar>WEB_LANG</makevar>, 
+      <makevar>ENGLISH_ONLY</makevar> e <makevar>NOPORTSCVS</makevar>
+      são variáveis do <command>make</command>.  
+      Você pode definir estas variáveis no 
+      <filename>/etc/make.conf</filename>, 
+      no <filename>Makefile.inc</filename>, ou ainda como 
+      variáveis de ambiente na linha de comando ou nos 
+      arquivos de inicialização do seu 
+      <foreignphrase>shell</foreignphrase>.</para>
+  </sect1>
+</chapter>

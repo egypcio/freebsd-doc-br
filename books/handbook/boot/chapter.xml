@@ -1,0 +1,1127 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!--
+  The FreeBSD Documentation Project
+  The FreeBSD Brazilian Portuguese Documentation Project
+
+  Original revision: r39845
+
+  $FreeBSD: trunk/docs/pt_BR.ISO8859-1/books/handbook/boot/chapter.xml 376 2013-12-24 14:03:54Z egypcio $
+-->
+
+<chapter id="boot">
+  <title>O Processo de Inicialização do &os;</title>
+
+  <sect1 id="boot-synopsis">
+    <title>Sinopse</title>
+    <indexterm><primary>booting</primary></indexterm>
+    <indexterm><primary>bootstrap</primary></indexterm>
+
+    <para>O processo de iniciar um computador e seu sistema
+      operacional é referido como <quote>o processo de
+      <literal>bootstrap</literal></quote>, ou simplesmente
+      <literal>boot</literal> (inicialização).  O processo de
+      <literal>boot</literal> do &os; oferece uma grande
+      flexibilidade na personalização do que acontece quando você
+      inicia o sistema, permitindo você selecionar diferentes sistemas
+      operacionais instalados no mesmo computador, ou mesmo versões
+      diferentes do mesmo sistema operacional ou kernel
+      instalado.</para>
+
+    <para>Este capítulo detalha as opções de configurações que você
+      pode usar e como personalizar o processo de
+      <literal>boot</literal> do &os;.  Isso inclui tudo o que
+      acontece até que o kernel do &os; tenha iniciado, procurado
+      por dispositivos e iniciado o &man.init.8;.  Se você não tem
+      certeza de quando isso acontece, isso ocorre quando a cor do
+      texto muda de branco brilhante para cinza.</para>
+
+    <para>Depois de ler este capítulo você saberá:</para>
+
+    <itemizedlist>
+      <listitem>
+	<para>Quais são os componentes do <literal>boot</literal>
+	  do &os; e como eles interagem.</para>
+      </listitem>
+
+      <listitem>
+	<para>As opções que você pode passar para os componentes do
+	  <literal>boot</literal> do &os; para controlar o
+	  processo.</para>
+      </listitem>
+
+      <listitem>
+	<para>Os princípios do &man.device.hints.5;.</para>
+      </listitem>
+    </itemizedlist>
+
+    <note>
+      <title>Apenas para x86</title>
+
+      <para>Este capítulo descreve apenas o processo de
+	<literal>boot</literal> do &os; rodando em sistemas
+	compatíveis com Intel x86.</para>
+    </note>
+  </sect1>
+
+  <sect1 id="boot-introduction">
+    <title>O Problema do <literal>Boot</literal></title>
+
+    <para>Ligar o computador e iniciar o sistema operacional possui um
+      dilema interessante.  Por definição, o computador não sabe como
+      fazer nada até que o sistema operacional tenha iniciado.  Isso
+      inclui executar programas que estão no disco rígido.  Então, se
+      o computador não pode executar um programa que está no disco
+      rígido sem o sistema operacional estar em execução, e o sistema
+      operacional está no disco rígido, como o sistema operacional é
+      iniciado?</para>
+
+    <para>Esse problema é similar ao apresentado no livro
+      <citetitle>As aventuras do Barão Munchausen</citetitle>.  Um
+      personagem caiu no fundo de um bueiro, e puxou a si mesmo para
+      fora agarrando suas botas, se içando
+      (<literal>bootstrap</literal>).  Nos primórdios da computação o
+      termo <firstterm>bootstrap</firstterm> foi empregado para o
+      mecanismo usado para carregar o sistema operacional, e então o
+      termo foi encurtado para <quote>boot</quote>.</para>
+
+    <indexterm><primary>BIOS</primary></indexterm>
+
+    <indexterm><primary>Basic Input/Output
+      System</primary><see>BIOS</see></indexterm>
+
+    <para>Em hardware x86, o Sistema Básico de Entrada e Saída (BIOS,
+      sigla em inglês) é responsável por carregar o sistema
+      operacional.  Para fazer isso, o BIOS procura no disco rígido
+      pelo Registro Mestre de Inicialização (MBR, sigla em inglês),
+      que deve estar localizado em um lugar específico do disco
+      rígido.  O BIOS tem conhecimento suficiente do hardware para
+      carregar e executar o MBR, e assume que ele pode se encarregar
+      das tarefas restantes necessárias para carregar o sistema
+      operacional, possivelmente com a ajuda do BIOS.</para>
+
+    <indexterm><primary>Master Boot Record (MBR)</primary></indexterm>
+
+    <indexterm><primary>Boot Manager</primary></indexterm>
+
+    <indexterm><primary>Boot Loader</primary></indexterm>
+
+    <para>O código dentro do MBR é normalmente referido por
+      <emphasis><literal>boot manager</literal></emphasis>
+      (gerenciador de inicialização), especialmente quando ele
+      interage com o usuário.  Geralmente nesse caso o <literal>boot
+      manager</literal> possui mais código na primeira
+      <emphasis>trilha</emphasis> do disco rígido ou dentro de algum
+      sistema de arquivos do sistema operacional.  (Um <literal>boot
+      manager</literal> é chamado algumas vezes de
+      <emphasis><literal>boot loader</literal></emphasis> (carregador
+      de inicialização), entretanto, o &os; usa este termo para um
+      estágio posterior do <literal>boot</literal>.) Os <literal>boot
+      managers</literal> mais populares são
+      <application>boot0</application> (também conhecido como
+      <application>Boot Easy</application>, o <literal>boot
+      manager</literal> padrão do &os;),
+      <application>Grub</application>, <application>GAG</application>,
+      e <application>LILO</application>.  (Somente o
+      <application>boot0</application> cabe no MBR.)</para>
+
+    <para>Se você tem apenas um sistema operacional instalado nos seus
+      discos rígidos, então um MBR padrão será suficiente.  Esse MBR
+      procura pelo primeiro <literal>slice</literal> (o equivalente
+      as partições em outros sistemas) inicializável (ou seja, ativo)
+      do disco rígido, e então executa o código gravado nesse
+      <literal>slice</literal> para carregar o restante do sistema
+      operacional.  O MBR instalado pelo &man.fdisk.8; é um MBR
+      padrão.  Ele é baseado no <filename>/boot/mbr</filename>.</para>
+
+    <para>Se você tem instalado vários sistemas operacionais nos seus
+      discos rígidos, então você pode instalar um <literal>boot
+      manager</literal>, que pode exibir uma lista dos sistemas
+      operacionais e permitir que você escolha um para iniciar.  Dois
+      destes são discutidos na próxima subseção.</para>
+
+    <para>O restante do sistema de <literal>boot</literal> do &os; é
+      dividido em três etapas.  A primeira etapa é executada pelo MBR,
+      que sabe apenas o suficiente para deixar o computador em um
+      estado específico e executar a segunda etapa.  A segunda etapa
+      pode fazer um pouco mais, antes de executar a terceira etapa.  A
+      terceira etapa finaliza a tarefa de carregar o sistema
+      operacional.  O trabalho é dividido nestas três etapas porque o
+      padrão PC impõe limites no tamanho do programa que pode ser
+      executado nas etapas um e dois.  Dividir as tarefas em etapas
+      permite que o &os; tenha um <literal>loader</literal> mais
+      flexível.</para>
+
+    <indexterm><primary>kernel</primary></indexterm>
+    <indexterm><primary><command>init</command></primary></indexterm>
+
+    <para>O kernel é então iniciado e começa a procurar por
+      dispositivos e inicializá-los para uso.  Uma vez que o processo
+      de inicialização do kernel termina, o kernel passa o controle
+      para o processo de usuário, o &man.init.8;, que então verifica se
+      os discos estão em um estado utilizável.  Em seguida o
+      &man.init.8; inicia a configuração de recursos no nível de
+      usuário, que monta sistemas de arquivos, inicia placas de rede
+      para se comunicar na rede, e geralmente inicia todos os
+      processos que normalmente são executados na inicialização de um
+      sistema &os;.</para>
+  </sect1>
+
+  <sect1 id="boot-blocks">
+    <title>O <literal>Boot Manager</literal> e As Etapas de
+      <literal>Boot</literal></title>
+
+    <indexterm><primary>Boot Manager</primary></indexterm>
+
+    <sect2 id="boot-boot0">
+      <title>O <literal>Boot Manager</literal></title>
+
+      <indexterm><primary>Master Boot Record
+	  (MBR)</primary></indexterm>
+
+      <para>O código no MBR, ou o <literal>boot manager</literal>, é
+	referido algumas vezes como a <emphasis>etapa zero</emphasis> do
+	processo de <literal>boot</literal>.  Essa subseção discute dois dos
+	<literal>boot managers</literal> mencionados anteriormente: o
+	<application>boot0</application> e o
+	<application>LILO</application>.</para>
+
+      <formalpara>
+	<title>O <literal>Boot Manager</literal>
+	<application>boot0</application>:</title>
+
+	<para>O MBR utilizado por padrão pelo instalador do &os;, ou
+	  pelo &man.boot0cfg.8;, é baseado no
+	  <filename>/boot/boot0</filename>.  (O programa
+	  <application>boot0</application> é muito simples, pois o
+	  programa no <abbrev>MBR</abbrev> deve ter apenas 446 bytes
+	  de tamanho devido à tabela de <literal>slices</literal> do
+	  disco rígido e ao identificador <literal>0x55AA</literal>
+	  que existe no fim do MBR.) Se você instalou o
+	  <application>boot0</application> e possui vários sistemas
+	  operacionais nos seus discos rígidos, então você verá algo
+	  parecido com a tela abaixo no momento da
+	  inicialização:</para>
+      </formalpara>
+
+      <example id="boot-boot0-example">
+	<title>Imagem de tela do <filename>boot0</filename></title>
+
+	<screen>F1 DOS
+F2 FreeBSD
+F3 Linux
+F4 ??
+F5 Drive 1
+
+Default: F2</screen>
+      </example>
+
+      <para>É conhecido que outros sistemas operacionais, em
+	particular o &windows;, sobrescrevem o MBR.  Se isso
+	acontecer, ou se você quiser substituir o MBR existente pelo o
+	MBR do &os;, então use o seguinte comando:</para>
+
+      <screen>&prompt.root; <userinput>fdisk -B -b /boot/boot0 <replaceable>dispositivo</replaceable></userinput></screen>
+
+      <para>Onde <replaceable>dispositivo</replaceable> é a unidade
+	de disco a partir da qual você efetua o
+	<literal>boot</literal>, tal como
+	<devicename>ad0</devicename> para o primeiro disco rígido IDE,
+	<devicename>ad2</devicename> para o primeiro disco rígido na
+	segunda controladora IDE, <devicename>da0</devicename> para o
+	primeiro disco rígido SCSI, e assim por diante.  Ou, se você
+	preferir uma configuração personalizada do MBR, use
+	&man.boot0cfg.8;.</para>
+
+      <formalpara>
+	<title>O <literal>Boot Manager</literal> LILO:</title>
+
+	<para>Para que esse <literal>boot manager</literal> possa iniciar
+	  o &os;, primeiro inicie o &linux; e adicione a seguinte
+	  configuração no arquivo
+	  <filename>/etc/lilo.conf</filename>:</para>
+      </formalpara>
+
+      <programlisting>other=/dev/hdXY
+table=/dev/hdX
+loader=/boot/chain.b
+label=FreeBSD</programlisting>
+
+      <para>Na configuração acima, especifique a partição primária do
+	&os; usando as especificações do &linux;, substituindo o
+	<replaceable>X</replaceable> pela letra que representa o disco
+	rígido no &linux; e o <replaceable>Y</replaceable> pelo número
+	que representa a partição primária no &linux;.  Se você está
+	usando um disco rígido <acronym>SCSI</acronym>, você precisará
+	mudar <replaceable>/dev/hd</replaceable> por algo parecido com
+	<replaceable>/dev/sd</replaceable>.  A linha
+	<option>loader=/boot/chain.b</option> pode ser omitida caso
+	você tenha os dois sistemas operacionais no mesmo disco
+	rígido.  Agora execute o comando
+	<command>/sbin/lilo&nbsp;-v</command> para gravar suas
+	mudanças no sistema; você deve verificar isso checando as
+	mensagens na tela.</para>
+    </sect2>
+
+    <sect2 id="boot-boot1">
+      <title>Primeira Etapa, <filename>/boot/boot1</filename>, e
+	Segunda Etapa, <filename>/boot/boot2</filename></title>
+
+      <para>Conceitualmente, a primeira e segunda etapa são partes do
+	mesmo programa, na mesma área do disco rígido.  Essa divisão é
+	devida à limitações de espaço, mas você sempre deve instalar
+	as duas juntas.  As duas etapas são copiadas do arquivo
+	combinado <filename>/boot/boot</filename> pelo instalador ou
+	pelo <application>bsdlabel</application> (veja abaixo).</para>
+
+      <para>Elas ficam armazenadas fora do sistema de arquivos, na
+	primeira trilha do <literal>slice</literal> de
+	<literal>boot</literal> do disco rígido, a partir do primeiro
+	setor.  Esse é o local onde o <link
+	linkend="boot-boot0">boot0</link>, ou qualquer outro
+	<literal>boot manager</literal>, espera encontrar o programa
+	que será executado para continuar o processo de
+	<literal>boot</literal>.  O número de setores usados é
+	facilmente determinado pelo tamanho do
+	<filename>/boot/boot</filename>.</para>
+
+      <para>O <filename>boot1</filename> é muito simples, pois ele
+	deve ter apenas o tamanho de 512 bytes, e ele conhece o
+	suficiente sobre o <firstterm>bsdlabel</firstterm> do &os;,
+	o qual tem informações sobre a divisão do disco rígido, para
+	encontrar e executar o <filename>boot2</filename>.</para>
+
+      <para>O <filename>boot2</filename> é ligeiramente mais
+	 sofisticado, e conhece o sistema de arquivos do &os; o
+	 suficiente para encontrar arquivos e pode fornecer uma
+	 interface simples para escolher o arquivo do kernel para
+	 carregar e executar.</para>
+
+      <para>O
+	<link linkend="boot-loader"><literal>loader</literal></link>
+	é muito mais sofisticado e fornece uma configuração de
+	inicialização fácil de usar, o <filename>boot2</filename>
+	executa o <literal>loader</literal>, mas anteriormente ele era
+	encarregado de executar o kernel diretamente.</para>
+
+      <example id="boot-boot2-example">
+	<title>Imagem de tela do <filename>boot2</filename></title>
+
+	<screen>&gt;&gt; FreeBSD/i386 BOOT
+Default: 0:ad(0,a)/boot/loader
+boot:</screen>
+      </example>
+
+      <para>Se você precisar substituir o <filename>boot1</filename> e
+	o <filename>boot2</filename>, use o &man.bsdlabel.8;:</para>
+
+      <screen>&prompt.root; <userinput>bsdlabel -B <replaceable>diskslice</replaceable></userinput></screen>
+
+      <para>Onde <replaceable>diskslice</replaceable> é o disco
+	rígido e o <literal>slice</literal> do qual você quer iniciar, tal
+	como <devicename>ad0s1</devicename> para o primeiro
+	<literal>slice</literal> no primeiro disco rígido IDE.</para>
+
+      <warning>
+	<title>O Arriscado Modo Dedicado</title>
+
+	<para>Se você usar apenas o nome do disco rígido, tal como
+	  <devicename>ad0</devicename>, no comando &man.bsdlabel.8;,
+	  irá criar um disco dedicado, sem <literal>slices</literal>,
+	  e isso pode ser perigiso.  É quase certo que não é isso que
+	  você quer fazer, então tenha certeza que você verificou o
+	  comando &man.bsdlabel.8; antes de pressionar Enter.</para>
+      </warning>
+    </sect2>
+
+    <sect2 id="boot-loader">
+      <title>Etapa Três, <filename>/boot/loader</filename></title>
+
+      <indexterm><primary>boot-loader</primary></indexterm>
+
+      <para>O <literal>loader</literal> é a etapa final das três
+	etapas da inicialização, está localizado no sistema de
+	arquivos, geralmente como
+	<filename>/boot/loader</filename>.</para>
+
+      <para>O <literal>loader</literal> é usado como um método
+	amigável para configuração, usando um conjunto de comandos
+	próprios, fáceis de usar, apoiado por um interpretador mais
+	poderoso, com um conjunto de comandos mais complexos.</para>
+
+      <sect3 id="boot-loader-flow">
+	<title>Fluxo do Programa <literal>Loader</literal></title>
+
+	<para>Durante a inicialização, o <literal>loader</literal> irá
+	  procurar por um console e por discos, e descobrir a partir
+	  de qual disco ele está iniciando.  Ele definirá variáveis
+	  necessárias, e um interpretador será iniciado por onde
+	  comandos de usuário podem ser passados a partir de um script ou
+	  interativamente.</para>
+
+	<indexterm><primary>loader</primary></indexterm>
+	<indexterm><primary>loader configuration</primary></indexterm>
+
+	<para>O <literal>loader</literal> irá ler o
+	  <filename>/boot/loader.rc</filename>, que por padrão lê o
+	  <filename>/boot/defaults/loader.conf</filename> que define
+	  valores padrões para variáveis, este então lê o
+	  <filename>/boot/loader.conf</filename> para definições do
+	  usuário para essas variáveis.  O
+	  <filename>loader.rc</filename> então age conforme essas
+	  variáveis, carregando os módulos e o kernel que foram
+	  selecionados.</para>
+
+	<para>Finalmente, por padrão, o <literal>loader</literal>
+	  espera por 10 segundos para uma tecla ser pressionada, após
+	  isso inicia o kernel.  Se interrompido, será exibido para o
+	  usuário um prompt que entende um conjunto de comandos de uso
+	  fácil, onde o usuário pode ajustar variáveis, descarregar
+	  todos os módulos, carregar módulos, e então finalmente
+	  efetuar o <literal>boot</literal> ou reiniciar.</para>
+      </sect3>
+
+      <sect3 id="boot-loader-commands">
+	<title>Comandos Internos do <literal>Loader</literal></title>
+
+	<para>Estes são os comandos mais comuns usados no
+	  <literal>loader</literal>.  Para uma explicação completa de
+	  todos os comandos disponíveis, por favor, consulte o
+	  &man.loader.8;.</para>
+
+	<variablelist>
+	  <varlistentry>
+	    <term>autoboot <replaceable>segundos</replaceable></term>
+
+	    <listitem>
+	      <para>Prossegue com o <literal>boot</literal> do kernel
+		se não for interrompido no tempo especificado em
+		segundos.  Exibe uma contagem regressiva, o valor
+		padrão é 10 segundos.</para>
+	    </listitem>
+	  </varlistentry>
+
+	  <varlistentry>
+	    <term>boot
+	      <optional><replaceable>-opções</replaceable></optional>
+	      <optional><replaceable>nomedokernel</replaceable></optional></term>
+
+	    <listitem>
+	      <para>Prossegue imediatamente com o
+	        <literal>boot</literal> do kernel, com as opções
+		especificadas, se houver alguma, e com o nome do
+		kernel, se este foi informado.  Somente é possível
+		especificar o nome do kernel no prompt depois que o
+		comando <emphasis>unload</emphasis> for executado,
+		senão o kernel carregado anteriormente será
+		usado.</para>
+	    </listitem>
+	  </varlistentry>
+
+	  <varlistentry>
+	    <term>boot-conf</term>
+
+	    <listitem>
+	      <para>Passa pela mesma configuração automática dos
+		módulos, baseando-se nas variáveis do mesmo modo que
+		acontece no <literal>boot</literal>.  Isso somente
+		faz sentido se você primeiramente executar o comando
+		<command>unload</command> e mudar algumas variáveis,
+		mais comumente o <envar>kernel</envar>.</para>
+	    </listitem>
+	  </varlistentry>
+
+	  <varlistentry>
+	    <term>help
+	      <optional><replaceable>tópico</replaceable></optional></term>
+
+	    <listitem>
+	      <para>Exibe o texto de ajuda contido no
+		<filename>/boot/loader.help</filename>.  Se o tópico
+		for <literal>index</literal>, então a lista de tópicos
+		disponíveis é exibida.</para>
+	    </listitem>
+	  </varlistentry>
+
+	  <varlistentry>
+	    <term>include <replaceable>arquivo</replaceable>
+	      &hellip;</term>
+
+	    <listitem>
+	      <para>Processa o arquivo especificado no comando.  O
+		arquivo é lido e interpretado linha por linha.  Quando
+		um erro é encontrado o comando pára
+		imediatamente.</para>
+	    </listitem>
+	  </varlistentry>
+
+	  <varlistentry>
+	    <term>load <optional><option>-t</option>
+	      <replaceable>tipo</replaceable></optional>
+	      <replaceable>arquivo</replaceable></term>
+
+	    <listitem>
+	      <para>Carrega o kernel, módulo do kernel, ou o arquivo
+		do tipo e nome especificado.  Qualquer argumento após
+		o nome do arquivo é passado para o arquivo.</para>
+	    </listitem>
+	  </varlistentry>
+
+	  <varlistentry>
+	    <term>ls <optional><option>-l</option></optional>
+	      <optional><replaceable>caminho</replaceable></optional></term>
+
+	    <listitem>
+	      <para>Exibe uma lista de arquivos no caminho
+		especificado, ou do diretório raiz se um caminho não
+		for informado.  Se a opção <option>-l</option> é
+		usada, o tamanho dos arquivos também é exibido.</para>
+	    </listitem>
+	  </varlistentry>
+
+	  <varlistentry>
+	    <term>lsdev
+	      <optional><option>-v</option></optional></term>
+
+	    <listitem>
+	      <para>Lista todos os dispositivos dos quais pode ser
+		possível carregar módulos.  Se <option>-v</option> é
+		especificada, mais detalhes são exibidos.</para>
+	    </listitem>
+	  </varlistentry>
+
+	  <varlistentry>
+	    <term>lsmod
+	      <optional><option>-v</option></optional></term>
+
+	    <listitem>
+	      <para>Exibe os módulos carregados.  Se
+		<option>-v</option> é especificada, mais detalhes são
+		exibidos.</para>
+	    </listitem>
+	  </varlistentry>
+
+	  <varlistentry>
+	    <term>more <replaceable>arquivo</replaceable></term>
+
+	    <listitem>
+	      <para>Exibe o conteúdo do arquivo especificado, com uma
+		pausa a cada certo número de linhas, definido na
+		variável <varname>LINES</varname>.</para>
+	    </listitem>
+	  </varlistentry>
+
+	  <varlistentry>
+	    <term>reboot</term>
+
+	    <listitem>
+	      <para>Reinicia imediatamente o sistema.</para>
+	    </listitem>
+	  </varlistentry>
+
+	  <varlistentry>
+	    <term>set <replaceable>variável</replaceable></term>
+	    <term>set
+	      <replaceable>variável</replaceable>=<replaceable>valor</replaceable></term>
+
+	    <listitem>
+	      <para>Define os valores das variáveis de
+		ambiente.</para>
+	    </listitem>
+	  </varlistentry>
+
+	  <varlistentry>
+	    <term>unload</term>
+
+	    <listitem>
+	      <para>Remove todos os módulos carregados.</para>
+	    </listitem>
+	  </varlistentry>
+	</variablelist>
+      </sect3>
+
+      <sect3 id="boot-loader-examples">
+      <title>Exemplos do <literal>Loader</literal></title>
+
+	<para>Aqui tem alguns exemplos de uso do
+	  <literal>loader</literal> na prática:</para>
+
+	<itemizedlist>
+	  <indexterm><primary>single-user mode</primary></indexterm>
+
+	  <listitem>
+	    <para>Para iniciar seu kernel normalmente, mas em modo
+	      monousuário:</para>
+
+	    <screen><userinput>boot -s</userinput></screen>
+	  </listitem>
+
+	  <listitem>
+	    <para>Para descarregar o seu kernel habitual e os módulos,
+	      e então carregar o seu kernel antigo (ou qualquer
+	      outro):</para>
+
+	    <indexterm>
+	      <primary><filename>kernel.old</filename></primary>
+	    </indexterm>
+
+	    <screen><userinput>unload</userinput>
+<userinput>load <replaceable>kernel.old</replaceable></userinput></screen>
+
+	    <para>Você pode usar <filename>kernel.GENERIC</filename>
+	      para se referir ao kernel genérico que vem com o disco
+	      de instalação, ou <filename>kernel.old</filename> para
+	      se referir ao seu kernel anterior (isto é, quando você
+	      atualizou ou configurou o seu próprio kernel).</para>
+
+	    <note>
+	      <para>Use o seguinte para carregar seus módulos
+		habituais com outro kernel:</para>
+
+	      <screen><userinput>unload</userinput>
+<userinput>set kernel="<replaceable>kernel.old</replaceable>"</userinput>
+<userinput>boot-conf</userinput></screen></note>
+	  </listitem>
+
+	  <listitem>
+	    <para>Para carregar um script de configuração do kernel
+	      (um script para automatizar aquilo que você faria para
+	      configurar o kernel durante o
+	      <literal>boot</literal>):</para>
+
+	    <screen><userinput>load -t userconfig_script <replaceable>/boot/kernel.conf</replaceable></userinput></screen>
+	  </listitem>
+	</itemizedlist>
+      </sect3>
+
+      <sect3 id="boot-splash">
+	<sect3info>
+	  <authorgroup>
+	    <author>
+	      <firstname>Joseph J.</firstname>
+	      <surname>Barbish</surname>
+	      <contrib>Contribuição de </contrib>
+	    </author>
+	  </authorgroup>
+	</sect3info>
+
+	<title>Utilizando <literal>Splash Screens</literal> Durante o
+	  <literal>Boot</literal></title>
+
+	<para>A <literal>splash screen</literal> (tela de abertura)
+	  cria uma tela de <literal>boot</literal> mais atraente em
+	  comparação com as mensagens de <literal>boot</literal>
+	  originais.  Essa tela será exibida até que o console, ou um
+	  gerenciador gráfico, exiba um prompt de login.</para>
+
+	<para>Existem dois ambientes básicos disponíveis no &os;.  O
+	  primeiro é o ambiente de linha de comando legado do console
+	  virtual padrão.  Depois que o sistema termina de iniciar, um
+	  prompt de login é exibido no console.  O segundo é
+	  o ambiente de trabalho gráfico X11.  Depois que o <link
+	  linkend="x-install">X11</link>, e um dos ambientes gráficos,
+	  como <application>GNOME</application>,
+	  <application>KDE</application>, ou
+	  <application>XFce</application>, forem instalados, o ambiente
+	  gráfico X11 pode ser iniciado usando o comando
+	  <command>startx</command>.</para>
+
+	<para>Alguns usuários preferem a tela de login gráfica X11 do
+	  que o tradicional prompt de login no modo texto.
+	  Gerenciadores gráficos, como o
+	  <application>XDM</application> para o &xorg;, o
+	  <application>gdm</application> para o
+	  <application>GNOME</application>, e o
+	  <application>kdm</application> para o
+	  <application>KDE</application> (e qualquer outro da coleção
+	  do Ports), fornecem uma tela de login gráfico no lugar do
+	  prompt de login no console.  Após um login bem sucedido
+	  eles apresentam ao usuário um
+	  <foreignphrase>desktop</foreignphrase> gráfico.</para>
+
+	<para>No ambiente de linha de comando, a <literal>splash
+	  screen</literal> deve esconder todas as mensagens do
+	  processo de <literal>boot</literal> e das tarefas de
+	  inicialização antes de exibir o prompt de login.  No
+	  ambiente X11, os usuários podem visualizar uma inicialização
+	  mais limpa, semelhante à algo mais próximo que um usuário do
+	  &microsoft; &windows; ou de um sistema não-unix poderia
+	  ter.</para>
+
+	<sect4 id="boot-splash-function">
+	  <title>O Recurso de <literal>Splash Screen</literal></title>
+
+	  <para>O recurso de <literal>splash screen</literal> suporta
+	    arquivos de imagens bitmap de 256 cores
+	    (<filename>.bmp</filename>), ZSoft <acronym>PCX</acronym>
+	    (<filename>.pcx</filename>), ou TheDraw
+	    (<filename>.bin</filename>).  Além disso, o arquivo de
+	    imagem utilizado deve ter uma resolução de 320 por 200
+	    pixels, ou menos, para funcionar nos adaptadores de vídeo
+	    VGA padrão.</para>
+	
+	  <para>Para usar imagens maiores, até a resolução máxima de
+	    1024 por 768 pixels, ative o suporte ao
+	    <acronym>VESA</acronym> incluído no &os;.  Isso pode ser
+	    habilitado carregando o módulo <acronym>VESA</acronym>
+	    durante o <literal>boot</literal> do sistema, ou
+	    adicionando a opção <literal>VESA</literal> na
+	    configuração do kernel e compilar um kernel customizado
+	    (veja <xref linkend="kernelconfig"/>).  O suporte ao
+	    <acronym>VESA</acronym> dá ao usuário a capacidade de
+	    utilizar uma imagem no <literal>splash screen</literal>
+	    que preencha toda a tela.</para>
+
+	  <para>Enquanto a <literal>splash screen</literal> está sendo
+	    exibida durante o processo de <literal>boot</literal>, ela
+	    pode ser desligada a qualquer momento pressionando
+	    qualquer tecla do teclado.</para>
+
+	  <para>A <literal>splash screen</literal> também é, por
+	    padrão, um protetor de tela quando fora do ambiente
+	    gráfico.  Depois de um certo período de ociosidade, a tela
+	    mudará para a <literal>splash screen</literal> e irá
+	    modificar a intensidade da imagem de brilhante para muito
+	    escuro repetidamente.  Esse comportamento padrão da
+	    <literal>splash screen</literal>, como protetor de tela,
+	    pode ser sobreescrito adicionando a linha
+	    <literal>saver=</literal> ao arquivo
+	    <filename>/etc/rc.conf</filename>.  A opção
+	    <literal>saver=</literal> tem vários protetores de telas
+	    embutidos para escolher, a lista completa pode ser
+	    encontrada na página do manual &man.splash.4;.  Note que a
+	    opção <literal>saver=</literal> especificada no arquivo
+	    <filename>/etc/rc.conf</filename> somente se aplica nos
+	    consoles virtuais.  Ela não tem efeito nos gerenciadores
+	    gráficos X11.</para>
+
+	  <para>Algumas mensagens do <literal>boot loader</literal>,
+	    incluindo o menu de opções e o contador de tempo de
+	    espera, são exibidas durante o <literal>boot</literal>,
+	    mesmo quando a <literal>splash screen</literal> está
+	    habilitada.</para>
+
+	  <para>Arquivos de exemplo da <literal>splash
+	    screen</literal> podem ser baixados da galeria em <ulink
+	    url="http://artwork.freebsdgr.org/node/3">http://artwork.freebsdgr.org</ulink>.
+	    Ao instalar o port <filename
+	    role="package">sysutils/bsd-splash-changer</filename>,
+	    imagens aleatórias podem ser escolhidas de forma randomica a cada
+	    <literal>boot</literal> a partir de uma coleção de imagens.</para>
+	</sect4>
+
+	<sect4 id="boot-splash-enable">
+	  <title>Habilitando o Recurso <literal>Splash
+	    Screen</literal></title>
+
+	  <para>O arquivo da <literal>splash screen</literal>
+	    (<filename>.bmp</filename>, <filename>.pcx</filename>, ou
+	    <filename>.bin</filename>) tem que ser colocado na
+	    partição raiz, por exemplo, no diretório <filename
+	    class="directory">/boot</filename>.</para>
+
+	  <para>Para utilizar a resolução padrão do
+	    <literal>boot</literal> (256 cores, 320 por 200 pixels, ou
+	    menos), edite o <filename>/boot/loader.conf</filename>, e
+	    adicione o seguinte:</para>
+
+	  <programlisting>splash_bmp_load="YES"
+bitmap_load="YES"
+bitmap_name="<replaceable>/boot/splash.bmp</replaceable>"</programlisting>
+
+	  <para>Para resoluções de vídeo maiores, até o máximo de 1024
+	    por 768 pixels, edite o
+	    <filename>/boot/loader.conf</filename>, e adicione o
+	    seguinte:</para>
+
+	  <programlisting>vesa_load="YES"
+splash_bmp_load="YES"
+bitmap_load="YES"
+bitmap_name="<replaceable>/boot/splash.bmp</replaceable>"</programlisting>
+
+	  <para>As linhas acima assumem que o
+	    <filename><replaceable>/boot/splash.bmp</replaceable></filename>
+	    é usado para <literal>splash screen</literal>.  Quando um
+	    arquivo <acronym>PCX</acronym> for utilizado, use a
+	    seguinte configuração, adicionando a linha
+	    <literal>vesa_load="YES"</literal> dependendo da
+	    resolução.</para>
+
+	  <programlisting>splash_pcx_load="YES"
+bitmap_load="YES"
+bitmap_name="<replaceable>/boot/splash.pcx</replaceable>"</programlisting>
+
+	  <para>Na versão 8.3 há uma outra opção para usar arte ascii
+	    no formato <ulink
+	    url="https://en.wikipedia.org/wiki/TheDraw">TheDraw</ulink>.</para>
+
+	  <programlisting>splash_txt="YES"
+bitmap_load="YES"
+bitmap_name="<replaceable>/boot/splash.bin</replaceable>"</programlisting>
+
+	  <para>O nome do arquivo não está restrito a
+	    <quote>splash</quote>, como mostrado no exemplo acima.
+	    Ele pode ter qualquer nome, desde que seja um dos tipos
+	    referidos acima, tal como
+	    <filename><replaceable>splash_640x400</replaceable>.bmp</filename>
+	    ou
+	    <filename><replaceable>bluewave</replaceable>.pcx</filename>.</para>
+
+	  <para>Algumas outras opções interessantes do
+	  <filename>loader.conf</filename>:</para>
+
+	  <variablelist>
+	    <varlistentry>
+	      <term><literal>beastie_disable="YES"</literal></term>
+
+	      <listitem>
+		<para>Isso fará com que o menu de opções do
+		  <literal>boot</literal> não seja exibido, mas a
+		  contagem regressiva estará presente.  Mesmo com a
+		  exibição do menu desativada, digitando uma opção de
+		  seleção durante a contagem regressiva irá executar a
+		  opção correspondente.</para>
+	      </listitem>
+	    </varlistentry>
+
+	    <varlistentry>
+	      <term><literal>loader_logo="beastie"</literal></term>
+
+	      <listitem>
+		<para>Isso irá substituir as palavras padrões
+		  <quote>&os;</quote>, que são exibidas na direita do
+		  menu do <literal>boot</literal> por uma logo colorida do
+		  beastie como havia em versões passadas.</para>
+	      </listitem>
+	    </varlistentry>
+	  </variablelist>
+
+	  <para>Para mais informações, por favor, veja as páginas de
+	    manual &man.splash.4;, &man.loader.conf.5;, e
+	    &man.vga.4;.</para>
+	</sect4>
+      </sect3>
+    </sect2>
+  </sect1>
+
+  <sect1 id="boot-kernel">
+    <title>Interação com o Kernel durante o <literal>Boot</literal></title>
+    <indexterm>
+      <primary>kernel</primary>
+      <secondary>boot interaction</secondary>
+    </indexterm>
+
+    <para>Quando o kernel termina de ser carregado pelo <link
+      linkend="boot-loader">loader</link> (em situações normais)
+      ou pelo <link linkend="boot-boot1">boot2</link> (ignorando o
+      <literal>loader</literal>), o kernel analisa os parâmetros do <literal>boot</literal>,
+      se eles existirem, e ajusta seu comportamento conforme for
+      necessário.</para>
+
+    <sect2 id="boot-kernel-bootflags">
+      <title>Parâmetros do <literal>Boot</literal> do Kernel</title>
+
+      <indexterm>
+	<primary>kernel</primary>
+	<secondary>bootflags</secondary>
+      </indexterm>
+
+      <para>Aqui estão os parâmetros mais comuns do
+	<literal>boot</literal>:</para>
+
+      <variablelist id="boot-kernel-bootflags-list">
+	<varlistentry>
+	  <term><option>-a</option></term>
+
+	  <listitem>
+	    <para>durante o <literal>boot</literal> do kernel, pergunta por um
+	      dispositivo para montar como o sistema de arquivos
+	      raiz.</para>
+	  </listitem>
+	</varlistentry>
+
+	<varlistentry>
+	  <term><option>-C</option></term>
+
+	  <listitem>
+	    <para>efetua o <literal>boot</literal> a partir do CDROM.</para>
+	  </listitem>
+	</varlistentry>
+
+	<varlistentry>
+	  <term><option>-c</option></term>
+
+	  <listitem>
+	    <para>executa o UserConfig, o configurador do kernel
+	      usado durante o <literal>boot</literal>.</para>
+	  </listitem>
+	</varlistentry>
+
+	<varlistentry>
+	  <term><option>-s</option></term>
+
+	  <listitem>
+	    <para>efetua o <literal>boot</literal> em modo monousuário.</para>
+	  </listitem>
+	</varlistentry>
+
+	<varlistentry>
+	  <term><option>-v</option></term>
+
+	  <listitem>
+	    <para>exibe mensagens mais detalhadas durante o
+	    <literal>boot</literal> do kernel.</para>
+	  </listitem>
+	</varlistentry>
+      </variablelist>
+
+      <note>
+        <para>Existem outros parâmetros de <literal>boot</literal>, leia o
+	  &man.boot.8; para mais informações sobre eles.</para>
+      </note>
+    </sect2>
+
+  </sect1>
+
+  <sect1 id="device-hints">
+    <sect1info>
+      <authorgroup>
+	<author>
+	  <firstname>Tom</firstname>
+	  <surname>Rhodes</surname>
+	  <contrib>Contribuição de </contrib>
+	</author>
+      </authorgroup>
+      <!-- 18 OCT 2002 -->
+    </sect1info>
+
+    <title>Ajustes dos Dispositivos</title>
+
+    <indexterm>
+      <primary>device.hints</primary>
+    </indexterm>
+
+    <para>Durante a inicialização do sistema, o
+      <literal>boot</literal> &man.loader.8; lerá o arquivo
+      &man.device.hints.5;.  Esse arquivo armazena informações do
+      <literal>boot</literal> do kernel conhecidas como variáveis,
+      algumas vezes referidas por <quote>ajustes dos
+      dispositivos</quote>, ou <literal>device hints</literal>.
+      Estes <quote>ajustes dos dispositivos</quote> são usados pelos
+      <literal>drivers</literal> dos dispositivos para
+      configura-los.</para>
+
+    <para>Os ajustes dos dispositivos podem ser especificados também
+      no prompt da <link linkend="boot-loader">Etapa 3 do
+      <literal>boot loader</literal></link>.  Variáveis podem ser
+      adicionadas usando o comando <command>set</command>, removidas
+      com o comando <command>unset</command> e visualizadas com o
+      comando <command>show</command>.  Variáveis definidas no
+      <filename>/boot/device.hints</filename> também podem ser
+      sobrescritas no prompt.  Ajustes dos dispositivos definidos no
+      <literal>boot loader</literal> não são permanentes e serão
+      esquecidos na próxima reinicialização.</para>
+
+    <para>Depois que o sistema é iniciado, o comando &man.kenv.1; pode
+      ser usado para exibir todas as variáveis.</para>
+
+    <para>A sintaxe do arquivo <filename>/boot/device.hints</filename>
+      é uma variável por linha, usando o caractere padrão cerquilha
+      <quote>#</quote> como indicador de comentário.  As linhas são
+      escritas como a seguir:</para>
+
+    <screen><userinput>hint.driver.unidade.palavrachave="<replaceable>valor</replaceable>"</userinput></screen>
+
+    <para>A sintaxe para a Etapa 3 do <literal>boot loader</literal> é:</para>
+
+    <screen><userinput>set hint.driver.unidade.palavrachave=<replaceable>valor</replaceable></userinput></screen>
+
+    <para>O <literal>driver</literal> é o nome do
+      <literal>driver</literal> do dispositivo,
+      <literal>unidade</literal> é o número da unidade do
+      <literal>driver</literal> do dispositivo, e
+      <literal>palavrachave</literal> é a palavra chave de ajuste.  A
+      palavra chave deve ser uma das seguintes opções:</para>
+
+    <itemizedlist>
+      <listitem>
+	<para><literal>at</literal>: especifica o barramento ao qual o
+	  dispositivo está ligado.</para>
+      </listitem>
+
+      <listitem>
+	<para><literal>port</literal>: especifica o endereço inicial
+	  de <acronym>E/S</acronym> a ser usado.</para>
+      </listitem>
+
+      <listitem>
+	<para><literal>irq</literal>: especifica o número da
+	  interrupção a ser usado.</para>
+      </listitem>
+
+      <listitem>
+	<para><literal>drq</literal>: especifica o número do canal
+	  DMA.</para>
+      </listitem>
+
+      <listitem>
+	<para><literal>maddr</literal>: especifica o endereço físico
+	  de memória que o dispositivo ocupa.</para>
+      </listitem>
+
+      <listitem>
+	<para><literal>flags</literal>: define vários parâmetros para
+	  o dispositivo.</para>
+      </listitem>
+
+      <listitem>
+	<para><literal>disabled</literal>: se for definido para
+	  <literal>1</literal> o dispositivo é desabilitado.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Drivers de dispositivos podem aceitar, ou precisar, de mais
+      ajustes que não estão listados aqui, é recomendado consultar a
+      página de manual deles.  Para mais informações, consulte as
+      páginas de manual &man.device.hints.5;, &man.kenv.1;,
+      &man.loader.conf.5;, e &man.loader.8;.</para>
+  </sect1>
+
+  <sect1 id="boot-init">
+    <title>Init: Inicialização do Controle de Processos</title>
+
+    <indexterm>
+      <primary><command>init</command></primary>
+    </indexterm>
+
+    <para>Quando o kernel finaliza o processo de
+      <literal>boot</literal>, ele passa o
+      controle para o processo de usuário &man.init.8;, que está
+      localizado em <filename>/sbin/init</filename>, ou no caminho
+      definido na variável <envar>init_path</envar> no
+      <command>loader</command>.</para>
+
+    <sect2 id="boot-autoreboot">
+      <title>Sequência de Reinicialização Automática</title>
+
+      <para>A sequência de reinicialização automática assegura que os
+	sistemas de arquivos disponíveis no sistema estão
+	consistentes.  Se eles não estiverem, e o &man.fsck.8; não
+	consertar as inconsistências, o &man.init.8; põe o sistema no
+	<link linkend="boot-singleuser">modo monousuário</link> para
+	que o administrador do sistema tome as devidas
+	providências.</para>
+    </sect2>
+
+    <sect2 id="boot-singleuser">
+      <title>Modo Monousuário</title>
+
+      <indexterm><primary>single-user mode</primary></indexterm>
+      <indexterm><primary>console</primary></indexterm>
+
+      <para>Esse modo pode ser iniciado através da <link
+      	linkend="boot-autoreboot">sequência de
+	reinicialização automática</link>, ou pelo usuário, utilizando
+	o parâmetro <option>-s</option> no <literal>boot</literal> ou definindo a variável
+	<envar>boot_single</envar> no
+	<command>loader</command>.</para>
+
+      <para>Ele também pode ser iniciado executando &man.shutdown.8;
+	sem os parâmetros reiniciar (<option>-r</option>) ou desligar
+	(<option>-h</option>), no modo <link
+	linkend="boot-multiuser">multiusuário</link>.</para>
+
+      <para>Se o <literal>console</literal> do sistema está definido
+	como <literal>insecure</literal> no arquivo
+	<filename>/etc/ttys</filename>, então o sistema pede pela
+	senha do <username>root</username> antes de iniciar o modo
+	monousuário.</para>
+
+      <example id="boot-insecure-console">
+	<title>Console Inseguro em
+	  <filename>/etc/ttys</filename></title>
+
+	<programlisting># name  getty                           type    status          comments
+#
+# If console is marked "insecure", then init will ask for the root password
+# when going to single-user mode.
+console none                            unknown off insecure</programlisting>
+      </example>
+
+      <note>
+	<para>Um console marcado como <literal>insecure</literal>
+	  significa que você não confia na segurança física do
+	  console, e quer assegurar que apenas quem conhece a senha do
+	  <username>root</username> pode usar o modo monousuário,
+	  não significa que você quer executar o seu console de forma
+	  insegura.  Portanto, se você quer segurança, escolha
+	  <literal>insecure</literal>, ao invés de
+	  <literal>secure</literal>.</para>
+      </note>
+    </sect2>
+
+    <sect2 id="boot-multiuser">
+      <title>Modo Multiusuário</title>
+
+      <indexterm><primary>multi-user mode</primary></indexterm>
+
+      <para>Se o &man.init.8; considerar que o seu sistema de arquivos
+	está em ordem, ou assim que o usuário sair do <link
+	linkend="boot-singleuser">modo monousuário</link>, o sistema
+	entra no modo multiusuário, no qual ele inicia a configuração
+	de recursos do sistema.</para>
+
+      <sect3 id="boot-rc">
+	<title>Configuração de Recursos (rc)</title>
+
+	<indexterm><primary>rc files</primary></indexterm>
+
+	<para>O sistema de configuração de recursos lê as
+	  configurações padrões do
+	  <filename>/etc/defaults/rc.conf</filename>, e os detalhes
+	  específicos do sistema do <filename>/etc/rc.conf</filename>,
+	  e então prossegue para montar os sistemas de arquivos
+	  mencionados no <filename>/etc/fstab</filename>, inicia os
+	  serviços de rede, inicia vários
+	  <foreignphrase>daemons</foreignphrase> do sistema, e
+	  finalmente executa os scripts de inicialização dos pacotes
+	  instalados.</para>
+
+	<para>A página do manual do &man.rc.8; é uma boa referência
+	  para a configuração de recursos do sistema, assim como
+	  examinar os scripts dos recursos.</para>
+      </sect3>
+    </sect2>
+  </sect1>
+
+  <sect1 id="boot-shutdown">
+    <title>Sequência de Encerramento</title>
+
+    <indexterm>
+      <primary><command>shutdown</command></primary>
+    </indexterm>
+
+    <para>Durante um encerramento controlado, via &man.shutdown.8;, o
+      &man.init.8; tentará executar o script
+      <filename>/etc/rc.shutdown</filename>, e então prosseguir
+      enviando para todos os processos o sinal
+      <literal>TERM</literal>, e posteriormente o sinal
+      <literal>KILL</literal> para todo processo que não terminar a
+      tempo.</para>
+
+    <para>Para desligar uma máquina &os; em arquiteturas e sistemas
+      que suportam gerenciamento de energia, use o comando
+      <command>shutdown -p now</command> para desligar a máquina
+      imediatamente.  Para reiniciar o sistema &os;, use o comando
+      <command>shutdown -r now</command>.  Você precisa ser
+      <username>root</username> ou membro do grupo
+      <groupname>operator</groupname> para executar &man.shutdown.8;.
+      Os comandos &man.halt.8; e &man.reboot.8; também podem ser
+      usados, por favor, consulte as páginas de manual deles e também
+      a página do &man.shutdown.8; para mais informações.</para>
+
+    <note>
+      <para>O gerenciamento de energia precisa do suporte ao
+	&man.acpi.4; no kernel ou carregado como módulo.</para>
+    </note>
+  </sect1>
+</chapter>

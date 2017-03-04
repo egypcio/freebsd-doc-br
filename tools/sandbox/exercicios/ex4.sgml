@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN" [
+<!ENTITY % text.output "INCLUDE">
+]>
+
+<html>
+  <head>
+    <title>Exemplo usando sessoes internamente demarcadas</title>
+  </head>
+
+  <body>     
+    <p>Neste paragrafo <![ CDATA [observamos muitos 
+      caracteres do tipo sinal de menor, (< < < < <) entao fica mais facil
+      juntar tudo em uma secao CDATA para converte-los. ]]></p>
+
+    <![ IGNORE [
+    <p>Esse paragrafo esta dentro do IGNORE entao ele jamais sera
+       incluido na saida do arquivo normalizado.</p>
+    ]]>
+
+    <![ %text.output [
+    <p>Ja este paragrafo depende se a entidade sera incluida ou ignorada
+       entao pode ser que apareca ou que nao apareca.</p>
+
+    <p>Aparecer ou nao sera fato controlado pela parametro relacionado
+	a entidade %text.output.</p>
+    ]]>
+  </body>
+</html>
+

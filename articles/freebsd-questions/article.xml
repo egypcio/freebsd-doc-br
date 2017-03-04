@@ -1,0 +1,799 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE article PUBLIC "-//FreeBSD//DTD DocBook XML V4.2-Based Extension//EN"
+        "../../../share/xml/freebsd42.dtd" [
+<!ENTITY % entities PUBLIC "-//FreeBSD//ENTITIES DocBook FreeBSD Entity Set//PT" "../../share/xml/entities.ent">
+%entities;
+]>
+
+<!--
+  The FreeBSD Documentation Project
+  The FreeBSD Brazilian Portuguese Documentation Project
+
+  Original revision: r39544
+-->
+
+<article lang='pt_br'>
+  <articleinfo>
+    <title>Como obter o melhor resultado para as suas perguntas na
+    lista de discussão FreeBSD-Question</title>
+
+    <author>
+      <firstname>Greg</firstname>
+      <surname>Lehey</surname>
+
+      <affiliation>
+	<address><email>grog@FreeBSD.org</email></address>
+      </affiliation>
+    </author>
+
+    <legalnotice id="trademarks" role="trademarks">
+      &tm-attrib.freebsd;
+      &tm-attrib.microsoft;
+      &tm-attrib.netscape;
+      &tm-attrib.opengroup;
+      &tm-attrib.qualcomm;
+      &tm-attrib.general;
+    </legalnotice>
+
+    <pubdate> $FreeBSD: trunk/docs/pt_BR.ISO8859-1/articles/freebsd-questions/article.xml 165 2012-10-04 21:26:02Z ebrandi@fugspbr.org $ </pubdate>
+
+    <releaseinfo>$FreeBSD: trunk/docs/pt_BR.ISO8859-1/articles/freebsd-questions/article.xml 165 2012-10-04 21:26:02Z ebrandi@fugspbr.org $</releaseinfo>
+
+    <abstract>
+      <para>Este documento prove informações 
+	úteis para as pessoas que planejam enviar 
+	um email para a lista de discussão
+	FreeBSD-questions.  Os avisos e conselhos foram elaborados com
+	o com objetivo de maximizar as chances de que o leitor receba
+	respostas úteis para as suas mensagens.</para>
+
+      <para>Este documento é enviado regularmente para a lista
+	de discussão FreeBSD-questions.</para>
+    </abstract>
+  </articleinfo>
+
+  <sect1>
+    <title id="Introduction">Introdução</title>
+
+    <para>A lista de discussão 
+      <literal>FreeBSD-questions</literal> é
+      mantida pelo projeto FreeBSD para ajudar as pessoas que possuem
+      perguntas referentes ao uso cotidiano do FreeBSD.
+      Diferentemente da lista <literal>FreeBSD-hackers</literal>, na
+      qual são discutidas questões mais 
+      avançadas, tais como os rumos
+      a serem seguidos no desenvolvimento futuro do FreeBSD.</para>
+
+    <note>
+      <para>O termo <quote>hacker</quote> não está 
+	relacionado com pessoas que invadem os computadores de outras
+	pessoas.  O termo correto para este tipo de atividade é
+	<quote>cracker</quote>, porém a imprensa popular 
+	insiste em confundi-los.  Os hackers do FreeBSD desaprovam 
+	fortemente as atividades de <literal>cracking</literal> 
+	(quebra de segurança), e não se envolvem com 
+	as mesmas.  Para uma descrição mais abrangente 
+	sobre hackers, consulte o artigo <ulink 
+	url="http://www.catb.org/~esr/faqs/hacker-howto.html">Como 
+	se tornar um hacker</ulink>, de autoria de Eric 
+	Raymond.</para>
+    </note>
+
+    <para>A FreeBSD-questions se destina a ajudar tanto as pessoas 
+      que buscam auxilio na lista (os
+      <quote>recém-chegados</quote>), quanto as que respondem
+      as perguntas enviadas (os <quote>hackers</quote>).</para>
+
+    <para>Inevitavelmente é normal ocorrerem alguns atritos
+      na lista, os quais são decorrentes dos diferentes 
+      pontos de vista dos dois grupos predominantes.  Os
+      recém-chegados acusam os hackers de serem arrogantes, de
+      se considerarem melhores que os outros, e de serem
+      inúteis, enquanto os hackers acusam os
+      recém-chegados de serem estúpidos, de serem
+      incapazes de lerem a documentação, e de esperarem
+      que tudo lhe seja dado em uma bandeja de prata.  É claro,
+      existem elementos verdadeiros nas afirmações de
+      ambas as partes, porém estes pontos de vista, na maior
+      parte das vezes, levam ambas as partes a uma
+      sensação de frustração.</para>
+
+    <para>Neste documento, eu gostaria de fazer algo para aliviar
+      esta frustração e auxiliá-los para que 
+      obtenham melhores resultados para as suas perguntas na 
+      FreeBSD-questions.  Na sessão seguinte, eu mostrarei 
+      como enviar uma pergunta, e depois disso, iremos ver como 
+      responder a uma.</para>
+  </sect1>
+
+  <sect1>
+    <title id="subscribe">Como se cadastrar na
+      FreeBSD-questions</title>
+
+    <para>A FreeBSD-questions é uma lista de discussão 
+      por email, logo você precisa ter acesso a uma conta de 
+      email.  Para se inscrever vá até a <ulink 
+      url="&a.questions.url;">página web de 
+      informações da lista de discussão
+      FreeBSD-questions</ulink>.  Na seção denominada
+      <quote>Subscribing to freebsd-questions</quote> (Inscrevendo-se
+      na freebsd-question) preencha o campo <quote>Your email
+      address</quote> com o seu endereço de email; os outros
+      campos são opcionais.</para>
+
+    <note>
+      <para>O campo de password no formulário de
+      inscrição provê apenas uma segurança
+      leve, mas que deve evitar que outras pessoas brinquem com a sua
+      inscrição.  <emphasis>Não utilize nenhum
+      password que você já faça uso em outros
+      serviços e/ou sites</emphasis>, pois eventualmente ele
+      será enviado de volta para você em texto
+      simples.</para> 
+    </note>
+
+    <para>Você irá receber uma mensagem de
+      confirmação do <application>mailman</application>;
+      siga as instruções contidas no email para 
+      completar a sua inscrição.</para>
+
+    <para>Por último, quando você receber a mensagem de
+      boas vindas (<quote>Welcome</quote>) do
+      <application>mailman</application> contendo os detalhes da 
+      lista e o seu password para a área de assinantes, 
+      <emphasis>por favor, salve uma cópia</emphasis>.  Se 
+      no futuro você desejar sair da lista, você 
+      irá precisar destas informações.  
+      Veja a próxima seção para maiores 
+      detalhes.</para>
+  </sect1>
+
+  <sect1>
+    <title id="unsubscribe">Como se descadastrar da 
+      FreeBSD-questions?</title>
+
+    <para>Quando você se cadastrou na FreeBSD-questions, 
+      você recebeu uma mensagem de boas vindas do 
+      <application>mailman</application>.  Nesta mensagem, no meio de
+      outras coisas, estão as instruções de 
+      como se descadastrar.  Aqui está uma mensagem 
+      típica:</para>
+
+  <literallayout class="monospaced">
+Welcome to the freebsd-questions@freebsd.org mailing list!
+
+To post to this list, send your email to:
+
+  freebsd-questions@freebsd.org
+
+General information about the mailing list is at:
+
+  http://lists.freebsd.org/mailman/listinfo/freebsd-questions
+
+If you ever want to unsubscribe or change your options (e.g., switch 
+to or from digest mode, change your password, etc.), visit your
+subscription page at:
+
+http://lists.freebsd.org/mailman/options/freebsd-questions/grog%40lemsi.de
+
+You can also make such adjustments via email by sending a message to:
+
+  freebsd-questions-request@freebsd.org
+
+with the word `help' in the subject or body (don't include the
+quotes), and you will get back a message with instructions.
+
+You must know your password to change your options (including changing
+the password, itself) or to unsubscribe.  It is:
+
+  12345
+
+Normally, Mailman will remind you of your freebsd.org mailing list
+passwords once every month, although you can disable this if you
+prefer.  This reminder will also include instructions on how to
+unsubscribe or change your account options.  There is also a button on
+your options page that will email your current password to you.
+</literallayout>
+		
+    <para>A partir da url especificada na sua mensagem de boas vindas
+      (<quote>Welcome</quote>) você deve visitar a página
+      de gerenciamento de conta (<quote>Account management
+      page</quote>) e entrar com a sua requisição de
+      cancelamento da sua inscrição 
+      (<quote>Unsubscribe</quote>) na lista
+      de discussão FreeBSD-questions.</para>
+
+    <para>Uma mensagem de confirmação será
+      enviada para você pelo <application>mailman</application>;
+      siga as instruções contidas nesta mensagem para
+      finalizar o processo de cancelamento.</para>
+
+    <para>Se você já fez isso, e ainda continua
+      recebendo mensagens da lista, envie uma mensagem para
+      <email>freebsd-questions-request@FreeBSD.org</email> pedindo
+      ajuda e eles irão resolver as coisas para você.
+      <emphasis>Não</emphasis> envie a sua mensagem para a
+      FreeBSD-questions:  eles não podem
+      ajudá-lo.</para>
+  </sect1>
+
+  <sect1>
+    <title id="askwho">Devo perguntar na <literal>-questions</literal>
+      ou na <literal>-hackers</literal>?</title>
+
+    <para>Duas listas de discussão lidam com questões
+      gerais sobre o FreeBSD, <literal>FreeBSD-questions</literal> e
+      <literal>FreeBSD-hackers</literal>.  Em alguns casos, não
+      é realmente muito simples saber para qual dos grupos
+      você deve perguntar.  O critério seguinte deve
+      ajuda-lo nessa decisão para 99% de todas as
+      dúvidas, entretanto:</para>
+
+    <orderedlist>
+      <listitem>
+	<para>Se a pergunta é de natureza geral, pergunte na
+	  <literal>FreeBSD-questions</literal>.  Exemplos de perguntas
+	  desta natureza são as perguntas sobre a
+	  instalação do FreeBSD ou sobre o uso
+	  especifico de algum utilitário &unix;.</para>
+      </listitem>
+
+      <listitem>
+	<para>Se você acredita que a pergunta está
+	  relacionada a uma falha, mas você não tem
+	  certeza disso ou não sabe como procurá-lo,
+	  envie a mensagem para a <literal>FreeBSD-questions
+	</literal>.</para>
+      </listitem>
+
+      <listitem>
+	<para>Se a pergunta se relaciona a uma falha, e você tem
+	  <emphasis>certeza</emphasis> de que é uma falha (por
+	  exemplo, você pode destacar o lugar no código
+	  fonte onde ele ocorre, e você talvez tenha uma
+	  correção), então envie a mensagem para
+	  a <literal>FreeBSD-hackers</literal>.</para>
+      </listitem>
+
+      <listitem>
+	<para>Se a pergunta se relaciona a melhorias para o FreeBSD, e
+	  você pode fazer sugestões sobre como
+	  implementá-las, então envie a mensagem para a
+	  <literal>FreeBSD-hackers</literal>.</para>
+      </listitem>
+    </orderedlist>
+
+    <para>Existe um grande número de outras listas de
+      discussão especializadas, por exemplo,
+      <literal>FreeBSD-isp</literal>, a qual trata dos interesses dos
+      ISPs (Provedores de Serviço Internet) que rodam o
+      FreeBSD.  No caso de você ser um ISP, isso não
+      significa que deve enviar automaticamente suas perguntas para a
+      <literal> FreeBSD-isp</literal>.  O critério acima
+      continua válido, e você deve continuar seguindo-o,
+      uma vez que você irá obter melhores resultados
+      desta forma.</para>
+  </sect1>
+
+  <sect1>
+    <title id="before">Antes de enviar uma pergunta</title>
+
+    <para>Você pode (e deve) fazer algumas coisas você
+      mesmo antes de fazer uma pergunta em uma lista de
+      discussão:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Tente resolver o problema sozinho.  Se você
+	  enviar uma pergunta a qual mostre que você já
+	  tentou resolver o problema, geralmente irá atrair
+	  mais a atenção das pessoas que lerem a sua
+	  pergunta.  Além disso, ao tentar resolver o problema,
+	  você irá reforçar o seu domínio
+	  do FreeBSD, o que irá eventualmente possibilitar que
+	  você o utilize para ajudar outras pessoas, respondendo
+	  as perguntas que elas enviarem para as listas de
+	  discussão.</para>
+      </listitem>
+
+      <listitem>
+        <para>Leia as páginas de manual, e a
+	documentação do FreeBSD (elas estão
+	instaladas em <filename>/usr/doc</filename> ou
+	acessíveis via WWW em <ulink
+	url="http://www.FreeBSD.org"> http://www.FreeBSD.org</ulink>),
+	especialmente o <ulink
+	url="&url.books.handbook;/index.html">handbook</ulink> e o
+	<ulink url="&url.books.faq;/index.html">FAQ</ulink>.</para>
+      </listitem>
+
+      <listitem>
+        <para>Navegue ou faça uma busca no histórico da
+	  lista para ver se a sua pergunta ou uma semelhante a ela
+	  já não foi feita (e possivelmente respondida)
+	  antes.  Você pode navegar e/ou realizar buscas no
+	  histórico das listas de discussão nos URLs
+	  <ulink
+	  url="http://www.FreeBSD.org/mail">http://www.FreeBSD.org/mail
+	  </ulink> e <ulink
+	  url="http://www.FreeBSD.org/search/search.html#mailinglists">
+	  http://www.FreeBSD.org/search/search.html#mailinglists</ulink>
+	  respectivamente.  Isto também pode ser feito em
+	  outros locais, como por exemplo em <ulink
+	  url="http://marc.theaimsgroup.com">http://marc.theaimsgroup.com
+	  </ulink>.</para>
+      </listitem>
+
+      <listitem>
+        <para>Utilize um mecanismo de busca como o <ulink
+	  url="http://www.google.com">Google</ulink> ou o <ulink
+	  url="http://www.yahoo.com">Yahoo</ulink> para procurar
+	  respostas para a sua dúvida.  O Google possui uma
+	  <ulink url="http://www.google.com/bsd">interface especifica
+	  para buscas relacionadas aos *BSDs</ulink>.</para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1>
+    <title id="submit">Como enviar uma pergunta</title>
+
+    <para>Quando enviar uma pergunta para a FreeBSD-questions,
+      considere os seguintes pontos:</para>
+
+    <itemizedlist>
+      <listitem>
+	<para>Lembre-se que ninguém é pago para
+	  responder as suas perguntas sobre FreeBSD.  Eles o fazem de
+	  boa vontade.  Você pode influenciar positivamente esta
+	  boa vontade através do envio de uma pergunta bem
+	  formulada fornecendo a maior quantidade possível de
+	  informações relevantes.  Você pode
+	  influenciar de forma negativa esta boa vontade ao enviar uma
+	  pergunta incompleta, ilegível ou rude.  É
+	  perfeitamente possível enviar uma mensagem para a
+	  FreeBSD-questions e não obter nenhuma resposta mesmo
+	  que você siga estas regras.  Mas é muito mais
+	  provável que você não obtenha a resposta
+	  se você não as seguir.  No restante deste
+	  documento, veremos como obter o máximo de resultado
+	  para as suas perguntas na FreeBSD-questions.</para>
+      </listitem>
+
+      <listitem>
+	<para>Nem todos que respondem as perguntas sobre FreeBSD
+	  lêem todas as mensagens: Eles olham para o assunto da
+	  mensagem e decidem se os interessa.  Claramente, é de
+	  seu interesse especificar o campo assunto de forma adequada.
+	  <quote>Problema com o FreeBSD</quote> ou
+	  <quote>Ajudem-me</quote> não são adequados.
+	  Se você não especificar um assunto, muitas
+	  pessoas não se incomodarão em ler a sua
+	  mensagem.  Se o assunto da sua mensagem não for
+	  específico o suficiente, as pessoas que podem
+	  responder a sua duvida podem não se interessar em ler
+	  a sua mensagem.</para>
+      </listitem>
+
+      <listitem>
+	<para>Formate sua mensagem de forma que ela seja
+	  legível, e POR FAVOR, N&Atilde;O GRITE!!!!!.
+	  Nós sabemos que muitas pessoas não tem a
+	  língua inglesa como seu idioma nativo, e tentamos
+	  fazer concessões para estas pessoas, mas é
+	  realmente doloroso tentar ler uma mensagem cheia de erros
+	  tipográficos ou sem nenhuma quebra de linha.</para>
+
+	<para>Não subestime o efeito de uma mensagem de email
+	  mal formatada, e não apenas na lista de
+	  discussão FreeBSD-questions.  A sua mensagem de email
+	  é tudo que as outras pessoas vêem de
+	  você, e se ela for mal formatada, possui apenas uma
+	  linha por parágrafo, é mal escrita, ou
+	  está cheia de erros, ela dará as outras
+	  pessoas uma impressão negativa de você.</para>
+
+	<para>Muitas das mensagens mal formatadas vêm de <ulink
+	  url="http://www.lemis.com/email.html">clientes de email
+	  ruins ou mal configurados</ulink>.  Os clientes de email a
+	  seguir são conhecidos por enviar mensagens mal
+	  formatadas:</para>
+
+	<itemizedlist>
+	  <listitem>
+	    <para>cc:Mail</para>
+	  </listitem>
+
+	  <listitem>
+	    <para>&eudora;</para>
+	  </listitem>
+
+	  <listitem>
+	    <para>exmh</para>
+	  </listitem>
+
+	  <listitem>
+	    <para>&microsoft; Exchange</para>
+	  </listitem>
+
+	  <listitem>
+	    <para>&microsoft; Internet Mail</para>
+	  </listitem>
+
+	  <listitem>
+	    <para>&microsoft; &outlook;</para>
+	  </listitem>
+
+	  <listitem>
+	    <para>&netscape;</para>
+	  </listitem>
+	</itemizedlist>
+
+	<para>Como você pode ver, os clientes de email do mundo
+	  Microsoft são ofensores freq&uuml;entes.  Sempre que
+	  for possível utilize um cliente de email &unix;.  Se
+	  você precisar utilizar um cliente de email no ambiente
+	  Microsoft, tenha certeza de que o configurou corretamente.
+	  Tente não utilizar o <acronym>MIME</acronym>:  muitas
+	  pessoas usam clientes de email que não se entendem
+	  bem com mensagens em formato MIME.</para>
+      </listitem>
+
+      <listitem>
+	<para>Certifique-se de que sua data e hora, assim como o seu
+	  fuso horário estão corretamente configurados.
+	  Isso pode parecer besteira, uma vez que sua mensagem ainda
+	  estará lá, mas muitas pessoas que você
+	  esta tentando alcançar começam o dia com
+	  centenas de mensagens para ler.  Eles freq&uuml;entemente
+	  ordenam as mensagens que chegaram por assunto e por data e
+	  se a sua mensagem não vier antes da primeira
+	  resposta, eles podem assumir que a mensagem está
+	  faltando e não se incomodarão em
+	  procura-la.</para>
+      </listitem>
+
+      <listitem>
+	<para>Não inclua perguntas que não se relacionam
+	  em uma mesma mensagem.  Primeiro, uma mensagem longa tende a
+	  espantar as pessoas, e segundo, é mais difícil
+	  de conseguir que as pessoas que podem responder a todas as
+	  suas perguntas leiam a mensagem.</para>
+      </listitem>
+
+      <listitem>
+	<para>Forneça o maior número de
+	  informações relevantes quanto possível.
+	  Esta é uma área difícil, e nós
+	  precisamos detalhar quais informações
+	  você deve enviar, mas aqui está um
+	  começo:</para>
+	
+	<itemizedlist>
+	  <listitem>
+	    <para>Em praticamente todos os casos é importante
+	      saber qual a versão do FreeBSD que você
+	      está utilizando.  Um caso particular é o
+	      FreeBSD-Current, para o qual você deve fornecer
+	      também a data do código, embora as
+	      perguntas sobre o ramo -Current não devam ser
+	      encaminhadas para a lista FreeBSD-questions.</para>
+	  </listitem>
+
+	  <listitem>
+	    <para>No caso de qualquer problema que <emphasis>possa
+	      estar </emphasis> relacionado a hardware, envie
+	      informações sobre o seu hardware.  No caso
+	      de dúvida, assuma que seu problema pode ser
+	      causado por um problema de hardware e nos envie suas
+	      especificações.  Que tipo de CPU
+	      você está utilizando?  Qual o clock do
+	      processador?  Qual a placa mãe?  Qual a
+	      quantidade de memória física instalada?
+	      Quais outros periféricos você possui?  Ao
+	      responder perguntas como essa você terá uma
+	      lista com as informações básicas a
+	      enviar.</para>
+
+	    <para>Há uma chamada de julgamento aqui,
+	      naturalmente, a saída do comando &man.dmesg.8;
+	      freq&uuml;entemente é muito útil, uma vez
+	      que ele nos diz não apenas que componentes de
+	      hardware que você esta utilizando, como
+	      também qual a versão do FreeBSD.</para>
+	  </listitem>
+
+	  <listitem>
+	    <para>Se você obtiver uma mensagem de erro,
+	      não diga <quote>Eu recebi uma mensagem de
+	      erro</quote>, diga (por exemplo) <quote>Eu recebi a
+	      mensagem de erro 'No route to host'</quote>.</para>
+	  </listitem>
+
+	  <listitem>
+	    <para>Se o seu sistema deu um panic, não diga
+	      <quote>Meu sistema sofre um panic</quote>, diga (por
+	      exemplo) <quote>Meu sistema sofreu um panic e a mensagem
+	      de erro foi 'free vnode isn't'</quote>.</para>
+	  </listitem>
+
+	  <listitem>
+	    <para>Se você esta com dificuldades na
+	      instalação do FreeBSD, por favor nos diga
+	      que hardware você possui.  Em particular, é
+	      importante conhecer os IRQs e os endereços de I/O
+	      das placas que você tem instalado na sua
+	      máquina.</para>
+	  </listitem>
+
+	  <listitem>
+	    <para>Se você está com dificuldades para
+	      colocar o PPP para rodar, descreva a sua
+	      configuração.  Qual versão do PPP
+	      você está utilizando?  Qual tipo de
+	      autenticação você esta usando?
+	      Você possui um IP dinâmico ou
+	      estático?  Quais tipos de mensagens você
+	      tem no seu arquivo de log?</para>
+	  </listitem>
+	</itemizedlist>
+      </listitem>
+
+      <listitem>
+          <para>A maioria das informações que
+	    você precisa fornecer são as saídas de
+	    programas, tais como &man.dmesg.8;, ou mensagens de
+	    console, as quais usualmente aparecem no
+	    <filename>/var/log/messages</filename>.  Não tente
+	    copiar estas informações digitando-as
+	    novamente; isto é realmente desnecessário, e
+	    você estará cometendo um erro.  Ao enviar o
+	    conteúdo de um arquivo de log, faça uma
+	    cópia do arquivo e utilize um editor de textos para
+	    cortar as partes desnecessárias, deixando apenas as
+	    que forem relevantes para a interpretação do
+	    problema, ou simplesmente copie e cole o trecho relevante
+	    para a sua mensagem.  Para enviar a saída de
+	    comandos, como o &man.dmesg.8;, redirecione a saída
+	    do comando para um arquivo e inclua-o em sua mensagem.
+	    Por exemplo,</para>
+
+	<screen>&prompt.user; <userinput>dmesg &gt; /tmp/dmesg.out</userinput></screen>
+
+	<para>Este comando redireciona as informações
+	  para o arquivo <filename>/tmp/dmesg.out</filename>.</para>
+      </listitem>
+
+      <listitem>
+	<para>Se você fez tudo isso, e continua sem receber uma
+	  resposta, podem existir outras razões.  Por exemplo,
+	  o problema pode ser muito complicado e ninguém
+	  conhece a resposta, ou então a pessoa que conhece a
+	  resposta está offline.  Se você não
+	  obtiver uma resposta depois de, digamos, uma semana, pode
+	  ser útil reenviar a mensagem.  Se você
+	  não obtiver resposta para a sua segunda mensagem,
+	  significa que você provavelmente não irá
+	  obter uma nesta lista.  Reenviar a mesma pergunta diversas
+	  vezes para a mesma lista apenas irá torná-lo
+	  impopular.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Para resumir, vamos assumir que você conhece a
+      resposta para as seguintes questões (sim, ambas
+      são sobre o mesmo assunto).  Escolha qual destas duas
+      perguntas você estaria mais preparado para
+      responder:</para>
+
+    <example>
+      <title>Mensagem 1</title>
+
+      <literallayout class="monospaced">Subject: HELP!!?!??
+Eu simplesmente não consigo colocar o raio do FreeBSD para funcionar,
+e eu sou geralmente bom nisso, mas eu nunca vi nada tão difícil de
+instalar, ele simplesmente não funciona, não importa o que eu faça.
+Por que vocês rapazes não me dizem o que eu estou fazendo errado?
+</literallayout>
+    </example>
+
+    <example>
+      <title>Mensagem 2</title>
+
+    <literallayout class="monospaced">Subject: Problemas para instalar o FreeBSD
+
+Eu comprei um CD do FreeBSD 2.1.5 na Walnut Creek, e eu estou tendo
+muita dificuldade para instala-lo.  Eu possuo um 486 66Mhz com 16 Mb de
+memória, uma controladora SCSI Adaptec 1540A, um HD de 1.2GB Quantum
+Fireball e um drive cd cdrom Toshiba 3501XA.  A instalação funciona
+perfeitamente,  mas quando eu dou boot no sistema, eu recebo a
+mensagem <quote>Missing Operating System</quote>.</literallayout>
+    </example>
+  </sect1>
+
+  <sect1>
+    <title id="followup">Como fazer um follow up em uma
+      pergunta</title>
+
+
+    <para>Frequentemente você pode desejar enviar alguma
+      informação adicional para uma pergunta que
+      você já enviou.  A melhor forma de fazer isto
+      é dando um replay na sua mensagem original.  Isto tem 3
+      vantagens></para>
+
+    <orderedlist>
+      <listitem>
+	<para>Você inclui o texto original da mensagem, assim as
+	  pessoas irão saber sobre oque você esta
+	  falando.  Não se esqueça de remover as partes
+	  desnecessárias da mensagem original.</para>
+      </listitem>
+
+      <listitem>
+	<para>O texto na linha de assunto permanecerá o mesmo
+	  (você se lembrou de colocar um, não lembrou?).
+	  Muitos clientes de email irão ordenar as mensagens
+	  pelo assunto.  Isto ajuda a manter as mensagens de um mesmo
+	  grupo juntas.</para>
+      </listitem>
+
+      <listitem>
+	<para>Os números de referência da mensagem no
+	  cabeçalho irão apontar para a mensagem
+	  anterior.  Alguns clientes de email, como, por exemplo, o
+	  <ulink url="http://www.mutt.org/">mutt</ulink>, podem
+	  agrupar as mensagens por <emphasis>thread</emphasis>,
+	  mostrando o relacionamento exato entre as mensagens.</para>
+      </listitem>
+    </orderedlist>
+  </sect1>
+
+  <sect1>
+    <title id="answer">Como responder uma pergunta</title>
+
+
+    <para>Antes que você responda uma pergunta para
+      FreeBSD-questions, considere:</para>
+
+    <orderedlist>
+      <listitem>
+	<para>Muitos dos pontos relacionados ao envio de uma pergunta,
+	  também se aplicam quando respondemos à uma.
+	  Leia os tópicos anteriores.</para>
+      </listitem>
+
+      <listitem>
+	<para>Alguém já respondeu a pergunta?  A melhor
+	  forma de verificar isso é ordenando as mensagens pelo
+	  campo assunto:  Então (esperamos) você
+	  irá ver a pergunta seguida por qualquer resposta,
+	  todas juntas.</para>
+	
+	<para>Se alguém já tiver respondido a pergunta,
+	  isso não significa automaticamente que você
+	  não deve enviar outra.  Mas tenha o bom senso de ler
+	  todas as respostas já enviadas antes de enviar as
+	  suas.</para>
+      </listitem>
+
+      <listitem>
+	<para>Você tem algo para contribuir alem daquilo que
+	  já foi dito ?  Em geral, respostas como <quote>Sim,
+	  eu também</quote> não ajudam muito, mas
+	  é claro existem exceções, como por
+	  exemplo quando alguém está descrevendo um
+	  problema que esta tendo, e que ele não sabe se foi
+	  ocasionado por uma falha dele ou se alho está errado
+	  com o hardware ou com o software que ele está usando.
+	  Se você enviar uma resposta do tipo <quote>eu
+	  também</quote>, você também deve incluir
+	  qualquer outra informação relevante que
+	  você tenha.</para>
+      </listitem>
+
+      <listitem>
+	<para>Você tem certeza de que entendeu a pergunta?
+	  Muito freq&uuml;entemente, a pessoa que faz uma pergunta
+	  esta confusa ou não se expressou muito bem.  Mesmo
+	  com a melhor compreensão do sistema, é
+	  fácil enviar uma mensagem que não responda a
+	  pergunta.  Isto não ajuda: você irá
+	  deixar a pessoa que enviou a pergunta mais frustrada ou
+	  confusa do que antes.  Se ninguém mais tiver
+	  respondido, e você também não tiver
+	  certeza, você sempre pode solicitar maiores
+	  informações.</para>
+      </listitem>
+
+      <listitem>
+	<para>Você tem certeza de que a resposta está
+	  correta?  Se não, espere um dia ou mais.  Se
+	  ninguém mais aparecer com uma resposta melhor,
+	  você pode enviar a sua resposta e dizer, por exemplo,
+	  <quote>Eu não tenho certeza se estou correto, mas
+	  como ninguém mais respondeu...  Porque você
+	  não tenta substituir o seu CDROM ATAPI por
+	  outro?</quote>.</para>
+      </listitem>
+
+      <listitem>
+	<para>A menos que tenha uma boa razão para fazer
+	  diferente, responda para a pessoa que enviou a pergunta e
+	  para a FreeBSD-questions.  Muitas pessoas inscritas na lista
+	  são <quote>observadoras</quote>: Elas aprendem
+	  através da leitura das mensagens enviadas e
+	  respondidas pelas outras pessoas.  Se você deixar uma
+	  mensagem que é de interesse geral fora da lista,
+	  você estará privando estas pessoas dessa
+	  informação.  Seja cuidadoso como as respostas
+	  em grupo;  muitas pessoas enviam mensagens com centenas de
+	  endereços em CCs.  Se este é o caso, tenha
+	  certeza de ajustar as linhas Cc: de forma apropriada.</para>
+      </listitem>
+
+      <listitem>
+	<para>Inclua o texto relevante da mensagem original.  Mantenha
+	  o mínimo necessário do texto original, mas
+	  não corte demais.  Ele precisa ser conciso o
+	  suficiente para que uma pessoa que não tenha lido a
+	  mensagem original entender sobre o que você
+	  está falando.</para>
+      </listitem>
+
+      <listitem>
+	<para>Utilize alguma técnica para identificar qual
+	  parte da mensagem veio da mensagem original e qual parte foi
+	  adicionada por você.  Eu pessoalmente acho que
+	  adicionar <quote><literal>&gt; </literal></quote> no inicio
+	  de cada linha da mensagem original é o que funciona
+	  melhor.  Procure deixar um espaço em branco depois do
+	  <quote><literal>&gt; </literal></quote> e sempre use uma
+	  linha vazia entre a sua resposta e o texto original, isso
+	  deixará sua mensagem mais legível.</para>
+      </listitem>
+
+      <listitem>
+	<para>Coloque sua resposta no local correto (Depois do texto
+	  ao qual ela se aplica).  É muito difícil ler
+	  uma sequência de mensagens, onde as respostas vem
+	  antes do texto ao qual elas se aplicam.</para>
+      </listitem>
+
+      <listitem>
+	<para>A maioria dos clientes de email altera a linha de
+	assunto em uma resposta adicionando um texto como <quote>Re:
+	</quote> ao inicio da linha.  Se o seu cliente não
+	fizer isso de forma automática você deve
+	fazê-lo manualmente.</para>
+      </listitem>
+
+      <listitem>
+	<para>Se a pessoa que enviou a pergunta não respeitou
+	  as convenções de formatação
+	  (linhas muito longas, Linha de assunto inapropriada, etc),
+	  <emphasis>por favor</emphasis>, corrija-a.  No caso do uso
+	  de uma linha de assunto inapropriada (como, por exemplo,
+	  <quote>Ajudem-me!!??</quote>), altere a linha de assunto
+	  para algo relacionado ao assunto da mensagem, mas mantenha
+	  uma indicação de qual era o assunto original,
+	  por exemplo,<quote>Re: Dificuldades com o PPP em modo
+	  síncrono (era: Ajudem-me!!??)</quote>.  Desta forma
+	  as outras pessoas que estão tentando acompanhar a
+	  discussão irão ter menos dificuldades para
+	  acompanhá-la.</para>
+	
+	<para>Nesses casos, é apropriado dizer o que você
+	  fez e porque você o fez, mas tente a não ser
+	  rude.  Se você acreditar que não pode responder
+	  sem ser rude, simplesmente não responda.</para>
+
+	<para>Se você quiser responder uma mensagem por causa
+	  de sua má formatação, responda-a
+	  apenas para quem a enviou, e não para a lista.
+	  Se você preferir, na resposta você pode apenas
+	  recomendar que ele leia este artigo.</para>
+      </listitem>
+    </orderedlist>
+  </sect1>
+</article>

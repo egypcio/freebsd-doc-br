@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN" [
+<!ENTITY % entities SYSTEM "entity.sgml"> %entities;
+]>
+
+<html>
+  <head>
+    <title>Exercicio do FDP</title>
+  </head>
+
+  <body>
+    <p>A versao atual deste document e' &version;</p>
+
+    &para1;
+    &para2;
+    &para3;
+    &para4;
+  </body>
+</html>
+

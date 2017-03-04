@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//FreeBSD//DTD XHTML 1.0 Transitional-Based Extension//EN"
+"http://www.FreeBSD.org/XML/doc/share/xml/xhtml10-freebsd.dtd" [
+<!ENTITY title 'Recursos para os Iniciantes'>
+<!ENTITY url.articles "&base;/doc/en_US.ISO8859-1/articles">
+<!ENTITY url.books "&base;/doc/en_US.ISO8859-1/books">
+]>
+
+<!--
+    The FreeBSD Documentation Project
+    The FreeBSD Brazilian Portuguese Documentation Project
+
+    Original revision:  r39632
+
+    $FreeBSD: trunk/docs/pt_BR.ISO8859-1/htdocs/projects/newbies.xml 289 2012-11-14 13:22:15Z ebrandi@fugspbr.org $
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+      <title>&title;</title>
+
+      <cvs:keyword xmlns:cvs="http://www.FreeBSD.org/XML/CVS">$FreeBSD: trunk/docs/pt_BR.ISO8859-1/htdocs/projects/newbies.xml 289 2012-11-14 13:22:15Z ebrandi@fugspbr.org $</cvs:keyword>
+    </head>
+
+    <body class="navinclude.docs">
+
+    <p>Os recursos a seguir são alguns dos que os usuários iniciantes
+      no &os; consideram mais úteis quando estão aprendendo o a
+      utilizar o &os;.  Por favor, envie correções e adições para 
+      lista <a href="mailto:freebsd-doc@FreeBSD.org">FreeBSD-doc@FreeBSD.org</a>.</p>
+
+    <ul>
+      <li><a href="#web-site">Utilizando o web site do &os;</a></li>
+      <li><a href="#fbsd">Aprendendo sobre o os;</a></li>
+      <li><a href="#derived">Aprendendo sobre os projetos derivados do &os;</a></li>
+      <li><a href="#unix">Aprendendo sobre o &unix;</a></li>
+      <li><a href="#xwin">Aprendendo sobre o sistema de janelas X</a></li>
+      <li><a href="#people">Ajudando outras pessoas</a></li>
+    </ul>
+
+
+    <h2><a name="web-site">Utilizando o web site do &os;</a></h2>
+
+    <p>Este web site é a principal fonte de informações atualizadas
+      sobre o &os;.  Os usuários iniciantes consideram as seguintes
+      páginas particularmente úteis:</p>
+
+    <ul>
+      <li><p>Faça uma <a href="&base;/search/search.html">busca</a>
+	no Handbook, no FAQ, em todo o web site, ou no arquivo
+	histórico das listas de discussão do &os;.</p></li>
+
+      <li><p>A página de <a href="&base;/docs.html">Documentação</a> 
+	possui links para o Handbook, FAQ, tutoriais, informações
+	sobre como contribuir com o Projeto de Documentação,
+	documentos em outros idiomas que não o inglês, páginas de
+	manual online, e muito mais.</p></li>
+
+      <li><p>A página de <a href="&base;/support.html">Suporte</a> 
+	contém uma variedade de informações sobre o &os; , incluindo
+	listas de discussão, grupos de usuários, sites web e de FTP,
+	informações sobre as versões do sistema, e links para algumas
+	fontes de informação sobre o &unix;.</p></li>
+
+    </ul>
+
+    <h2><a name="fbsd">Aprendendo sobre o &os;</a></h2>
+
+    <ul>
+      <li><p>Você deve procurar pela <a href="&u.rel.announce;">versão
+	mais recente e mais amplamente utilizada</a>. (Consulte o 
+	Handbook para saber o porque você <strong>não</strong> deve 
+	ficar tentado a começar por qualquer uma das outras versões) 
+	Antes de começar, leia atentamente as <a
+	href="&url.books;/handbook/install.html">instruções de
+	instalação</a>, bem como cada um dos arquivos *.TXT presentes
+	no diretório do FTP ou no CD de instalação.  Eles estão lá
+	porque possuem informações que você vai precisar.  Também
+	pegue o último <a href="&base;/releases/index.html">arquivo de
+	errata</a> disponibilizado no web site, caso ele tenha sido
+	atualizado.</p></li>
+      
+      <li><p>Estão disponíveis uma série de <a
+	href="&base;/docs/books.html#ARTICLES">tutorias e de artigos
+	curtos</a>. O curto tutorial, "<a
+	href="&url.articles;/new-users/index.html">Para os novatos em
+	FreeBSD e UNIX</a>", é muito popular entre os iniciantes.
+	Você não precisa ter nenhum conhecimento prévio para poder
+	desfrutá-lo.</p></li>
+      
+      <li><p>Existem diversos documentos para ajudá-lo a a configurar
+	uma conexão ppp.  Você pode começar pelo capítulo sobre <a
+	href="&url.books;/handbook/ppp-and-slip.html">PPP e SLIP</a>
+	do Handbook do &os; e explore esta <a
+	href="http://www.awfulhak.org/ppp.html">página sobre ppp</a>
+	para obter links para outras informações valiosas e para
+	conhecer as últimas atualizações.</p></li>
+      
+      <li><p><a name="cfbsd" href="http://www.lemis.com/grog/Documentation/CFBSD/">
+	The Complete &os;</a> do Greg Lehey, publicado pela O'Reilly.
+	Este livro assume que o leitor tem uma experiência mínima com
+	sistemas UNIX e conduz o usuário novato através de um passo a
+	passo, que se inicia com instalação do sistema e que avança
+	abordando tudo o que você precisa saber para criar e
+	administrar um sistema &os;.  Os temas são abordados de forma
+	didática e você irá entender não só que está fazendo e como
+	também o por que precisa fazê-lo.</p></li>
+
+      <li><p>O <a href="&url.books;/handbook/index.html">Handbook do
+	&os;</a> e a <a href="&url.books;/faq/index.html">Compilação
+	das Perguntas Mais Frequentes (FAQ)</a> são os principais
+	documentos do &os;.  Leitura essencial, eles contém muitas
+	informações voltadas aos usuários iniciantes, bem como abordam
+	temas avançados.  Não se preocupe se você não conseguir
+	entender as seções avançadas.  O Handbook contém as instruções
+	de instalação e também fornece listas de livros e de de outros
+	recursos online, e o FAQ tem uma sessão destinada ao
+	diagnóstico e solução de problemas.</p></li>
+
+      <li><p>Junte-se à lista de discussão &os;-Questions para ver as
+	perguntas que você tinha receio de perguntar, e as suas
+	respostas.  Para assiná-la, preencha o seguinte formulário: <a
+	href="http://lists.FreeBSD.org/mailman/listinfo/freebsd-questions">http://lists.FreeBSD.org/mailman/listinfo/freebsd-questions</a>.
+	Você pode visualizar as perguntas antigas e as suas respostas
+	através da <a
+	href="&base;/search/search.html#mailinglists">página de
+	busca</a>.</p></li>
+	
+      <li><p>O grupo de notícias principal para o &os; é o <a
+	href="news:comp.unix.bsd.freebsd.misc">comp.unix.bsd.freebsd.misc</a>.
+	Você também pode querer acompanhar o <a
+	href="news:comp.unix.bsd.freebsd.announce">comp.unix.bsd.freebsd.announce</a>.</p></li>
+
+      <li><p>
+	As <a href="&cgibase;/man.cgi">páginas de manual</a> são boas
+	para referência, mas nem sempre são a melhor introdução para
+	um novato.  Quanto mais você trabalhar com as páginas de
+	manual, mais familiaraes elas se tornão.  Algumas são muito
+	boas para os usuários iniciantes, portanto sempre as consulte.
+	A página de manual do ppp por exemplo, mais se parece como um
+	tutorial.</p></li>
+    </ul>
+
+    <h2><a name="derived">Aprendendo sobre os projetos derivados do 
+      &os;</a></h2>
+
+    <p>O FreeBSD é amplamente utilizado como base para o
+      desenvolvimento de outros sistemas operacionais comerciais e de
+      código aberto.  Alguns dos sistemas mais amplamente utilizados e
+      publicamente disponíveis estão listados abaixo.</p>
+    
+    <ul>
+      <li><p>O <a href="http://www.pcbsd.org">PC-BSD</a> é um derivado
+	do &os; o qual possui um instalador gráfico e um conjunto
+	impressionante de ferramentas de desktop destinadas a
+	facilitar o uso do sistema por parte de um usuário casual de
+	computadores.</p></li>
+      
+      <li><p>O <a href="http://www.freesbie.org/">FreeSBIE</a> é um 
+	LiveCD baseado no &os;.  Ele executa diretamente a partir de 
+	um CD, sem tocar no seu disco rígido.  Ele também inclui um 
+	conjunto de ferramentas simples e de fácil extensão, o qual 
+	pode ser utilizado para a criação de imagens 
+	embutidas.</p></li>
+
+      <li><p>O <a href="http://www.apple.com/macosx">Mac OS
+        X</a> da Apple é <a 
+	href="http://www.apple.com/server/macosx/technology/unix.html">em 
+	parte baseado</a> no &os; e inclui uma rica base &unix; além
+	da interface de usuário proprietária da Apple.</p></li>
+    </ul>
+
+    <h2><a name="unix">Aprendendo sobre o &unix;</a></h2>
+
+    <p>Muitos dos problemas que nós temos quando somos iniciantes
+      ocorrem por não termos familiaridade com os comandos do &unix;,
+      necessários para corrigir os nossos problemas com o &os;.  Sem
+      um conhecimento prévio do universo &unix; você será confrontado
+      com duas coisas para aprender ao mesmo tempo.  Felizmente,
+      existe uma grande quantidade de recursos disponíveis para tornar
+      este processo de aprendizado mais fácil.</p>
+    
+    <ul>
+      <li><p> O capítulo <a href="&url.books;/handbook/basics.html">&unix;
+	Básico</a> do Handbook do &os; cobre os comandos e as
+	funcionalidades básicas do sistema operacional &os;.  A maior
+	parte das informações disponibilizadas neste documento também
+	são relevantes para qualquer outro sistema operacional similar
+	ao &unix;.</p></li>
+      
+      <li><p>Existem muitos livros fáceis, tais como os livros da
+	série "Guias para Leigos", em qualquer grande livraria.  Se
+	você quiser algo realmente fácil, dê uma olhada no que estiver
+	disponível na livraria e escolha um que pareça falar a sua
+	língua.  Muito em breve, você vai querer passar para um livro
+	que tenha uma cobertura mais completa do assunto.</p></li>
+	
+      <li><p>Um livro citado com frequência por novatos é o "<a
+	name="utfi"><em>&unix; para impacientes</em></a>" de 
+	autoria de Paul W. Abrahams e Bruce R. Larson, publicado 
+	pela Addison-Wesley. Este livro se propõe a
+	ser tanto um livro para aprendizado do &unix; quanto uma
+	referência sobre o sistema, e inclui uma introdução aos
+	conceitos do &unix; e um útil capítulo sobre a utilização do
+	sistema X Window.</p></li>
+      
+      <li><p>Outro livro popular é o <em>&unix; Power Tools</em> de 
+	autoria de Jerry Peek, Tim O'Reilly e Mike Loukides, publicado
+	pela O'Reilly e Associados. Ele está organizado na forma de 
+	uma série de pequenos artigos e cada um deles se propõe a 
+	resolver um problema, e eles são referenciados entre entre 
+	si quando os temas são complementares.  Embora não seja um 
+	livro dirigido especificamente para um usuário iniciante, o 
+	seu design o torna ideal para um novato que tenha alguma 
+	pergunta rápida ou que tenha apenas alguns minutos para 
+	navegar.  O material mais básico está concentrado no inicio 
+	do livro, porém existem artigos fáceis ao longo de toda a 
+	obra.</p></li>
+
+      <li><p>O <a href="http://www.cs.duke.edu/csl/docs/unix_course/">Curso 
+	  de Introdução ao &unix;</a> da Universidade do Estado de 
+	  Ohio está disponível online no formato HTML</p></li>
+
+      <li><p>O <a href="http://www.cs.duke.edu/csl/docs/sysadmin_course/">Curso
+	de Administração de Sistemas &unix;</a> da Universidade do
+	Estado de Ohio está disponível online no formato HTML.</p></li>
+
+      <li><p>O "<a href="http://www.mcsr.olemiss.edu/unixhelp/">UNIXhelp 
+	for Users</a>" é um outro guia introdutório o qual pode ser
+	acessado a partir de um site espelho próximo a você, ou então
+	instalado no seu próprio sistema.</p></li>
+
+      <li><p>As dúvidas sobre &unix; são tratadas no grupo de notícias
+	<a href="news:comp.unix.questions">comp.unix.questions</a> e
+	no <a
+	href="ftp://rtfm.mit.edu/pub/usenet/news.answers/unix-faq/faq/">FAQ</a>
+	associado a partir do site FTP do RMIT.  Num primeiro momento 
+	os usuários iniciantes provavelmente irão se interessar mais 
+	pelas sessões 1 e 2.</p></li> 
+
+      <li><p>Outro grupo de noticias interessante é o <a
+	href="news:comp.unix.user-friendly">comp.unix.user-friendly</a>.
+	Apesar deste grupo de noticias ser destinado a discussão da
+	usabilidade do sistema, ele pode conter algumas boas
+	informações para um usuário iniciante. O <a 
+	href="ftp://rtfm.mit.edu/pub/usenet/news.answers/unix-faq/user-friendly">FAQ</a>
+	também está disponivel por FTP.</p></li>
+
+      <li><p>Muitos outros web sites mantém listas links para 
+	tutoriais e outros materiais de referência sobre o sistema
+	&unix;.  Um dos melhores lugares para se começar sua pesquisa
+	é a página sobre &unix; do <a 
+	href="http://www.yahoo.com/Computers_and_Internet/Software/Operating_Systems/Unix/">Yahoo!</a>.</p></li>
+    </ul>
+
+    <h2><a name="xwin">Aprendendo sobre o Sistema X Window</a></h2>
+
+    <p>O sistema X Window é utilizado com uma série de sistemas
+      operacionais, incluindo o FreeBSD. A documentação para o X
+      Window pode ser encontrada no website da <a
+      href="http://www.x.org/">X.Org Foundation</a>. Mas esteja
+      avisado de que a maior parte desta documentação é composta de
+      materiais de referência, os quais provavelmente serão difíceis
+      de serem assimilados por um usuário iniciante.</p>
+    
+    <ul>
+    <li><p>Para obter informações básicas sobre como instalar, 
+      configurar e utilizar o sistema X Window, três dos livros 
+      mencionados acima possuem seções que abordam o X Window no 
+      nível iniciante: o capítulo sobre o <a 
+      href="&url.books;/handbook/x11.html">Sistema X
+      Window</a> do Handbook do &os;, o <a href="#cfbsd">The Complete
+      &os;</a>, e o <a href="#ufti">UNIX os Impacientes</a>.</p></li>
+    
+    <li><p>Para poder personalizar e colocar o X rodando exatamente do
+      jeito que você gosta, você terá que escolher um gerenciador de
+      janelas.  Visite a página <a
+      href="http://xwinman.org/">Gerenciadores de Janelas para o X</a>
+      e visite o link "Intro" para uma introdução aos gerenciadores de
+      janela, em seguida retorne a página principal e leia a seção
+      "The Basics" (O Básico).  Ao terminar retorne novamente a página
+      principal e compare os diferentes tipos de gerenciadores de
+      janelas que estão disponíveis. (Bonus: existe um outro guia para
+      iniciantes no &unix; no site).  A maioria, se não todos, dos
+      gerenciadores de janela mencionados neste web site estão
+      disponíveis para instalação a partir da coleção de Ports do
+      &os;</p></li>
+    </ul>
+
+    <h2><a name="people">Ajudando outras pessoas</a></h2>
+
+    <p>Todos têm algo a contribuir para a comunidade FreeBSD, mesmo os
+      usuários iniciantes! Alguns estão ocupados trabalhando na
+      divulgação do sistema para outros usuários, outros estão
+      ajudando o <a href="&base;/docproj/docproj.html">Projeto de 
+      Documentação</a> atuando como revisores.
+      Outros novatos no FreeBSD podem ter habilidades específicas e
+      experiências para compartilhar, sejam elas relacionadas ou não a
+      computadores, muitos querem conhecer novos usuários iniciantes
+      para fazê-los se sentirem bem vindos. Sempre existem pessoas que
+      ajudam as outras pessoas que estão a sua volta simplesmente
+      porque gostam.</p>
+    
+    <p>Ter amigos que utilizem o &os; é valioso.  Nenhum livro
+      substitui uma conversa ao telefone ou durante uma pizza com
+      alguém que possui os mesmos interesses, que aprecia as mesmas
+      coisas e que enfrenta os mesmos desafios.  Se você não possui
+      muitos amigos que usem o &os;, considere usar os seus antigos
+      CDs do &os; para apresentar o sistema para outras pessoas.</p>
+    
+    <p>Os <a href="&base;/usergroups.html">grupos de usuários</a> são
+      ótimos lugares para se encontrar outros usuários do &os;.  Se
+      não existir nenhum próximo a você, considere iniciar um!</p>
+
+    <p>Antes de conversar com outras pessoas sobre as suas novas 
+      habilidades, você pode querer verificar antes o <a 
+      href="http://www.catb.org/jargon/">arquivo de jargões</a>.</p>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+<!ENTITY version "1.1">
+<!ENTITY para1 SYSTEM "para1.sgml">
+<!ENTITY para2 SYSTEM "para2.sgml">
+<!ENTITY para3 SYSTEM "para3.sgml">
+<!ENTITY para4 SYSTEM "para4.sgml">
+
