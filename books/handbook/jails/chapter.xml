@@ -1,1135 +1,991 @@
-<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
-<!--
-  The FreeBSD Documentation Project
-  The FreeBSD Brazilian Portuguese Documentation Project
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?> <!-- The
+FreeBSD Documentation Project The FreeBSD Brazilian Portuguese
+Documentation Project
 
   Original revision: r39566
 
-  $FreeBSD: trunk/docs/pt_BR.ISO8859-1/books/handbook/jails/chapter.xml 386 2013-12-29 14:52:04Z egypcio $
--->
+  $FreeBSD:
+  trunk/docs/pt_BR.ISO8859-1/books/handbook/jails/chapter.xml 386
+  2013-12-29 14:52:04Z egypcio $ -->
 
 <chapter id="jails">
-  <chapterinfo>
-    <authorgroup>
-      <author>
-	<firstname>Matteo</firstname>
-	<surname>Riondato</surname>
-	<contrib>Uma Contribuição de </contrib>
-      </author>
-    </authorgroup>
-  </chapterinfo>
 
-  <title>Jails</title>
+  <chapterinfo><authorgroup><author>
+    <firstname>Matteo</firstname><surname>Riondato</surname>
+    <contrib>Uma Contribuição de</contrib>
+  </author></authorgroup></chapterinfo>
 
-  <indexterm><primary>jails</primary></indexterm>
+<title>Jails</title>
+
+<indexterm><primary>jails</primary></indexterm>
 
   <sect1 id="jails-synopsis">
     <title>Sinopse</title>
 
-    <para>Este capítulo irá fornecer uma explicação sobre o que são 
-      <literal>jails</literal> &os; e sobre como utilizá-los.  Os
-      <literal>jails</literal>, muitas vezes referenciados como
-      sendo substitutos melhorados do <emphasis>ambiente 
-      chroot</emphasis>, são uma ferramenta muito poderosa para os 
-      administradores de sistema, mas o seu uso básico também pode 
-      ser útil para usuários avançados.</para>
+    <para>Este capítulo irá fornecer uma explicação sobre o que são
+    <literal>jails</literal> no &os; e sobre como utilizá-las.
+    <literal>Jails</literal>, muitas vezes referenciados como sendo
+    substitutos melhorados do <emphasis>ambiente chroot</emphasis>,
+    são uma ferramenta muito poderosa para os administradores de
+    sistema, mas o seu uso básico também pode ser útil para usuários
+    avançados.</para>
 
-    <important>
-      <para>O jails é uma ferramenta poderosa, mas ele não é um
-	<quote>remédio para todos os males</quote> de segurança.  É
-	particularmente importante observar que, embora não seja
-	possível que um processo preso saia por conta própria, existem
-	várias maneiras pelas quais um usuário sem privilégios fora do
-	jail pode cooperar com um usuário privilegiado dentro do jail,
-	para desta forma obter privilégios elevados no host que o
-	hospeda.</para>
-      
-      <para>A maioria destes ataques podem ser mitigados
-       	assegurando-se que a raiz do jail não esteja acessível para
-	usuários sem privilégios no servidor no qual o jail está sendo
-	executado.  Independentemente disso, como regra geral, os
-	usuários não confiáveis que tenham acesso privilegiado a um 
-	jail não devem ter acesso ao ambiente que os hospeda.</para>
+    <important> <para>O jails é uma ferramenta poderosa, mas ele não é
+    um <quote>remédio para todos os males</quote> de segurança.  É
+    particularmente importante observar que, embora não seja possível
+    que um processo preso saia por conta própria, existem várias
+    maneiras pelas quais um usuário sem privilégios fora do jail pode
+    cooperar com um usuário privilegiado dentro do jail, para desta
+    forma obter privilégios elevados no host que o hospeda.</para>
+
+    <para>A maioria destes ataques podem ser mitigados
+    assegurando-se que a raiz do jail não esteja acessível para
+    usuários sem privilégios no servidor no qual o jail está sendo
+    executado.  Independentemente disso, como regra geral, os
+    usuários não confiáveis que tenham acesso privilegiado a um jail
+    não devem ter acesso ao ambiente que os hospeda.</para>
     </important>
 
     <para>Após a leitura deste capítulo, você vai saber:</para>
 
-    <itemizedlist>
-      <listitem>
-	<para>O que é um jail, e para quais finalidades ele pode ser
-	  utilizado em instalações do &os;</para>
-      </listitem>
+    <itemizedlist> <listitem> <para>O que é um jail, e para quais
+    finalidades ele pode ser utilizado em instalações do &os;</para>
+    </listitem>
 
-      <listitem>
-	<para>Como construir, iniciar e parar um jail.</para>
-      </listitem>
+    <listitem> <para>Como construir, iniciar e parar um jail.</para>
+    </listitem>
 
-      <listitem>
-	<para>Como realizar a administração básica de um jail, tanto 
-	  de dentro quanto de fora dele.</para>
-      </listitem>
+    <listitem> <para>Como realizar a administração básica de um
+    jail, tanto de dentro quanto de fora dele.</para> </listitem>
     </itemizedlist>
 
     <para>Outras fontes de informações úteis sobre jails são:</para>
 
-    <itemizedlist>
-      <listitem>
-	<para>A página de manual do &man.jail.8;.  Esta é a referência
-	  completa para o utilitário <command>jail</command>
-	  &mdash; a ferramenta administrativa que deve ser utilizada
-	  para iniciar, parar e controlar um jail no &os;</para>
-      </listitem>
+    <itemizedlist> <listitem> <para>A página de manual do
+    &man.jail.8;.  Esta é a referência completa para o utilitário
+    <command>jail</command> &mdash; a ferramenta administrativa que
+    deve ser utilizada para iniciar, parar e controlar um jail no
+    &os;</para> </listitem>
 
-      <listitem>
-	<para>As listas de discussão e o seu histórico.  O
-	  histórico da &a.questions; e das demais listas de discussão 
-	  hospedadas pelo &a.mailman.lists; já contêm uma grande 
-	  variedade de informações sobre jails.  Sempre que possível 
-	  consulte o histórico, caso não encontre a informação que
-	  procura envie uma nova pergunta para a lista de discussão
-	  &a.questions.name;</para>
-      </listitem>
-    </itemizedlist>
+    <listitem> <para>As listas de discussão e o seu histórico.  O
+    histórico da &a.questions; e das demais listas de discussão
+    hospedadas pelo &a.mailman.lists; já contêm uma grande variedade
+    de informações sobre jails.  Sempre que possível consulte o
+    histórico, caso não encontre a informação que procura envie uma
+    nova pergunta para a lista de discussão
+    &a.questions.name;</para> </listitem> </itemizedlist>
 
   </sect1>
 
   <sect1 id="jails-terms">
-    <title>Termos Relacionados ao Jails</title>
+    <title>Termos Relacionados à Jails</title>
 
-    <para>Para proporcionar uma melhor compreensão dos componentes do 
-      sistema &os; relacionados ao jails, dos seus componentes 
-      internos e da forma como eles interagem com o restante do &os;, 
-      os seguintes termos são utilizados ao longo deste
-      capítulo:</para>
+    <para>Para proporcionar uma melhor compreensão dos componentes do
+    sistema &os; relacionados ao jails, dos seus componentes internos
+    e da forma como eles interagem com o restante do &os;, os
+    seguintes termos são utilizados ao longo deste capítulo:</para>
 
-    <variablelist>
-      <varlistentry>
-        <term>&man.chroot.8; (comando)</term>
-        <listitem>
-	  <para>Utilitário, que utiliza a chamada de sistema
-	    &man.chroot.2; do &os; para alterar o diretório raiz de um
-	    processo e de todos os seus descendentes.</para>
-	</listitem>
-      </varlistentry>
+    <variablelist> <varlistentry> <term>&man.chroot.8;
+    (comando)</term> <listitem> <para>Utilitário, que utiliza a
+    chamada de sistema &man.chroot.2; do &os; para alterar o diretório
+    raiz de um processo e de todos os seus descendentes.</para>
+    </listitem> </varlistentry>
 
-      <varlistentry>
-        <term>&man.chroot.2; (ambiente)</term>
-        <listitem>
-	  <para>É o ambiente dos processos em execução sob o
-	    <quote>chroot</quote>. O qual inclui recursos tais como a
-	    área do sistema de arquivos que é visível para o usuário,
-	    os IDs dos usuários e dos grupo que estão disponíveis, as
-	    interfaces de rede e outros mecanismos IPC, etc.</para>
-	</listitem>
-      </varlistentry>
+    <varlistentry> <term>&man.chroot.2; (ambiente)</term> <listitem>
+    <para>É o ambiente dos processos em execução sob o
+    <quote>chroot</quote>.  O qual inclui recursos tais como a área
+    do sistema de arquivos que é visível para o usuário, os IDs dos
+    usuários e dos grupo que estão disponíveis, as interfaces de
+    rede e outros mecanismos IPC, etc.</para> </listitem>
+    </varlistentry>
 
-      <varlistentry>
-        <term>&man.jail.8; (comando)</term>
-        <listitem>
-	  <para>O utilitário de administração do sistema que nos
-	    permite inicializar um processo dentro de um ambiente
-	    jail.</para>
-	</listitem>
-      </varlistentry>
+    <varlistentry> <term>&man.jail.8; (comando)</term> <listitem>
+    <para>O utilitário de administração do sistema que nos permite
+    inicializar um processo dentro de um ambiente jail.</para>
+    </listitem> </varlistentry>
 
-      <varlistentry>
-        <term>host (sistema, processo, usuário, etc.)</term>
-        <listitem>
-	  <para>É o sistema que hospeda e controla um ambiente jails.
-	    O sistema hospedeiro (<literal>host</literal>) tem acesso
-	    a todos os recursos de hardware disponíveis, e pode 
-	    controlar tanto os processos em execução fora quanto os 
-	    que estão em execução dentro de um ambiente jails.  Uma 
-	    das principais diferenças do sistema de hospedeiro em 
-	    relação ao ambiente jail é que as restrições que se 
-	    aplicam aos processos do superusuário dentro de um jail 
-	    não se aplicam aos processos em execução no sistema 
-	    hospedeiro.</para>
-	</listitem>
-      </varlistentry>
+    <varlistentry> <term>host (sistema, processo, usuário,
+    etc.)</term> <listitem> <para>É o sistema que hospeda e controla
+    um ambiente jails.  O sistema hospedeiro
+    (<literal>host</literal>) tem acesso a todos os recursos de
+    hardware disponíveis, e pode controlar tanto os processos em
+    execução fora quanto os que estão em execução dentro de um
+    ambiente jails.  Uma das principais diferenças do sistema de
+    hospedeiro em relação ao ambiente jail é que as restrições que
+    se aplicam aos processos do superusuário dentro de um jail não
+    se aplicam aos processos em execução no sistema
+    hospedeiro.</para> </listitem> </varlistentry>
 
-      <varlistentry>
-        <term>hosted (sistema, processo, usuário, etc.)</term>
-        <listitem>
-	  <para>É um processo, usuário ou qualquer outra entidade, 
-	    cujo acesso aos recursos está restrito por um jail do 
-	    &os;.</para>
-	</listitem>
-      </varlistentry>
-    </variablelist>
+    <varlistentry> <term>hosted (sistema, processo, usuário,
+    etc.)</term> <listitem> <para>É um processo, usuário ou qualquer
+    outra entidade, cujo acesso aos recursos está restrito por um
+    jail do &os;.</para> </listitem> </varlistentry> </variablelist>
+
   </sect1>
 
   <sect1 id="jails-intro">
     <title>Introdução</title>
 
     <para>Uma vez que a administração de sistemas é uma tarefa difícil
-      e complicada, muitas ferramentas poderosas foram desenvolvidas
-      para tornar a vida do administrador mais fácil.  Estas
-      ferramentas em sua grande maiora implementam melhorias na forma
-      como um sistema é instalado, configurado e mantido.  Uma das
-      atividades que um administrador deve realizar é a configuração
-      da segurança do sistema, de modo que ele possa continuar
-      desempenhando seu propósito real, sem permitir violações de
-      segurança.</para>
-      
+    e complicada, muitas ferramentas poderosas foram desenvolvidas
+    para tornar a vida do administrador mais fácil.  Estas ferramentas
+    em sua grande maiora implementam melhorias na forma como um
+    sistema é instalado, configurado e mantido.  Uma das atividades
+    que um administrador deve realizar é a configuração da segurança
+    do sistema, de modo que ele possa continuar desempenhando seu
+    propósito real, sem permitir violações de segurança.</para>
+
     <para>Uma das ferramentas que podem ser utilizadas para melhorar a
-      segurança de um sistema &os; são os <emphasis>jails</emphasis>.
-      Os jails foram introduzidos na série 4.X do &os; pelo &a.phk;,
-      mas eles foram consideravelmente melhorados na série 5.x do 
-      &os; para que se tornassem um subsistema poderoso e flexível.  
-      Seu desenvolvimento continua ativo para aumentar suas
-      funcionalidades, desempenho, confiabilidade e segurança.</para>
-    
+    segurança de um sistema &os; são os <emphasis>jails</emphasis>.
+    Os jails foram introduzidos na série 4.X do &os; pelo &a.phk;, mas
+    eles foram consideravelmente melhorados na série 5.x do &os; para
+    que se tornassem um subsistema poderoso e flexível.  Seu
+    desenvolvimento continua ativo para aumentar suas funcionalidades,
+    desempenho, confiabilidade e segurança.</para>
+
     <sect2 id="jails-what">
       <title>O que é um Jail</title>
 
-      <para>
-	Os sistemas operacionais derivados do BSD possuem o
-	&man.chroot.2; desde a época do 4.2BSD.  O utilitário
-	&man.chroot.8; pode ser utilizado para mudar o diretório raiz
-	de um conjunto de processos, criando um ambiente seguro,
-	separado do restante do sistema.  Os processos criados em um
-	ambiente <literal>chrooted</literal> não podem acessar
-	arquivos ou recursos fora dele.  Por esta razão, o
-	comprometimento de um serviço que está sendo executado em um
-	ambiente <literal>chrooted</literal> não irá permitir que o
-	atacante comprometa o sistema inteiro.  O utilitário
-	&man.chroot.8; é bom para tarefas simples, as quais não
-	requerem muita flexibilidade ou funcionalidades avançadas e
-	complexas.  No entanto, desde a concepção do conceito do
-	<literal>chroot</literal>, foram encontradas muitas formas de
-	se escapar deste tipo de ambiente, e apesar destas falhas
-	terem sido corrigidas nas versões mais modernas do kernel do
-	&os; ficou claro que o &man.chroot.2; não era a solução ideal
-	para assegurar a segurança de um serviço.  Um novo subsistema
-	tinha que ser implementado.</para>
-      
+      <para>Os sistemas operacionais derivados do BSD possuem o
+      &man.chroot.2; desde a época do 4.2BSD.  O utilitário
+      &man.chroot.8; pode ser utilizado para mudar o diretório raiz de
+      um conjunto de processos, criando um ambiente seguro, separado
+      do restante do sistema.  Os processos criados em um ambiente
+      ambiente<literal>chrooted</literal> não podem acessar arquivos
+      ou recursos fora dele.  Por esta razão, o comprometimento de um
+      serviço que está sendo executado em um ambiente
+      <literal>chrooted</literal> não irá permitir que o atacante
+      comprometa o sistema inteiro.  O utilitário &man.chroot.8; é bom
+      para tarefas simples, as quais não requerem muita flexibilidade
+      ou funcionalidades avançadas e complexas.  No entanto, desde a
+      concepção do conceito do <literal>chroot</literal>, foram
+      encontradas muitas formas de se escapar deste tipo de ambiente,
+      e apesar destas falhas terem sido corrigidas nas versões mais
+      modernas do kernel do &os; ficou claro que o &man.chroot.2; não
+      era a solução ideal para assegurar a segurança de um serviço.
+      Um novo subsistema tinha que ser implementado.</para>
+
       <para>Esta é uma das principais razões pela qual os
-	<emphasis>jails</emphasis> foram desenvolvidos.</para>
-      
+      <emphasis>jails</emphasis> foram desenvolvidos.</para>
+
       <para>O jail melhora o conceito tradicional do ambiente
-	&man.chroot.2; de várias maneiras.  Em um ambiente
-	&man.chroot.2; tradicional, os processos são limitados apenas
-	em relação a área do sistema de arquivos a qual eles podem
-	acessar.  O restante dos recursos do sistema (tais como o
-	conjunto de usuários do sistema, os processos em execução, ou
-	o subsistema de rede) são compartilhados pelos processos
-	<literal>chrooted</literal> e os processos do sistema
-	hospedeiro.  O jail expande este modelo por meio da
-	virtualização não só do acesso ao sistema de arquivos, mas
-	também do conjunto de usuários, do subsistema de rede do
-	kernel do &os; e de mais algumas coisas.  Uma listagem 
-	completa das opções disponíveis para se realizar o ajuste 
-	fino de um ambiente jail está descrito na
-	<xref linkend="jails-tuning"/>.</para>
+      &man.chroot.2; de várias maneiras.  Em um ambiente
+      &man.chroot.2; tradicional, os processos são limitados apenas em
+      relação a área do sistema de arquivos a qual eles podem acessar.
+      O restante dos recursos do sistema (tais como o conjunto de
+      usuários do sistema, os processos em execução, ou o subsistema
+      de rede) são compartilhados pelos processos
+      <literal>chrooted</literal> e os processos do sistema
+      hospedeiro.  O jail expande este modelo por meio da
+      virtualização não só do acesso ao sistema de arquivos, mas
+      também do conjunto de usuários, do subsistema de rede do kernel
+      do &os; e de mais algumas coisas.  Uma listagem completa das
+      opções disponíveis para se realizar o ajuste fino de um
+      ambiente jail está descrito na <xref
+      linkend="jails-tuning"/>.</para>
 
       <para>Um <literal>jail</literal> é caracterizado por quatro
-     	elementos:</para>
+      elementos:</para>
 
-      <itemizedlist>
-	<listitem>
-	  <para>Uma subárvore de diretórios &mdash; o ponto de partida
-	    a partir do qual o <literal>jail</literal> é iniciado.
-	    Uma vez dentro do <literal>jail</literal>, um processo não
-	    terá permissão para sair desta subárvore.  Os problemas 
-	    de segurança que afetam o design original do 
-	    &man.chroot.2; não irão afetar um jail do &os;</para>
-	</listitem>
+      <itemizedlist> <listitem> <para>Uma subárvore de diretórios
+      &mdash; o ponto de partida a partir do qual o
+      <literal>jail</literal> é iniciado.  Uma vez dentro do
+      <literal>jail</literal>, um processo não terá permissão para
+      sair desta subárvore.  Os problemas de segurança que afetam o
+      design original do &man.chroot.2; não irão afetar um jail do
+      &os;</para> </listitem>
 
-	<listitem>
-	  <para>Um nome de máquina (hostname) &mdash; o nome de
-	    máquina que será utilizado dentro do
-	    <literal>jail</literal>.  Um dos principais usos dos
-	    <literal>jails</literal> é na hospedagem de serviços de
-	    rede, logo ter um nome de máquina associado à cada
-	    <literal>jail</literal> pode realmente ajudar o
-	    administrador do sistema.</para>
-	</listitem>
+      <listitem> <para>Um nome de máquina (hostname) &mdash; o nome
+      de máquina que será utilizado dentro do
+      <literal>jail</literal>.  Um dos principais usos dos
+      <literal>jails</literal> é na hospedagem de serviços de rede,
+      logo ter um nome de máquina associado à cada
+      <literal>jail</literal> pode realmente ajudar o administrador
+      do sistema.</para> </listitem>
 
-	<listitem>
-	  <para>Um endereço <acronym>IP</acronym> &mdash; este será
-	    atribuido ao <literal>jail</literal> e não poderá ser
-	    alterado de nenhuma forma durante todo o periodo em que o
-	    <literal>jail</literal> estiver em execução.  O endereço
-	    <acronym>IP</acronym> de um <literal>jail</literal> é
-	    normalmente um endereço <literal>alias</literal> de uma 
-	    interface de rede existente, mas isto não é estritamente
-	    necessário.</para>
-	</listitem>
+      <listitem> <para>Um endereço <acronym>IP</acronym> &mdash;
+      este será atribuido ao <literal>jail</literal> e não poderá
+      ser alterado de nenhuma forma durante todo o periodo em que o
+      <literal>jail</literal> estiver em execução.  O endereço
+      <acronym>IP</acronym> de um <literal>jail</literal> é
+      normalmente um endereço <literal>alias</literal> de uma
+      interface de rede existente, mas isto não é estritamente
+      necessário.</para> </listitem>
 
-	<listitem>
-	  <para>Um comando &mdash; o caminho de um executável para ser
-	    executado dentro do <literal>jail</literal>.  Este caminho
-	    é relativo ao diretório raiz do ambiente 
-	    <literal>jail</literal>, e pode variar muito, dependendo
-	    do tipo de ambiente específico do
-	    <literal>jail</literal>.</para>
-	</listitem>
-      </itemizedlist>
+      <listitem> <para>Um comando &mdash; o caminho de um executável
+      para ser executado dentro do <literal>jail</literal>.  Este
+      caminho é relativo ao diretório raiz do ambiente
+      <literal>jail</literal>, e pode variar muito, dependendo do
+      tipo de ambiente específico do <literal>jail</literal>.</para>
+      </listitem> </itemizedlist>
 
       <para>Além destes elementos, um <literal>jail</literal> pode ter
-	o seu próprio conjunto de usuários e o seu próprio usuário
-	<username>root</username>.  Naturalmente os poderes deste
-	usuário <username>root</username> são limitados ao ambiente do
-	<literal>jail</literal>, e do ponto de vista do sistema
-	hospedeiro, o usuário <username>root</username> do ambiente
-	<literal>jail</literal> não é um usuário com poderes
-	ilimitados.  Além disso, não é permitido ao usuário
-	<username>root</username> do  <literal>jail</literal> executar
-	nenhuma operação crítica para o sistema fora do ambiente
-	&man.jail.8; associado.  A <xref linkend="jails-tuning"/> irá
-	abordar com mais detalhes os recursos e as restrições do
-	usuário <username>root</username>.</para>
+      o seu próprio conjunto de usuários e o seu próprio usuário
+      <username>root</username>.  Naturalmente os poderes deste
+      usuário <username>root</username> são limitados ao ambiente do
+      <literal>jail</literal>, e do ponto de vista do sistema
+      hospedeiro, o usuário <username>root</username> do ambiente
+      <literal>jail</literal> não é um usuário com poderes ilimitados.
+      Além disso, não é permitido ao usuário <username>root</username>
+      do  <literal>jail</literal> executar nenhuma operação crítica
+      para o sistema fora do ambiente &man.jail.8; associado.  A
+      <xref linkend="jails-tuning"/> irá abordar com mais detalhes
+      os recursos e as restrições do usuário
+      <username>root</username>.</para>
+
     </sect2>
+
   </sect1>
 
   <sect1 id="jails-build">
     <title>Criando e Controlando Jails</title>
 
-    <para>Alguns administradores dividem os <literal>jails</literal> 
-      em dois grupos:  <literal>jails</literal> 
-      <quote>completos</quote>, que se assemelham a um sistema &os; 
-      real, e <literal>jails</literal> de <quote>serviços</quote>, 
-      dedicados a uma aplicação ou serviço, possivelmente sendo 
-      executado com privilégios.  Esta é apenas uma divisão 
-      conceitual, e o processo de construção de um 
-      <literal>jail</literal> não é afetado por ela.  A página de 
-      manual do &man.jail.8; é bastante clara sobre o procedimento 
-      para a construção de um <literal>jail</literal>:</para>
+    <para>Alguns administradores dividem os <literal>jails</literal>
+    em dois grupos:  <literal>jails</literal>
+    <quote>completos</quote>, que se assemelham a um sistema &os;
+    real, e <literal>jails</literal> de <quote>serviços</quote>,
+    dedicados a uma aplicação ou serviço, possivelmente sendo
+    executado com privilégios.  Esta é apenas uma divisão conceitual,
+    e o processo de construção de um <literal>jail</literal> não é
+    afetado por ela.  A página de manual do &man.jail.8; é bastante
+    clara sobre o procedimento para a construção de um
+    <literal>jail</literal>:</para>
 
-      <screen>&prompt.root; <userinput>setenv D <replaceable>/here/is/the/jail</replaceable></userinput>
-&prompt.root; <userinput>mkdir -p $D</userinput> <co id="jailpath"/>
-&prompt.root; <userinput>cd /usr/src</userinput>
-&prompt.root; <userinput>make buildworld</userinput> <co id="jailbuildworld"/>
-&prompt.root; <userinput>make installworld DESTDIR=$D</userinput> <co id="jailinstallworld"/>
-&prompt.root; <userinput>make distribution DESTDIR=$D</userinput> <co id="jaildistrib"/>
-&prompt.root; <userinput>mount -t devfs devfs $D/dev</userinput> <co id="jaildevfs"/></screen>
+    <screen>&prompt.root; <userinput>setenv D
+    <replaceable>/here/is/the/jail</replaceable></userinput>
+    &prompt.root; <userinput>mkdir -p $D</userinput> <co
+    id="jailpath"/> &prompt.root; <userinput>cd /usr/src</userinput>
+    &prompt.root; <userinput>make buildworld</userinput> <co
+    id="jailbuildworld"/> &prompt.root; <userinput>make installworld
+    DESTDIR=$D</userinput> <co id="jailinstallworld"/> &prompt.root;
+    <userinput>make distribution DESTDIR=$D</userinput> <co
+    id="jaildistrib"/> &prompt.root; <userinput>mount -t devfs devfs
+    $D/dev</userinput> <co id="jaildevfs"/></screen>
 
-    <calloutlist>
-      <callout arearefs="jailpath">
-	<para>A seleção de um local para o <literal>jail</literal> é o
-	  melhor ponto de partida.  Este é o local no qual o
-	  <literal>jail</literal> irá residir fisicamente no sistema
-	  de arquivos do sistema hospedeiro.  Uma boa escolha pode ser
-	  <filename
-	  class="directory">/usr/jail/<replaceable>jailname</replaceable></filename>,
-	  onde <replaceable>jailname</replaceable> é o nome de máquina
-	  que identifica o <literal>jail</literal>.  O sistema de
-	  arquivos <filename class="directory">/usr/</filename>
-	  geralmente tem espaço suficiente para o sistema de arquivos
-	  do <literal>jail</literal>, que no caso dos
-	  <literal>jails</literal> <quote>completos</quote> é,
-	  essencialmente, uma replica de todos os arquivos presentes
-	  em uma instalação padrão do sistema base do &os;.</para>
-      </callout>
+    <calloutlist> <callout arearefs="jailpath"> <para>A seleção de um
+    local para o <literal>jail</literal> é o melhor ponto de partida.
+    Este é o local no qual o <literal>jail</literal> irá residir
+    fisicamente no sistema de arquivos do sistema hospedeiro.  Uma boa
+    escolha pode ser <filename
+    class="directory">/usr/jail/<replaceable>jailname</replaceable>
+    </filename>, onde <replaceable>jailname</replaceable> é o nome de
+    máquina que identifica o <literal>jail</literal>.  O sistema de
+    arquivos <filename class="directory">/usr/</filename> geralmente
+    tem espaço suficiente para o sistema de arquivos do
+    <literal>jail</literal>, que no caso dos <literal>jails</literal>
+    <quote>completos</quote> é, essencialmente, uma replica de todos
+    os arquivos presentes em uma instalação padrão do sistema base do
+    &os;.</para> </callout>
 
-      <callout arearefs="jailbuildworld">
-	<para>Se você já reconstruiu o seu <literal>userland</literal>
-	  (espaço de usuário) usando <command>make
-	  world</command> ou <command>make buildworld</command>,
-	  você pode pular este passo e instalar o 
-	  <literal>userland</literal> existente no novo 
-	  <literal>jail</literal>.</para>
-      </callout>
+    <callout arearefs="jailbuildworld"> <para>Se você já reconstruiu
+    o seu <literal>userland</literal> (espaço de usuário) usando
+    <command>make world</command> ou <command>make
+    buildworld</command>, você pode pular este passo e instalar o
+    <literal>userland</literal> existente no novo
+    <literal>jail</literal>.</para> </callout>
 
-      <callout arearefs="jailinstallworld">
-	<para>Este comando irá preencher a subárvore de diretório
-	  escolhida para ser a localização física do
-	  <literal>jail</literal> no sistema hospedeiro, com os
-	  arquivos necessários tais como binários, bibliotecas, 
-	  páginas de manual e assim por diante.</para>
-      </callout>
+    <callout arearefs="jailinstallworld"> <para>Este comando irá
+    preencher a subárvore de diretório escolhida para ser a
+    localização física do <literal>jail</literal> no sistema
+    hospedeiro, com os arquivos necessários tais como binários,
+    bibliotecas, páginas de manual e assim por diante.</para>
+    </callout>
 
-      <callout arearefs="jaildistrib">
-	<para>Ao executar o <application>make</application> com 
-	  o parâmetro <maketarget>distribution</maketarget>,
-	  você irá instalar todos os arquivos de configuração 
-	  necessários.  Ou seja, este comando instala todos os 
-	  arquivos existentes no 
-	  <filename class="directory">/usr/src/etc/</filename> no
-	  diretório <filename class="directory">/etc</filename> do
-	  ambiente do <literal>jail</literal>: <filename
-	  class="directory">$D/etc/</filename>.</para>
-      </callout>
+    <callout arearefs="jaildistrib"> <para>Ao executar o
+    <application>make</application> com o parâmetro
+    <maketarget>distribution</maketarget>, você irá instalar todos
+    os arquivos de configuração necessários.  Ou seja, este comando
+    instala todos os arquivos existentes no <filename
+    class="directory">/usr/src/etc/</filename> no diretório
+    <filename class="directory">/etc</filename> do ambiente do
+    <literal>jail</literal>: <filename
+    class="directory">$D/etc/</filename>.</para></callout>
 
-      <callout arearefs="jaildevfs">
-	<para>Não é necessário montar o sistema de arquivos 
-	  &man.devfs.8; dentro de um <literal>jail</literal>.  
-	  Por outro lado, dependendo da finalidade, todas ou 
-	  praticamente todas as aplicações necessitam de acesso a 
-	  pelo menos um dispositivo.  É muito importante controlar 
-	  o acesso aos dispositivos de dentro de um 
-	  <literal>jail</literal>, uma vez que configurações 
-	  inadequadas podem permitir que um atacante
-	  faça coisas desagradáveis lá dentro.  O controle sobre o
-	  &man.devfs.8; é realizado através de um conjunto de regras
-	  as quais estão descritas nas páginas de manual do
-	  &man.devfs.8; e do &man.devfs.conf.5;.</para>
-      </callout>
-    </calloutlist>
+    <callout arearefs="jaildevfs"> <para>Não é necessário montar o
+    sistema de arquivos &man.devfs.8; dentro de um
+    <literal>jail</literal>.  Por outro lado, dependendo da
+    finalidade, todas ou praticamente todas as aplicações necessitam
+    de acesso a pelo menos um dispositivo.  É muito importante
+    controlar o acesso aos dispositivos de dentro de um
+    <literal>jail</literal>, uma vez que configurações inadequadas
+    podem permitir que um atacante faça coisas desagradáveis lá
+    dentro.  O controle sobre o &man.devfs.8; é realizado através de
+    um conjunto de regras as quais estão descritas nas páginas de
+    manual do &man.devfs.8; e do &man.devfs.conf.5;.</para>
+    </callout></calloutlist>
 
     <para>Uma vez que o <literal>jail</literal> estiver instalado, ele
-      poderá ser inciado utilizando-se o utilitário &man.jail.8;. O
-      utilitário &man.jail.8; necessita de 4 argumentos obrigatórios
-      os quais são descritos na  <xref linkend="jails-what"/>.  Outros
-      argumentos também podem ser especificados, por exemplo, para
-      rodar o processo <literal>jailed</literal> com as credenciais de
-      um usuário específico.  Os argumentos que serão utilizados com o
-      <option><replaceable>comando</replaceable></option> dependem do
-      tipo de <literal>jail</literal>;  para um <emphasis>sistema
-      virtual</emphasis> (<literal>jail</literal>
-      <quote>completo</quote>), o <filename>/etc/rc</filename> é uma
-      boa escolha, uma vez que ele irá replicar a sequência de
-      inicialização de um sistema &os; real.  Para um
-      <literal>jail</literal> de <quote>serviço</quote>, ele vai
-      depender do serviço ou aplicação que irá ser executado dentro do
-      <literal>jail</literal>.</para>
+    poderá ser inciado utilizando-se o utilitário &man.jail.8;.  O
+    utilitário &man.jail.8; necessita de 4 argumentos obrigatórios os
+    quais são descritos na  <xref linkend="jails-what"/>.  Outros
+    argumentos também podem ser especificados, por exemplo, para rodar
+    o processo <literal>jailed</literal> com as credenciais de um
+    usuário específico.  Os argumentos que serão utilizados com o
+    <option><replaceable>comando</replaceable></option> dependem do
+    tipo de <literal>jail</literal>;  para um <emphasis>sistema
+    virtual</emphasis> (<literal>jail</literal>
+    <quote>completo</quote>), o <filename>/etc/rc</filename> é uma boa
+    escolha, uma vez que ele irá replicar a sequência de inicialização
+    de um sistema &os; real.  Para um <literal>jail</literal> de
+    <quote>serviço</quote>, ele vai depender do serviço ou aplicação
+    que irá ser executado dentro do <literal>jail</literal>.</para>
 
-    <para>Os <literal>jails</literal> são frequentemente iniciados 
-      durante a inicialização do sistema, e o mecanismo
-      <filename>rc</filename> do &os; disponibiliza uma forma fácil de
-      fazer isso.</para>
+    <para>Os <literal>jails</literal> são frequentemente iniciados
+    durante a inicialização do sistema, e o mecanismo
+    <filename>rc</filename> do &os; disponibiliza uma forma fácil de
+    fazer isso.</para>
 
-    <procedure>
-      <step>
-	<para>A lista dos <literal>jails</literal> que estão
-	  habilitados para iniciar no momento da inicialização do
-	  sistema deve ser adicionada ao arquivo 
-	  &man.rc.conf.5;:</para>
+    <procedure> <step> <para>A lista dos <literal>jails</literal> que
+    estão habilitados para iniciar no momento da inicialização do
+    sistema deve ser adicionada ao arquivo &man.rc.conf.5;:</para>
 
-	<programlisting>jail_enable="YES"   # Mude para NO para desabilitar a inicialização automática dos jails
-jail_list="<replaceable>www</replaceable>"     # lista com o nome dos jails separados por espaços</programlisting>
+    <programlisting>jail_enable="YES"   # Mude para NO para
+    desabilitar a inicialização automática dos jails
+    jail_list="<replaceable>www</replaceable>"     # lista com o
+    nome dos jails separados por espaços</programlisting>
 
-	<note>
-	  <para>Os nomes dos jails listados no 
-	    <varname>jail_list</varname> devem conter apenas
-	    caracteres alfanumericos.</para>
-	</note>
-      </step>
+    <note> <para>Os nomes dos jails listados no
+    <varname>jail_list</varname> devem conter apenas caracteres
+    alfanumericos.</para> </note> </step>
 
-      <step>
-	<para>Para cada <literal>jail</literal> listado no
-	  <varname>jail_list</varname>, será necessário adicionar um
-	  grupo de configurações no &man.rc.conf.5;, as quais irão
-	  descrever aquele <literal>jail</literal> em
-	  particular:</para>
+    <step> <para>Para cada <literal>jail</literal> listado no
+    <varname>jail_list</varname>, será necessário adicionar um grupo
+    de configurações no &man.rc.conf.5;, as quais irão descrever
+    aquele <literal>jail</literal> em particular:</para>
 
-	<programlisting>jail_<replaceable>www</replaceable>_rootdir="/usr/jail/www"     # diretório raiz do jail
-jail_<replaceable>www</replaceable>_hostname="<replaceable>www</replaceable>.example.org"  # nome de máquina do jail
-jail_<replaceable>www</replaceable>_ip="192.168.0.10"           # endereço IP do jail
-jail_<replaceable>www</replaceable>_devfs_enable="YES"          # habilita a montagem do devfs no jail
-jail_<replaceable>www</replaceable>_devfs_ruleset="<replaceable>www_ruleset</replaceable>" # conjunto de regras que se aplicam ao devfs do jail</programlisting>
+    <programlisting>
+      jail_<replaceable>www</replaceable>_rootdir="/usr/jail/www"
+	#  diretório raiz da jail
+      jail_<replaceable>www</replaceable>
+      _hostname="<replaceable>www</replaceable>.example.org"
+	# <literal>hostname</literal> da jail
+      jail_<replaceable>www</replaceable>_ip="192.168.0.10"
+	# endereço IP da jail
+      jail_<replaceable>www</replaceable>_devfs_enable="YES"
+	# habilita a montagem do devfs no jail
+      jail_<replaceable>www</replaceable>_devfs_ruleset="
+      <replaceable>www_ruleset</replaceable>"
+	# conjunto de regras que se aplicam ao devfs da jail
+    </programlisting>
 
-	<para>A inicialização padrão de um <literal>jail</literal>
-	  configurado no &man.rc.conf.5;, irá executar o
-	  <filename>/etc/rc</filename> do <literal>jail</literal>, o
-	  qual assume que o <literal>jail</literal> é um sistema
-	  virtual completo.  Para um <literal>jail</literal> de
-	  serviço, o comando padrão de inicialização do
-	  <literal>jail</literal> deve ser alterado, o que pode ser
-	  feito configurando a opção
-	  <varname>jail_<replaceable>jailname</replaceable>_exec_start</varname>
-	  de forma apropriada.</para>
+    <para>A inicialização padrão de um <literal>jail</literal>
+    configurado no &man.rc.conf.5;, irá executar o
+    <filename>/etc/rc</filename> do <literal>jail</literal>, o qual
+    assume que o <literal>jail</literal> é um sistema virtual
+    completo.  Para um <literal>jail</literal> de serviço, o comando
+    padrão de inicialização do <literal>jail</literal> deve ser
+    alterado, o que pode ser feito configurando a opção
+    <varname>jail_
+    <replaceable>jailname</replaceable>_exec_start</varname> de forma
+    apropriada.</para>
 
-	<note>
-	  <para>Para obter uma lista completa das opções disponíveis,
-	    por favor consulte a página de manual do
-	    &man.rc.conf.5;.</para>
-	</note>
-      </step>
-    </procedure>
+    <note> <para>Para obter uma lista completa das opções disponíveis,
+    por favor consulte a página de manual do &man.rc.conf.5;.</para>
+    </note> </step> </procedure>
 
     <para>O script <filename>/etc/rc.d/jail</filename> pode ser
-      utilizado para iniciar ou para encerrar manualmente um
-      <literal>jail</literal>, desde que exista uma entrada para ele 
-      no <filename>rc.conf</filename>:</para>
-    
-    <screen>&prompt.root; <userinput>/etc/rc.d/jail start <replaceable>www</replaceable></userinput>
-&prompt.root; <userinput>/etc/rc.d/jail stop <replaceable>www</replaceable></userinput></screen>
+    utilizado para iniciar ou para encerrar manualmente um
+    <literal>jail</literal>, desde que exista uma entrada para ele no
+    <filename>rc.conf</filename>:</para>
 
-    <para>Até o presente momento não existe uma forma 
-      <quote>limpa</quote> de se encerrar um &man.jail.8;.  O motivo 
-      para isto é que os comandos utilizados para se realizar um 
-      desligamento <quote>limpo</quote> dosistema não podem ser 
-      utilizados dentro de um <literal>jail</literal>.  A melhor 
-      forma de encerrar um <literal>jail</literal> é executar comando 
-      abaixo dentro dele ou então através do utilitário &man.jexec.8;
-      de fora do <literal>jail</literal>.</para>
+    <screen>&prompt.root; <userinput>/etc/rc.d/jail start
+    <replaceable>www</replaceable></userinput> &prompt.root;
+    <userinput>/etc/rc.d/jail stop
+    <replaceable>www</replaceable></userinput></screen>
 
-    <screen>&prompt.root; <userinput>sh /etc/rc.shutdown</userinput></screen>
+    <para>Até o presente momento não existe uma forma
+    <quote>limpa</quote> de se encerrar um &man.jail.8;.  O motivo
+    para isto é que os comandos utilizados para se realizar um
+    desligamento <quote>limpo</quote> dosistema não podem ser
+    utilizados dentro de um <literal>jail</literal>.  A melhor forma
+    de encerrar um <literal>jail</literal> é executar comando abaixo
+    dentro dele ou então através do utilitário &man.jexec.8; de fora
+    do <literal>jail</literal>.</para>
 
-    <para>Consulte a página de manual do &man.jail.8; para maiores 
-      informações sobre isto.</para>
-  </sect1>
+    <screen>&prompt.root; <userinput>sh
+    /etc/rc.shutdown</userinput></screen>
+
+    <para>Consulte a página de manual do &man.jail.8; para maiores
+    informações sobre isto.</para> </sect1>
 
   <sect1 id="jails-tuning">
-    <title>Administração e Ajuste Fino (<literal>Fine
-      Tuning)</literal></title>
+    <title>Administração e Ajuste Fino 
+    (<literal>Fine Tuning)</literal></title>
 
-    <para>Existem várias opções que podem ser configuradas para 
-      qualquer <literal>jail</literal>, e várias formas de combinar 
-      um sistema &os; hospedeiro com os <literal>jails</literal>, 
-      para produzir aplicações de alto nível. Esta seção irá
-      apresentar:</para>
+    <para>Existem várias opções que podem ser configuradas para
+    qualquer <literal>jail</literal>, e várias formas de combinar um
+    sistema &os; hospedeiro com os <literal>jails</literal>, para
+    produzir aplicações de alto nível. Esta seção irá
+    apresentar:</para>
 
-    <itemizedlist>
-      <listitem>
-	<para>Algumas das opções disponíveis para ajustar o 
-	  comportamento e as restrições de segurança implementadas 
-	  em uma instalação <literal>jail</literal>.</para>
-      </listitem>
+    <itemizedlist> <listitem> <para>Algumas das opções disponíveis
+    para ajustar o comportamento e as restrições de segurança
+    implementadas em uma instalação <literal>jail</literal>.</para>
+    </listitem>
 
-      <listitem>
-	<para>Algumas das aplicações de alto nível para gerenciamento
-	  do <literal>jail</literal>, os quais estão disponíveis 
-	  através da coleção de <literal>Ports</literal> do &os;, e 
-	  que podem ser utilizados para implementar soluções 
-	  completas baseadas no <literal>jail</literal>.</para>
-      </listitem>
-    </itemizedlist>
+    <listitem> <para>Algumas das aplicações de alto nível para
+    gerenciamento do <literal>jail</literal>, os quais estão
+    disponíveis através da coleção de <literal>Ports</literal> do
+    &os;, e que podem ser utilizados para implementar soluções
+    completas baseadas no <literal>jail</literal>.</para>
+    </listitem></itemizedlist>
 
     <sect2 id="jails-tuning-utilities">
-      <title>Ferramentas de Sistema para Ajuste do <literal>Jail</literal> no &os;</title>
 
-      <para>O ajuste fino da configuração de um <literal>jail</literal>
-	é feito basicamente através da configuração de váriaveis do
-	&man.sysctl.8;.  Existe uma sub-árvore especial do sysctl para
-	agrupar e organizar todas as opções relevantes: a hierarquia
-	<varname>security.jail.*</varname> de opções do kernel do
-	&os;.  Abaixo você encontra uma lista com as principais
-	váriaveis do sysctl relacionadas ao subsistema de
-	<literal>jails</literal>, acompanhadas dos seus valores
-	padrões.  Os nomes devem ser auto-explicativos, mas para
-	maiores informações sobre estas variáves, consulte as páginas
-	de manual do &man.jail.8; e do &man.sysctl.8;.</para>
+      <title>Ferramentas de Sistema para Ajuste da
+      <literal>Jail</literal> no &os;</title>
 
-      <itemizedlist>
-	<listitem>
-	  <para><varname>security.jail.set_hostname_allowed:
-	     1</varname></para>
-	</listitem>
+      <para>O ajuste fino da configuração de um
+      <literal>jail</literal> é feito basicamente através da
+      configuração de váriaveis do &man.sysctl.8;.  Existe uma
+      sub-árvore especial do sysctl para agrupar e organizar todas as
+      opções relevantes: a hierarquia
+      <varname>security.jail.*</varname> de opções do kernel do &os;.
+      Abaixo você encontra uma lista com as principais váriaveis do
+      sysctl relacionadas ao subsistema de <literal>jails</literal>,
+      acompanhadas dos seus valores padrões.  Os nomes devem ser
+      auto-explicativos, mas para maiores informações sobre estas
+      variáves, consulte as páginas de manual do &man.jail.8; e do
+      &man.sysctl.8;.</para>
 
-	<listitem>
-	  <para><varname>security.jail.socket_unixiproute_only:
-	     1</varname></para>
-	</listitem>
+    <itemizedlist> <listitem>
+    <para><varname>security.jail.set_hostname_allowed:
+    1</varname></para> </listitem>
 
-	<listitem>
-	  <para><varname>security.jail.sysvipc_allowed:
-	     0</varname></para>
-	</listitem>
+    <listitem>
+    <para><varname>security.jail.socket_unixiproute_only:
+    1</varname></para> </listitem>
 
-	<listitem>
-	  <para><varname>security.jail.enforce_statfs:
-	     2</varname></para>
-	</listitem>
+    <listitem> <para><varname>security.jail.sysvipc_allowed:
+    0</varname></para> </listitem>
 
-	<listitem>
-	  <para><varname>security.jail.allow_raw_sockets:
-	     0</varname></para>
-	</listitem>
+    <listitem> <para><varname>security.jail.enforce_statfs:
+    2</varname></para> </listitem>
 
-	<listitem>
-	  <para><varname>security.jail.chflags_allowed:
-	    0</varname></para>
-	</listitem>
+    <listitem> <para><varname>security.jail.allow_raw_sockets:
+    0</varname></para> </listitem>
 
-	<listitem>
-	  <para><varname>security.jail.jailed: 0</varname></para>
-	</listitem>
-      </itemizedlist>
+    <listitem> <para><varname>security.jail.chflags_allowed:
+    0</varname></para> </listitem>
+
+    <listitem> <para><varname>security.jail.jailed:
+    0</varname></para> </listitem> </itemizedlist>
 
       <para>Estas variáveis podem ser usadas pelo administrador do
-	<emphasis>sistema hospedeiro</emphasis> para adicionar ou
-	remover algumas das limitações impostas por padrão ao usuário
-	<username>root</username> do ambiente <literal>jail</literal>.
-	Observe que existem algumas limitações que não podem ser
-	removidas. O usuário <username>root</username> não tem
-	permissão para montar ou desmontar sistemas de arquivos de
-	dentro de um <literal>jail</literal>.  O usuário
-	<username>root</username> de um ambiente
-	<literal>jail</literal> não pode carregar e nem descarregar
-	conjuntos de regras para o &man.devfs.8;, definir regras de
-	firewall, ou realizar qualquer outra tarefa administrativa que
-	envolva a modificação de dados do kernel, como por exemplo
-	configurar o <varname>securelevel</varname> do kernel.</para>
+      <emphasis>sistema hospedeiro</emphasis> para adicionar ou
+      remover algumas das limitações impostas por padrão ao usuário
+      <username>root</username> do ambiente <literal>jail</literal>.
+      Observe que existem algumas limitações que não podem ser
+      removidas. O usuário <username>root</username> não tem permissão
+      para montar ou desmontar sistemas de arquivos de dentro de um
+      <literal>jail</literal>.  O usuário <username>root</username> de
+      um ambiente <literal>jail</literal> não pode carregar e nem
+      descarregar conjuntos de regras para o &man.devfs.8;, definir
+      regras de firewall, ou realizar qualquer outra tarefa
+      administrativa que envolva a modificação de dados do kernel,
+      como por exemplo configurar o <varname>securelevel</varname> do
+      kernel.</para>
 
       <para>A base do sistema &os; possui um conjunto básico de
-	ferramentas para exibir informações sobre os
-	<literal>jails</literal> ativos, e para se ligar a eles para 
-	executar comandos administrativos.  Os comandos &man.jls.8; e
-	&man.jexec.8; fazem parte da base do &os; e podem ser
-	utilizados para realizar as seguintes tarefas simples:</para>
-      
-      <itemizedlist>
-	<listitem>
-	  <para>Imprimir uma lista dos <literal>jails</literal> ativos
-	    e a sua identificação <literal>jail</literal> 
-	    correspondente (<acronym>JID</acronym>), seu endereço
-	    <acronym>IP</acronym>, seu nome da máquina e caminho de
-	    diretório.</para>
-	</listitem>
+      ferramentas para exibir informações sobre os
+      <literal>jails</literal> ativos, e para se ligar a eles para
+      executar comandos administrativos.  Os comandos &man.jls.8; e
+      &man.jexec.8; fazem parte da base do &os; e podem ser utilizados
+      para realizar as seguintes tarefas simples:</para>
 
-	<listitem>
-	  <para> Ligar-se a um <literal>jail</literal> em execução, a
-	    partir do sistema hospedeiro, para executar um comando ou
-	    para realizar tarefas administrativas dentro dele.  Isto é
-	    especialmente útil quando o usuário
-	    <username>root</username> quer desligar de forma correta
-	    um <literal>jail</literal>.  O utilitário &man.jexec.8;
-	    também pode ser utilizado para iniciar um
-	    <literal>shell</literal> dentro de um
-	    <literal>jail</literal> para fazer a sua administração;
-	    por exemplo:</para>
+      <itemizedlist> <listitem> <para>Imprimir uma lista dos
+      <literal>jails</literal> ativos e a sua identificação
+      <literal>jail</literal> correspondente (<acronym>JID</acronym>),
+      seu endereço <acronym>IP</acronym>, seu nome da máquina e
+      caminho de diretório.</para> </listitem>
 
-	  <screen>&prompt.root; <userinput>jexec <replaceable>1</replaceable> tcsh</userinput></screen>
-	</listitem>
-      </itemizedlist>
-    </sect2>
+    <listitem> <para> Ligar-se a um <literal>jail</literal> em
+    execução, a partir do sistema hospedeiro, para executar um
+    comando ou para realizar tarefas administrativas dentro dele.
+    Isto é especialmente útil quando o usuário
+    <username>root</username> quer desligar de forma correta um
+    <literal>jail</literal>.  O utilitário &man.jexec.8; também
+    pode ser utilizado para iniciar um <literal>shell</literal>
+    dentro de um <literal>jail</literal> para fazer a sua
+    administração; por exemplo:</para>
+
+  <screen>&prompt.root; <userinput>jexec
+  <replaceable>1</replaceable> tcsh</userinput></screen>
+  </listitem> </itemizedlist> </sect2>
 
     <sect2 id="jails-tuning-admintools">
-      <title>Ferramentas Administrativas de Alto Nível presentes na
-	Coleção de <literal>Ports</literal> do &os;</title>
+
+      <title>Ferramentas Administrativas de Alto Nível Presentes na
+      Coleção de <literal>Ports</literal> do &os;</title>
 
     <para>Dentre os muitos aplicativos de terceiros existentes para a
-      administração de um ambiente <literal>jail</literal>, um dos
-      mais completos e útil é o <filename
-      role="package">sysutils/jailutils</filename>.  Ele é formado por
-      um conjunto de pequenos aplicativos que contribuem para o
-      gerenciamento do &man.jail.8;.  Por favor consulte a sua página
-      web para obter maiores informações.</para>
-    </sect2>
-  </sect1>
+    administração de um ambiente <literal>jail</literal>, um dos mais
+    completos e útil é o <filename
+    role="package">sysutils/jailutils</filename>.  Ele é formado por
+    um conjunto de pequenos aplicativos que contribuem para o
+    gerenciamento do &man.jail.8;.  Por favor consulte a sua página
+    web para obter maiores informações.</para> </sect2> </sect1>
 
   <sect1 id="jails-application">
-    <title>Utilização do <literal>Jail</literal></title>
 
-    <sect2 id="jails-service-jails">
-      <sect2info>
-	<authorgroup>
-	  <author>
-	    <firstname>Daniel</firstname>
-	    <surname>Gerzo</surname>
-	    <contrib>Contribuído por </contrib>
-	    <!-- 15. May 2007 -->
-	  </author>
-	</authorgroup>
-      </sect2info>
+    <title>Utilização da <literal>Jail</literal></title>
 
-      <title><literal>Jails</literal> de Serviço</title>
+    <sect2 id="jails-service-jails"> <sect2info> <authorgroup>
+    <author> <firstname>Daniel</firstname> <surname>Gerzo</surname>
+    <contrib>Contribuído por </contrib> <!-- 15. May 2007 -->
+    </author> </authorgroup> </sect2info>
 
-      <para>Esta seção é baseada em uma idéia apresentada 
-	originalmente por &a.simon; em <ulink
-	url="http://simon.nitro.dk/service-jails.html"></ulink> e em
-	um artigo atualizado escrito por by Ken Tom
-	<email>locals@gmail.com</email>.  Esta seção demonstra como
-	utilizar o &man.jail.8; para adicionar uma camada adicional de
-	segurança a um servidor &os;.  Esta seção assume como premissa
-	que você está executando pelo menos a RELENG_6_0 e que as
-	informações disponibilizadas anteriormente neste capítulo
-	foram bem compreendidas.</para>
-      
-      <sect3 id="jails-service-jails-design">
-       <title>Projeto</title>
+    <title><literal>Jails</literal> de Serviço</title>
 
-	<para>Um dos principais problemas dos <literal>jails</literal>
-	  é a gestão do seu processo de atualização.  Esta atividade 
-	  tende a ser um problema pois todo <literal>jail</literal> 
-	  precisa ser reconstruido do zero sempre que tem que ser
-	  atualizado.  Normalmente isto não é um problema para um
-	  único <literal>jail</literal>, uma vez que o processo de
-	  atualização é bastante simples, mas pode consumir  muito
-	  tempo e ser tedioso se você tiver muitos
-	  <literal>jails</literal> para atualizar.</para>
-	
-	<warning>
-	  <para>Esta instalação requer experiência avançada com o &os;
-	    e com o uso dos seus recursos.  Se os passos apresentados
-	    abaixo lhe parecem muito complicados, é aconselhável que
-	    você considere o uso de um sistema mais simples, como por
-	    exemplo o <filename
-	    role="package">sysutils/ezjail</filename>, o qual oferece
-	    um método mais fácil de se administrar um
-	    <literal>jail</literal> &os; e que não é tão sofisticado
-	    quanto este.</para>
-	</warning>
+      <para>Esta seção é baseada em uma idéia apresentada
+      originalmente por &a.simon; em <ulink
+      url="http://simon.nitro.dk/service-jails.html"></ulink> e em um
+      artigo atualizado escrito por by Ken Tom
+      <email>locals@gmail.com</email>.  Esta seção demonstra como
+      utilizar o &man.jail.8; para adicionar uma camada adicional de
+      segurança a um servidor &os;.  Esta seção assume como premissa
+      que você está executando pelo menos a RELENG_6_0 e que as
+      informações disponibilizadas anteriormente neste capítulo foram
+      bem compreendidas.</para>
 
-	<para>Esta idéia foi apresentada para resolver essas questões
-	  através do compartilhamento seguro de tudo que é possível de
-	  ser compartilhado entre diferentes <literal>jails</literal>
-	  &mdash; através da utilização de pontos de montagem
-	  &man.mount.nullfs.8; setados apenas para leitura, de forma
-	  que a atualização seja mais simples, e a instalação de
-	  serviços individuais em <literal>jails</literal> individuais
-	  seja mais atraente.  Além disso, ele proporciona uma maneira
-	  simples de adicionar ou remover um <literal>jail</literal>,
-	  bem como uma forma de atualizá-los.</para>
-	
-	<note>
-	  <para>Exemplos de serviços neste contexto são: um servidor
-	    <acronym>HTTP</acronym>, um servidor
-	    <acronym>DNS</acronym>, um servidor
-	    <acronym>SMTP</acronym>, e assim por diante.</para>
-	</note>
+    <sect3 id="jails-service-jails-design">
+    <title>Projeto</title>
 
-	<para>Os objetivos da configuração descrita nesta seção
-	  são:</para>
+    <para>Um dos principais problemas dos <literal>jails</literal>
+    é a gestão do seu processo de atualização.  Esta atividade
+    tende a ser um problema pois todo <literal>jail</literal>
+    precisa ser reconstruido do zero sempre que tem que ser
+    atualizado.  Normalmente isto não é um problema para um único
+    <literal>jail</literal>, uma vez que o processo de atualização
+    é bastante simples, mas pode consumir  muito tempo e ser
+    tedioso se você tiver muitos <literal>jails</literal> para
+    atualizar.</para>
 
-	<itemizedlist>
-	  <listitem>
-	    <para>Criar uma estrutura de <literal>jail</literal>
-	      simples e fácil de entender. Isto implica em
-	      <emphasis>não</emphasis> ter que executar um 
-	      installworld completo para cada 
-	      <literal>jail</literal>.</para>
-	  </listitem>
-	  <listitem>
-	    <para>Tornar mais fácil o processo para se adicionar um
-	      novo <literal>jail</literal> ou para se remover os já
-	      existentes.</para> 
-	  </listitem>
-	  <listitem>
-	    <para>Tornar mais fácil o processo de atualização de um
-	      <literal>jail</literal> existente.</para>
-	  </listitem>
-	  <listitem>
-	    <para>Tornar possível a execução de um ramo
-	      (<literal>branch</literal>) personalizado do 
-	      &os;.</para>
-	  </listitem>
-	  <listitem>
-	    <para>Ser paranóico com a segurança, reduzindo ao máximo a
-	      possibilidade de ser comprometido.</para>
-	  </listitem>
-	  <listitem>
-	    <para>Poupar espaço e inodes, tanto quanto 
-	      possível.</para>
-	  </listitem>
-	</itemizedlist>
+    <warning> <para>Esta instalação requer experiência avançada
+    com o &os; e com o uso dos seus recursos.  Se os passos
+    apresentados abaixo lhe parecem muito complicados, é
+    aconselhável que você considere o uso de um sistema mais
+    simples, como por exemplo o <filename
+    role="package">sysutils/ezjail</filename>, o qual oferece um
+    método mais fácil de se administrar um <literal>jail</literal>
+    &os; e que não é tão sofisticado quanto este.</para>
+    </warning>
 
-	<para>Como já foi mencionado, este projeto baseia-se 
-	  fortemente em ter um único modelo mestre o qual é montado 
-	  somente em modo de leitura (<literal>read-only</literal>) 
-	  dentro de cada <literal>jail</literal> (conhecido como
-	  <application>nullfs</application>) e um dispositivo montado
-	  em modo de leitura e de escrita por <literal>jail</literal>.
-	  Um dispositivo pode ser um disco físico separado, uma
-	  partição ou vnode suportado por um dispositivo &man.md.4;.
-	  Neste exemplo, iremos utilizar montagens
-	  <application>nullfs</application> em modo de leitura e
-	  escrita.</para>
+    <para>Esta idéia foi apresentada para resolver essas questões
+    através do compartilhamento seguro de tudo que é possível de
+    ser compartilhado entre diferentes <literal>jails</literal>
+    &mdash; através da utilização de pontos de montagem
+    &man.mount.nullfs.8; setados apenas para leitura, de forma que
+    a atualização seja mais simples, e a instalação de serviços
+    individuais em <literal>jails</literal> individuais seja mais
+    atraente.  Além disso, ele proporciona uma maneira simples de
+    adicionar ou remover um <literal>jail</literal>, bem como uma
+    forma de atualizá-los.</para>
+
+    <note> <para>Exemplos de serviços neste contexto são: um
+    servidor <acronym>HTTP</acronym>, um servidor
+    <acronym>DNS</acronym>, um servidor <acronym>SMTP</acronym>, e
+    assim por diante.</para> </note>
+
+    <para>Os objetivos da configuração descrita nesta seção
+    são:</para>
+
+    <itemizedlist> <listitem> <para>Criar uma estrutura de
+    <literal>jail</literal> simples e fácil de entender. Isto
+    implica em <emphasis>não</emphasis> ter que executar um
+    installworld completo para cada
+    <literal>jail</literal>.</para> </listitem> <listitem>
+    <para>Tornar mais fácil o processo para se adicionar um novo
+    <literal>jail</literal> ou para se remover os já
+    existentes.</para> </listitem> <listitem> <para>Tornar mais
+    fácil o processo de atualização de um <literal>jail</literal>
+    existente.</para> </listitem> <listitem> <para>Tornar possível
+    a execução de um ramo (<literal>branch</literal>)
+    personalizado do &os;.</para> </listitem> <listitem> <para>Ser
+    paranóico com a segurança, reduzindo ao máximo a possibilidade
+    de ser comprometido.</para> </listitem> <listitem>
+    <para>Poupar espaço e inodes, tanto quanto possível.</para>
+    </listitem> </itemizedlist>
+
+	<para>Como já foi mencionado, este projeto baseia-se
+	fortemente em ter um único modelo mestre o qual é montado
+	somente em modo de leitura (<literal>read-only</literal>)
+	dentro de cada <literal>jail</literal> (conhecido como
+	<application>nullfs</application>) e um dispositivo montado em
+	modo de leitura e de escrita por <literal>jail</literal>.  Um
+	dispositivo pode ser um disco físico separado, uma partição ou
+	vnode suportado por um dispositivo &man.md.4;.  Neste exemplo,
+	iremos utilizar montagens <application>nullfs</application> em
+	modo de leitura e escrita.</para>
 
 	<para>Organização do sistema de arquivos é descrito na lista a
-	  seguir:</para>
+	seguir:</para>
 
-	<itemizedlist>
-	  <listitem>
-	    <para>Cada <literal>jail</literal> será montado sob o
-	      diretório <filename
-	      class="directory">/home/j</filename>.</para>
-	  </listitem>
-	  <listitem>
-	    <para>O <filename
-	      class="directory">/home/j/mroot</filename> é o modelo 
-	      para cada <literal>jail</literal> e a partição montada 
-	      em modo somente de leitura para todos os 
-	      <literal>jails</literal>.</para>
-	  </listitem>
-	  <listitem>
-	    <para>Um diretório vazio será criado para cada 
-	      <literal>jail</literal> sob o diretório <filename
-	      class="directory">/home/j</filename>.</para>
-	  </listitem>
-	  <listitem>
-	    <para>Cada <literal>jail</literal> terá um diretório
-	      <filename class="directory">/s</filename>, o qual estará
-	      ligado à área de leitura e escrita do sistema.</para>
-	  </listitem>
-	  <listitem>
-	    <para>Cada <literal>jail</literal> deverá ter seu proprio
-	      sistema de leitura e escrita, que é baseado em <filename
-	      class="directory">/home/j/skel</filename>.</para>
-	  </listitem>
-	  <listitem>
-	    <para>Cada <literal>jailspace</literal> (área de leitura e
-	      escrita de cada <literal>jail</literal>) deverá ser 
-	      criado sob o diretório <filename 
-	      class="directory">/home/js</filename>.</para>
-	  </listitem>
+	<itemizedlist> <listitem> <para>Cada <literal>jail</literal>
+	será montado sob o diretório <filename
+	class="directory">/home/j</filename>.</para> </listitem>
+	<listitem> <para>O <filename
+	class="directory">/home/j/mroot</filename> é o modelo para
+	cada <literal>jail</literal> e a partição montada em modo
+	somente de leitura para todos os
+	<literal>jails</literal>.</para> </listitem> <listitem>
+	<para>Um diretório vazio será criado para cada
+	<literal>jail</literal> sob o diretório <filename
+	class="directory">/home/j</filename>.</para> </listitem>
+	<listitem> <para>Cada <literal>jail</literal> terá um
+	diretório <filename class="directory">/s</filename>, o qual
+	estará ligado à área de leitura e escrita do sistema.</para>
+	</listitem> <listitem> <para>Cada <literal>jail</literal>
+	deverá ter seu proprio sistema de leitura e escrita, que é
+	baseado em <filename
+	class="directory">/home/j/skel</filename>.</para> </listitem>
+	<listitem> <para>Cada <literal>jailspace</literal> (área de
+	leitura e escrita de cada <literal>jail</literal>) deverá ser
+	criado sob o diretório <filename
+	class="directory">/home/js</filename>.</para> </listitem>
 	</itemizedlist>
 
-	<note>
-	  <para>A lista acima assume que os <literal>jails</literal> 
-	    estão baseados na partição <filename
-	    class="directory">/home</filename>.  Evidentemente esta
-	    localização pode ser alterada para qualquer outra coisa,
-	    se optar por usar outra localização lembre-se que a 
-	    mudança terá que ser refletida em cada um dos
-	    exemplos abaixo.</para>
-	</note>
-      </sect3>
+	<note> <para>A lista acima assume que os
+	<literal>jails</literal> estão baseados na partição <filename
+	class="directory">/home</filename>.  Evidentemente esta
+	localização pode ser alterada para qualquer outra coisa, se
+	optar por usar outra localização lembre-se que a mudança terá
+	que ser refletida em cada um dos exemplos abaixo.</para>
+	</note> </sect3>
 
-      <sect3 id="jails-service-jails-template">
-	<title>Criando o Modelo</title>
+    <sect3 id="jails-service-jails-template">
+    <title>Criando o Modelo</title>
 
-	<para>Esta seção irá descrever os passos necessários para 
-	  criar o modelo mestre o qual vai ser montado em modo somente
-	  de leitura para os <literal>jails</literal> 
-	  utilizarem.</para>
+	<para>Esta seção irá descrever os passos necessários para
+	criar o modelo mestre o qual vai ser montado em modo somente
+	de leitura para os <literal>jails</literal> utilizarem.</para>
 	
 	<para>É sempre uma boa idéia atualizar o sistema &os; para o
-	  ultimo ramo (<literal>branch</literal>) -RELEASE.  Consulte
-	  o <ulink
-	  url="&url.books.handbook;/makeworld.html">capítulo</ulink>
-	  correspondente do Handbook para realizar esta tarefa.  Caso
-	  a atualização não seja viável, será necessário realizar um
-	  <literal>buildworld</literal> a fim de que possamos
-	  prosseguir.  Também iremos precisar do pacote <filename
-	  role="package">sysutils/cpdup</filename>.  Nós iremos
-	  utilizar o aplicativo &man.portsnap.8; para efetuar o
-	  download da Coleção de <literal>Ports</literal> do &os;.  O
-	  <ulink url="&url.books.handbook;/portsnap.html">capítulo
-	  sobre Portsnap</ulink> do Handbook é sempre uma boa leitura
-	  para os usuários novatos.</para>
+	ultimo ramo (<literal>branch</literal>) -RELEASE.  Consulte o
+	<ulink
+	url="&url.books.handbook;/makeworld.html">capítulo</ulink>
+	correspondente do Handbook para realizar esta tarefa.  Caso a
+	atualização não seja viável, será necessário realizar um
+	<literal>buildworld</literal> a fim de que possamos
+	prosseguir.  Também iremos precisar do pacote <filename
+	role="package">sysutils/cpdup</filename>.  Nós iremos utilizar
+	o aplicativo &man.portsnap.8; para efetuar o download da
+	Coleção de <literal>Ports</literal> do &os;.  O <ulink
+	url="&url.books.handbook;/portsnap.html">capítulo sobre
+	Portsnap</ulink> do Handbook é sempre uma boa leitura para os
+	usuários novatos.</para>
 	
-	<procedure>
-	  <step>
-	    <para>Primeiro, crie a estrutura de diretórios para o 
-	      sistema de arquivos a qual irá conter os binários do 
-	      &os; dos nossos <literal>jails</literal>, depois vá para
-	      o diretório no qual você mantém o código fonte do &os; e
-	      proceda com a sua instalação tendo como alvo a estrutura
-	      de diretórios que você acabou de criar e que será a area
-	      modelo para todos os <literal>jails</literal>:</para>
+	<procedure> <step> <para>Primeiro, crie a estrutura de
+	diretórios para o sistema de arquivos a qual irá conter os
+	binários do &os; dos nossos <literal>jails</literal>, depois
+	vá para o diretório no qual você mantém o código fonte do &os;
+	e proceda com a sua instalação tendo como alvo a estrutura de
+	diretórios que você acabou de criar e que será a area modelo
+	para todos os <literal>jails</literal>:</para>
 
-	    <screen>&prompt.root; <userinput>mkdir /home/j /home/j/mroot</userinput>
-&prompt.root; <userinput>cd /usr/src</userinput>
-&prompt.root; <userinput>make installworld DESTDIR=/home/j/mroot</userinput></screen>
-	  </step>
-	  <step>
-	    <para>Em seguida, prepare uma cópia da Coleção de
-	      <literal>Ports</literal> para os
-	      <literal>jails</literal>, bem como uma cópia da árvore
-	      de diretórios que contém o código fonte do &os, ela será
-	      necessária para o
-	      <application>mergemaster</application>:</para>
-	    
-	    <screen>&prompt.root; <userinput>cd /home/j/mroot</userinput>
-&prompt.root; <userinput>mkdir usr/ports</userinput>
-&prompt.root; <userinput>portsnap -p /home/j/mroot/usr/ports fetch extract</userinput>
-&prompt.root; <userinput>cpdup /usr/src /home/j/mroot/usr/src</userinput></screen>
-	  </step>
-	  <step>
+	    <screen>&prompt.root; <userinput>mkdir /home/j
+	    /home/j/mroot</userinput> &prompt.root; <userinput>cd
+	    /usr/src</userinput> &prompt.root; <userinput>make
+	    installworld DESTDIR=/home/j/mroot</userinput></screen>
+	    </step> <step> <para>Em seguida, prepare uma cópia da
+	    Coleção de <literal>Ports</literal> para os
+	    <literal>jails</literal>, bem como uma cópia da árvore de
+	    diretórios que contém o código fonte do &os, ela será
+	    necessária para o
+	    <application>mergemaster</application>:</para>
+
+	    <screen>&prompt.root; <userinput>cd
+	    /home/j/mroot</userinput> &prompt.root; <userinput>mkdir
+	    usr/ports</userinput> &prompt.root; <userinput>portsnap -p
+	    /home/j/mroot/usr/ports fetch extract</userinput>
+	    &prompt.root; <userinput>cpdup /usr/src
+	    /home/j/mroot/usr/src</userinput></screen> </step> <step>
 	    <para>Crie o esqueleto da área de leiura e escrita do
-	      sistema:</para>
+	    sistema:</para>
 
-	    <screen>&prompt.root; <userinput>mkdir /home/j/skel /home/j/skel/home /home/j/skel/usr-X11R6 /home/j/skel/distfiles</userinput>
-&prompt.root; <userinput>mv etc /home/j/skel</userinput>
-&prompt.root; <userinput>mv usr/local /home/j/skel/usr-local</userinput>
-&prompt.root; <userinput>mv tmp /home/j/skel</userinput>
-&prompt.root; <userinput>mv var /home/j/skel</userinput>
-&prompt.root; <userinput>mv root /home/j/skel</userinput></screen>
-	  </step>
-	  <step>
-	    <para>Utilize o <application>mergemaster</application> 
-	      para instalar os arquivos de configuração que estão 
-	      faltando.  E em seguida, livre-se dos diretórios extras
-	      que ele irá criar:</para>
-	    
-	    <screen>&prompt.root; <userinput>mergemaster -t /home/j/skel/var/tmp/temproot -D /home/j/skel -i</userinput>
-&prompt.root; <userinput>cd /home/j/skel</userinput>
-&prompt.root; <userinput>rm -R bin boot lib libexec mnt proc rescue sbin sys usr dev</userinput></screen>
-	  </step>
-	  <step>
-	    <para>Agora, crie os links simbólicos ligando o sistema de
-	      arquivos de escrita e leitura ao sistema de arquivos
-	      somente de leitura.  Por favor certifique-se de que os
-	      links simbólicos sejam criados no local correto, ou seja
-	      dentro do <filename class="directory">s/</filename>.  O
-	      uso de diretórios reais ou a criação dos diretórios nos
-	      locais errados fará com que a instalação falhe:</para>
+	    <screen>&prompt.root; <userinput>mkdir /home/j/skel
+	    /home/j/skel/home /home/j/skel/usr-X11R6
+	    /home/j/skel/distfiles</userinput> &prompt.root;
+	    <userinput>mv etc /home/j/skel</userinput> &prompt.root;
+	    <userinput>mv usr/local /home/j/skel/usr-local</userinput>
+	    &prompt.root; <userinput>mv tmp /home/j/skel</userinput>
+	    &prompt.root; <userinput>mv var /home/j/skel</userinput>
+	    &prompt.root; <userinput>mv root
+	    /home/j/skel</userinput></screen> </step> <step>
+	    <para>Utilize o <application>mergemaster</application>
+	    para instalar os arquivos de configuração que estão
+	    faltando.  E em seguida, livre-se dos diretórios extras
+	    que ele irá criar:</para>
 
-	    <screen>&prompt.root; <userinput>cd /home/j/mroot</userinput>
-&prompt.root; <userinput>mkdir s</userinput>
-&prompt.root; <userinput>ln -s s/etc etc</userinput>
-&prompt.root; <userinput>ln -s s/home home</userinput>
-&prompt.root; <userinput>ln -s s/root root</userinput>
-&prompt.root; <userinput>ln -s ../s/usr-local usr/local</userinput>
-&prompt.root; <userinput>ln -s ../s/usr-X11R6 usr/X11R6</userinput>
-&prompt.root; <userinput>ln -s ../../s/distfiles usr/ports/distfiles</userinput>
-&prompt.root; <userinput>ln -s s/tmp tmp</userinput>
-&prompt.root; <userinput>ln -s s/var var</userinput></screen>
-	  </step>
-	  <step>
-	    <para>Como último passo, crie um arquivo
-	      <filename>/home/j/skel/etc/make.conf</filename> genérico
-	      contendo o conteúdo mostrado abaixo:</para>
+	    <screen>&prompt.root; <userinput>mergemaster -t
+	    /home/j/skel/var/tmp/temproot -D /home/j/skel
+	    -i</userinput> &prompt.root; <userinput>cd
+	    /home/j/skel</userinput> &prompt.root; <userinput>rm -R
+	    bin boot lib libexec mnt proc rescue sbin sys usr
+	    dev</userinput></screen> </step> <step> <para>Agora, crie
+	    os links simbólicos ligando o sistema de arquivos de
+	    escrita e leitura ao sistema de arquivos somente de
+	    leitura.  Por favor certifique-se de que os links
+	    simbólicos sejam criados no local correto, ou seja dentro
+	    do <filename class="directory">s/</filename>.  O uso de
+	      diretórios reais ou a criação dos diretórios nos locais
+	      errados fará com que a instalação falhe:</para>
 
-	      <programlisting>WRKDIRPREFIX?=  /s/portbuild</programlisting>
+	    <screen>&prompt.root; <userinput>cd
+	    /home/j/mroot</userinput> &prompt.root; <userinput>mkdir
+	    s</userinput> &prompt.root; <userinput>ln -s s/etc
+	    etc</userinput> &prompt.root; <userinput>ln -s s/home
+	    home</userinput> &prompt.root; <userinput>ln -s s/root
+	    root</userinput> &prompt.root; <userinput>ln -s
+	    ../s/usr-local usr/local</userinput> &prompt.root;
+	    <userinput>ln -s ../s/usr-X11R6 usr/X11R6</userinput>
+	    &prompt.root; <userinput>ln -s ../../s/distfiles
+	    usr/ports/distfiles</userinput> &prompt.root;
+	    <userinput>ln -s s/tmp tmp</userinput> &prompt.root;
+	    <userinput>ln -s s/var var</userinput></screen> </step>
+	    <step> <para>Como último passo, crie um arquivo
+	    <filename>/home/j/skel/etc/make.conf</filename> genérico
+	    contendo o conteúdo mostrado abaixo:</para>
 
-	      <para>Ao configurar o <literal>WRKDIRPREFIX</literal> 
-		desta forma, será possivel compilar aplicativos da 
-		Coleção de <literal>Ports</literal> do &os; dentro de
-		cada <literal>jail</literal>.  Lembre-se que o 
-		diretório de <literal>ports</literal> está localizado
-		na área do sistema montada apenas para leitura.  A
-		utilização de um caminho customizado para o
-		<literal>WRKDIRPREFIX</literal> vai permitir que as
-		compilações ocorram na área de escrita e leitura de
-		cada <literal>jail</literal>.</para>
-	  </step>
-	</procedure>
-      </sect3>
+	      <programlisting>WRKDIRPREFIX?=
+	      /s/portbuild</programlisting>
 
-      <sect3 id="jails-service-jails-creating">
-	<title>Criando <literal>Jails</literal></title>
+	      <para>Ao configurar o <literal>WRKDIRPREFIX</literal>
+	      desta forma, será possivel compilar aplicativos da
+	      Coleção de <literal>Ports</literal> do &os; dentro de
+	      cada <literal>jail</literal>.  Lembre-se que o diretório
+	      de <literal>ports</literal> está localizado na área do
+	      sistema montada apenas para leitura.  A utilização de um
+	      caminho customizado para o
+	      <literal>WRKDIRPREFIX</literal> vai permitir que as
+	      compilações ocorram na área de escrita e leitura de cada
+	      <literal>jail</literal>.</para> </step> </procedure>
+	      </sect3>
+
+      <sect3 id="jails-service-jails-creating"> <title>Criando
+      <literal>Jails</literal></title>
 
 	<para>Agora que temos um modelo de <literal>jail</literal>
-	  contendo uma versão completa do &os;, nós já podemos
-	  instalar e configurar os <literal>jails</literal> no
-	  <filename>/etc/rc.conf</filename>.  Este exemplo demonstra a
-	  criação de 3 <literal>jails</literal>: <quote>NS</quote>,
-	  <quote>MAIL</quote> e <quote>WWW</quote>.</para>
-	
-	<procedure>
-	  <step>
-	    <para>Coloque as linhas abaixo no arquivo
-	      <filename>/etc/fstab</filename>, para que as áreas de
-	      leitura e escrita e as áreas apenas de leitura,
-	      previstas no modelo e preparadas acima, fiquem 
-	      disponíveis nos respectivos 
-	      <literal>jails</literal>:</para>
-	    
-	    <programlisting>/home/j/mroot   /home/j/ns     nullfs  ro  0   0
-/home/j/mroot   /home/j/mail   nullfs  ro  0   0
-/home/j/mroot   /home/j/www    nullfs  ro  0   0
-/home/js/ns     /home/j/ns/s   nullfs  rw  0   0
-/home/js/mail   /home/j/mail/s nullfs  rw  0   0
-/home/js/www    /home/j/www/s  nullfs  rw  0   0</programlisting>
+	contendo uma versão completa do &os;, nós já podemos instalar
+	e configurar os <literal>jails</literal> no
+	<filename>/etc/rc.conf</filename>.  Este exemplo demonstra a
+	criação de 3 <literal>jails</literal>: <quote>NS</quote>,
+	<quote>MAIL</quote> e <quote>WWW</quote>.</para>
 
-	    <note>
-	      <para>As partições marcadas com um <literal>pass
-		number</literal> igual a 0 não são verificadas pelo
-		&man.fsck.8; durante a inicialização do sistema, e o
-		&man.dump.8; não faz backup das partições marcadas com
-		um <literal>dump number</literal> igual a 0.  Nós não
-		queremos que o <application>fsck</application>
-		verifique as áreas <application>nullfs</application>
-		ou que o <application>dump</application> faça backup
-		das áreas dos jails que são somente de leitura.  Este
-		é o motivo pelo qual eles estão marcados com
-		<quote>0&nbsp;0</quote> nas duas últimas colunas de
-		cada registro do <filename>fstab</filename>
-		acima.</para>
-	    </note>
-	  </step>
-	  <step>
-	    <para>Configure os <literal>jails </literal> no
-	      <filename>/etc/rc.conf</filename>:</para>
+	<procedure> <step> <para>Coloque as linhas abaixo no arquivo
+	<filename>/etc/fstab</filename>, para que as áreas de leitura
+	e escrita e as áreas apenas de leitura, previstas no modelo e
+	preparadas acima, fiquem disponíveis nos respectivos
+	<literal>jails</literal>:</para>
+
+	    <programlisting>/home/j/mroot   /home/j/ns     nullfs  ro
+	    0   0 /home/j/mroot   /home/j/mail   nullfs  ro  0   0
+	    /home/j/mroot   /home/j/www    nullfs  ro  0   0
+	    /home/js/ns     /home/j/ns/s   nullfs  rw  0   0
+	    /home/js/mail   /home/j/mail/s nullfs  rw  0   0
+	    /home/js/www    /home/j/www/s  nullfs  rw  0
+	    0</programlisting>
+
+	    <note> <para>As partições marcadas com um <literal>pass
+	    number</literal> igual a 0 não são verificadas pelo
+	    &man.fsck.8; durante a inicialização do sistema, e o
+	    &man.dump.8; não faz backup das partições marcadas com um
+	    <literal>dump number</literal> igual a 0.  Nós não
+	    queremos que o <application>fsck</application> verifique
+	    as áreas <application>nullfs</application> ou que o
+	    <application>dump</application> faça backup das áreas dos
+	    jails que são somente de leitura.  Este é o motivo pelo
+	    qual eles estão marcados com <quote>0&nbsp;0</quote> nas
+	    duas últimas colunas de cada registro do
+	    <filename>fstab</filename> acima.</para> </note> </step>
+	    <step> <para>Configure os <literal>jails </literal> no
+	    <filename>/etc/rc.conf</filename>:</para>
 
 	    <programlisting>jail_enable="YES"
-jail_set_hostname_allow="NO"
-jail_list="ns mail www"
-jail_ns_hostname="ns.example.org"
-jail_ns_ip="192.168.3.17"
-jail_ns_rootdir="/usr/home/j/ns"
-jail_ns_devfs_enable="YES"
-jail_mail_hostname="mail.example.org"
-jail_mail_ip="192.168.3.18"
-jail_mail_rootdir="/usr/home/j/mail"
-jail_mail_devfs_enable="YES"
-jail_www_hostname="www.example.org"
-jail_www_ip="62.123.43.14"
-jail_www_rootdir="/usr/home/j/www"
-jail_www_devfs_enable="YES"</programlisting>
+	    jail_set_hostname_allow="NO" jail_list="ns mail www"
+	    jail_ns_hostname="ns.example.org"
+	    jail_ns_ip="192.168.3.17" jail_ns_rootdir="/usr/home/j/ns"
+	    jail_ns_devfs_enable="YES"
+	    jail_mail_hostname="mail.example.org"
+	    jail_mail_ip="192.168.3.18"
+	    jail_mail_rootdir="/usr/home/j/mail"
+	    jail_mail_devfs_enable="YES"
+	    jail_www_hostname="www.example.org"
+	    jail_www_ip="62.123.43.14"
+	    jail_www_rootdir="/usr/home/j/www"
+	    jail_www_devfs_enable="YES"</programlisting>
 
-	    <warning>
-	      <para>
-		A razão pela qual a variável
-		<varname>jail_<replaceable>name</replaceable>_rootdir</varname>
-		está definida para <filename
-		class="directory">/usr/home</filename> em vez de
-		<filename class="directory">/home</filename> é que
-		este é o caminho físico do diretório <filename
-		class="directory">/home</filename> em uma instalação
-		padrão do &os;.  A variável
-		<varname>jail_<replaceable>name</replaceable>_rootdir</varname>
-		<emphasis>não</emphasis> deve ser configurada
-		apontando para um caminho que inclua um link 
-		simbólico, caso contrário você não irá conseguir 
-		iniciar os <literal>jails</literal>.  Utilize o 
-		utilitário &man.realpath.1; para determinar o valor 
-		que deve ser configurado nesta variável.  Por favor, 
-		consulte o boletim de segurança &os;-SA-07:01.jail 
-		para maiores informações.</para>
-	    </warning>
-	  </step>
-	  <step>
-	    <para>Crie os pontos de montagem necessários para o
-	      sistema de arquivo de cada jail, os quais serão 
-	      acessados apenas em modo de leitura:</para>
-	    
-	    <screen>&prompt.root; <userinput>mkdir /home/j/ns /home/j/mail /home/j/www</userinput></screen>
-	  </step>
-	  <step>
-	    <para>Instale o modelo de sistema de arquivo de leitura e
-	      escrita em cada <literal>jail</literal>.  Observe o uso
-	      do <filename role="package">sysutils/cpdup</filename>, o
-	      qual ajuda a garantir que será feita uma cópia correta
-	      de cada diretório:</para>
-	    
-	    <screen>&prompt.root; <userinput>mkdir /home/js</userinput>
-&prompt.root; <userinput>cpdup /home/j/skel /home/js/ns</userinput>
-&prompt.root; <userinput>cpdup /home/j/skel /home/js/mail</userinput>
-&prompt.root; <userinput>cpdup /home/j/skel /home/js/www</userinput></screen>
-	  </step>
-	  <step>
-	    <para>Nesta fase, os <literal>jails</literal> estão 
-	      prontos e preparados para serem iniciados.  Primeiro, 
-	      monte o sistema de arquivo necessário para cada
-	      <literal>jail</literal>, e depois utilize o script
-	      <filename>/etc/rc.d/jail</filename> para
-	      iniciá-los:</para>
+	    <warning> <para> A razão pela qual a variável
+	    <varname>jail_<replaceable>name</replaceable>_rootdir</varname>
+	    está definida para <filename
+	    class="directory">/usr/home</filename> em vez de <filename
+	    class="directory">/home</filename> é que este é o caminho
+	    físico do diretório <filename
+	    class="directory">/home</filename> em uma instalação
+	    padrão do &os;.  A variável
+	    <varname>jail_<replaceable>name</replaceable>_rootdir</varname>
+	    <emphasis>não</emphasis> deve ser configurada apontando
+	    para um caminho que inclua um link simbólico, caso
+	    contrário você não irá conseguir iniciar os
+	    <literal>jails</literal>.  Utilize o utilitário
+	    &man.realpath.1; para determinar o valor que deve ser
+	    configurado nesta variável.  Por favor, consulte o boletim
+	    de segurança &os;-SA-07:01.jail para maiores
+	    informações.</para> </warning> </step> <step> <para>Crie
+	    os pontos de montagem necessários para o sistema de
+	    arquivo de cada jail, os quais serão acessados apenas em
+	    modo de leitura:</para>
+
+	    <screen>&prompt.root; <userinput>mkdir /home/j/ns
+	    /home/j/mail /home/j/www</userinput></screen> </step>
+	    <step> <para>Instale o modelo de sistema de arquivo de
+	    leitura e escrita em cada <literal>jail</literal>.
+	    Observe o uso do <filename
+	    role="package">sysutils/cpdup</filename>, o qual ajuda a
+	    garantir que será feita uma cópia correta de cada
+	    diretório:</para>
+
+	    <screen>&prompt.root; <userinput>mkdir
+	    /home/js</userinput> &prompt.root; <userinput>cpdup
+	    /home/j/skel /home/js/ns</userinput> &prompt.root;
+	    <userinput>cpdup /home/j/skel /home/js/mail</userinput>
+	    &prompt.root; <userinput>cpdup /home/j/skel
+	    /home/js/www</userinput></screen> </step> <step>
+	    <para>Nesta fase, os <literal>jails</literal> estão
+	    prontos e preparados para serem iniciados.  Primeiro,
+	    monte o sistema de arquivo necessário para cada
+	    <literal>jail</literal>, e depois utilize o script
+	    <filename>/etc/rc.d/jail</filename> para
+	    iniciá-los:</para>
 
 	    <screen>&prompt.root; <userinput>mount -a</userinput>
-&prompt.root; <userinput>/etc/rc.d/jail start</userinput></screen>
-	  </step>
-	</procedure>
+	    &prompt.root; <userinput>/etc/rc.d/jail
+	    start</userinput></screen> </step> </procedure>
 
 	<para>Os <literal>jails</literal> devem estar em execução
-	  agora.  Para verificar se eles iniciaram corretamente, use o
-	  comando &man.jls.8;.  Ao executá-lo você deverá ver um
-	  resultado na tela semelhante ao que se segue:</para>
+	agora.  Para verificar se eles iniciaram corretamente, use o
+	comando &man.jls.8;.  Ao executá-lo você deverá ver um
+	resultado na tela semelhante ao que se segue:</para>
 	
-	<screen>&prompt.root; <userinput>jls</userinput>
-   JID  IP Address      Hostname                      Path
-     3  192.168.3.17    ns.example.org                /home/j/ns
-     2  192.168.3.18    mail.example.org              /home/j/mail
-     1  62.123.43.14    www.example.org               /home/j/www</screen>
+	<screen>&prompt.root; <userinput>jls</userinput> JID  IP
+	Address      Hostname                      Path 3
+	192.168.3.17    ns.example.org                /home/j/ns 2
+	192.168.3.18    mail.example.org              /home/j/mail 1
+	62.123.43.14    www.example.org
+	/home/j/www</screen>
 
-	<para>Neste ponto, você já deve ser capaz de efetuar o login 
-	  em cada um dos jails, de adicionar novos usuários ou de
-	  configurar seus serviços.  A coluna <literal>JID</literal>
-	  indica o numero de identificação de cada
-	  <literal>jail</literal> em execução.  Por exemplo, utilize o
-	  seguinte comando para executar tarefas administrativas
-	  dentro do <literal>jail</literal> cujo
-	  <literal>JID</literal> é 3:</para>
+	<para>Neste ponto, você já deve ser capaz de efetuar o login
+	em cada um dos jails, de adicionar novos usuários ou de
+	configurar seus serviços.  A coluna <literal>JID</literal>
+	indica o numero de identificação de cada
+	<literal>jail</literal> em execução.  Por exemplo, utilize o
+	seguinte comando para executar tarefas administrativas dentro
+	do <literal>jail</literal> cujo <literal>JID</literal> é
+	  3:</para>
 
-	<screen>&prompt.root; <userinput>jexec 3 tcsh</userinput></screen>
-      </sect3>
+	<screen>&prompt.root; <userinput>jexec 3
+	tcsh</userinput></screen> </sect3>
 
       <sect3 id="jails-service-jails-upgrading">
-	<title>Atualização</title>
+      <title>Atualização</title>
 
-	<para>Com o tempo, irá surgir a necessidade de atualizar o 
-	  sistema para uma nova versão do &os;, seja por causa de um 
-	  probema de segurança, ou seja porque foram implementadas 
-	  novas funcionalidades as quais são úteis para os
-	  <literal>jails</literal> existentes.  A concepção desta
-	  configuração previu uma maneira fácil de atualizar os
-	  <literal>jails</literal> existentes.  Além disso, o processo
-	  sugerido minimiza o seu tempo de inatividade
-	  (<literal>downtime</literal>), uma vez que os
-	  <literal>jails</literal> serão desligados apenas no último
-	  minuto.  Ele também preve a possibilidade de reverter seu
-	  sistema para uma uma versão mais antiga
-	  (<literal>rollback</literal>), caso ocorra algum problema na
-	  atualização.</para>
+	<para>Com o tempo, irá surgir a necessidade de atualizar o
+	sistema para uma nova versão do &os;, seja por causa de um
+	probema de segurança, ou seja porque foram implementadas novas
+	funcionalidades as quais são úteis para os
+	<literal>jails</literal> existentes.  A concepção desta
+	configuração previu uma maneira fácil de atualizar os
+	<literal>jails</literal> existentes.  Além disso, o processo
+	sugerido minimiza o seu tempo de inatividade
+	(<literal>downtime</literal>), uma vez que os
+	<literal>jails</literal> serão desligados apenas no último
+	minuto.  Ele também preve a possibilidade de reverter seu
+	sistema para uma uma versão mais antiga
+	(<literal>rollback</literal>), caso ocorra algum problema na
+	atualização.</para>
 	
-	<procedure>
-	  <step>
-	    <para>O primeiro passo é atualizar o sistema hospedeiro da
-	      forma usual. Em seguida, você deverá criar um novo
-	      modelo temporário, localizado em <filename
-	      class="directory">/home/j/mroot2</filename>, para a área
-	      que é disponibilizada apenas em modo de leitura.</para>
+	<procedure> <step> <para>O primeiro passo é atualizar o
+	sistema hospedeiro da forma usual. Em seguida, você deverá
+	criar um novo modelo temporário, localizado em <filename
+	class="directory">/home/j/mroot2</filename>, para a área que é
+	disponibilizada apenas em modo de leitura.</para>
 
-	    <screen>&prompt.root; <userinput>mkdir /home/j/mroot2</userinput>
-&prompt.root; <userinput>cd /usr/src</userinput>
-&prompt.root; <userinput>make installworld DESTDIR=/home/j/mroot2</userinput>
-&prompt.root; <userinput>cd /home/j/mroot2</userinput>
-&prompt.root; <userinput>cpdup /usr/src usr/src</userinput>
-&prompt.root; <userinput>mkdir s</userinput></screen>
+	    <screen>&prompt.root; <userinput>mkdir
+	    /home/j/mroot2</userinput> &prompt.root; <userinput>cd
+	    /usr/src</userinput> &prompt.root; <userinput>make
+	    installworld DESTDIR=/home/j/mroot2</userinput>
+	    &prompt.root; <userinput>cd /home/j/mroot2</userinput>
+	    &prompt.root; <userinput>cpdup /usr/src
+	    usr/src</userinput> &prompt.root; <userinput>mkdir
+	    s</userinput></screen>
 
 	    <para>A execução do <maketarget>installworld</maketarget>
-	      irá criar alguns diretórios que são desnecessários e os
-	      quais devem ser removidos:</para>
-	    
-	    <screen>&prompt.root; <userinput>chflags -R 0 var</userinput>
-&prompt.root; <userinput>rm -R etc var root usr/local tmp</userinput></screen>
-	  </step>
-	  <step>
+	    irá criar alguns diretórios que são desnecessários e os
+	    quais devem ser removidos:</para>
+
+	    <screen>&prompt.root; <userinput>chflags -R 0
+	    var</userinput> &prompt.root; <userinput>rm -R etc var
+	    root usr/local tmp</userinput></screen> </step> <step>
 	    <para>Recrie os links simbólicos para as áreas de leitura
-	      e escrita do sistema de arquivos principal:</para>
+	    e escrita do sistema de arquivos principal:</para>
 
-	    <screen>&prompt.root; <userinput>ln -s s/etc etc</userinput>
-&prompt.root; <userinput>ln -s s/root root</userinput>
-&prompt.root; <userinput>ln -s s/home home</userinput>
-&prompt.root; <userinput>ln -s ../s/usr-local usr/local</userinput>
-&prompt.root; <userinput>ln -s ../s/usr-X11R6 usr/X11R6</userinput>
-&prompt.root; <userinput>ln -s s/tmp tmp</userinput>
-&prompt.root; <userinput>ln -s s/var var</userinput></screen>
-	  </step>
-	  <step>
-	    <para>O momento certo para parar os
-	      <literal>jails</literal> é agora:</para>
+	    <screen>&prompt.root; <userinput>ln -s s/etc
+	    etc</userinput> &prompt.root; <userinput>ln -s s/root
+	    root</userinput> &prompt.root; <userinput>ln -s s/home
+	    home</userinput> &prompt.root; <userinput>ln -s
+	    ../s/usr-local usr/local</userinput> &prompt.root;
+	    <userinput>ln -s ../s/usr-X11R6 usr/X11R6</userinput>
+	    &prompt.root; <userinput>ln -s s/tmp tmp</userinput>
+	    &prompt.root; <userinput>ln -s s/var
+	    var</userinput></screen> </step> <step> <para>O momento
+	    certo para parar os <literal>jails</literal> é
+	    agora:</para>
 
-	    <screen>&prompt.root; <userinput>/etc/rc.d/jail stop</userinput></screen>
-	  </step>
-	  <step>
-	    <para>Desmonte o sistema de arquivos original:</para>
+	    <screen>&prompt.root; <userinput>/etc/rc.d/jail
+	    stop</userinput></screen> </step> <step> <para>Desmonte o
+	    sistema de arquivos original:</para>
 
-	    <screen>&prompt.root; <userinput>umount /home/j/ns/s</userinput>
-&prompt.root; <userinput>umount /home/j/ns</userinput>
-&prompt.root; <userinput>umount /home/j/mail/s</userinput>
-&prompt.root; <userinput>umount /home/j/mail</userinput>
-&prompt.root; <userinput>umount /home/j/www/s</userinput>
-&prompt.root; <userinput>umount /home/j/www</userinput></screen>
+	    <screen>&prompt.root; <userinput>umount
+	    /home/j/ns/s</userinput> &prompt.root; <userinput>umount
+	    /home/j/ns</userinput> &prompt.root; <userinput>umount
+	    /home/j/mail/s</userinput> &prompt.root; <userinput>umount
+	    /home/j/mail</userinput> &prompt.root; <userinput>umount
+	    /home/j/www/s</userinput> &prompt.root; <userinput>umount
+	    /home/j/www</userinput></screen>
 
-	    <note>
-	      <para>Os sistemas disponibilizados em modo de leitura e
-		escrita estão ligados as áreas do sistema
-		disponibilizados apenas em modo de leitura (<filename
-		class="directory">/s</filename>), e devem ser
-		desmontados primeiro.</para>
-	    </note>
-	  </step>
-	  <step>
-	    <para>Mova o antigo sistema de arquivos que estava
-	      disponibilizado apenas em modo de leitura e o substitua
-	      pelo novo.  O antigo sistema servirá como backup para o
-	      caso de algo dar errado na atualização.  Os nomes de
-	      diretório utilizados abaixo refletem os nomes usados nas
-	      etapas anteriores deste exemplo, quando criamos a nova
-	      área modelo.  Mova a Coleção de <literal>Ports</literal>
-	      do &os; da área original para o novo sistema de arquivos
-	      para economizar espaço e inodes:</para>
-	    
+	    <note> <para>Os sistemas disponibilizados em modo de
+	    leitura e escrita estão ligados as áreas do sistema
+	    disponibilizados apenas em modo de leitura (<filename
+	    class="directory">/s</filename>), e devem ser desmontados
+	    primeiro.</para> </note> </step> <step> <para>Mova o
+	    antigo sistema de arquivos que estava disponibilizado
+	    apenas em modo de leitura e o substitua pelo novo.  O
+	    antigo sistema servirá como backup para o caso de algo dar
+	    errado na atualização.  Os nomes de diretório utilizados
+	    abaixo refletem os nomes usados nas etapas anteriores
+	    deste exemplo, quando criamos a nova área modelo.  Mova a
+	    Coleção de <literal>Ports</literal> do &os; da área
+	    original para o novo sistema de arquivos para economizar
+	    espaço e inodes:</para>
+
 	    <screen>&prompt.root; <userinput>cd /home/j</userinput>
-&prompt.root; <userinput>mv mroot mroot.20060601</userinput>
-&prompt.root; <userinput>mv mroot2 mroot</userinput>
-&prompt.root; <userinput>mv mroot.20060601/usr/ports mroot/usr</userinput></screen>
-	  </step>
-	  <step>
-	    <para>Neste ponto, o modelo atualizado da área que é
-	      disponibilizada apenas em modo de leitura está pronto,
-	      para finalizarmos o processo de atualização basta
-	      remontarmos o sistema de arquivos e iniciarmos os
-	      <literal>jails</literal>:</para>
-	    
+	    &prompt.root; <userinput>mv mroot
+	    mroot.20060601</userinput> &prompt.root; <userinput>mv
+	    mroot2 mroot</userinput> &prompt.root; <userinput>mv
+	    mroot.20060601/usr/ports mroot/usr</userinput></screen>
+	    </step> <step> <para>Neste ponto, o modelo atualizado da
+	    área que é disponibilizada apenas em modo de leitura está
+	    pronto, para finalizarmos o processo de atualização basta
+	    remontarmos o sistema de arquivos e iniciarmos os
+	    <literal>jails</literal>:</para>
+
 	    <screen>&prompt.root; <userinput>mount -a</userinput>
-&prompt.root; <userinput>/etc/rc.d/jail start</userinput></screen>
-	  </step>
-	</procedure>
+	    &prompt.root; <userinput>/etc/rc.d/jail
+	    start</userinput></screen> </step> </procedure>
 
 	<para>Utilize o &man.jls.8; para verificar se os
-	  <literal>jails</literal> iniciaram corretamente.  Não se
-	  esqueça de executar o mergemaster em cada um dos
-	  <literal>jails</literal>.  Os arquivos de configuração,
-	  assim como os scripts rc.d, também precisam ser
-	  atualizados.</para>
-      </sect3>
-    </sect2>
-  </sect1>
-</chapter>
+	<literal>jails</literal> iniciaram corretamente.  Não se
+	esqueça de executar o mergemaster em cada um dos
+	<literal>jails</literal>.  Os arquivos de configuração, assim
+	como os scripts rc.d, também precisam ser atualizados.</para>
+	</sect3> </sect2> </sect1> </chapter>
